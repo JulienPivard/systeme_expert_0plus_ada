@@ -1,0 +1,65 @@
+--  Dernière modification : Mercredi 25 mai[05] 2022
+--  auteur : PIVARD Julien
+with "aunit";
+with "../gnat/build.gpr";
+
+project Unitaire is
+
+   Fichier_Principal       := "executeur_de_tests.adb";
+   Nom_Executable          := "test_unitaire_executable";
+   Nom_Sous_Dossier_Compil := "tests_unitaire";
+
+   --  Le nom du fichier qui contient la procédure principale.
+   for Main                      use (Fichier_Principal);
+
+   --  Pour ignorer des fichiers sources de la compilation
+   for Ignore_Source_Sub_Dirs    use (".git");
+   --  Le ** permet d'inclure tous les sous répertoire.
+   for Source_Dirs               use ("src_tests_unitaire/**");
+
+   for Object_Dir                use "../obj/" & Nom_Sous_Dossier_Compil;
+   for Exec_Dir                  use "../bin/" & Nom_Sous_Dossier_Compil;
+
+   for Create_Missing_Dirs       use "True";
+
+   --  Pour un bon tuto
+   --  https://docs.adacore.com/gprbuild-docs/html/gprbuild_ug.html
+   ----------------------------------------------------------------------------
+   package Naming is
+      --  Pour lier le nom dans le code et le nom du fichier de spec
+      --for Spec ("MyPack.MyChild") use "mypack.mychild.spec";
+      --  Même chose mais pour le corps.
+      --for Body ("MyPack.MyChild") use "mypack.mychild.body";
+   end Naming;
+   ----------------------------------------------------------------------------
+
+   ----------------------------------------------------------------------------
+   package Builder is
+      --  Pour changer le nom du binaire de main_test_harnais à
+      --  test_unitaire_executable après le use.
+      for Executable ("executeur_de_tests.adb") use Nom_Executable;
+   end Builder;
+   ----------------------------------------------------------------------------
+
+   ----------------------------------------------------------------------------
+   package Compiler is
+      Options_Compiler := Build.Options_Compiler &
+         (
+            "-gnata",
+            --  -gnata active les assertions. Pragma assert, debug, Check,
+            --  Precondition, et Postcondition
+            "-gnateL"
+            --  Désactive l'affichage des messages indiquant l'ajout
+            --  implicite de pragma d'élaboration lors de la compilation.
+         );
+      for Default_Switches ("Ada") use Options_Compiler;
+   end Compiler;
+   ----------------------------------------------------------------------------
+
+   ----------------------------------------------------------------------------
+   package Binder renames Build.Binder;
+   package Linker renames Build.Linker;
+   package Ide    renames Build.Ide;
+   ----------------------------------------------------------------------------
+
+end Unitaire;
