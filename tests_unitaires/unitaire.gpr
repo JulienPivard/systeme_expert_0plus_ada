@@ -1,7 +1,7 @@
---  Dernière modification : Mercredi 25 mai[05] 2022
+--  Dernière modification : Dimanche 01 octobre[10] 2023
 --  auteur : PIVARD Julien
 with "aunit";
-with "../gnat/build.gpr";
+with "../gnat/systeme_expert.gpr";
 
 project Unitaire is
 
@@ -43,7 +43,7 @@ project Unitaire is
 
    ----------------------------------------------------------------------------
    package Compiler is
-      Options_Compiler := Build.Options_Compiler &
+      Options_Compiler := Systeme_Expert.Options_Compiler &
          (
             "-gnata",
             --  -gnata active les assertions. Pragma assert, debug, Check,
@@ -57,9 +57,9 @@ project Unitaire is
    ----------------------------------------------------------------------------
 
    ----------------------------------------------------------------------------
-   package Binder renames Build.Binder;
-   package Linker renames Build.Linker;
-   package Ide    renames Build.Ide;
+   package Binder renames Systeme_Expert.Binder;
+   package Linker renames Systeme_Expert.Linker;
+   package Ide    renames Systeme_Expert.Ide;
    ----------------------------------------------------------------------------
 
 end Unitaire;
