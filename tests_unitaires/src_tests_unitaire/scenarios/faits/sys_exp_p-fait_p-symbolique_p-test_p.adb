@@ -6,7 +6,9 @@ is
 
    ---------------------------------------------------------------------------
    overriding
-   procedure Set_Up (T : in out Test_Fixt_T) is
+   procedure Set_Up
+      (T : in out Test_Fixt_T)
+   is
    begin
       null;
    end Set_Up;
@@ -14,7 +16,9 @@ is
 
    ---------------------------------------------------------------------------
    overriding
-   procedure Tear_Down (T : in out Test_Fixt_T) is
+   procedure Tear_Down
+      (T : in out Test_Fixt_T)
+   is
    begin
       null;
    end Tear_Down;
