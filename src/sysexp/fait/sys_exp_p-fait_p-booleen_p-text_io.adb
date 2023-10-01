@@ -10,7 +10,7 @@ is
    is
    begin
       Ada.Text_IO.Put (Item => "Nom [" & String (Item.Lire_Nom) & "] ");
-      Ada.Text_IO.Put (Item => "Symbole [" & Item.Lire_Valeur'Image & "]");
+      Ada.Text_IO.Put (Item => "Valeur [" & Item.Lire_Valeur'Image & "]");
       Ada.Text_IO.New_Line (Spacing => 1);
    end Put_Line;
    ---------------------------------------------------------------------------
