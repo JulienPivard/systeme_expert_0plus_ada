@@ -46,6 +46,13 @@ is
    --  Le fait,
    --  @return Le type du fait.
 
+   function "="
+      (
+         Gauche : in     Fait_Abstrait_T'Class;
+         Droite : in     Fait_Abstrait_T'Class
+      )
+      return Boolean;
+
 private
 
    procedure Modifier_Nom
