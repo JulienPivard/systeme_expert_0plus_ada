@@ -1,3 +1,4 @@
+with Fait_Booleen_Suite_P;
 with Fait_Symbolique_Suite_P;
 
 ---------------------------------------------------------------------------
@@ -7,6 +8,8 @@ is
    Ptr_Test_Suite : constant AUnit.Test_Suites.Access_Test_Suite :=
       AUnit.Test_Suites.New_Suite;
 begin
+   Ptr_Test_Suite.all.Add_Test
+      (T => Fait_Booleen_Suite_P.Fonc_Suite);
    Ptr_Test_Suite.all.Add_Test
       (T => Fait_Symbolique_Suite_P.Fonc_Suite);
 

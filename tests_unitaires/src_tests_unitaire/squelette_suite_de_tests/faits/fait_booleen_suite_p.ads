@@ -1,11 +1,11 @@
 with AUnit.Test_Suites;
 
 --  @summary
---  La suite de scénarios des faits symbolique.
+--  La suite de scénarios des faits booléen.
 --  @description
---  La suite de scénarios des faits symbolique.
+--  La suite de scénarios des faits booléen.
 --  @group Fait
-package Fait_Symbolique_Suite_P
+package Fait_Booleen_Suite_P
    with
       Pure           => False,
       Preelaborate   => False,
@@ -16,4 +16,4 @@ is
    function Fonc_Suite
       return AUnit.Test_Suites.Access_Test_Suite;
 
-end Fait_Symbolique_Suite_P;
+end Fait_Booleen_Suite_P;
