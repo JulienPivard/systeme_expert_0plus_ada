@@ -1,3 +1,5 @@
+with Base_Faits_Suite_P;
+
 with Fait_Booleen_Suite_P;
 with Fait_Entier_Suite_P;
 with Fait_Symbolique_Suite_P;
@@ -15,6 +17,8 @@ begin
       (T => Fait_Entier_Suite_P.Fonc_Suite);
    Ptr_Test_Suite.all.Add_Test
       (T => Fait_Symbolique_Suite_P.Fonc_Suite);
+   Ptr_Test_Suite.all.Add_Test
+      (T => Base_Faits_Suite_P.Fonc_Suite);
 
    return Ptr_Test_Suite;
 end Suite_De_Tests_Faits;
