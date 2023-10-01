@@ -44,7 +44,7 @@ begin
    Base.Ajouter (Nouvel_Item => Fait_E);
    Base.Ajouter (Nouvel_Item => Fait_B);
 
-   if Base.Appartient (Nom_Fait => Fait_S.Lire_Nom) then
+   if Base.Contient (Nom_Fait => Fait_S.Lire_Nom) then
       Bloc_Afficher_Fait :
       declare
          Fait : constant Sys_Exp_P.Fait_P.Fait_Abstrait_T'Class :=

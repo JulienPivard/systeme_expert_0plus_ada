@@ -23,7 +23,7 @@ is
 
    type Base_De_Faits_T is tagged limited private;
 
-   function Appartient
+   function Contient
       (
          This     : in     Base_De_Faits_T;
          Nom_Fait : in     Nom_T

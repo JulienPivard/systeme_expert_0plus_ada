@@ -5,7 +5,7 @@ package body Sys_Exp_P.Base_Faits_P
 is
 
    ---------------------------------------------------------------------------
-   function Appartient
+   function Contient
       (
          This     : in     Base_De_Faits_T;
          Nom_Fait : in     Nom_T
@@ -14,7 +14,7 @@ is
    is
    begin
       return This.Map_Faits.Contains (Key => Nom_Fait);
-   end Appartient;
+   end Contient;
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
@@ -26,7 +26,7 @@ is
       return Fait_Abstrait_T'Class
    is
    begin
-      if This.Appartient (Nom_Fait => Nom_Fait) then
+      if This.Contient (Nom_Fait => Nom_Fait) then
          return This.Map_Faits.Element (Key => Nom_Fait);
       else
          raise E_Fait_Inconnu with
@@ -43,7 +43,7 @@ is
       )
    is
    begin
-      if not This.Appartient (Nom_Fait => Nouvel_Item.Lire_Nom) then
+      if not This.Contient (Nom_Fait => Nouvel_Item.Lire_Nom) then
          This.Map_Faits.Insert
             (
                Key      => Nouvel_Item.Lire_Nom,
