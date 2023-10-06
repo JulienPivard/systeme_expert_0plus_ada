@@ -31,7 +31,7 @@ is
    package Taille_Nom_Alea_P is new Ada.Numerics.Discrete_Random
       (Result_Subtype => Taille_Nom_T);
 
-   Generateur : Entier_Alea_P.Generator;
+   Generateur_Entier : Entier_Alea_P.Generator;
    Generateur_Lettre : Lettre_Alea_P.Generator;
    Generateur_Taille : Taille_Nom_Alea_P.Generator;
 
@@ -147,7 +147,8 @@ is
       use type Entier_T;
 
       Nom    : constant Nom_T    := "ceci est un test";
-      Valeur : constant Entier_T := Entier_Alea_P.Random (Gen => Generateur);
+      Valeur : constant Entier_T :=
+         Entier_Alea_P.Random (Gen => Generateur_Entier);
 
       Fait : constant Fait_Entier_T := Fait_P.Entier_P.Creer
          (
@@ -288,7 +289,7 @@ is
 
 begin
 
-   Entier_Alea_P.Reset (Gen => Generateur);
+   Entier_Alea_P.Reset (Gen => Generateur_Entier);
    Lettre_Alea_P.Reset (Gen => Generateur_Lettre);
    Taille_Nom_Alea_P.Reset (Gen => Generateur_Taille);
 
