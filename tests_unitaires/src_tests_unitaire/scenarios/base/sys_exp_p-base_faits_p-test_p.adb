@@ -84,7 +84,7 @@ is
       use type Fait_P.Nom_T;
       use type Fait_P.Type_De_Fait_T;
 
-      Nom    : constant Nom_T   := "ceci est un test";
+      Nom    : constant Nom_T   := Creer_Nom;
       Valeur : constant Boolean := True;
 
       Fait : constant Fait_Booleen_T := Fait_P.Booleen_P.Creer
@@ -146,7 +146,7 @@ is
       use type Fait_P.Type_De_Fait_T;
       use type Entier_T;
 
-      Nom    : constant Nom_T    := "ceci est un test";
+      Nom    : constant Nom_T    := Creer_Nom;
       Valeur : constant Entier_T :=
          Entier_Alea_P.Random (Gen => Generateur_Entier);
 
@@ -209,7 +209,7 @@ is
       use type Fait_P.Type_De_Fait_T;
       use type Nom_Symbole_T;
 
-      Nom    : constant Nom_T         := "ceci est un test";
+      Nom    : constant Nom_T         := Creer_Nom;
       Valeur : constant Nom_Symbole_T := "nom symbole";
 
       Fait : constant Fait_Symbole_T := Fait_P.Symbolique_P.Creer
