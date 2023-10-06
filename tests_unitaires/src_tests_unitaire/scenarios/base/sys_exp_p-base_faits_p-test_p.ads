@@ -45,4 +45,7 @@ is
    procedure Test_Ajouter_S_1
       (T : in out Test_Fixt_T);
 
+   procedure Test_Ajouter_Multiples
+      (T : in out Test_Fixt_T);
+
 end Sys_Exp_P.Base_Faits_P.Test_P;

@@ -68,6 +68,16 @@ is
                   Test => Scenario_R.Test_Ajouter_S_1'Access
                )
          );
+      for I in 1 .. 10 loop
+         Ptr_Test_Suite.all.Add_Test
+            (
+               T => Caller_P.Create
+                  (
+                     Name => Nom_Test & "ajouter multiples [" & I'Image & "]",
+                     Test => Scenario_R.Test_Ajouter_Multiples'Access
+                  )
+            );
+      end loop;
 
       return Ptr_Test_Suite;
    end Fonc_Suite;

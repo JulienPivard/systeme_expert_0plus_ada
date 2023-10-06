@@ -18,7 +18,7 @@ is
 
    use type Fait_P.Taille_Nom_T;
 
-   subtype Taille_Nom_T is Fait_P.Taille_Nom_T range
+   subtype Taille_Min_Nom_T is Fait_P.Taille_Nom_T range
       Fait_P.Taille_Nom_T'First + 3 .. Fait_P.Taille_Nom_T'Last;
 
    subtype Lettre_T is Character range 'a' .. 'z';
@@ -29,11 +29,15 @@ is
       (Result_Subtype => Lettre_T);
 
    package Taille_Nom_Alea_P is new Ada.Numerics.Discrete_Random
-      (Result_Subtype => Taille_Nom_T);
+      (Result_Subtype => Taille_Min_Nom_T);
+   package Sorte_Fait_Alea_P is new Ada.Numerics.Discrete_Random
+      (Result_Subtype => Fait_P.Type_De_Fait_T);
 
    Generateur_Entier : Entier_Alea_P.Generator;
    Generateur_Lettre : Lettre_Alea_P.Generator;
    Generateur_Taille : Taille_Nom_Alea_P.Generator;
+
+   Generateur_Sorte_Fait : Sorte_Fait_Alea_P.Generator;
 
    function Creer_Nom
       return Nom_T;
@@ -325,6 +329,113 @@ is
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
+   procedure Test_Ajouter_Multiples
+      (T : in out Test_Fixt_T)
+   is
+      use type Ada.Containers.Count_Type;
+
+      use type Fait_P.Nom_T;
+      use type Fait_P.Type_De_Fait_T;
+
+      type Memoire_T is
+         record
+            Sorte : Fait_P.Type_De_Fait_T;
+            Nom   : Nom_T (Fait_P.Taille_Nom_T);
+            --  case Sorte is
+            --     when Fait_P.Booleen_E =>
+            --        Bool : Boolean;
+            --     when Fait_P.Entier_E =>
+            --        Entier : Fait_P.Entier_P.Entier_T;
+            --     when Fait_P.Symbolique_P =>
+            --        Symbol : Fait_P.Symbolique_P.Nom_Symbole_T;
+            --  end case;
+         end record;
+
+      type ID_Fait_T is range 1 .. 10;
+
+      type Faits_Genere_T is array (ID_Fait_T) of Memoire_T;
+
+      F : Faits_Genere_T;
+   begin
+      Boucle_Remplissage_Base :
+      for M : Memoire_T of F loop
+         Bloc_Nom :
+         declare
+            N : constant Nom_T := Creer_Nom;
+         begin
+            M.Nom (N'Range) := N;
+            M.Sorte := Sorte_Fait_Alea_P.Random (Gen => Generateur_Sorte_Fait);
+         end Bloc_Nom;
+
+         Bloc_Creer_Fait :
+         declare
+            Fait : constant Fait_P.Fait_Abstrait_T'Class :=
+               (
+                  case M.Sorte is
+                     when Fait_P.Booleen_E =>
+                        Fait_P.Booleen_P.Creer
+                           (
+                              Nom    => M.Nom,
+                              Valeur => True
+                           ),
+                     when Fait_P.Entier_E =>
+                        Fait_P.Entier_P.Creer
+                           (
+                              Nom    => M.Nom,
+                              Valeur => 666
+                           ),
+                     when Fait_P.Symbole_E =>
+                        Fait_P.Symbolique_P.Creer
+                           (
+                              Nom    => M.Nom,
+                              Valeur => "un symbole"
+                           )
+               );
+         begin
+            T.Base.Ajouter (Nouvel_Item => Fait);
+         end Bloc_Creer_Fait;
+      end loop Boucle_Remplissage_Base;
+
+      AUnit.Assertions.Assert
+         (
+            Condition => T.Base.Map_Faits.Length = 10,
+            Message   => "La base de fait doit contenir 10 et pas " &
+               "[" & T.Base.Map_Faits.Length'Image & "]"
+         );
+
+      Boucle_Verification_Contenu :
+      for M : Memoire_T of F loop
+         AUnit.Assertions.Assert
+            (
+               Condition => T.Base.Contient (Nom_Fait => M.Nom),
+               Message   => "La base de fait doit contenir 1 et pas " &
+                  "[" & T.Base.Map_Faits.Length'Image & "]"
+            );
+         Bloc_Verification_Contenu :
+         declare
+            Fait : constant Fait_P.Fait_Abstrait_T'Class :=
+               T.Base.Trouver (Nom_Fait => M.Nom);
+         begin
+            AUnit.Assertions.Assert
+               (
+                  Condition => M.Nom = Fait.Lire_Nom,
+                  Message   => "La base de fait doit contenir " &
+                     "[" & String (M.Nom) & "] mais on trouve " &
+                     "[" & String (Fait.Lire_Nom) & "]"
+               );
+            AUnit.Assertions.Assert
+               (
+                  Condition => M.Sorte = Fait.Lire_Type,
+                  Message   => "Le fait extrait doit être de type " &
+                     "[" & M.Sorte'Image & "] mais on trouve " &
+                     "[" & Fait.Lire_Type'Image & "]"
+               );
+         end Bloc_Verification_Contenu;
+      end loop Boucle_Verification_Contenu;
+   end Test_Ajouter_Multiples;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
    --                             Partie privée                             --
    ---------------------------------------------------------------------------
 
@@ -355,5 +466,6 @@ begin
    Entier_Alea_P.Reset (Gen => Generateur_Entier);
    Lettre_Alea_P.Reset (Gen => Generateur_Lettre);
    Taille_Nom_Alea_P.Reset (Gen => Generateur_Taille);
+   Sorte_Fait_Alea_P.Reset (Gen => Generateur_Sorte_Fait);
 
 end Sys_Exp_P.Base_Faits_P.Test_P;

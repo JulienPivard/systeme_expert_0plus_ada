@@ -25,7 +25,7 @@ is
             (
                T => Caller_P.Create
                   (
-                     Name => Nom_Test & "creation " & I'Image,
+                     Name => Nom_Test & "creation [" & I'Image & "]",
                      Test => Scenario_R.Test_Creer'Access
                   )
             );
