@@ -16,8 +16,26 @@ is
    subtype Entier_T       is Fait_P.Entier_P.Entier_T;
    subtype Nom_Symbole_T  is Fait_P.Symbolique_P.Nom_Symbole_T;
 
+   use type Fait_P.Taille_Nom_T;
+
+   subtype Taille_Nom_T is Fait_P.Taille_Nom_T range
+      Fait_P.Taille_Nom_T'First + 3 .. Fait_P.Taille_Nom_T'Last;
+
+   subtype Lettre_T is Character range 'a' .. 'z';
+
    package Entier_Alea_P is new Ada.Numerics.Discrete_Random
       (Result_Subtype => Entier_T);
+   package Lettre_Alea_P is new Ada.Numerics.Discrete_Random
+      (Result_Subtype => Lettre_T);
+
+   package Taille_Nom_Alea_P is new Ada.Numerics.Discrete_Random
+      (Result_Subtype => Taille_Nom_T);
+
+   Generateur_Lettre : Lettre_Alea_P.Generator;
+   Generateur_Taille : Taille_Nom_Alea_P.Generator;
+
+   function Creer_Nom
+      return Nom_T;
 
    ---------------------------------------------------------------------------
    overriding
@@ -247,8 +265,32 @@ is
    --                             Partie privée                             --
    ---------------------------------------------------------------------------
 
+   ---------------------------------------------------------------------------
+   function Creer_Nom
+      return Nom_T
+   is
+      Taille : constant Fait_P.Taille_Nom_T :=
+         Taille_Nom_Alea_P.Random (Gen => Generateur_Taille);
+
+      Debut : constant Fait_P.Taille_Nom_T := Fait_P.Taille_Nom_T'First;
+      Fin   : constant Fait_P.Taille_Nom_T := Debut + Taille - 1;
+
+      subtype Taille_T is Fait_P.Taille_Nom_T range Debut .. Fin;
+
+      Nom : Nom_T (Taille_T);
+   begin
+      for I in Taille_T loop
+         Nom (I) := Lettre_Alea_P.Random (Gen => Generateur_Lettre);
+      end loop;
+
+      return Nom;
+   end Creer_Nom;
+   ---------------------------------------------------------------------------
+
 begin
 
    Entier_Alea_P.Reset (Gen => Generateur);
+   Lettre_Alea_P.Reset (Gen => Generateur_Lettre);
+   Taille_Nom_Alea_P.Reset (Gen => Generateur_Taille);
 
 end Sys_Exp_P.Base_Faits_P.Test_P;
