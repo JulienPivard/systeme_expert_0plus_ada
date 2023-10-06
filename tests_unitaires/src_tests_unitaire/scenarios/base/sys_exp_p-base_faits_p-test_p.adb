@@ -31,6 +31,7 @@ is
    package Taille_Nom_Alea_P is new Ada.Numerics.Discrete_Random
       (Result_Subtype => Taille_Nom_T);
 
+   Generateur : Entier_Alea_P.Generator;
    Generateur_Lettre : Lettre_Alea_P.Generator;
    Generateur_Taille : Taille_Nom_Alea_P.Generator;
 
@@ -60,8 +61,6 @@ is
    ---------------------------------------------------------------------------
    --                              scénarios                                --
    ---------------------------------------------------------------------------
-
-   Generateur : Entier_Alea_P.Generator;
 
    ---------------------------------------------------------------------------
    procedure Test_Creer
