@@ -63,6 +63,26 @@ is
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
+   procedure Trouver;
+   --  Doit déclencher une exception sur un fait introuvable.
+
+   --------------------
+   procedure Trouver is
+      Base : Base_De_Faits_T;
+   begin
+      Bloc_Trouver :
+      declare
+         Nom  : constant Nom_T := Creer_Nom;
+         Fait : constant Fait_P.Fait_Abstrait_T'Class :=
+            Base.Trouver (Nom_Fait => Nom);
+      begin
+         pragma Unreferenced (Fait);
+         null;
+      end Bloc_Trouver;
+   end Trouver;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
    procedure Test_Creer
       (T : in out Test_Fixt_T)
    is
@@ -73,6 +93,49 @@ is
             Message   => "La base de faits doit etre vide a la creation"
          );
    end Test_Creer;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Test_Contient_Base_Vide
+      (T : in out Test_Fixt_T)
+   is
+      Nom : constant Nom_T := Creer_Nom;
+   begin
+      AUnit.Assertions.Assert
+         (
+            Condition => T.Base.Map_Faits.Is_Empty,
+            Message   => "La base de faits doit etre vide a la creation"
+         );
+      AUnit.Assertions.Assert
+         (
+            Condition => not T.Base.Contient (Nom_Fait => Nom),
+            Message   => "La base de faits doit etre vide"
+         );
+   end Test_Contient_Base_Vide;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Test_Trouver_Base_Vide
+      (T : in out Test_Fixt_T)
+   is
+      Nom : constant Nom_T := Creer_Nom;
+   begin
+      AUnit.Assertions.Assert
+         (
+            Condition => T.Base.Map_Faits.Is_Empty,
+            Message   => "La base de faits doit etre vide a la creation"
+         );
+      AUnit.Assertions.Assert
+         (
+            Condition => not T.Base.Contient (Nom_Fait => Nom),
+            Message   => "La base de faits doit etre vide"
+         );
+      AUnit.Assertions.Assert_Exception
+         (
+            Proc    => Trouver'Access,
+            Message => "La base de faits doit etre vide"
+         );
+   end Test_Trouver_Base_Vide;
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------

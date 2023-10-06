@@ -30,6 +30,12 @@ is
    procedure Test_Creer
       (T : in out Test_Fixt_T);
 
+   procedure Test_Contient_Base_Vide
+      (T : in out Test_Fixt_T);
+
+   procedure Test_Trouver_Base_Vide
+      (T : in out Test_Fixt_T);
+
    procedure Test_Ajouter_B_1
       (T : in out Test_Fixt_T);
 

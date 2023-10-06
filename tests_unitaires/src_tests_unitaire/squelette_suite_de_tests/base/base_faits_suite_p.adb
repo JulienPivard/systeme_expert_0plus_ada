@@ -32,6 +32,22 @@ is
          (
             T => Caller_P.Create
                (
+                  Name => Nom_Test & "ne contient pas le fait recherche",
+                  Test => Scenario_R.Test_Contient_Base_Vide'Access
+               )
+         );
+      Ptr_Test_Suite.all.Add_Test
+         (
+            T => Caller_P.Create
+               (
+                  Name => Nom_Test & "ne trouve pas le fait recherche",
+                  Test => Scenario_R.Test_Trouver_Base_Vide'Access
+               )
+         );
+      Ptr_Test_Suite.all.Add_Test
+         (
+            T => Caller_P.Create
+               (
                   Name => Nom_Test & "ajouter booleen 1",
                   Test => Scenario_R.Test_Ajouter_B_1'Access
                )
