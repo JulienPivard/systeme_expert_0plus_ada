@@ -12,12 +12,9 @@ package body Sys_Exp_P.Valeur_P.Fait_P.Test_P
    with Spark_Mode => Off
 is
 
-   package Entier_Alea_P is new Ada.Numerics.Discrete_Random
-      (Result_Subtype => Entier_T);
    package Sorte_Fait_Alea_P is new Ada.Numerics.Discrete_Random
       (Result_Subtype => Sys_Exp_P.Fait_P.Type_De_Fait_T);
 
-   Generateur_Entier     : Entier_Alea_P.Generator;
    Generateur_Sorte_Fait : Sorte_Fait_Alea_P.Generator;
 
    ---------------------------------------------------------------------------
@@ -131,16 +128,12 @@ is
    procedure Test_Interpreter
       (T : in out Test_Fixt_T)
    is
-      Nom    : constant Nom_T    := Facilites_P.Creer_Nom;
-      Valeur : constant Entier_T :=
-         Entier_Alea_P.Random (Gen => Generateur_Entier);
+      Nom : constant Nom_T := Facilites_P.Creer_Nom;
 
       Fait : constant Sys_Exp_P.Fait_P.Entier_P.Fait_Entier_T :=
-         Sys_Exp_P.Fait_P.Entier_P.Creer
-            (
-               Nom    => Nom,
-               Valeur => Valeur
-            );
+         Facilites_P.Fait_P.Creer_Fait_Entier (Nom => Nom);
+
+      Valeur : constant Entier_T := Fait.Lire_Valeur;
 
       B : Base_Faits_P.Base_De_Faits_T;
       V : Entier_T;
@@ -192,7 +185,6 @@ is
 
 begin
 
-   Entier_Alea_P.Reset     (Gen => Generateur_Entier);
    Sorte_Fait_Alea_P.Reset (Gen => Generateur_Sorte_Fait);
 
 end Sys_Exp_P.Valeur_P.Fait_P.Test_P;

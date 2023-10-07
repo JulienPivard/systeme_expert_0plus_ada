@@ -1,5 +1,3 @@
-with Ada.Numerics.Discrete_Random;
-
 with AUnit.Assertions;
 
 with Facilites_P;
@@ -16,11 +14,6 @@ is
    subtype Fait_Booleen_T is Fait_P.Booleen_P.Fait_Booleen_T;
    subtype Fait_Entier_T  is Fait_P.Entier_P.Fait_Entier_T;
    subtype Fait_Symbole_T is Fait_P.Symbolique_P.Fait_Symbolique_T;
-
-   package Entier_Alea_P is new Ada.Numerics.Discrete_Random
-      (Result_Subtype => Entier_T);
-
-   Generateur_Entier : Entier_Alea_P.Generator;
 
    ---------------------------------------------------------------------------
    overriding
@@ -78,7 +71,6 @@ is
    --------------------
    procedure Trouver_Fait_Inconnu is
       Nom_1 : constant Nom_T := Facilites_P.Creer_Nom;
-      Nom_2 : constant Nom_T := Facilites_P.Creer_Nom_Different (Nom => Nom_1);
 
       Base : Base_De_Faits_T;
    begin
@@ -92,7 +84,9 @@ is
 
       Bloc_Trouver_Fait_Qui_N_Existe_Pas :
       declare
-         Fait : constant Fait_P.Fait_Abstrait_T'Class :=
+         Nom_2 : constant Nom_T :=
+            Facilites_P.Creer_Nom_Different (Nom => Nom_1);
+         Fait  : constant Fait_P.Fait_Abstrait_T'Class :=
             Base.Trouver (Nom_Fait => Nom_2);
       begin
          pragma Unreferenced (Fait);
@@ -333,14 +327,10 @@ is
 
       use type Fait_P.Type_De_Fait_T;
 
-      Nom    : constant Nom_T   := Facilites_P.Creer_Nom;
-      Valeur : constant Boolean := True;
+      Nom : constant Nom_T := Facilites_P.Creer_Nom;
 
-      Fait : constant Fait_Booleen_T := Fait_P.Booleen_P.Creer
-         (
-            Nom    => Nom,
-            Valeur => Valeur
-         );
+      Fait : constant Fait_Booleen_T :=
+         Facilites_P.Fait_P.Creer_Fait_Booleen (Nom => Nom);
    begin
       T.Base.Ajouter (Nouvel_Item => Fait);
       AUnit.Assertions.Assert
@@ -393,15 +383,10 @@ is
 
       use type Fait_P.Type_De_Fait_T;
 
-      Nom    : constant Nom_T    := Facilites_P.Creer_Nom;
-      Valeur : constant Entier_T :=
-         Entier_Alea_P.Random (Gen => Generateur_Entier);
+      Nom : constant Nom_T := Facilites_P.Creer_Nom;
 
-      Fait : constant Fait_Entier_T := Fait_P.Entier_P.Creer
-         (
-            Nom    => Nom,
-            Valeur => Valeur
-         );
+      Fait : constant Fait_Entier_T :=
+         Facilites_P.Fait_P.Creer_Fait_Entier (Nom => Nom);
    begin
       T.Base.Ajouter (Nouvel_Item => Fait);
       AUnit.Assertions.Assert
@@ -454,14 +439,10 @@ is
 
       use type Fait_P.Type_De_Fait_T;
 
-      Nom    : constant Nom_T         := Facilites_P.Creer_Nom;
-      Valeur : constant Nom_Symbole_T := Facilites_P.Creer_Symbole;
+      Nom : constant Nom_T := Facilites_P.Creer_Nom;
 
-      Fait : constant Fait_Symbole_T := Fait_P.Symbolique_P.Creer
-         (
-            Nom    => Nom,
-            Valeur => Valeur
-         );
+      Fait : constant Fait_Symbole_T :=
+         Facilites_P.Fait_P.Creer_Fait_Symbolique (Nom => Nom);
    begin
       T.Base.Ajouter (Nouvel_Item => Fait);
       AUnit.Assertions.Assert
@@ -595,9 +576,5 @@ is
    ---------------------------------------------------------------------------
    --                             Partie privée                             --
    ---------------------------------------------------------------------------
-
-begin
-
-   Entier_Alea_P.Reset (Gen => Generateur_Entier);
 
 end Sys_Exp_P.Base_Faits_P.Test_P;
