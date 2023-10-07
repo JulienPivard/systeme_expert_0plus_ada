@@ -15,6 +15,11 @@ package Sys_Exp_P.Valeur_P
       Spark_Mode     => Off
 is
 
+   E_Fait_Nom_Entier : exception;
+   --  Exception déclenchée quand le fait lu n'est pas un entier.
+   E_Fait_Inconnu    : exception;
+   --  Exception déclenchée quand le fait est inconnu de la base.
+
    type Valeur_Abstraite_T is interface;
    --  Une valeur d'une expression.
 
