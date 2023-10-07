@@ -19,4 +19,7 @@ is
    type Nom_T        is array (Taille_Nom_T range <>) of Character;
    --  Un nom de fait.
 
+   type Nom_Symbole_T is new Nom_T;
+   --  Un nom symbolique différent d'un nom.
+
 end Sys_Exp_P;
