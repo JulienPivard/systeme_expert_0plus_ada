@@ -36,6 +36,18 @@ is
    procedure Test_Trouver_Base_Vide
       (T : in out Test_Fixt_T);
 
+   procedure Test_Trouver_Inconnu
+      (T : in out Test_Fixt_T);
+
+   procedure Test_Ajouter_Deux_Fois_Le_Meme
+      (T : in out Test_Fixt_T);
+
+   procedure Test_Ajouter_Deux_Fois
+      (T : in out Test_Fixt_T);
+
+   procedure Test_Ajouter_2_F_Type_Differents
+      (T : in out Test_Fixt_T);
+
    procedure Test_Ajouter_B_1
       (T : in out Test_Fixt_T);
 

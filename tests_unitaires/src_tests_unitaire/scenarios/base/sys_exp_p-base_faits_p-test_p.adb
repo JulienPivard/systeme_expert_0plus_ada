@@ -39,6 +39,10 @@ is
    function Creer_Nom
       return Nom_T;
 
+   function Creer_Nom_Different
+      (Nom : in     Nom_T)
+      return Nom_T;
+
    ---------------------------------------------------------------------------
    overriding
    procedure Set_Up
@@ -64,11 +68,11 @@ is
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
-   procedure Trouver;
+   procedure Trouver_Dans_Base_Vide;
    --  Doit déclencher une exception sur un fait introuvable.
 
    --------------------
-   procedure Trouver is
+   procedure Trouver_Dans_Base_Vide is
       Base : Base_De_Faits_T;
    begin
       Bloc_Trouver :
@@ -80,7 +84,263 @@ is
          pragma Unreferenced (Fait);
          null;
       end Bloc_Trouver;
-   end Trouver;
+   exception
+      when E_Fait_Inconnu =>
+         raise;
+      when others =>
+         null;
+   end Trouver_Dans_Base_Vide;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Trouver_Fait_Inconnu;
+   --  Doit déclencher une exception sur un fait introuvable.
+
+   --------------------
+   procedure Trouver_Fait_Inconnu is
+      Nom_1 : constant Nom_T := Creer_Nom;
+      Nom_2 : constant Nom_T := Creer_Nom_Different (Nom => Nom_1);
+
+      Base : Base_De_Faits_T;
+   begin
+      Bloc_Remplir :
+      declare
+         Fait  : constant Fait_P.Fait_Abstrait_T'Class :=
+            (
+               case Sorte_Fait_Alea_P.Random (Gen => Generateur_Sorte_Fait) is
+                  when Fait_P.Booleen_E =>
+                     Fait_P.Booleen_P.Creer
+                        (
+                           Nom    => Nom_1,
+                           Valeur => True
+                        ),
+                  when Fait_P.Entier_E =>
+                     Fait_P.Entier_P.Creer
+                        (
+                           Nom    => Nom_1,
+                           Valeur => 666
+                        ),
+                  when Fait_P.Symbole_E =>
+                     Fait_P.Symbolique_P.Creer
+                        (
+                           Nom    => Nom_1,
+                           Valeur => "un symbole"
+                        )
+            );
+      begin
+         Base.Ajouter (Nouvel_Item => Fait);
+      end Bloc_Remplir;
+
+      Bloc_Trouver :
+      declare
+         Fait : constant Fait_P.Fait_Abstrait_T'Class :=
+            Base.Trouver (Nom_Fait => Nom_2);
+      begin
+         pragma Unreferenced (Fait);
+         null;
+      end Bloc_Trouver;
+   exception
+      when E_Fait_Inconnu =>
+         raise;
+      when others =>
+         null;
+   end Trouver_Fait_Inconnu;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Ajouter_Deux_Fois_Le_Meme;
+   --  Doit déclencher une exception sur un fait déjà présent.
+
+   --------------------
+   procedure Ajouter_Deux_Fois_Le_Meme is
+      Base : Base_De_Faits_T;
+   begin
+      Bloc_Creer_Fait :
+      declare
+         Nom  : constant Nom_T := Creer_Nom;
+         Fait : constant Fait_P.Fait_Abstrait_T'Class :=
+            (
+               case Sorte_Fait_Alea_P.Random (Gen => Generateur_Sorte_Fait) is
+                  when Fait_P.Booleen_E =>
+                     Fait_P.Booleen_P.Creer
+                        (
+                           Nom    => Nom,
+                           Valeur => True
+                        ),
+                  when Fait_P.Entier_E =>
+                     Fait_P.Entier_P.Creer
+                        (
+                           Nom    => Nom,
+                           Valeur => 666
+                        ),
+                  when Fait_P.Symbole_E =>
+                     Fait_P.Symbolique_P.Creer
+                        (
+                           Nom    => Nom,
+                           Valeur => "un symbole"
+                        )
+            );
+      begin
+         Base.Ajouter (Nouvel_Item => Fait);
+         Base.Ajouter (Nouvel_Item => Fait);
+      end Bloc_Creer_Fait;
+      pragma Unreferenced (Base);
+   exception
+      when E_Fait_Deja_Present =>
+         raise;
+      when others =>
+         null;
+   end Ajouter_Deux_Fois_Le_Meme;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Ajouter_Deux_Fois;
+   --  Doit déclencher une exception sur un fait déjà présent.
+
+   --------------------
+   procedure Ajouter_Deux_Fois is
+      Base : Base_De_Faits_T;
+   begin
+      Bloc_Creer_Fait :
+      declare
+         Sorte  : constant Fait_P.Type_De_Fait_T :=
+            Sorte_Fait_Alea_P.Random (Gen => Generateur_Sorte_Fait);
+         Nom    : constant Nom_T := Creer_Nom;
+         Fait_1 : constant Fait_P.Fait_Abstrait_T'Class :=
+            (
+               case Sorte is
+                  when Fait_P.Booleen_E =>
+                     Fait_P.Booleen_P.Creer
+                        (
+                           Nom    => Nom,
+                           Valeur => True
+                        ),
+                  when Fait_P.Entier_E =>
+                     Fait_P.Entier_P.Creer
+                        (
+                           Nom    => Nom,
+                           Valeur => 666
+                        ),
+                  when Fait_P.Symbole_E =>
+                     Fait_P.Symbolique_P.Creer
+                        (
+                           Nom    => Nom,
+                           Valeur => "un symbole"
+                        )
+            );
+         Fait_2 : constant Fait_P.Fait_Abstrait_T'Class :=
+            (
+               case Sorte is
+                  when Fait_P.Booleen_E =>
+                     Fait_P.Booleen_P.Creer
+                        (
+                           Nom    => Nom,
+                           Valeur => False
+                        ),
+                  when Fait_P.Entier_E =>
+                     Fait_P.Entier_P.Creer
+                        (
+                           Nom    => Nom,
+                           Valeur => -666
+                        ),
+                  when Fait_P.Symbole_E =>
+                     Fait_P.Symbolique_P.Creer
+                        (
+                           Nom    => Nom,
+                           Valeur => "Maka"
+                        )
+            );
+      begin
+         Base.Ajouter (Nouvel_Item => Fait_1);
+         Base.Ajouter (Nouvel_Item => Fait_2);
+      end Bloc_Creer_Fait;
+      pragma Unreferenced (Base);
+   exception
+      when E_Fait_Deja_Present =>
+         raise;
+      when others =>
+         null;
+   end Ajouter_Deux_Fois;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Ajouter_Deux_Fois_Type_Differents;
+   --  Doit déclencher une exception sur un fait déjà présent.
+
+   --------------------
+   procedure Ajouter_Deux_Fois_Type_Differents is
+      use type Fait_P.Type_De_Fait_T;
+
+      Sorte_1 : constant Fait_P.Type_De_Fait_T :=
+         Sorte_Fait_Alea_P.Random (Gen => Generateur_Sorte_Fait);
+      Sorte_2 : Fait_P.Type_De_Fait_T;
+
+      Base : Base_De_Faits_T;
+   begin
+      Boucle_Generer_Autre_Sorte :
+      loop
+         Sorte_2 := Sorte_Fait_Alea_P.Random (Gen => Generateur_Sorte_Fait);
+         exit Boucle_Generer_Autre_Sorte when Sorte_2 /= Sorte_1;
+      end loop Boucle_Generer_Autre_Sorte;
+
+      Bloc_Creer_Fait :
+      declare
+         Nom    : constant Nom_T := Creer_Nom;
+         Fait_1 : constant Fait_P.Fait_Abstrait_T'Class :=
+            (
+               case Sorte_1 is
+                  when Fait_P.Booleen_E =>
+                     Fait_P.Booleen_P.Creer
+                        (
+                           Nom    => Nom,
+                           Valeur => True
+                        ),
+                  when Fait_P.Entier_E =>
+                     Fait_P.Entier_P.Creer
+                        (
+                           Nom    => Nom,
+                           Valeur => 666
+                        ),
+                  when Fait_P.Symbole_E =>
+                     Fait_P.Symbolique_P.Creer
+                        (
+                           Nom    => Nom,
+                           Valeur => "un symbole"
+                        )
+            );
+         Fait_2 : constant Fait_P.Fait_Abstrait_T'Class :=
+            (
+               case Sorte_2 is
+                  when Fait_P.Booleen_E =>
+                     Fait_P.Booleen_P.Creer
+                        (
+                           Nom    => Nom,
+                           Valeur => False
+                        ),
+                  when Fait_P.Entier_E =>
+                     Fait_P.Entier_P.Creer
+                        (
+                           Nom    => Nom,
+                           Valeur => -666
+                        ),
+                  when Fait_P.Symbole_E =>
+                     Fait_P.Symbolique_P.Creer
+                        (
+                           Nom    => Nom,
+                           Valeur => "Maka"
+                        )
+            );
+      begin
+         Base.Ajouter (Nouvel_Item => Fait_1);
+         Base.Ajouter (Nouvel_Item => Fait_2);
+      end Bloc_Creer_Fait;
+      pragma Unreferenced (Base);
+   exception
+      when E_Fait_Deja_Present =>
+         raise;
+      when others =>
+         null;
+   end Ajouter_Deux_Fois_Type_Differents;
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
@@ -133,10 +393,102 @@ is
          );
       AUnit.Assertions.Assert_Exception
          (
-            Proc    => Trouver'Access,
+            Proc    => Trouver_Dans_Base_Vide'Access,
             Message => "La base de faits doit etre vide"
          );
    end Test_Trouver_Base_Vide;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Test_Trouver_Inconnu
+      (T : in out Test_Fixt_T)
+   is
+      use type Ada.Containers.Count_Type;
+
+      Nom_1 : constant Nom_T := Creer_Nom;
+      Nom_2 : constant Nom_T := Creer_Nom_Different (Nom => Nom_1);
+      Fait  : constant Fait_P.Fait_Abstrait_T'Class :=
+         (
+            case Sorte_Fait_Alea_P.Random (Gen => Generateur_Sorte_Fait) is
+               when Fait_P.Booleen_E =>
+                  Fait_P.Booleen_P.Creer
+                     (
+                        Nom    => Nom_1,
+                        Valeur => True
+                     ),
+               when Fait_P.Entier_E =>
+                  Fait_P.Entier_P.Creer
+                     (
+                        Nom    => Nom_1,
+                        Valeur => 666
+                     ),
+               when Fait_P.Symbole_E =>
+                  Fait_P.Symbolique_P.Creer
+                     (
+                        Nom    => Nom_1,
+                        Valeur => "un symbole"
+                     )
+         );
+   begin
+      T.Base.Ajouter (Nouvel_Item => Fait);
+      AUnit.Assertions.Assert
+         (
+            Condition => T.Base.Map_Faits.Length = 1,
+            Message   => "La base de faits doit contenir 1 fait"
+         );
+      AUnit.Assertions.Assert
+         (
+            Condition => not T.Base.Contient (Nom_Fait => Nom_2),
+            Message   => "La base de faits doit etre vide"
+         );
+      AUnit.Assertions.Assert_Exception
+         (
+            Proc    => Trouver_Fait_Inconnu'Access,
+            Message => "La base de faits doit etre vide"
+         );
+   end Test_Trouver_Inconnu;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Test_Ajouter_Deux_Fois_Le_Meme
+      (T : in out Test_Fixt_T)
+   is
+      pragma Unreferenced (T);
+   begin
+      AUnit.Assertions.Assert_Exception
+         (
+            Proc    => Ajouter_Deux_Fois_Le_Meme'Access,
+            Message => "La base de faits doit deja contenir le fait"
+         );
+   end Test_Ajouter_Deux_Fois_Le_Meme;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Test_Ajouter_Deux_Fois
+      (T : in out Test_Fixt_T)
+   is
+      pragma Unreferenced (T);
+   begin
+      AUnit.Assertions.Assert_Exception
+         (
+            Proc    => Ajouter_Deux_Fois'Access,
+            Message => "La base de faits doit deja contenir le fait"
+         );
+   end Test_Ajouter_Deux_Fois;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Test_Ajouter_2_F_Type_Differents
+      (T : in out Test_Fixt_T)
+   is
+      pragma Unreferenced (T);
+   begin
+      AUnit.Assertions.Assert_Exception
+         (
+            Proc    => Ajouter_Deux_Fois_Type_Differents'Access,
+            Message => "La base de faits doit deja contenir le fait"
+         );
+   end Test_Ajouter_2_F_Type_Differents;
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
@@ -451,6 +803,26 @@ is
 
       return Nom;
    end Creer_Nom;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   function Creer_Nom_Different
+      (Nom : in     Nom_T)
+      return Nom_T
+   is
+   begin
+      Boucle_Trouver_Nom :
+      loop
+         Bloc_Trouver_Nom :
+         declare
+            Resultat : constant Nom_T := Creer_Nom;
+         begin
+            if Resultat /= Nom then
+               return Resultat;
+            end if;
+         end Bloc_Trouver_Nom;
+      end loop Boucle_Trouver_Nom;
+   end Creer_Nom_Different;
    ---------------------------------------------------------------------------
 
 begin

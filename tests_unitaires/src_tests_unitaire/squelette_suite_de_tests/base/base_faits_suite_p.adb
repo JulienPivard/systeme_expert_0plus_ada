@@ -36,6 +36,52 @@ is
                   Test => Scenario_R.Test_Contient_Base_Vide'Access
                )
          );
+      for I in 1 .. 10 loop
+         Ptr_Test_Suite.all.Add_Test
+            (
+               T => Caller_P.Create
+                  (
+                     Name => Nom_Test & "ne doit pas contenir le fait " &
+                        "[" & I'Image & "]",
+                     Test => Scenario_R.Test_Trouver_Inconnu'Access
+                  )
+            );
+      end loop;
+      for I in 1 .. 10 loop
+         Ptr_Test_Suite.all.Add_Test
+            (
+               T => Caller_P.Create
+                  (
+                     Name => Nom_Test & "ajouter deux fois le meme fait " &
+                        "[" & I'Image & "]",
+                     Test => Scenario_R.Test_Ajouter_Deux_Fois_Le_Meme'Access
+                  )
+            );
+      end loop;
+      for I in 1 .. 10 loop
+         Ptr_Test_Suite.all.Add_Test
+            (
+               T => Caller_P.Create
+                  (
+                     Name => Nom_Test & "ajouter deux fois le meme fait " &
+                        "avec une valeur differente " &
+                        "[" & I'Image & "]",
+                     Test => Scenario_R.Test_Ajouter_Deux_Fois'Access
+                  )
+            );
+      end loop;
+      for I in 1 .. 10 loop
+         Ptr_Test_Suite.all.Add_Test
+            (
+               T => Caller_P.Create
+                  (
+                     Name => Nom_Test & "ajouter deux fois le meme fait " &
+                        "avec un type different " &
+                        "[" & I'Image & "]",
+                     Test => Scenario_R.Test_Ajouter_2_F_Type_Differents'Access
+                  )
+            );
+      end loop;
       Ptr_Test_Suite.all.Add_Test
          (
             T => Caller_P.Create
