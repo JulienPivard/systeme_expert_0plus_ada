@@ -3,6 +3,7 @@ with Ada.Numerics.Discrete_Random;
 with AUnit.Assertions;
 
 with Facilites_P;
+with Facilites_P.Fait_P;
 
 with Sys_Exp_P.Fait_P.Booleen_P;
 with Sys_Exp_P.Fait_P.Entier_P;
@@ -16,13 +17,10 @@ is
    subtype Fait_Entier_T  is Fait_P.Entier_P.Fait_Entier_T;
    subtype Fait_Symbole_T is Fait_P.Symbolique_P.Fait_Symbolique_T;
 
-   package Entier_Alea_P     is new Ada.Numerics.Discrete_Random
+   package Entier_Alea_P is new Ada.Numerics.Discrete_Random
       (Result_Subtype => Entier_T);
-   package Sorte_Fait_Alea_P is new Ada.Numerics.Discrete_Random
-      (Result_Subtype => Fait_P.Type_De_Fait_T);
 
-   Generateur_Entier     : Entier_Alea_P.Generator;
-   Generateur_Sorte_Fait : Sorte_Fait_Alea_P.Generator;
+   Generateur_Entier : Entier_Alea_P.Generator;
 
    ---------------------------------------------------------------------------
    overriding
@@ -87,27 +85,7 @@ is
       Bloc_Remplir :
       declare
          Fait : constant Fait_P.Fait_Abstrait_T'Class :=
-            (
-               case Sorte_Fait_Alea_P.Random (Gen => Generateur_Sorte_Fait) is
-                  when Fait_P.Booleen_E =>
-                     Fait_P.Booleen_P.Creer
-                        (
-                           Nom    => Nom_1,
-                           Valeur => True
-                        ),
-                  when Fait_P.Entier_E =>
-                     Fait_P.Entier_P.Creer
-                        (
-                           Nom    => Nom_1,
-                           Valeur => 666
-                        ),
-                  when Fait_P.Symbole_E =>
-                     Fait_P.Symbolique_P.Creer
-                        (
-                           Nom    => Nom_1,
-                           Valeur => "un symbole"
-                        )
-            );
+            Facilites_P.Fait_P.Creer_Fait (Nom => Nom_1);
       begin
          Base.Ajouter (Nouvel_Item => Fait);
       end Bloc_Remplir;
@@ -140,27 +118,7 @@ is
       declare
          Nom  : constant Nom_T := Facilites_P.Creer_Nom;
          Fait : constant Fait_P.Fait_Abstrait_T'Class :=
-            (
-               case Sorte_Fait_Alea_P.Random (Gen => Generateur_Sorte_Fait) is
-                  when Fait_P.Booleen_E =>
-                     Fait_P.Booleen_P.Creer
-                        (
-                           Nom    => Nom,
-                           Valeur => True
-                        ),
-                  when Fait_P.Entier_E =>
-                     Fait_P.Entier_P.Creer
-                        (
-                           Nom    => Nom,
-                           Valeur => 666
-                        ),
-                  when Fait_P.Symbole_E =>
-                     Fait_P.Symbolique_P.Creer
-                        (
-                           Nom    => Nom,
-                           Valeur => "un symbole"
-                        )
-            );
+            Facilites_P.Fait_P.Creer_Fait (Nom => Nom);
       begin
          Base.Ajouter (Nouvel_Item => Fait);
          Base.Ajouter (Nouvel_Item => Fait);
@@ -184,53 +142,16 @@ is
    begin
       Bloc_Ajouter_Fait_En_Double :
       declare
-         Sorte  : constant Fait_P.Type_De_Fait_T :=
-            Sorte_Fait_Alea_P.Random (Gen => Generateur_Sorte_Fait);
          Nom    : constant Nom_T := Facilites_P.Creer_Nom;
          Fait_1 : constant Fait_P.Fait_Abstrait_T'Class :=
-            (
-               case Sorte is
-                  when Fait_P.Booleen_E =>
-                     Fait_P.Booleen_P.Creer
-                        (
-                           Nom    => Nom,
-                           Valeur => True
-                        ),
-                  when Fait_P.Entier_E =>
-                     Fait_P.Entier_P.Creer
-                        (
-                           Nom    => Nom,
-                           Valeur => 666
-                        ),
-                  when Fait_P.Symbole_E =>
-                     Fait_P.Symbolique_P.Creer
-                        (
-                           Nom    => Nom,
-                           Valeur => "un symbole"
-                        )
-            );
+            Facilites_P.Fait_P.Creer_Fait (Nom => Nom);
          Fait_2 : constant Fait_P.Fait_Abstrait_T'Class :=
-            (
-               case Sorte is
-                  when Fait_P.Booleen_E =>
-                     Fait_P.Booleen_P.Creer
-                        (
-                           Nom    => Nom,
-                           Valeur => False
-                        ),
-                  when Fait_P.Entier_E =>
-                     Fait_P.Entier_P.Creer
-                        (
-                           Nom    => Nom,
-                           Valeur => -666
-                        ),
-                  when Fait_P.Symbole_E =>
-                     Fait_P.Symbolique_P.Creer
-                        (
-                           Nom    => Nom,
-                           Valeur => "Maka"
-                        )
-            );
+            Facilites_P.Fait_P.Creer_Fait_Different
+               (
+                  Fait  => Fait_1,
+                  Nom   => Nom,
+                  Sorte => Fait_1.Lire_Type
+               );
       begin
          Base.Ajouter (Nouvel_Item => Fait_1);
          Base.Ajouter (Nouvel_Item => Fait_2);
@@ -250,67 +171,19 @@ is
 
    --------------------
    procedure Ajouter_Deux_Fois_Type_Differents is
-      use type Fait_P.Type_De_Fait_T;
-
-      Sorte_1 : constant Fait_P.Type_De_Fait_T :=
-         Sorte_Fait_Alea_P.Random (Gen => Generateur_Sorte_Fait);
-      Sorte_2 : Fait_P.Type_De_Fait_T;
-
       Base : Base_De_Faits_T;
    begin
-      Boucle_Generer_Autre_Sorte :
-      loop
-         Sorte_2 := Sorte_Fait_Alea_P.Random (Gen => Generateur_Sorte_Fait);
-         exit Boucle_Generer_Autre_Sorte when Sorte_2 /= Sorte_1;
-      end loop Boucle_Generer_Autre_Sorte;
-
       Bloc_Ajouter_Fait_En_Double :
       declare
          Nom    : constant Nom_T := Facilites_P.Creer_Nom;
          Fait_1 : constant Fait_P.Fait_Abstrait_T'Class :=
-            (
-               case Sorte_1 is
-                  when Fait_P.Booleen_E =>
-                     Fait_P.Booleen_P.Creer
-                        (
-                           Nom    => Nom,
-                           Valeur => True
-                        ),
-                  when Fait_P.Entier_E =>
-                     Fait_P.Entier_P.Creer
-                        (
-                           Nom    => Nom,
-                           Valeur => 666
-                        ),
-                  when Fait_P.Symbole_E =>
-                     Fait_P.Symbolique_P.Creer
-                        (
-                           Nom    => Nom,
-                           Valeur => "un symbole"
-                        )
-            );
+            Facilites_P.Fait_P.Creer_Fait (Nom => Nom);
          Fait_2 : constant Fait_P.Fait_Abstrait_T'Class :=
-            (
-               case Sorte_2 is
-                  when Fait_P.Booleen_E =>
-                     Fait_P.Booleen_P.Creer
-                        (
-                           Nom    => Nom,
-                           Valeur => False
-                        ),
-                  when Fait_P.Entier_E =>
-                     Fait_P.Entier_P.Creer
-                        (
-                           Nom    => Nom,
-                           Valeur => -666
-                        ),
-                  when Fait_P.Symbole_E =>
-                     Fait_P.Symbolique_P.Creer
-                        (
-                           Nom    => Nom,
-                           Valeur => "Maka"
-                        )
-            );
+            Facilites_P.Fait_P.Creer_Fait_Different
+               (
+                  Fait  => Fait_1,
+                  Nom   => Nom
+               );
       begin
          Base.Ajouter (Nouvel_Item => Fait_1);
          Base.Ajouter (Nouvel_Item => Fait_2);
@@ -389,27 +262,7 @@ is
       Nom_1 : constant Nom_T := Facilites_P.Creer_Nom;
       Nom_2 : constant Nom_T := Facilites_P.Creer_Nom_Different (Nom => Nom_1);
       Fait  : constant Fait_P.Fait_Abstrait_T'Class :=
-         (
-            case Sorte_Fait_Alea_P.Random (Gen => Generateur_Sorte_Fait) is
-               when Fait_P.Booleen_E =>
-                  Fait_P.Booleen_P.Creer
-                     (
-                        Nom    => Nom_1,
-                        Valeur => True
-                     ),
-               when Fait_P.Entier_E =>
-                  Fait_P.Entier_P.Creer
-                     (
-                        Nom    => Nom_1,
-                        Valeur => 666
-                     ),
-               when Fait_P.Symbole_E =>
-                  Fait_P.Symbolique_P.Creer
-                     (
-                        Nom    => Nom_1,
-                        Valeur => "un symbole"
-                     )
-         );
+         Facilites_P.Fait_P.Creer_Fait (Nom => Nom_1);
    begin
       T.Base.Ajouter (Nouvel_Item => Fait);
       AUnit.Assertions.Assert
@@ -688,35 +541,15 @@ is
             N : constant Nom_T := Facilites_P.Creer_Nom;
          begin
             M.Nom (N'Range) := N;
-            M.Sorte := Sorte_Fait_Alea_P.Random (Gen => Generateur_Sorte_Fait);
          end Bloc_Nom;
 
          Bloc_Creer_Fait :
          declare
             Fait : constant Fait_P.Fait_Abstrait_T'Class :=
-               (
-                  case M.Sorte is
-                     when Fait_P.Booleen_E =>
-                        Fait_P.Booleen_P.Creer
-                           (
-                              Nom    => M.Nom,
-                              Valeur => True
-                           ),
-                     when Fait_P.Entier_E =>
-                        Fait_P.Entier_P.Creer
-                           (
-                              Nom    => M.Nom,
-                              Valeur => 666
-                           ),
-                     when Fait_P.Symbole_E =>
-                        Fait_P.Symbolique_P.Creer
-                           (
-                              Nom    => M.Nom,
-                              Valeur => "un symbole"
-                           )
-               );
+               Facilites_P.Fait_P.Creer_Fait (Nom => M.Nom);
          begin
             T.Base.Ajouter (Nouvel_Item => Fait);
+            M.Sorte := Fait.Lire_Type;
          end Bloc_Creer_Fait;
       end loop Boucle_Remplissage_Base;
 
@@ -765,7 +598,6 @@ is
 
 begin
 
-   Entier_Alea_P.Reset     (Gen => Generateur_Entier);
-   Sorte_Fait_Alea_P.Reset (Gen => Generateur_Sorte_Fait);
+   Entier_Alea_P.Reset (Gen => Generateur_Entier);
 
 end Sys_Exp_P.Base_Faits_P.Test_P;
