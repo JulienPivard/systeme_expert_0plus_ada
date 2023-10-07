@@ -14,7 +14,8 @@ package Facilites_P
       Spark_Mode     => Off
 is
 
-   subtype Nom_T is Sys_Exp_P.Nom_T;
+   subtype Nom_T         is Sys_Exp_P.Nom_T;
+   subtype Nom_Symbole_T is Sys_Exp_P.Nom_Symbole_T;
 
    function Creer_Nom
       return Nom_T;
@@ -28,5 +29,16 @@ is
    --  différent de celui donné en entré.
    --  @return Un nom aléatoire différent.
 
+   function Creer_Symbole
+      return Nom_Symbole_T;
+   --  Crée aléatoirement un nom symbolique de taille aléatoire.
+   --  @return Un nom symbolique aléatoire.
+
+   function Creer_Symbole_Different
+      (Nom : in     Nom_Symbole_T)
+      return Nom_Symbole_T;
+   --  Crée aléatoirement un nom symbolique de taille aléatoire
+   --  différent de celui donné en entré.
+   --  @return Un nom symbolique aléatoire différent.
 
 end Facilites_P;

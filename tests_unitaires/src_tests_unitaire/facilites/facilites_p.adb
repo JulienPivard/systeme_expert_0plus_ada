@@ -63,6 +63,28 @@ is
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
+   function Creer_Symbole
+      return Nom_Symbole_T
+   is
+      Nom : constant Nom_T := Creer_Nom;
+   begin
+      return Nom_Symbole_T (Nom);
+   end Creer_Symbole;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   function Creer_Symbole_Different
+      (Nom : in     Nom_Symbole_T)
+      return Nom_Symbole_T
+   is
+      N        : constant Nom_T := Nom_T (Nom);
+      Resultat : constant Nom_T := Creer_Nom_Different (Nom => N);
+   begin
+      return Nom_Symbole_T (Resultat);
+   end Creer_Symbole_Different;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
    --                             Partie privée                             --
    ---------------------------------------------------------------------------
 
