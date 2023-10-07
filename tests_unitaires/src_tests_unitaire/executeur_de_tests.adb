@@ -10,9 +10,9 @@ with Suite_De_Tests_Faits;
 
 procedure Executeur_De_Tests is
    --  Instanciation des procédures de tests.
-   procedure Runner_Suite_Base is new AUnit.Run.Test_Runner
+   procedure Runner_Suite_Base   is new AUnit.Run.Test_Runner
       (Suite => Suite_De_Tests_Base);
-   procedure Runner_Suite_Faits is new AUnit.Run.Test_Runner
+   procedure Runner_Suite_Faits  is new AUnit.Run.Test_Runner
       (Suite => Suite_De_Tests_Faits);
 
    --  Options d'affichage du reporter
