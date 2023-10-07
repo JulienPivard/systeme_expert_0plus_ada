@@ -1,44 +1,48 @@
-package body Sys_Exp_P.Fait_P
+package body Sys_Exp_P.Fait_P.Booleen_P
    with Spark_Mode => Off
 is
 
    ---------------------------------------------------------------------------
-   function Lire_Nom
-      (This : in     Fait_Abstrait_T)
-      return Nom_T
+   function Creer
+      (
+         Nom    : in     Nom_T;
+         Valeur : in     Boolean
+      )
+      return Fait_Booleen_T
    is
+      Fait : Fait_Booleen_T;
    begin
-      return This.Nom.Element;
-   end Lire_Nom;
+      Fait.Modifier_Nom (Nom => Nom);
+      Fait.Valeur := Valeur;
+
+      return Fait;
+   end Creer;
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
-   procedure Modifier_Nom
-      (
-         This : in out Fait_Abstrait_T;
-         Nom  : in     Nom_T
-      )
+   overriding
+   function Lire_Type
+      (This : in     Fait_Booleen_T)
+      return Type_De_Fait_T
    is
+      pragma Unreferenced (This);
    begin
-      This.Nom := Nom_P.To_Holder (New_Item => Nom);
-   end Modifier_Nom;
+      return Booleen_E;
+   end Lire_Type;
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
-   function "="
-      (
-         Gauche : in     Fait_Abstrait_T'Class;
-         Droite : in     Fait_Abstrait_T'Class
-      )
+   function Lire_Valeur
+      (This : in     Fait_Booleen_T)
       return Boolean
    is
    begin
-      return Gauche.Nom.Element = Droite.Nom.Element;
-   end "=";
+      return This.Valeur;
+   end Lire_Valeur;
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
    --                             Partie privée                             --
    ---------------------------------------------------------------------------
 
-end Sys_Exp_P.Fait_P;
+end Sys_Exp_P.Fait_P.Booleen_P;
