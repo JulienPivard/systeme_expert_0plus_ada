@@ -18,9 +18,15 @@ is
 
    function Creer_Nom
       return Nom_T;
+   --  Crée aléatoirement un nom de taille aléatoire.
+   --  @return Un nom aléatoire.
 
    function Creer_Nom_Different
       (Nom : in     Nom_T)
       return Nom_T;
+   --  Crée aléatoirement un nom de taille aléatoire
+   --  différent de celui donné en entré.
+   --  @return Un nom aléatoire différent.
+
 
 end Facilites_P;
