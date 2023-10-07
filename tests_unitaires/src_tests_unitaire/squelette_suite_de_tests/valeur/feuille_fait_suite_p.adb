@@ -40,6 +40,14 @@ is
                   )
             );
       end loop;
+      Ptr_Test_Suite.all.Add_Test
+         (
+            T => Caller_P.Create
+               (
+                  Name => Nom_Test & "exception fait inconnu",
+                  Test => Scenario_R.Test_Interpreter_Inconnu'Access
+               )
+         );
 
       return Ptr_Test_Suite;
    end Fonc_Suite;

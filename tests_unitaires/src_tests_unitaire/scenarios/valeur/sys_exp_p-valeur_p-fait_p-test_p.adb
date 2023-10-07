@@ -54,6 +54,30 @@ is
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
+   procedure Fait_Inconnu;
+   --  Doit déclencher une exception sur un fait introuvable.
+
+   -------------------------
+   procedure Fait_Inconnu is
+      Nom : constant Nom_T := Creer_Nom;
+
+      Feuille : Feuille_Fait_T;
+
+      B : Base_Faits_P.Base_De_Faits_T;
+      V : Entier_T;
+   begin
+      Feuille := Creer (Nom => Nom);
+      V := Feuille.Interpreter (Base => B);
+      pragma Unreferenced (V);
+   exception
+      when E_Fait_Inconnu =>
+         raise;
+      when others =>
+         null;
+   end Fait_Inconnu;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
    procedure Test_Creer
       (T : in out Test_Fixt_T)
    is
@@ -73,7 +97,7 @@ is
    procedure Test_Interpreter
       (T : in out Test_Fixt_T)
    is
-      Nom    : constant Nom_T := Creer_Nom;
+      Nom    : constant Nom_T    := Creer_Nom;
       Valeur : constant Entier_T :=
          Entier_Alea_P.Random (Gen => Generateur_Entier);
 
@@ -98,6 +122,20 @@ is
                "devrait valoir [" & Valeur'Image & "]"
          );
    end Test_Interpreter;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Test_Interpreter_Inconnu
+      (T : in out Test_Fixt_T)
+   is
+      pragma Unreferenced (T);
+   begin
+      AUnit.Assertions.Assert_Exception
+         (
+            Proc    => Fait_Inconnu'Access,
+            Message => "La base de fait ne doit pas contenir le fait"
+         );
+   end Test_Interpreter_Inconnu;
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
