@@ -40,11 +40,14 @@ is
             if F.Lire_Type = Sys_Exp_P.Fait_P.Entier_E then
                Valeur := Fait.Lire_Valeur;
             else
-               raise E_Fait_Nom_Entier;
+               raise E_Fait_Non_Entier with "Le fait [" &
+                  String (F.Lire_Nom) & "] " &
+                  "est de type [" & F.Lire_Type'Image & "] et pas entier";
             end if;
          end Bloc_Lecture_Fait;
       else
-         raise E_Fait_Inconnu;
+         raise E_Fait_Inconnu with "Le fait [" &
+            String (This.Nom.Element) & "] " & "est inconnu";
       end if;
 
       return Valeur;
