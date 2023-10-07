@@ -13,7 +13,6 @@ is
    subtype Fait_Booleen_T is Fait_P.Booleen_P.Fait_Booleen_T;
    subtype Fait_Entier_T  is Fait_P.Entier_P.Fait_Entier_T;
    subtype Fait_Symbole_T is Fait_P.Symbolique_P.Fait_Symbolique_T;
-   subtype Entier_T       is Fait_P.Entier_P.Entier_T;
    subtype Nom_Symbole_T  is Fait_P.Symbolique_P.Nom_Symbole_T;
 
    use type Fait_P.Taille_Nom_T;
@@ -211,7 +210,6 @@ is
 
       use type Fait_P.Nom_T;
       use type Fait_P.Type_De_Fait_T;
-      use type Entier_T;
 
       Nom    : constant Nom_T    := Creer_Nom;
       Valeur : constant Entier_T :=
