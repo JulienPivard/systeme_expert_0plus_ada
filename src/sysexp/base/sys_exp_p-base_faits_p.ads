@@ -16,10 +16,11 @@ package Sys_Exp_P.Base_Faits_P
 is
 
    E_Fait_Deja_Present : exception;
+   --  Exception déclenchée quand un fait est déjà présent dans la base.
    E_Fait_Inconnu      : exception;
+   --  Exception déclenchée quand le fait est inconnu de la base.
 
    subtype Fait_Abstrait_T is Sys_Exp_P.Fait_P.Fait_Abstrait_T;
-   subtype Nom_T           is Sys_Exp_P.Fait_P.Nom_T;
 
    type Base_De_Faits_T is tagged limited private;
 
@@ -77,7 +78,7 @@ private
          Key_Type        => Nom_T,
          Element_Type    => Fait_Abstrait_T'Class,
          Hash            => Hash,
-         Equivalent_Keys => Sys_Exp_P.Fait_P."=",
+         Equivalent_Keys => Sys_Exp_P."=",
          "="             => Sys_Exp_P.Fait_P."="
       );
 

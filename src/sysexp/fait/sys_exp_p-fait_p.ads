@@ -14,9 +14,6 @@ package Sys_Exp_P.Fait_P
       Spark_Mode     => Off
 is
 
-   type Taille_Nom_T is range 1 .. 50;
-   type Nom_T        is array (Taille_Nom_T range <>) of Character;
-
    type Type_De_Fait_T is (Booleen_E, Entier_E, Symbole_E);
    --  Les différents type de fait possible.
    --  @Value Booleen_E
