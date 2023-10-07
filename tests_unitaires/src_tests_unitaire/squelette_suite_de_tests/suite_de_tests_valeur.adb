@@ -1,4 +1,5 @@
 with Feuille_Constante_Suite_P;
+with Feuille_Fait_Suite_P;
 
 ---------------------------------------------------------------------------
 function Suite_De_Tests_Valeur
@@ -9,6 +10,8 @@ is
 begin
    Ptr_Test_Suite.all.Add_Test
       (T => Feuille_Constante_Suite_P.Fonc_Suite);
+   Ptr_Test_Suite.all.Add_Test
+      (T => Feuille_Fait_Suite_P.Fonc_Suite);
 
    return Ptr_Test_Suite;
 end Suite_De_Tests_Valeur;
