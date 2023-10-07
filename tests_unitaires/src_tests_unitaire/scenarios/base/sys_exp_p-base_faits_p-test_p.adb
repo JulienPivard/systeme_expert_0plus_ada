@@ -15,10 +15,8 @@ is
    subtype Fait_Symbole_T is Fait_P.Symbolique_P.Fait_Symbolique_T;
    subtype Nom_Symbole_T  is Fait_P.Symbolique_P.Nom_Symbole_T;
 
-   use type Fait_P.Taille_Nom_T;
-
-   subtype Taille_Min_Nom_T is Fait_P.Taille_Nom_T range
-      Fait_P.Taille_Nom_T'First + 3 .. Fait_P.Taille_Nom_T'Last;
+   subtype Taille_Min_Nom_T is Taille_Nom_T range
+      Taille_Nom_T'First + 3 .. Taille_Nom_T'Last;
 
    subtype Lettre_T is Character range 'a' .. 'z';
 
@@ -147,7 +145,6 @@ is
    is
       use type Ada.Containers.Count_Type;
 
-      use type Fait_P.Nom_T;
       use type Fait_P.Type_De_Fait_T;
 
       Nom    : constant Nom_T   := Creer_Nom;
@@ -208,7 +205,6 @@ is
    is
       use type Ada.Containers.Count_Type;
 
-      use type Fait_P.Nom_T;
       use type Fait_P.Type_De_Fait_T;
 
       Nom    : constant Nom_T    := Creer_Nom;
@@ -270,7 +266,6 @@ is
    is
       use type Ada.Containers.Count_Type;
 
-      use type Fait_P.Nom_T;
       use type Fait_P.Type_De_Fait_T;
       use type Nom_Symbole_T;
 
@@ -332,13 +327,12 @@ is
    is
       use type Ada.Containers.Count_Type;
 
-      use type Fait_P.Nom_T;
       use type Fait_P.Type_De_Fait_T;
 
       type Memoire_T is
          record
             Sorte : Fait_P.Type_De_Fait_T;
-            Nom   : Nom_T (Fait_P.Taille_Nom_T);
+            Nom   : Nom_T (Taille_Nom_T);
             --  case Sorte is
             --     when Fait_P.Booleen_E =>
             --        Bool : Boolean;
@@ -441,13 +435,13 @@ is
    function Creer_Nom
       return Nom_T
    is
-      Taille : constant Fait_P.Taille_Nom_T :=
+      Taille : constant Taille_Nom_T :=
          Taille_Nom_Alea_P.Random (Gen => Generateur_Taille);
 
-      Debut : constant Fait_P.Taille_Nom_T := Fait_P.Taille_Nom_T'First;
-      Fin   : constant Fait_P.Taille_Nom_T := Debut + Taille - 1;
+      Debut : constant Taille_Nom_T := Taille_Nom_T'First;
+      Fin   : constant Taille_Nom_T := Debut + Taille - 1;
 
-      subtype Taille_T is Fait_P.Taille_Nom_T range Debut .. Fin;
+      subtype Taille_T is Taille_Nom_T range Debut .. Fin;
 
       Nom : Nom_T (Taille_T);
    begin
