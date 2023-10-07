@@ -33,12 +33,15 @@ is
          declare
             F : constant Sys_Exp_P.Fait_P.Fait_Abstrait_T'Class :=
                Base.Trouver (Nom_Fait => This.Nom.Element);
-
-            Fait : Sys_Exp_P.Fait_P.Entier_P.Fait_Entier_T renames
-               Sys_Exp_P.Fait_P.Entier_P.Fait_Entier_T (F);
          begin
             if F.Lire_Type = Sys_Exp_P.Fait_P.Entier_E then
-               Valeur := Fait.Lire_Valeur;
+               Bloc_Lire_Valeur_Fait_Entier :
+               declare
+                  Fait : Sys_Exp_P.Fait_P.Entier_P.Fait_Entier_T renames
+                     Sys_Exp_P.Fait_P.Entier_P.Fait_Entier_T (F);
+               begin
+                  Valeur := Fait.Lire_Valeur;
+               end Bloc_Lire_Valeur_Fait_Entier;
             else
                raise E_Fait_Non_Entier with "Le fait [" &
                   String (F.Lire_Nom) & "] " &
