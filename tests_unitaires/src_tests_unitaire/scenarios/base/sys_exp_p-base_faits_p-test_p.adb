@@ -1,10 +1,12 @@
 with AUnit.Assertions;
 
+with Ada.Numerics.Discrete_Random;
+
+with Facilites_P;
+
 with Sys_Exp_P.Fait_P.Booleen_P;
 with Sys_Exp_P.Fait_P.Entier_P;
 with Sys_Exp_P.Fait_P.Symbolique_P;
-
-with Ada.Numerics.Discrete_Random;
 
 package body Sys_Exp_P.Base_Faits_P.Test_P
    with Spark_Mode => Off
@@ -15,33 +17,13 @@ is
    subtype Fait_Symbole_T is Fait_P.Symbolique_P.Fait_Symbolique_T;
    subtype Nom_Symbole_T  is Fait_P.Symbolique_P.Nom_Symbole_T;
 
-   subtype Taille_Min_Nom_T is Taille_Nom_T range
-      Taille_Nom_T'First + 3 .. Taille_Nom_T'Last;
-
-   subtype Lettre_T is Character range 'a' .. 'z';
-
-   package Entier_Alea_P is new Ada.Numerics.Discrete_Random
+   package Entier_Alea_P     is new Ada.Numerics.Discrete_Random
       (Result_Subtype => Entier_T);
-   package Lettre_Alea_P is new Ada.Numerics.Discrete_Random
-      (Result_Subtype => Lettre_T);
-
-   package Taille_Nom_Alea_P is new Ada.Numerics.Discrete_Random
-      (Result_Subtype => Taille_Min_Nom_T);
    package Sorte_Fait_Alea_P is new Ada.Numerics.Discrete_Random
       (Result_Subtype => Fait_P.Type_De_Fait_T);
 
-   Generateur_Entier : Entier_Alea_P.Generator;
-   Generateur_Lettre : Lettre_Alea_P.Generator;
-   Generateur_Taille : Taille_Nom_Alea_P.Generator;
-
+   Generateur_Entier     : Entier_Alea_P.Generator;
    Generateur_Sorte_Fait : Sorte_Fait_Alea_P.Generator;
-
-   function Creer_Nom
-      return Nom_T;
-
-   function Creer_Nom_Different
-      (Nom : in     Nom_T)
-      return Nom_T;
 
    ---------------------------------------------------------------------------
    overriding
@@ -77,7 +59,7 @@ is
    begin
       Bloc_Trouver :
       declare
-         Nom  : constant Nom_T := Creer_Nom;
+         Nom  : constant Nom_T := Facilites_P.Creer_Nom;
          Fait : constant Fait_P.Fait_Abstrait_T'Class :=
             Base.Trouver (Nom_Fait => Nom);
       begin
@@ -98,8 +80,8 @@ is
 
    --------------------
    procedure Trouver_Fait_Inconnu is
-      Nom_1 : constant Nom_T := Creer_Nom;
-      Nom_2 : constant Nom_T := Creer_Nom_Different (Nom => Nom_1);
+      Nom_1 : constant Nom_T := Facilites_P.Creer_Nom;
+      Nom_2 : constant Nom_T := Facilites_P.Creer_Nom_Different (Nom => Nom_1);
 
       Base : Base_De_Faits_T;
    begin
@@ -157,7 +139,7 @@ is
    begin
       Bloc_Creer_Fait :
       declare
-         Nom  : constant Nom_T := Creer_Nom;
+         Nom  : constant Nom_T := Facilites_P.Creer_Nom;
          Fait : constant Fait_P.Fait_Abstrait_T'Class :=
             (
                case Sorte_Fait_Alea_P.Random (Gen => Generateur_Sorte_Fait) is
@@ -205,7 +187,7 @@ is
       declare
          Sorte  : constant Fait_P.Type_De_Fait_T :=
             Sorte_Fait_Alea_P.Random (Gen => Generateur_Sorte_Fait);
-         Nom    : constant Nom_T := Creer_Nom;
+         Nom    : constant Nom_T := Facilites_P.Creer_Nom;
          Fait_1 : constant Fait_P.Fait_Abstrait_T'Class :=
             (
                case Sorte is
@@ -285,7 +267,7 @@ is
 
       Bloc_Creer_Fait :
       declare
-         Nom    : constant Nom_T := Creer_Nom;
+         Nom    : constant Nom_T := Facilites_P.Creer_Nom;
          Fait_1 : constant Fait_P.Fait_Abstrait_T'Class :=
             (
                case Sorte_1 is
@@ -360,7 +342,7 @@ is
    procedure Test_Contient_Base_Vide
       (T : in out Test_Fixt_T)
    is
-      Nom : constant Nom_T := Creer_Nom;
+      Nom : constant Nom_T := Facilites_P.Creer_Nom;
    begin
       AUnit.Assertions.Assert
          (
@@ -379,7 +361,7 @@ is
    procedure Test_Trouver_Base_Vide
       (T : in out Test_Fixt_T)
    is
-      Nom : constant Nom_T := Creer_Nom;
+      Nom : constant Nom_T := Facilites_P.Creer_Nom;
    begin
       AUnit.Assertions.Assert
          (
@@ -405,8 +387,8 @@ is
    is
       use type Ada.Containers.Count_Type;
 
-      Nom_1 : constant Nom_T := Creer_Nom;
-      Nom_2 : constant Nom_T := Creer_Nom_Different (Nom => Nom_1);
+      Nom_1 : constant Nom_T := Facilites_P.Creer_Nom;
+      Nom_2 : constant Nom_T := Facilites_P.Creer_Nom_Different (Nom => Nom_1);
       Fait  : constant Fait_P.Fait_Abstrait_T'Class :=
          (
             case Sorte_Fait_Alea_P.Random (Gen => Generateur_Sorte_Fait) is
@@ -499,7 +481,7 @@ is
 
       use type Fait_P.Type_De_Fait_T;
 
-      Nom    : constant Nom_T   := Creer_Nom;
+      Nom    : constant Nom_T   := Facilites_P.Creer_Nom;
       Valeur : constant Boolean := True;
 
       Fait : constant Fait_Booleen_T := Fait_P.Booleen_P.Creer
@@ -559,7 +541,7 @@ is
 
       use type Fait_P.Type_De_Fait_T;
 
-      Nom    : constant Nom_T    := Creer_Nom;
+      Nom    : constant Nom_T    := Facilites_P.Creer_Nom;
       Valeur : constant Entier_T :=
          Entier_Alea_P.Random (Gen => Generateur_Entier);
 
@@ -621,7 +603,7 @@ is
       use type Fait_P.Type_De_Fait_T;
       use type Nom_Symbole_T;
 
-      Nom    : constant Nom_T         := Creer_Nom;
+      Nom    : constant Nom_T         := Facilites_P.Creer_Nom;
       Valeur : constant Nom_Symbole_T := "nom symbole";
 
       Fait : constant Fait_Symbole_T := Fait_P.Symbolique_P.Creer
@@ -705,7 +687,7 @@ is
       for M : Memoire_T of F loop
          Bloc_Nom :
          declare
-            N : constant Nom_T := Creer_Nom;
+            N : constant Nom_T := Facilites_P.Creer_Nom;
          begin
             M.Nom (N'Range) := N;
             M.Sorte := Sorte_Fait_Alea_P.Random (Gen => Generateur_Sorte_Fait);
@@ -783,53 +765,9 @@ is
    --                             Partie privée                             --
    ---------------------------------------------------------------------------
 
-   ---------------------------------------------------------------------------
-   function Creer_Nom
-      return Nom_T
-   is
-      Taille : constant Taille_Nom_T :=
-         Taille_Nom_Alea_P.Random (Gen => Generateur_Taille);
-
-      Debut : constant Taille_Nom_T := Taille_Nom_T'First;
-      Fin   : constant Taille_Nom_T := Debut + Taille - 1;
-
-      subtype Taille_T is Taille_Nom_T range Debut .. Fin;
-
-      Nom : Nom_T (Taille_T);
-   begin
-      for I in Taille_T loop
-         Nom (I) := Lettre_Alea_P.Random (Gen => Generateur_Lettre);
-      end loop;
-
-      return Nom;
-   end Creer_Nom;
-   ---------------------------------------------------------------------------
-
-   ---------------------------------------------------------------------------
-   function Creer_Nom_Different
-      (Nom : in     Nom_T)
-      return Nom_T
-   is
-   begin
-      Boucle_Trouver_Nom :
-      loop
-         Bloc_Trouver_Nom :
-         declare
-            Resultat : constant Nom_T := Creer_Nom;
-         begin
-            if Resultat /= Nom then
-               return Resultat;
-            end if;
-         end Bloc_Trouver_Nom;
-      end loop Boucle_Trouver_Nom;
-   end Creer_Nom_Different;
-   ---------------------------------------------------------------------------
-
 begin
 
-   Entier_Alea_P.Reset (Gen => Generateur_Entier);
-   Lettre_Alea_P.Reset (Gen => Generateur_Lettre);
-   Taille_Nom_Alea_P.Reset (Gen => Generateur_Taille);
+   Entier_Alea_P.Reset     (Gen => Generateur_Entier);
    Sorte_Fait_Alea_P.Reset (Gen => Generateur_Sorte_Fait);
 
 end Sys_Exp_P.Base_Faits_P.Test_P;

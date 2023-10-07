@@ -2,6 +2,8 @@ with AUnit.Assertions;
 
 with Ada.Numerics.Discrete_Random;
 
+with Facilites_P;
+
 with Sys_Exp_P.Base_Faits_P;
 with Sys_Exp_P.Fait_P.Entier_P;
 
@@ -9,25 +11,10 @@ package body Sys_Exp_P.Valeur_P.Fait_P.Test_P
    with Spark_Mode => Off
 is
 
-   subtype Taille_Min_Nom_T is Taille_Nom_T range
-      Taille_Nom_T'First + 3 .. Taille_Nom_T'Last;
-
-   subtype Lettre_T is Character range 'a' .. 'z';
-
    package Entier_Alea_P is new Ada.Numerics.Discrete_Random
       (Result_Subtype => Entier_T);
-   package Lettre_Alea_P is new Ada.Numerics.Discrete_Random
-      (Result_Subtype => Lettre_T);
-
-   package Taille_Nom_Alea_P is new Ada.Numerics.Discrete_Random
-      (Result_Subtype => Taille_Min_Nom_T);
 
    Generateur_Entier : Entier_Alea_P.Generator;
-   Generateur_Lettre : Lettre_Alea_P.Generator;
-   Generateur_Taille : Taille_Nom_Alea_P.Generator;
-
-   function Creer_Nom
-      return Nom_T;
 
    ---------------------------------------------------------------------------
    overriding
@@ -59,7 +46,7 @@ is
 
    -------------------------
    procedure Fait_Inconnu is
-      Nom : constant Nom_T := Creer_Nom;
+      Nom : constant Nom_T := Facilites_P.Creer_Nom;
 
       Feuille : Feuille_Fait_T;
 
@@ -67,7 +54,7 @@ is
       V : Entier_T;
    begin
       Feuille := Creer (Nom => Nom);
-      V := Feuille.Interpreter (Base => B);
+      V       := Feuille.Interpreter (Base => B);
       pragma Unreferenced (V);
    exception
       when E_Fait_Inconnu =>
@@ -81,7 +68,7 @@ is
    procedure Test_Creer
       (T : in out Test_Fixt_T)
    is
-      Nom : constant Nom_T := Creer_Nom;
+      Nom : constant Nom_T := Facilites_P.Creer_Nom;
    begin
       T.Feuille := Creer (Nom => Nom);
       AUnit.Assertions.Assert
@@ -97,7 +84,7 @@ is
    procedure Test_Interpreter
       (T : in out Test_Fixt_T)
    is
-      Nom    : constant Nom_T    := Creer_Nom;
+      Nom    : constant Nom_T    := Facilites_P.Creer_Nom;
       Valeur : constant Entier_T :=
          Entier_Alea_P.Random (Gen => Generateur_Entier);
 
@@ -140,28 +127,6 @@ is
 
    ---------------------------------------------------------------------------
    --                             Partie privée                             --
-   ---------------------------------------------------------------------------
-
-   ---------------------------------------------------------------------------
-   function Creer_Nom
-      return Nom_T
-   is
-      Taille : constant Taille_Nom_T :=
-         Taille_Nom_Alea_P.Random (Gen => Generateur_Taille);
-
-      Debut : constant Taille_Nom_T := Taille_Nom_T'First;
-      Fin   : constant Taille_Nom_T := Debut + Taille - 1;
-
-      subtype Taille_T is Taille_Nom_T range Debut .. Fin;
-
-      Nom : Nom_T (Taille_T);
-   begin
-      for I in Taille_T loop
-         Nom (I) := Lettre_Alea_P.Random (Gen => Generateur_Lettre);
-      end loop;
-
-      return Nom;
-   end Creer_Nom;
    ---------------------------------------------------------------------------
 
 begin
