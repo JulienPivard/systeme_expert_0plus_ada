@@ -15,7 +15,6 @@ is
    subtype Fait_Booleen_T is Fait_P.Booleen_P.Fait_Booleen_T;
    subtype Fait_Entier_T  is Fait_P.Entier_P.Fait_Entier_T;
    subtype Fait_Symbole_T is Fait_P.Symbolique_P.Fait_Symbolique_T;
-   subtype Nom_Symbole_T  is Fait_P.Symbolique_P.Nom_Symbole_T;
 
    package Entier_Alea_P     is new Ada.Numerics.Discrete_Random
       (Result_Subtype => Entier_T);
@@ -87,7 +86,7 @@ is
    begin
       Bloc_Remplir :
       declare
-         Fait  : constant Fait_P.Fait_Abstrait_T'Class :=
+         Fait : constant Fait_P.Fait_Abstrait_T'Class :=
             (
                case Sorte_Fait_Alea_P.Random (Gen => Generateur_Sorte_Fait) is
                   when Fait_P.Booleen_E =>
@@ -601,7 +600,6 @@ is
       use type Ada.Containers.Count_Type;
 
       use type Fait_P.Type_De_Fait_T;
-      use type Nom_Symbole_T;
 
       Nom    : constant Nom_T         := Facilites_P.Creer_Nom;
       Valeur : constant Nom_Symbole_T := "nom symbole";
