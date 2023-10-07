@@ -14,7 +14,7 @@ is
    package Entier_Alea_P is new Ada.Numerics.Discrete_Random
       (Result_Subtype => Entier_T);
 
-   Generateur_Entier : Entier_Alea_P.Generator;
+   Generateur_Entier     : Entier_Alea_P.Generator;
 
    ---------------------------------------------------------------------------
    overriding
@@ -48,13 +48,12 @@ is
    procedure Fait_Inconnu is
       Nom : constant Nom_T := Facilites_P.Creer_Nom;
 
-      Feuille : Feuille_Fait_T;
+      Feuille : constant Feuille_Fait_T := Creer (Nom => Nom);
 
       B : Base_Faits_P.Base_De_Faits_T;
       V : Entier_T;
    begin
-      Feuille := Creer (Nom => Nom);
-      V       := Feuille.Interpreter (Base => B);
+      V := Feuille.Interpreter (Base => B);
       pragma Unreferenced (V);
    exception
       when E_Fait_Inconnu =>
@@ -131,6 +130,6 @@ is
 
 begin
 
-   Entier_Alea_P.Reset (Gen => Generateur_Entier);
+   Entier_Alea_P.Reset     (Gen => Generateur_Entier);
 
 end Sys_Exp_P.Valeur_P.Fait_P.Test_P;

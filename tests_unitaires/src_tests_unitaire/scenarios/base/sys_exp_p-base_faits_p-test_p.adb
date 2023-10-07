@@ -602,7 +602,7 @@ is
       use type Fait_P.Type_De_Fait_T;
 
       Nom    : constant Nom_T         := Facilites_P.Creer_Nom;
-      Valeur : constant Nom_Symbole_T := "nom symbole";
+      Valeur : constant Nom_Symbole_T := Facilites_P.Creer_Symbole;
 
       Fait : constant Fait_Symbole_T := Fait_P.Symbolique_P.Creer
          (
