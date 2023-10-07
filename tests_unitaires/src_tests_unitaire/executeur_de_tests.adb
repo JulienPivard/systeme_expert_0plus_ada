@@ -7,6 +7,7 @@ with AUnit.Run;
 
 with Suite_De_Tests_Base;
 with Suite_De_Tests_Faits;
+with Suite_De_Tests_Valeur;
 
 procedure Executeur_De_Tests is
    --  Instanciation des procédures de tests.
@@ -14,6 +15,8 @@ procedure Executeur_De_Tests is
       (Suite => Suite_De_Tests_Base);
    procedure Runner_Suite_Faits  is new AUnit.Run.Test_Runner
       (Suite => Suite_De_Tests_Faits);
+   procedure Runner_Suite_Valeur is new AUnit.Run.Test_Runner
+      (Suite => Suite_De_Tests_Valeur);
 
    --  Options d'affichage du reporter
    Options : constant AUnit.Options.AUnit_Options :=
@@ -39,6 +42,11 @@ begin
          Options  => Options
       );
    Runner_Suite_Faits
+      (
+         Reporter => Reporter,
+         Options  => Options
+      );
+   Runner_Suite_Valeur
       (
          Reporter => Reporter,
          Options  => Options
