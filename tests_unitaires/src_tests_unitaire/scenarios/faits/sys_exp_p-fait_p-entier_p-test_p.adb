@@ -1,6 +1,6 @@
-with AUnit.Assertions;
-
 with Ada.Numerics.Discrete_Random;
+
+with AUnit.Assertions;
 
 package body Sys_Exp_P.Fait_P.Entier_P.Test_P
    with Spark_Mode => Off

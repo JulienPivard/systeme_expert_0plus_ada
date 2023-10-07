@@ -1,6 +1,6 @@
-with AUnit.Assertions;
-
 with Ada.Numerics.Discrete_Random;
+
+with AUnit.Assertions;
 
 with Sys_Exp_P.Base_Faits_P;
 

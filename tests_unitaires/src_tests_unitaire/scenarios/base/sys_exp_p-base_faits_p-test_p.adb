@@ -1,6 +1,6 @@
-with AUnit.Assertions;
-
 with Ada.Numerics.Discrete_Random;
+
+with AUnit.Assertions;
 
 with Facilites_P;
 
@@ -112,14 +112,14 @@ is
          Base.Ajouter (Nouvel_Item => Fait);
       end Bloc_Remplir;
 
-      Bloc_Trouver :
+      Bloc_Trouver_Fait_Qui_N_Existe_Pas :
       declare
          Fait : constant Fait_P.Fait_Abstrait_T'Class :=
             Base.Trouver (Nom_Fait => Nom_2);
       begin
          pragma Unreferenced (Fait);
          null;
-      end Bloc_Trouver;
+      end Bloc_Trouver_Fait_Qui_N_Existe_Pas;
    exception
       when E_Fait_Inconnu =>
          raise;
@@ -136,7 +136,7 @@ is
    procedure Ajouter_Deux_Fois_Le_Meme is
       Base : Base_De_Faits_T;
    begin
-      Bloc_Creer_Fait :
+      Bloc_Ajouter_Fait_En_Double :
       declare
          Nom  : constant Nom_T := Facilites_P.Creer_Nom;
          Fait : constant Fait_P.Fait_Abstrait_T'Class :=
@@ -164,7 +164,7 @@ is
       begin
          Base.Ajouter (Nouvel_Item => Fait);
          Base.Ajouter (Nouvel_Item => Fait);
-      end Bloc_Creer_Fait;
+      end Bloc_Ajouter_Fait_En_Double;
       pragma Unreferenced (Base);
    exception
       when E_Fait_Deja_Present =>
@@ -182,7 +182,7 @@ is
    procedure Ajouter_Deux_Fois is
       Base : Base_De_Faits_T;
    begin
-      Bloc_Creer_Fait :
+      Bloc_Ajouter_Fait_En_Double :
       declare
          Sorte  : constant Fait_P.Type_De_Fait_T :=
             Sorte_Fait_Alea_P.Random (Gen => Generateur_Sorte_Fait);
@@ -234,7 +234,7 @@ is
       begin
          Base.Ajouter (Nouvel_Item => Fait_1);
          Base.Ajouter (Nouvel_Item => Fait_2);
-      end Bloc_Creer_Fait;
+      end Bloc_Ajouter_Fait_En_Double;
       pragma Unreferenced (Base);
    exception
       when E_Fait_Deja_Present =>
@@ -264,7 +264,7 @@ is
          exit Boucle_Generer_Autre_Sorte when Sorte_2 /= Sorte_1;
       end loop Boucle_Generer_Autre_Sorte;
 
-      Bloc_Creer_Fait :
+      Bloc_Ajouter_Fait_En_Double :
       declare
          Nom    : constant Nom_T := Facilites_P.Creer_Nom;
          Fait_1 : constant Fait_P.Fait_Abstrait_T'Class :=
@@ -314,7 +314,7 @@ is
       begin
          Base.Ajouter (Nouvel_Item => Fait_1);
          Base.Ajouter (Nouvel_Item => Fait_2);
-      end Bloc_Creer_Fait;
+      end Bloc_Ajouter_Fait_En_Double;
       pragma Unreferenced (Base);
    exception
       when E_Fait_Deja_Present =>
