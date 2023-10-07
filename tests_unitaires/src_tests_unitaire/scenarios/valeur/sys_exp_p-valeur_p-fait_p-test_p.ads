@@ -36,4 +36,7 @@ is
    procedure Test_Interpreter_Inconnu
       (T : in out Test_Fixt_T);
 
+   procedure Test_Interpreter_Fait_Non_Entier
+      (T : in out Test_Fixt_T);
+
 end Sys_Exp_P.Valeur_P.Fait_P.Test_P;

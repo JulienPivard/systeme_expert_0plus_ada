@@ -48,6 +48,17 @@ is
                   Test => Scenario_R.Test_Interpreter_Inconnu'Access
                )
          );
+      for I in 1 .. 10 loop
+         Ptr_Test_Suite.all.Add_Test
+            (
+               T => Caller_P.Create
+                  (
+                     Name => Nom_Test & "interpreter en fait non entier " &
+                        " [" & I'Image & "]",
+                     Test => Scenario_R.Test_Interpreter_Fait_Non_Entier'Access
+                  )
+            );
+      end loop;
 
       return Ptr_Test_Suite;
    end Fonc_Suite;

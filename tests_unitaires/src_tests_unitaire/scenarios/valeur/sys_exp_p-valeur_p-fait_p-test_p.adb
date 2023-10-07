@@ -3,6 +3,7 @@ with Ada.Numerics.Discrete_Random;
 with AUnit.Assertions;
 
 with Facilites_P;
+with Facilites_P.Fait_P;
 
 with Sys_Exp_P.Base_Faits_P;
 with Sys_Exp_P.Fait_P.Entier_P;
@@ -13,8 +14,11 @@ is
 
    package Entier_Alea_P is new Ada.Numerics.Discrete_Random
       (Result_Subtype => Entier_T);
+   package Sorte_Fait_Alea_P is new Ada.Numerics.Discrete_Random
+      (Result_Subtype => Sys_Exp_P.Fait_P.Type_De_Fait_T);
 
    Generateur_Entier     : Entier_Alea_P.Generator;
+   Generateur_Sorte_Fait : Sorte_Fait_Alea_P.Generator;
 
    ---------------------------------------------------------------------------
    overriding
@@ -61,6 +65,50 @@ is
       when others =>
          null;
    end Fait_Inconnu;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Fait_N_Est_Pas_Entier;
+   --  Doit déclencher une exception sur un fait déjà présent.
+
+   --------------------
+   procedure Fait_N_Est_Pas_Entier is
+      use type Sys_Exp_P.Fait_P.Type_De_Fait_T;
+
+      Nom     : constant Nom_T          := Facilites_P.Creer_Nom;
+      Feuille : constant Feuille_Fait_T := Creer (Nom => Nom);
+
+      Base  : Sys_Exp_P.Base_Faits_P.Base_De_Faits_T;
+      Sorte : Sys_Exp_P.Fait_P.Type_De_Fait_T;
+
+      V : Entier_T;
+   begin
+      Boucle_Sorte_Pas_Entier :
+      loop
+         Sorte := Sorte_Fait_Alea_P.Random (Gen => Generateur_Sorte_Fait);
+         exit Boucle_Sorte_Pas_Entier when Sorte /= Sys_Exp_P.Fait_P.Entier_E;
+      end loop Boucle_Sorte_Pas_Entier;
+
+      Bloc_Creer_Fait :
+      declare
+         Fait : constant Sys_Exp_P.Fait_P.Fait_Abstrait_T'Class :=
+            Facilites_P.Fait_P.Creer_Fait
+               (
+                  Nom   => Nom,
+                  Sorte => Sorte
+               );
+      begin
+         Base.Ajouter (Nouvel_Item => Fait);
+      end Bloc_Creer_Fait;
+
+      V := Feuille.Interpreter (Base => Base);
+      pragma Unreferenced (V);
+   exception
+      when E_Fait_Non_Entier =>
+         raise;
+      when others =>
+         null;
+   end Fait_N_Est_Pas_Entier;
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
@@ -125,11 +173,26 @@ is
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
+   procedure Test_Interpreter_Fait_Non_Entier
+      (T : in out Test_Fixt_T)
+   is
+      pragma Unreferenced (T);
+   begin
+      AUnit.Assertions.Assert_Exception
+         (
+            Proc    => Fait_N_Est_Pas_Entier'Access,
+            Message => "La base de fait ne doit pas contenir le fait"
+         );
+   end Test_Interpreter_Fait_Non_Entier;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
    --                             Partie privée                             --
    ---------------------------------------------------------------------------
 
 begin
 
    Entier_Alea_P.Reset     (Gen => Generateur_Entier);
+   Sorte_Fait_Alea_P.Reset (Gen => Generateur_Sorte_Fait);
 
 end Sys_Exp_P.Valeur_P.Fait_P.Test_P;
