@@ -1,19 +1,19 @@
 with Ada.Exceptions;
 with Ada.Text_IO;
 
+with AUnit.Options;
 with AUnit.Reporter.Text;
 with AUnit.Run;
-with AUnit.Options;
 
-with Suite_De_Tests_Faits;
 with Suite_De_Tests_Base;
+with Suite_De_Tests_Faits;
 
 procedure Executeur_De_Tests is
    --  Instanciation des procédures de tests.
-   procedure Runner_Suite_Faits is new AUnit.Run.Test_Runner
-      (Suite => Suite_De_Tests_Faits);
    procedure Runner_Suite_Base is new AUnit.Run.Test_Runner
       (Suite => Suite_De_Tests_Base);
+   procedure Runner_Suite_Faits is new AUnit.Run.Test_Runner
+      (Suite => Suite_De_Tests_Faits);
 
    --  Options d'affichage du reporter
    Options : constant AUnit.Options.AUnit_Options :=
@@ -33,14 +33,12 @@ begin
       );
 
    --  Lancement des suites de tests.
-   Runner_Suite_Faits
+   Runner_Suite_Base
       (
          Reporter => Reporter,
          Options  => Options
       );
-
-   --  Lancement des suites de tests.
-   Runner_Suite_Base
+   Runner_Suite_Faits
       (
          Reporter => Reporter,
          Options  => Options
