@@ -1,10 +1,9 @@
 --  with GNAT.Source_Info;
 with Sys_Exp_P.Valeur_P.Constante_P;
 with Sys_Exp_P.Valeur_P.Fait_P;
-with Sys_Exp_P.Valeur_P.Constante_P.Text_IO;
-with Sys_Exp_P.Valeur_P.Fait_P.Text_IO;
 with Sys_Exp_P.Base_Faits_P;
 with Sys_Exp_P.Fait_P.Entier_P;
+with Sys_Exp_P.Valeur_P.Text_IO;
 
 separate (Executeur_G)
 procedure Executer
@@ -29,12 +28,12 @@ begin
    B.Ajouter (Nouvel_Item => Fait);
 
    C := Sys_Exp_P.Valeur_P.Constante_P.Creer (Valeur => 7);
-   Sys_Exp_P.Valeur_P.Constante_P.Text_IO.Put_Line (Item => C);
+   Sys_Exp_P.Valeur_P.Text_IO.Put_Line (Item => C);
    V := C.Interpreter (Base => B);
    Ada.Text_IO.Put_Line (Item => "La valeur est [" & V'Image & "]");
 
    F := Sys_Exp_P.Valeur_P.Fait_P.Creer (Nom => Nom);
-   Sys_Exp_P.Valeur_P.Fait_P.Text_IO.Put_Line (Item => F);
+   Sys_Exp_P.Valeur_P.Text_IO.Put_Line (Item => F);
    V := F.Interpreter (Base => B);
    Ada.Text_IO.Put_Line (Item => "La valeur est [" & V'Image & "]");
 end Executer;
