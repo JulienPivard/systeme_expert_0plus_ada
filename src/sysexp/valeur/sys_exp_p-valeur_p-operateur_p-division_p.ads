@@ -12,6 +12,7 @@ package Sys_Exp_P.Valeur_P.Operateur_P.Division_P
 is
 
    type Operateur_Div_T is new Operateur_Abstrait_T with private;
+   --  Représentation d'une opération de division.
 
    overriding
    function Creer
@@ -20,12 +21,12 @@ is
          Valeur_Droite : in     Valeur_Abstraite_T'Class
       )
       return Operateur_Div_T;
-   --  Crée un opérateur à partir de valeurs.
+   --  Crée un opérateur de division à partir de valeurs.
    --  @param Valeur_Gauche
    --  La valeur gauche.
    --  @param Valeur_Droite
    --  La valeur gauche.
-   --  @return L'opérateur.
+   --  @return L'opérateur de division.
 
    overriding
    function Interpreter
@@ -34,12 +35,12 @@ is
          Base : in     Base_Faits_P.Base_De_Faits_T
       )
       return Entier_T;
-   --  Permet d'évaluer la valeur.
+   --  Permet d'évaluer la division.
    --  @param This
    --  L'opérateur.
    --  @param Base
    --  La base de faits à utiliser pour évaluer les expressions.
-   --  @return La valeur de l'opération ou de la feuille.
+   --  @return Le résultat de la division.
 
    overriding
    function Lire_Symbole
@@ -48,7 +49,7 @@ is
    --  Lit le symbole associé à l'opération pour l'affichage.
    --  @param This
    --  L'opérateur.
-   --  @return Le symbole de l'opération.
+   --  @return Le symbole de la division.
 
 private
 
