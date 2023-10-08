@@ -11,7 +11,7 @@ package Sys_Exp_P.Valeur_P.Operateur_P.Addition_P
       Spark_Mode     => Off
 is
 
-   type Operateur_Add_T is new Operateur_Abstrait_T with private;
+   type Operateur_Plus_T is new Operateur_Abstrait_T with private;
    --  Représentation d'une opération d'addition.
 
    overriding
@@ -20,7 +20,7 @@ is
          Valeur_Gauche : in     Valeur_Abstraite_T'Class;
          Valeur_Droite : in     Valeur_Abstraite_T'Class
       )
-      return Operateur_Add_T;
+      return Operateur_Plus_T;
    --  Crée un opérateur d'addition à partir de valeurs.
    --  @param Valeur_Gauche
    --  La valeur gauche.
@@ -31,7 +31,7 @@ is
    overriding
    function Interpreter
       (
-         This : in     Operateur_Add_T;
+         This : in     Operateur_Plus_T;
          Base : in     Base_Faits_P.Base_De_Faits_T
       )
       return Entier_T;
@@ -44,7 +44,7 @@ is
 
    overriding
    function Lire_Symbole
-      (This : in     Operateur_Add_T)
+      (This : in     Operateur_Plus_T)
       return Symbole_T;
    --  Lit le symbole associé à l'opération pour l'affichage.
    --  @param This
@@ -53,7 +53,7 @@ is
 
 private
 
-   type Operateur_Add_T is new Operateur_Abstrait_T with
+   type Operateur_Plus_T is new Operateur_Abstrait_T with
       record
          null;
       end record;

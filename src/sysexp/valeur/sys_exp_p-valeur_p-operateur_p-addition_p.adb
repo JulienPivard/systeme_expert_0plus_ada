@@ -9,10 +9,10 @@ is
          Valeur_Gauche : in     Valeur_Abstraite_T'Class;
          Valeur_Droite : in     Valeur_Abstraite_T'Class
       )
-      return Operateur_Add_T
+      return Operateur_Plus_T
    is
    begin
-      return Operateur_Add_T'
+      return Operateur_Plus_T'
          (
             Gauche => Holder_P.To_Holder (New_Item => Valeur_Gauche),
             Droite => Holder_P.To_Holder (New_Item => Valeur_Droite)
@@ -24,7 +24,7 @@ is
    overriding
    function Interpreter
       (
-         This : in     Operateur_Add_T;
+         This : in     Operateur_Plus_T;
          Base : in     Base_Faits_P.Base_De_Faits_T
       )
       return Entier_T
@@ -40,7 +40,7 @@ is
    ---------------------------------------------------------------------------
    overriding
    function Lire_Symbole
-      (This : in     Operateur_Add_T)
+      (This : in     Operateur_Plus_T)
       return Symbole_T
    is
       pragma Unreferenced (This);

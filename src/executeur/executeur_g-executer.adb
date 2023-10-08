@@ -32,7 +32,7 @@ is
    Div   : Sys_Exp_P.Valeur_P.Operateur_P.Division_P.Operateur_Div_T;
    Moins : Sys_Exp_P.Valeur_P.Operateur_P.Soustraction_P.Operateur_Moins_T;
    Mult  : Sys_Exp_P.Valeur_P.Operateur_P.Multiplication_P.Operateur_Mult_T;
-   Add   : Sys_Exp_P.Valeur_P.Operateur_P.Addition_P.Operateur_Add_T;
+   Plus  : Sys_Exp_P.Valeur_P.Operateur_P.Addition_P.Operateur_Plus_T;
 begin
    B.Ajouter (Nouvel_Item => Fait);
 
@@ -74,12 +74,12 @@ begin
    V := Mult.Interpreter (Base => B);
    Ada.Text_IO.Put_Line (Item => "La valeur est [" & V'Image & "]");
 
-   Add := Sys_Exp_P.Valeur_P.Operateur_P.Addition_P.Creer
+   Plus := Sys_Exp_P.Valeur_P.Operateur_P.Addition_P.Creer
       (
          Valeur_Gauche => F,
          Valeur_Droite => C
       );
-   Sys_Exp_P.Valeur_P.Text_IO.Put_Line (Item => Add);
-   V := Add.Interpreter (Base => B);
+   Sys_Exp_P.Valeur_P.Text_IO.Put_Line (Item => Plus);
+   V := Plus.Interpreter (Base => B);
    Ada.Text_IO.Put_Line (Item => "La valeur est [" & V'Image & "]");
 end Executer;
