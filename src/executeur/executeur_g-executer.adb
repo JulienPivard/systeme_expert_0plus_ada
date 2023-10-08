@@ -4,6 +4,7 @@ with Sys_Exp_P.Valeur_P.Fait_P;
 with Sys_Exp_P.Base_Faits_P;
 with Sys_Exp_P.Fait_P.Entier_P;
 with Sys_Exp_P.Valeur_P.Operateur_P.Division_P;
+with Sys_Exp_P.Valeur_P.Operateur_P.Soustraction_P;
 with Sys_Exp_P.Valeur_P.Text_IO;
 
 separate (Executeur_G)
@@ -26,7 +27,8 @@ is
 
    V : Sys_Exp_P.Entier_T;
 
-   Div : Sys_Exp_P.Valeur_P.Operateur_P.Division_P.Operateur_Div_T;
+   Div   : Sys_Exp_P.Valeur_P.Operateur_P.Division_P.Operateur_Div_T;
+   Moins : Sys_Exp_P.Valeur_P.Operateur_P.Soustraction_P.Operateur_Moins_T;
 begin
    B.Ajouter (Nouvel_Item => Fait);
 
@@ -39,6 +41,7 @@ begin
    Sys_Exp_P.Valeur_P.Text_IO.Put_Line (Item => F);
    V := F.Interpreter (Base => B);
    Ada.Text_IO.Put_Line (Item => "La valeur est [" & V'Image & "]");
+   Ada.Text_IO.New_Line (Spacing => 1);
 
    Div := Sys_Exp_P.Valeur_P.Operateur_P.Division_P.Creer
       (
@@ -47,5 +50,14 @@ begin
       );
    Sys_Exp_P.Valeur_P.Text_IO.Put_Line (Item => Div);
    V := Div.Interpreter (Base => B);
+   Ada.Text_IO.Put_Line (Item => "La valeur est [" & V'Image & "]");
+
+   Moins := Sys_Exp_P.Valeur_P.Operateur_P.Soustraction_P.Creer
+      (
+         Valeur_Gauche => F,
+         Valeur_Droite => C
+      );
+   Sys_Exp_P.Valeur_P.Text_IO.Put_Line (Item => Moins);
+   V := Moins.Interpreter (Base => B);
    Ada.Text_IO.Put_Line (Item => "La valeur est [" & V'Image & "]");
 end Executer;
