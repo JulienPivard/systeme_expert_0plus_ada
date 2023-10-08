@@ -11,6 +11,9 @@ package Sys_Exp_P.Valeur_P.Constante_P.Text_IO
       Spark_Mode     => Off
 is
 
+   procedure Put
+      (Item : in     Feuille_Constante_T);
+
    procedure Put_Line
       (Item : in     Feuille_Constante_T);
 

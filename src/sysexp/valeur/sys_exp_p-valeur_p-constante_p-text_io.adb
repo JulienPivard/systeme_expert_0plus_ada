@@ -5,11 +5,21 @@ package body Sys_Exp_P.Valeur_P.Constante_P.Text_IO
 is
 
    ---------------------------------------------------------------------------
+   procedure Put
+      (Item : in     Feuille_Constante_T)
+   is
+   begin
+      Ada.Text_IO.Put (Item => "Constante [" & Item.Valeur'Image & "]");
+   end Put;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
    procedure Put_Line
       (Item : in     Feuille_Constante_T)
    is
    begin
-      Ada.Text_IO.Put_Line (Item => "Constante [" & Item.Valeur'Image & "]");
+      Put                  (Item    => Item);
+      Ada.Text_IO.New_Line (Spacing => 1);
    end Put_Line;
    ---------------------------------------------------------------------------
 
