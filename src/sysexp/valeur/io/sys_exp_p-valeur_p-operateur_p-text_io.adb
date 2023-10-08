@@ -14,7 +14,7 @@ is
       Ada.Text_IO.Put                (Item => "(");
       Sys_Exp_P.Valeur_P.Text_IO.Put (Item => Item.Lire_Element_Gauche);
       Ada.Text_IO.Put                (Item => " ");
-      Ada.Text_IO.Put                (Item => Item.Symbol);
+      Ada.Text_IO.Put                (Item => Item.Lire_Symbole);
       Ada.Text_IO.Put                (Item => " ");
       Sys_Exp_P.Valeur_P.Text_IO.Put (Item => Item.Lire_Element_Droite);
       Ada.Text_IO.Put                (Item => ")");

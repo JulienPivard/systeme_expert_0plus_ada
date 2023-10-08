@@ -15,6 +15,9 @@ package Sys_Exp_P.Valeur_P.Operateur_P
       Spark_Mode     => Off
 is
 
+   subtype Symbole_T is Character;
+   --  Le symbole associé à l'opération. Utilisé pour l'affichage.
+
    type Operateur_Abstrait_T is abstract new Valeur_Abstraite_T with private;
    --  Représentation abstraite d'une opération.
 
@@ -32,16 +35,21 @@ is
    --  La valeur gauche.
    --  @return L'opérateur.
 
-private
+   function Lire_Symbole
+      (This : in     Operateur_Abstrait_T)
+      return Symbole_T
+   is abstract;
+   --  Lit le symbole associé à l'opération pour l'affichage.
+   --  @param This
+   --  L'opérateur.
+   --  @return Le symbole de l'opération.
 
-   subtype Symbole_T is Character;
-   --  Le symbole associé à l'opération. Utilisé pour l'affichage.
+private
 
    type Operateur_Abstrait_T is abstract new Valeur_Abstraite_T with
       record
          Gauche : Holder_P.Holder;
          Droite : Holder_P.Holder;
-         Symbol : Symbole_T;
       end record;
 
    function Lire_Element_Gauche
