@@ -11,6 +11,9 @@ package Sys_Exp_P.Fait_P.Booleen_P.Text_IO
       Spark_Mode     => Off
 is
 
+   procedure Put
+      (Item : in     Fait_Booleen_T);
+
    procedure Put_Line
       (Item : in     Fait_Booleen_T);
 

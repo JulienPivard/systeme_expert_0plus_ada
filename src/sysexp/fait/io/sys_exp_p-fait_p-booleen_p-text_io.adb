@@ -5,12 +5,21 @@ package body Sys_Exp_P.Fait_P.Booleen_P.Text_IO
 is
 
    ---------------------------------------------------------------------------
-   procedure Put_Line
+   procedure Put
       (Item : in     Fait_Booleen_T)
    is
    begin
       Ada.Text_IO.Put (Item => "Nom [" & String (Item.Lire_Nom) & "] ");
       Ada.Text_IO.Put (Item => "Valeur [" & Item.Lire_Valeur'Image & "]");
+   end Put;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Put_Line
+      (Item : in     Fait_Booleen_T)
+   is
+   begin
+      Put                  (Item    => Item);
       Ada.Text_IO.New_Line (Spacing => 1);
    end Put_Line;
    ---------------------------------------------------------------------------
