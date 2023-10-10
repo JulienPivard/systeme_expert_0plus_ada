@@ -61,6 +61,17 @@ is
                   )
             );
       end loop;
+      for I in 1 .. 10 loop
+         Ptr_Test_Suite.all.Add_Test
+            (
+               T => Caller_P.Create
+                  (
+                     Name => Nom_Test & "interpreter mixte etendu " &
+                        "[" & I'Image & "]",
+                     Test => Scenario_R.Test_Interpreter_Mix_Etendu'Access
+                  )
+            );
+      end loop;
 
       return Ptr_Test_Suite;
    end Fonc_Suite;

@@ -39,4 +39,7 @@ is
    procedure Test_Interpreter_Mix
       (T : in out Test_Fixt_T);
 
+   procedure Test_Interpreter_Mix_Etendu
+      (T : in out Test_Fixt_T);
+
 end Sys_Exp_P.Valeur_P.Operateur_P.Addition_P.Test_P;
