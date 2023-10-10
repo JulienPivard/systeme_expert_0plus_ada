@@ -1,5 +1,7 @@
 with AUnit.Assertions;
 
+with Facilites_P;
+
 package body Sys_Exp_P.Fait_P.Symbolique_P.Test_P
    with Spark_Mode => Off
 is
@@ -32,8 +34,8 @@ is
    procedure Test_Creer
       (T : in out Test_Fixt_T)
    is
-      Nom     : constant Nom_T         := "ceci est un test";
-      Symbole : constant Nom_Symbole_T := "ceci est un symbole";
+      Nom     : constant Nom_T         := Facilites_P.Creer_Nom;
+      Symbole : constant Nom_Symbole_T := Facilites_P.Creer_Symbole;
    begin
       T.Fait := Creer
          (

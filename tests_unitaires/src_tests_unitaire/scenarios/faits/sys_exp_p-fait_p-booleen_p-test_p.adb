@@ -1,5 +1,7 @@
 with AUnit.Assertions;
 
+with Facilites_P;
+
 package body Sys_Exp_P.Fait_P.Booleen_P.Test_P
    with Spark_Mode => Off
 is
@@ -32,7 +34,7 @@ is
    procedure Test_Creer_Vrais
       (T : in out Test_Fixt_T)
    is
-      Nom    : constant Nom_T   := "ceci est un test";
+      Nom    : constant Nom_T   := Facilites_P.Creer_Nom;
       Valeur : constant Boolean := True;
    begin
       T.Fait := Creer
@@ -65,7 +67,7 @@ is
    procedure Test_Creer_Faux
       (T : in out Test_Fixt_T)
    is
-      Nom    : constant Nom_T   := "ceci est un test";
+      Nom    : constant Nom_T   := Facilites_P.Creer_Nom;
       Valeur : constant Boolean := False;
    begin
       T.Fait := Creer

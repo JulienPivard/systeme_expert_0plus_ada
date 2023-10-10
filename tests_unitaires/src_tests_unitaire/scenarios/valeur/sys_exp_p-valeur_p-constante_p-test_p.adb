@@ -11,6 +11,8 @@ is
    package Entier_Alea_P is new Ada.Numerics.Discrete_Random
       (Result_Subtype => Entier_T);
 
+   Generateur_Entier : Entier_Alea_P.Generator;
+
    ---------------------------------------------------------------------------
    overriding
    procedure Set_Up
@@ -35,13 +37,12 @@ is
    --                              scénarios                                --
    ---------------------------------------------------------------------------
 
-   Generateur : Entier_Alea_P.Generator;
-
    ---------------------------------------------------------------------------
    procedure Test_Creer
       (T : in out Test_Fixt_T)
    is
-      Valeur : constant Entier_T := Entier_Alea_P.Random (Gen => Generateur);
+      Valeur : constant Entier_T :=
+         Entier_Alea_P.Random (Gen => Generateur_Entier);
    begin
       T.Feuille := Creer (Valeur => Valeur);
       AUnit.Assertions.Assert
@@ -57,7 +58,8 @@ is
    procedure Test_Interpreter
       (T : in out Test_Fixt_T)
    is
-      Valeur : constant Entier_T := Entier_Alea_P.Random (Gen => Generateur);
+      Valeur : constant Entier_T :=
+         Entier_Alea_P.Random (Gen => Generateur_Entier);
 
       B : Base_Faits_P.Base_De_Faits_T;
       V : Entier_T;
@@ -85,6 +87,6 @@ is
 
 begin
 
-   Entier_Alea_P.Reset (Gen => Generateur);
+   Entier_Alea_P.Reset (Gen => Generateur_Entier);
 
 end Sys_Exp_P.Valeur_P.Constante_P.Test_P;

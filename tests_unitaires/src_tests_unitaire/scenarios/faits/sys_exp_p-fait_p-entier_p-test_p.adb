@@ -2,12 +2,16 @@ with Ada.Numerics.Discrete_Random;
 
 with AUnit.Assertions;
 
+with Facilites_P;
+
 package body Sys_Exp_P.Fait_P.Entier_P.Test_P
    with Spark_Mode => Off
 is
 
    package Entier_Alea_P is new Ada.Numerics.Discrete_Random
       (Result_Subtype => Entier_T);
+
+   Generateur_Entier : Entier_Alea_P.Generator;
 
    ---------------------------------------------------------------------------
    overriding
@@ -33,14 +37,13 @@ is
    --                              scénarios                                --
    ---------------------------------------------------------------------------
 
-   Generateur : Entier_Alea_P.Generator;
-
    ---------------------------------------------------------------------------
    procedure Test_Creer
       (T : in out Test_Fixt_T)
    is
-      Nom    : constant Nom_T    := "ceci est un test";
-      Valeur : constant Entier_T := Entier_Alea_P.Random (Gen => Generateur);
+      Nom    : constant Nom_T    := Facilites_P.Creer_Nom;
+      Valeur : constant Entier_T :=
+         Entier_Alea_P.Random (Gen => Generateur_Entier);
    begin
       T.Fait := Creer
          (
@@ -74,6 +77,6 @@ is
 
 begin
 
-   Entier_Alea_P.Reset (Gen => Generateur);
+   Entier_Alea_P.Reset (Gen => Generateur_Entier);
 
 end Sys_Exp_P.Fait_P.Entier_P.Test_P;
