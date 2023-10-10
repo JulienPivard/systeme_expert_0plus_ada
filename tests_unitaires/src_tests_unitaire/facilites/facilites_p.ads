@@ -1,4 +1,5 @@
 with Sys_Exp_P;
+with Sys_Exp_P.Base_Faits_P;
 
 --  @summary
 --  Des facilité de créations de valeurs.
@@ -21,6 +22,15 @@ is
       return Nom_T;
    --  Crée aléatoirement un nom de taille aléatoire.
    --  @return Un nom aléatoire.
+
+   function Creer_Nom
+      (Base : in     Sys_Exp_P.Base_Faits_P.Base_De_Faits_T)
+      return Nom_T;
+   --  Crée aléatoirement un nom jusqu'à en trouver un
+   --  qui n'est pas déjà présent dans la base.
+   --  @param Base
+   --  La base de fait.
+   --  @return Le nom aléatoire.
 
    function Creer_Nom_Different
       (Nom : in     Nom_T)

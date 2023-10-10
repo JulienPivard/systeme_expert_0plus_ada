@@ -42,6 +42,26 @@ is
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
+   function Creer_Nom
+      (Base : in     Sys_Exp_P.Base_Faits_P.Base_De_Faits_T)
+      return Nom_T
+   is
+   begin
+      Boucle_Generer_Nom_Unique :
+      loop
+         Bloc_Generer_Nom_Unique :
+         declare
+            Nom : constant Sys_Exp_P.Nom_T := Creer_Nom;
+         begin
+            if not Base.Contient (Nom_Fait => Nom) then
+               return Nom;
+            end if;
+         end Bloc_Generer_Nom_Unique;
+      end loop Boucle_Generer_Nom_Unique;
+   end Creer_Nom;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
    function Creer_Nom_Different
       (Nom : in     Nom_T)
       return Nom_T
