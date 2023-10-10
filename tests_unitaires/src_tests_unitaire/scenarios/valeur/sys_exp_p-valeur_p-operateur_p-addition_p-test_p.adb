@@ -12,12 +12,14 @@ package body Sys_Exp_P.Valeur_P.Operateur_P.Addition_P.Test_P
    with Spark_Mode => Off
 is
 
+   subtype Class_Valeur_T is Sys_Exp_P.Valeur_P.Valeur_Abstraite_T'Class
+
    subtype Entier_Limite_T is Entier_T range -100 .. 100;
 
-   package Entier_Alea_P        is new Ada.Numerics.Discrete_Random
+   package Entier_Alea_P is new Ada.Numerics.Discrete_Random
       (Result_Subtype => Entier_Limite_T);
 
-   Generateur_Entier        : Entier_Alea_P.Generator;
+   Generateur_Entier : Entier_Alea_P.Generator;
 
    ---------------------------------------------------------------------------
    overriding
@@ -218,13 +220,13 @@ is
    begin
       Bloc_Creer_Valeur :
       declare
-         V_1 : constant Sys_Exp_P.Valeur_P.Valeur_Abstraite_T'Class :=
+         V_1 : constant Class_Valeur_T :=
             Facilites_P.Valeur_P.Creer_Fait_Ou_Constante
                (
                   Base   => Base,
                   Valeur => Valeur_1
                );
-         V_2 : constant Sys_Exp_P.Valeur_P.Valeur_Abstraite_T'Class :=
+         V_2 : constant Class_Valeur_T :=
             Facilites_P.Valeur_P.Creer_Fait_Ou_Constante
                (
                   Base   => Base,
@@ -262,14 +264,12 @@ is
    begin
       Bloc_Creer_Valeur :
       declare
-         V_1 : constant Sys_Exp_P.Valeur_P.Valeur_Abstraite_T'Class :=
-            Facilites_P.Valeur_P.Creer_Valeur
+         V_1 : constant Class_Valeur_T := Facilites_P.Valeur_P.Creer_Valeur
                (
                   Base   => Base,
                   Valeur => Valeur_1
                );
-         V_2 : constant Sys_Exp_P.Valeur_P.Valeur_Abstraite_T'Class :=
-            Facilites_P.Valeur_P.Creer_Valeur
+         V_2 : constant Class_Valeur_T := Facilites_P.Valeur_P.Creer_Valeur
                (
                   Base   => Base,
                   Valeur => Valeur_2
@@ -299,6 +299,6 @@ is
 
 begin
 
-   Entier_Alea_P.Reset        (Gen => Generateur_Entier);
+   Entier_Alea_P.Reset (Gen => Generateur_Entier);
 
 end Sys_Exp_P.Valeur_P.Operateur_P.Addition_P.Test_P;
