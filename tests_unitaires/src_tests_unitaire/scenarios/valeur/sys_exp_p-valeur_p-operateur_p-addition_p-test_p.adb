@@ -12,7 +12,7 @@ package body Sys_Exp_P.Valeur_P.Operateur_P.Addition_P.Test_P
    with Spark_Mode => Off
 is
 
-   subtype Class_Valeur_T is Sys_Exp_P.Valeur_P.Valeur_Abstraite_T'Class
+   subtype Class_Valeur_T is Sys_Exp_P.Valeur_P.Valeur_Abstraite_T'Class;
 
    subtype Entier_Limite_T is Entier_T range -100 .. 100;
 
@@ -265,15 +265,15 @@ is
       Bloc_Creer_Valeur :
       declare
          V_1 : constant Class_Valeur_T := Facilites_P.Valeur_P.Creer_Valeur
-               (
-                  Base   => Base,
-                  Valeur => Valeur_1
-               );
+            (
+               Base   => Base,
+               Valeur => Valeur_1
+            );
          V_2 : constant Class_Valeur_T := Facilites_P.Valeur_P.Creer_Valeur
-               (
-                  Base   => Base,
-                  Valeur => Valeur_2
-               );
+            (
+               Base   => Base,
+               Valeur => Valeur_2
+            );
 
          Resultat : constant Entier_T := Valeur_1 + Valeur_2;
       begin
