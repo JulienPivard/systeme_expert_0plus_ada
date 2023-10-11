@@ -238,6 +238,154 @@ is
    end Creer_Valeur;
    ---------------------------------------------------------------------------
 
+   ---------------------------------------------------------------------------
+   function Creer_Valeur_Plus
+      (
+         Profondeur : in     Profondeur_T;
+         Base       : in out Sys_Exp_P.Base_Faits_P.Base_De_Faits_T;
+         Valeur     :    out Sys_Exp_P.Entier_T
+      )
+      return Addition_P.Operateur_Plus_T
+   is
+      Valeur_G : Sys_Exp_P.Entier_T;
+      Valeur_D : Sys_Exp_P.Entier_T;
+
+      Resultat : Addition_P.Operateur_Plus_T;
+   begin
+      Resultat := Addition_P.Creer
+         (
+            Valeur_Gauche =>
+               Creer_Valeur
+                  (
+                     Profondeur => Profondeur + 1,
+                     Base       => Base,
+                     Valeur     => Valeur_G
+                  ),
+            Valeur_Droite =>
+               Creer_Valeur
+                  (
+                     Profondeur => Profondeur + 1,
+                     Base       => Base,
+                     Valeur     => Valeur_D
+                  )
+         );
+      Valeur := Valeur_G + Valeur_D;
+
+      return Resultat;
+   end Creer_Valeur_Plus;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   function Creer_Valeur_Div
+      (
+         Profondeur : in     Profondeur_T;
+         Base       : in out Sys_Exp_P.Base_Faits_P.Base_De_Faits_T;
+         Valeur     :    out Sys_Exp_P.Entier_T
+      )
+      return Division_P.Operateur_Div_T
+   is
+      Valeur_G : Sys_Exp_P.Entier_T;
+      Valeur_D : Sys_Exp_P.Entier_T;
+
+      Resultat : Division_P.Operateur_Div_T;
+   begin
+      Resultat := Division_P.Creer
+         (
+            Valeur_Gauche =>
+               Creer_Valeur
+                  (
+                     Profondeur => Profondeur + 1,
+                     Base       => Base,
+                     Valeur     => Valeur_G
+                  ),
+            Valeur_Droite =>
+               Creer_Fait_Ou_Constante
+                  (
+                     Zero_Exclus => True,
+                     Base        => Base,
+                     Valeur      => Valeur_D
+                  )
+         );
+      Valeur := Valeur_G / Valeur_D;
+
+      return Resultat;
+   end Creer_Valeur_Div;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   function Creer_Valeur_Mult
+      (
+         Profondeur : in     Profondeur_T;
+         Base       : in out Sys_Exp_P.Base_Faits_P.Base_De_Faits_T;
+         Valeur     :    out Sys_Exp_P.Entier_T
+      )
+      return Multipli_P.Operateur_Mult_T
+   is
+      Valeur_G : Sys_Exp_P.Entier_T;
+      Valeur_D : Sys_Exp_P.Entier_T;
+
+      Resultat : Multipli_P.Operateur_Mult_T;
+   begin
+      Resultat := Multipli_P.Creer
+         (
+            Valeur_Gauche =>
+               Creer_Valeur
+                  (
+                     Profondeur => Profondeur + 1,
+                     Base       => Base,
+                     Valeur     => Valeur_G
+                  ),
+            Valeur_Droite =>
+               Creer_Valeur
+                  (
+                     Profondeur => Profondeur + 1,
+                     Base       => Base,
+                     Valeur     => Valeur_D
+                  )
+         );
+      Valeur := Valeur_G * Valeur_D;
+
+      return Resultat;
+   end Creer_Valeur_Mult;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   function Creer_Valeur_Moins
+      (
+         Profondeur : in     Profondeur_T;
+         Base       : in out Sys_Exp_P.Base_Faits_P.Base_De_Faits_T;
+         Valeur     :    out Sys_Exp_P.Entier_T
+      )
+      return Soustrac_P.Operateur_Moins_T
+   is
+      Valeur_G : Sys_Exp_P.Entier_T;
+      Valeur_D : Sys_Exp_P.Entier_T;
+
+      Resultat : Soustrac_P.Operateur_Moins_T;
+   begin
+      Resultat := Soustrac_P.Creer
+         (
+            Valeur_Gauche =>
+               Creer_Valeur
+                  (
+                     Profondeur => Profondeur + 1,
+                     Base       => Base,
+                     Valeur     => Valeur_G
+                  ),
+            Valeur_Droite =>
+               Creer_Valeur
+                  (
+                     Profondeur => Profondeur + 1,
+                     Base       => Base,
+                     Valeur     => Valeur_D
+                  )
+         );
+      Valeur := Valeur_G - Valeur_D;
+
+      return Resultat;
+   end Creer_Valeur_Moins;
+   ---------------------------------------------------------------------------
+
 begin
 
    Entier_Alea_P.Reset        (Gen => Generateur_Entier);
