@@ -18,7 +18,7 @@ is
    package Multipli_P renames Sys_Exp_P.Valeur_P.Operateur_P.Multiplication_P;
    package Soustrac_P renames Sys_Exp_P.Valeur_P.Operateur_P.Soustraction_P;
 
-   type Profondeur_T is range 1 .. 10;
+   type Profondeur_T is range 1 .. 5;
 
    use type Sys_Exp_P.Entier_T;
 
@@ -209,7 +209,7 @@ is
 
       V : constant Sys_Exp_P.Valeur_P.Valeur_Abstraite_T'Class :=
          (
-            if Profondeur = Profondeur_T'Last then
+            if Profondeur >= (Profondeur_T'Last - 1) then
                Creer_Fait_Ou_Constante
                   (
                      Base   => Base,
