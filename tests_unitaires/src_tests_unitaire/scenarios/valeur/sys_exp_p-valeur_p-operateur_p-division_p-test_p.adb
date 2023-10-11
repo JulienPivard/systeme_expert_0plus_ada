@@ -5,6 +5,7 @@ with AUnit.Assertions;
 with Facilites_P.Valeur_P;
 
 with Sys_Exp_P.Base_Faits_P;
+with Sys_Exp_P.Fait_P.Entier_P;
 with Sys_Exp_P.Valeur_P.Constante_P;
 with Sys_Exp_P.Valeur_P.Fait_P;
 
@@ -306,8 +307,31 @@ is
    --  Doit lever une exception de division par zéro.
 
    procedure Diviser_Par_Const_Zero is
+      Valeur_1 : Sys_Exp_P.Entier_T;
+
+      Base : Sys_Exp_P.Base_Faits_P.Base_De_Faits_T;
+
+      V : Sys_Exp_P.Entier_T;
    begin
-      null;
+      Bloc_Lever_Exception :
+      declare
+         V_1 : constant Class_Valeur_T := Facilites_P.Valeur_P.Creer_Valeur
+            (
+               Base   => Base,
+               Valeur => Valeur_1
+            );
+         V_2 : constant Sys_Exp_P.Valeur_P.Constante_P.Feuille_Constante_T :=
+            Sys_Exp_P.Valeur_P.Constante_P.Creer (Valeur => 0);
+
+         Div : constant Division_P.Operateur_Div_T := Division_P.Creer
+            (
+               Valeur_Gauche => V_1,
+               Valeur_Droite => V_2
+            );
+      begin
+         V := Div.Interpreter (Base => Base);
+      end Bloc_Lever_Exception;
+      pragma Unreferenced (V);
    exception
       when E_Division_Par_Zero =>
          raise;
@@ -321,8 +345,39 @@ is
    --  Doit lever une exception de division par zéro.
 
    procedure Diviser_Par_Fait_Zero is
+      Valeur_1 : Sys_Exp_P.Entier_T;
+
+      Base : Sys_Exp_P.Base_Faits_P.Base_De_Faits_T;
+
+      V : Sys_Exp_P.Entier_T;
    begin
-      null;
+      Bloc_Lever_Exception :
+      declare
+         Fait : constant Sys_Exp_P.Fait_P.Entier_P.Fait_Entier_T :=
+            Sys_Exp_P.Fait_P.Entier_P.Creer
+               (
+                  Nom    => Facilites_P.Creer_Nom,
+                  Valeur => 0
+               );
+
+         V_1 : constant Class_Valeur_T := Facilites_P.Valeur_P.Creer_Valeur
+            (
+               Base   => Base,
+               Valeur => Valeur_1
+            );
+         V_2 : constant Sys_Exp_P.Valeur_P.Fait_P.Feuille_Fait_T :=
+            Sys_Exp_P.Valeur_P.Fait_P.Creer (Nom => Fait.Lire_Nom);
+
+         Div : constant Division_P.Operateur_Div_T := Division_P.Creer
+            (
+               Valeur_Gauche => V_1,
+               Valeur_Droite => V_2
+            );
+      begin
+         Base.Ajouter (Nouvel_Item => Fait);
+         V := Div.Interpreter (Base => Base);
+      end Bloc_Lever_Exception;
+      pragma Unreferenced (V);
    exception
       when E_Division_Par_Zero =>
          raise;
@@ -335,6 +390,7 @@ is
    procedure Test_Diviser_Par_Zero
       (T : in out Test_Fixt_T)
    is
+      pragma Unreferenced (T);
    begin
       AUnit.Assertions.Assert_Exception
          (
