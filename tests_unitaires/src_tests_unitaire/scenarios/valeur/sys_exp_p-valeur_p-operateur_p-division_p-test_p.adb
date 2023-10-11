@@ -302,11 +302,50 @@ is
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
+   procedure Diviser_Par_Const_Zero;
+   --  Doit lever une exception de division par zéro.
+
+   procedure Diviser_Par_Const_Zero is
+   begin
+      null;
+   exception
+      when E_Division_Par_Zero =>
+         raise;
+      when others =>
+         null;
+   end Diviser_Par_Const_Zero;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Diviser_Par_Fait_Zero;
+   --  Doit lever une exception de division par zéro.
+
+   procedure Diviser_Par_Fait_Zero is
+   begin
+      null;
+   exception
+      when E_Division_Par_Zero =>
+         raise;
+      when others =>
+         null;
+   end Diviser_Par_Fait_Zero;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
    procedure Test_Diviser_Par_Zero
       (T : in out Test_Fixt_T)
    is
    begin
-      null;
+      AUnit.Assertions.Assert_Exception
+         (
+            Proc    => Diviser_Par_Const_Zero'Access,
+            Message => "La division par zero doit creer une exception"
+         );
+      AUnit.Assertions.Assert_Exception
+         (
+            Proc    => Diviser_Par_Fait_Zero'Access,
+            Message => "La division par zero doit creer une exception"
+         );
    end Test_Diviser_Par_Zero;
    ---------------------------------------------------------------------------
 
