@@ -46,7 +46,10 @@ is
 
    ---------------------------------------------------------------------------
    function Creer_Constante
-      (Valeur :    out Sys_Exp_P.Entier_T)
+      (
+         Zero_Exclus : in     Boolean := False;
+         Valeur :    out Sys_Exp_P.Entier_T
+      )
       return Sys_Exp_P.Valeur_P.Constante_P.Feuille_Constante_T
    is
    begin
@@ -58,12 +61,14 @@ is
    ---------------------------------------------------------------------------
    function Creer_Fait
       (
+         Zero_Exclus : in     Boolean := False;
          Base   : in out Sys_Exp_P.Base_Faits_P.Base_De_Faits_T;
          Valeur :    out Sys_Exp_P.Entier_T
       )
       return Sys_Exp_P.Valeur_P.Fait_P.Feuille_Fait_T
    is
       Nom  : constant Nom_T := Facilites_P.Creer_Nom (Base => Base);
+
       Fait : constant Sys_Exp_P.Fait_P.Entier_P.Fait_Entier_T :=
          Fait_Entier_Alea_P.Creer_Fait_Entier (Nom => Nom);
    begin
@@ -77,6 +82,7 @@ is
    ---------------------------------------------------------------------------
    function Creer_Fait_Ou_Constante
       (
+         Zero_Exclus : in     Boolean := False;
          Base   : in out Sys_Exp_P.Base_Faits_P.Base_De_Faits_T;
          Valeur :    out Sys_Exp_P.Entier_T
       )
@@ -93,10 +99,14 @@ is
             case Choix is
                when Constante_E =>
                   Creer_Constante
-                     (Valeur => Val_1),
+                     (
+                        Zero_Exclus => Zero_Exclus,
+                        Valeur => Val_1
+                     ),
                when Fait_E      =>
                   Creer_Fait
                      (
+                        Zero_Exclus => Zero_Exclus,
                         Base   => Base,
                         Valeur => Val_2
                      )
