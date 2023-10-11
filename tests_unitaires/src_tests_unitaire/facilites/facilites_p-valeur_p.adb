@@ -93,7 +93,7 @@ is
    begin
       Boucle_Generer_Valeur :
       loop
-      Valeur := Entier_Alea_P.Random (Gen => Generateur_Entier);
+         Valeur := Entier_Alea_P.Random (Gen => Generateur_Entier);
          exit Boucle_Generer_Valeur when not Zero_Exclus;
          exit Boucle_Generer_Valeur when Valeur /= 0;
       end loop Boucle_Generer_Valeur;
@@ -225,7 +225,28 @@ is
                               Valeur => Valeur
                            ),
                      when Plus_E       =>
-                        Creer_Valeur
+                        Creer_Valeur_Plus
+                           (
+                              Profondeur => Profondeur + 1,
+                              Base       => Base,
+                              Valeur     => Valeur
+                           ),
+                     when Div_E        =>
+                        Creer_Valeur_Div
+                           (
+                              Profondeur => Profondeur + 1,
+                              Base       => Base,
+                              Valeur     => Valeur
+                           ),
+                     when Mult_E       =>
+                        Creer_Valeur_Mult
+                           (
+                              Profondeur => Profondeur + 1,
+                              Base       => Base,
+                              Valeur     => Valeur
+                           ),
+                     when Moins_E      =>
+                        Creer_Valeur_Moins
                            (
                               Profondeur => Profondeur + 1,
                               Base       => Base,
