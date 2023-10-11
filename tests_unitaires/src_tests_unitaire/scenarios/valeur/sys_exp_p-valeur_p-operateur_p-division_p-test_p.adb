@@ -14,7 +14,7 @@ is
 
    subtype Class_Valeur_T is Sys_Exp_P.Valeur_P.Valeur_Abstraite_T'Class;
 
-   subtype Entier_Limite_T is Entier_T range -100 .. 100;
+   subtype Entier_Limite_T is Entier_T range -10 .. 10;
 
    package Entier_Alea_P is new Ada.Numerics.Discrete_Random
       (Result_Subtype => Entier_Limite_T);
@@ -149,8 +149,9 @@ is
          F_2 : constant Sys_Exp_P.Valeur_P.Fait_P.Feuille_Fait_T :=
             Facilites_P.Valeur_P.Creer_Fait
                (
-                  Base   => Base,
-                  Valeur => Valeur_2
+                  Zero_Exclus => True,
+                  Base        => Base,
+                  Valeur      => Valeur_2
                );
 
          Resultat : constant Entier_T := Valeur_1 / Valeur_2;
@@ -187,7 +188,11 @@ is
          C_1 : constant Sys_Exp_P.Valeur_P.Constante_P.Feuille_Constante_T :=
             Facilites_P.Valeur_P.Creer_Constante (Valeur => Valeur_1);
          C_2 : constant Sys_Exp_P.Valeur_P.Constante_P.Feuille_Constante_T :=
-            Facilites_P.Valeur_P.Creer_Constante (Valeur => Valeur_2);
+            Facilites_P.Valeur_P.Creer_Constante
+               (
+                  Zero_Exclus => True,
+                  Valeur      => Valeur_2
+               );
 
          Resultat : constant Entier_T := Valeur_1 / Valeur_2;
       begin
@@ -229,8 +234,9 @@ is
          V_2 : constant Class_Valeur_T :=
             Facilites_P.Valeur_P.Creer_Fait_Ou_Constante
                (
-                  Base   => Base,
-                  Valeur => Valeur_2
+                  Zero_Exclus => True,
+                  Base        => Base,
+                  Valeur      => Valeur_2
                );
 
          Resultat : constant Entier_T := Valeur_1 / Valeur_2;
@@ -269,11 +275,13 @@ is
                Base   => Base,
                Valeur => Valeur_1
             );
-         V_2 : constant Class_Valeur_T := Facilites_P.Valeur_P.Creer_Valeur
-            (
-               Base   => Base,
-               Valeur => Valeur_2
-            );
+         V_2 : constant Class_Valeur_T :=
+            Facilites_P.Valeur_P.Creer_Fait_Ou_Constante
+               (
+                  Zero_Exclus => True,
+                  Base        => Base,
+                  Valeur      => Valeur_2
+               );
 
          Resultat : constant Entier_T := Valeur_1 / Valeur_2;
       begin
