@@ -4,10 +4,19 @@ with Facilites_P.Fait_Entier_G;
 
 with Sys_Exp_P.Base_Faits_P;
 with Sys_Exp_P.Fait_P.Entier_P;
+with Sys_Exp_P.Valeur_P.Operateur_P.Addition_P;
+with Sys_Exp_P.Valeur_P.Operateur_P.Division_P;
+with Sys_Exp_P.Valeur_P.Operateur_P.Multiplication_P;
+with Sys_Exp_P.Valeur_P.Operateur_P.Soustraction_P;
 
 package body Facilites_P.Valeur_P
    with Spark_Mode => Off
 is
+
+   package Addition_P renames Sys_Exp_P.Valeur_P.Operateur_P.Addition_P;
+   package Division_P renames Sys_Exp_P.Valeur_P.Operateur_P.Division_P;
+   package Multipli_P renames Sys_Exp_P.Valeur_P.Operateur_P.Multiplication_P;
+   package Soustrac_P renames Sys_Exp_P.Valeur_P.Operateur_P.Soustraction_P;
 
    type Profondeur_T is range 1 .. 10;
 
@@ -29,9 +38,38 @@ is
       )
       return Sys_Exp_P.Valeur_P.Valeur_Abstraite_T'Class;
 
+   function Creer_Valeur_Plus
+      (
+         Profondeur : in     Profondeur_T;
+         Base       : in out Sys_Exp_P.Base_Faits_P.Base_De_Faits_T;
+         Valeur     :    out Sys_Exp_P.Entier_T
+      )
+      return Addition_P.Operateur_Plus_T;
+   function Creer_Valeur_Div
+      (
+         Profondeur : in     Profondeur_T;
+         Base       : in out Sys_Exp_P.Base_Faits_P.Base_De_Faits_T;
+         Valeur     :    out Sys_Exp_P.Entier_T
+      )
+      return Division_P.Operateur_Div_T;
+   function Creer_Valeur_Mult
+      (
+         Profondeur : in     Profondeur_T;
+         Base       : in out Sys_Exp_P.Base_Faits_P.Base_De_Faits_T;
+         Valeur     :    out Sys_Exp_P.Entier_T
+      )
+      return Multipli_P.Operateur_Mult_T;
+   function Creer_Valeur_Moins
+      (
+         Profondeur : in     Profondeur_T;
+         Base       : in out Sys_Exp_P.Base_Faits_P.Base_De_Faits_T;
+         Valeur     :    out Sys_Exp_P.Entier_T
+      )
+      return Soustrac_P.Operateur_Moins_T;
+
    type Const_Ou_Fait_T is (Constante_E, Fait_E);
 
-   type Sorte_Valeur_T is (Const_Fait_E, Plus_E);
+   type Sorte_Valeur_T is (Const_Fait_E, Plus_E, Div_E, Mult_E, Moins_E);
 
    package Entier_Alea_P        is new Ada.Numerics.Discrete_Random
       (Result_Subtype => Entier_Limite_T);
@@ -53,7 +91,13 @@ is
       return Sys_Exp_P.Valeur_P.Constante_P.Feuille_Constante_T
    is
    begin
+      Boucle_Generer_Valeur :
+      loop
       Valeur := Entier_Alea_P.Random (Gen => Generateur_Entier);
+         exit Boucle_Generer_Valeur when not Zero_Exclus;
+         exit Boucle_Generer_Valeur when Valeur /= 0;
+      end loop Boucle_Generer_Valeur;
+
       return Sys_Exp_P.Valeur_P.Constante_P.Creer (Valeur => Valeur);
    end Creer_Constante;
    ---------------------------------------------------------------------------
@@ -69,9 +113,15 @@ is
    is
       Nom : constant Nom_T := Facilites_P.Creer_Nom (Base => Base);
 
-      Fait : constant Sys_Exp_P.Fait_P.Entier_P.Fait_Entier_T :=
-         Fait_Entier_Alea_P.Creer_Fait_Entier (Nom => Nom);
+      Fait : Sys_Exp_P.Fait_P.Entier_P.Fait_Entier_T;
    begin
+      Boucle_Generer_Valeur :
+      loop
+         Fait := Fait_Entier_Alea_P.Creer_Fait_Entier (Nom => Nom);
+         exit Boucle_Generer_Valeur when not Zero_Exclus;
+         exit Boucle_Generer_Valeur when Fait.Lire_Valeur /= 0;
+      end loop Boucle_Generer_Valeur;
+
       Base.Ajouter (Nouvel_Item => Fait);
       Valeur := Fait.Lire_Valeur;
 
