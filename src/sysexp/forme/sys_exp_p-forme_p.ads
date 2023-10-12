@@ -3,7 +3,7 @@ private with Ada.Containers.Indefinite_Holders;
 with Sys_Exp_P.Visiteur_P;
 
 --  @summary
---  Squelette de représentation d'une prémisse ou d'un conclusion.
+--  Squelette de représentation d'une prémisse ou d'une conclusion.
 --  @description
 --  Les prémisses et conclusion sont quasiment vide, tout le code
 --  réellement utile se trouvera dans le visiteur qui sera passé

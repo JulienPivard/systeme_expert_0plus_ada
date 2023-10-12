@@ -22,7 +22,7 @@ is
 
    subtype Fait_Abstrait_T is Sys_Exp_P.Fait_P.Fait_Abstrait_T;
 
-   type Base_De_Faits_T is tagged private;
+   type Base_De_Faits_T is tagged limited private;
 
    function Contient
       (
@@ -84,7 +84,7 @@ private
 
    subtype Map_Faits_T is Map_Fait_P.Map;
 
-   type Base_De_Faits_T is tagged
+   type Base_De_Faits_T is tagged limited
       record
          Map_Faits : Map_Faits_T;
          --  Les faits sont stocké dans une map indexé
