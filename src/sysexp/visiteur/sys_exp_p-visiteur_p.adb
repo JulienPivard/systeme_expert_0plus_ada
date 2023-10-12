@@ -8,7 +8,7 @@ is
    ---------------------------------------------------------------------------
    procedure Ajouter_Un_Fait
       (
-         This : in out Visiteur_Abstrait_T'Class;
+         This : in out Visiteur_Forme_Abstrait_T'Class;
          Fait : in     Sys_Exp_P.Fait_P.Fait_Abstrait_T'Class
       )
    is

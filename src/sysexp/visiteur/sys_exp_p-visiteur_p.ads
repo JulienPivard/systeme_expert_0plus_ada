@@ -39,12 +39,12 @@ is
 
    subtype Base_De_Faits_T is Sys_Exp_P.Base_Faits_P.Base_De_Faits_T;
 
-   type Visiteur_Abstrait_T is abstract tagged private;
+   type Visiteur_Forme_Abstrait_T is abstract tagged limited private;
    --  Un visiteur de Formes abstrait. Le squelette de base de tout
    --  les visiteur de prémisses ou de conclusions.
 
    function Au_Moins_Une_Premisse_Verifiee
-      (This : in     Visiteur_Abstrait_T)
+      (This : in     Visiteur_Forme_Abstrait_T)
       return Boolean;
    --  Au moins une prémisse a été vérifiée par le visiteur.
    --  @param This
@@ -52,7 +52,7 @@ is
    --  @return Au moins une prémisse a été vérifiée.
 
    function Au_Moins_Une_Conclusion_Declenchee
-      (This : in     Visiteur_Abstrait_T)
+      (This : in     Visiteur_Forme_Abstrait_T)
       return Boolean;
    --  Au moins une conclusion a été déclenchée par le visiteur.
    --  @param This
@@ -60,7 +60,7 @@ is
    --  @return Au moins une conclusion a été déclenchée.
 
    function Lire_Code_Erreur
-      (This : in     Visiteur_Abstrait_T)
+      (This : in     Visiteur_Forme_Abstrait_T)
       return Code_Erreur_T;
    --  Lit le code d'erreur.
    --  @param This
@@ -68,7 +68,7 @@ is
    --  @return Le code d'erreur.
 
    function Lire_Message_Erreur
-      (This : in     Visiteur_Abstrait_T)
+      (This : in     Visiteur_Forme_Abstrait_T)
       return Message_Erreur_T;
    --  Lit le message de l'erreur rencontrée.
    --  @param This
@@ -77,7 +77,7 @@ is
 
 private
 
-   type Visiteur_Abstrait_T is abstract tagged
+   type Visiteur_Forme_Abstrait_T is abstract tagged limited
       record
          Base                        : Base_De_Faits_T;
          --  La base de faits où on va ajouter les conclusions déclenchées.
@@ -94,7 +94,7 @@ private
 
    procedure Ajouter_Un_Fait
       (
-         This : in out Visiteur_Abstrait_T'Class;
+         This : in out Visiteur_Forme_Abstrait_T'Class;
          Fait : in     Sys_Exp_P.Fait_P.Fait_Abstrait_T'Class
       );
    --  Ajoute un fait à la base de faits.
@@ -105,27 +105,27 @@ private
 
    --------------------------------------
    function Au_Moins_Une_Premisse_Verifiee
-      (This : in     Visiteur_Abstrait_T)
+      (This : in     Visiteur_Forme_Abstrait_T)
       return Boolean
    is (This.Premisse_A_Ete_Verifiee);
    --------------------------------------
 
    --------------------------------------
    function Au_Moins_Une_Conclusion_Declenchee
-      (This : in     Visiteur_Abstrait_T)
+      (This : in     Visiteur_Forme_Abstrait_T)
       return Boolean
    is (This.Conclusion_A_Ete_Declenchee);
 
    --------------------------------------
    function Lire_Code_Erreur
-      (This : in     Visiteur_Abstrait_T)
+      (This : in     Visiteur_Forme_Abstrait_T)
       return Code_Erreur_T
    is (This.Code_Erreur);
    --------------------------------------
 
    --------------------------------------
    function Lire_Message_Erreur
-      (This : in     Visiteur_Abstrait_T)
+      (This : in     Visiteur_Forme_Abstrait_T)
       return Message_Erreur_T
    is (This.Message_D_Erreur);
    --------------------------------------

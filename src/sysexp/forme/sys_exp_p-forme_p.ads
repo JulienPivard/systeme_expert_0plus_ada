@@ -28,13 +28,14 @@ is
    --  La forme.
    --  @return Son nom.
 
-   subtype Classe_Visiteur_T is Sys_Exp_P.Visiteur_P.Visiteur_Abstrait_T'Class;
+   subtype Classe_Visiteur_Forme_T is
+      Sys_Exp_P.Visiteur_P.Visiteur_Forme_Abstrait_T'Class;
    --  N'importe quel visiteur de cette classe.
 
    procedure Accepte
       (
          This     : in     Forme_Abstraite_T;
-         Visiteur : in out Classe_Visiteur_T
+         Visiteur : in out Classe_Visiteur_Forme_T
       )
    is abstract;
    --  Accepte un visiteur pour étendre le fonctions.
