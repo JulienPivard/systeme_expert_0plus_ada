@@ -1,16 +1,24 @@
 with Ada.Text_IO;
 
-package body Sys_Exp_P.Fait_P.Symbolique_P.Text_IO
+package body Sys_Exp_P.Valeur_P.Constante_P.Text_IO
    with Spark_Mode => Off
 is
 
    ---------------------------------------------------------------------------
-   procedure Put_Line
-      (Item : in     Fait_Symbolique_T)
+   procedure Put
+      (Item : in     Feuille_Constante_T)
    is
    begin
-      Ada.Text_IO.Put (Item => "Nom [" & String (Item.Lire_Nom) & "] ");
-      Ada.Text_IO.Put (Item => "Valeur [" & String (Item.Lire_Valeur) & "]");
+      Ada.Text_IO.Put (Item => "Constante [" & Item.Valeur'Image & "]");
+   end Put;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Put_Line
+      (Item : in     Feuille_Constante_T)
+   is
+   begin
+      Put                  (Item    => Item);
       Ada.Text_IO.New_Line (Spacing => 1);
    end Put_Line;
    ---------------------------------------------------------------------------
@@ -19,4 +27,4 @@ is
    --                             Partie privée                             --
    ---------------------------------------------------------------------------
 
-end Sys_Exp_P.Fait_P.Symbolique_P.Text_IO;
+end Sys_Exp_P.Valeur_P.Constante_P.Text_IO;

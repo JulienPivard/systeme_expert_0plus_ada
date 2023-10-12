@@ -11,8 +11,6 @@ package Sys_Exp_P.Fait_P.Entier_P
       Spark_Mode     => Off
 is
 
-   type Entier_T is range -2**31 .. 2**31 - 1;
-
    type Fait_Entier_T is new Fait_Abstrait_T with private;
    --  Représentation concrète d'un fait entier.
 

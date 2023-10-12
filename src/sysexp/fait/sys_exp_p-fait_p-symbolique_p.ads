@@ -13,8 +13,6 @@ package Sys_Exp_P.Fait_P.Symbolique_P
       Spark_Mode     => Off
 is
 
-   type Nom_Symbole_T is new Nom_T;
-
    type Fait_Symbolique_T is new Fait_Abstrait_T with private;
    --  Représentation concrète d'un fait symbolique.
 

@@ -2,9 +2,9 @@ with Ada.Numerics.Discrete_Random;
 
 with AUnit.Assertions;
 
-with Facilites_P;
+with Sys_Exp_P.Base_Faits_P;
 
-package body Sys_Exp_P.Fait_P.Entier_P.Test_P
+package body Sys_Exp_P.Valeur_P.Constante_P.Test_P
    with Spark_Mode => Off
 is
 
@@ -41,34 +41,44 @@ is
    procedure Test_Creer
       (T : in out Test_Fixt_T)
    is
-      Nom    : constant Nom_T    := Facilites_P.Creer_Nom;
       Valeur : constant Entier_T :=
          Entier_Alea_P.Random (Gen => Generateur_Entier);
    begin
-      T.Fait := Creer
-         (
-            Nom    => Nom,
-            Valeur => Valeur
-         );
+      T.Feuille := Creer (Valeur => Valeur);
       AUnit.Assertions.Assert
          (
-            Condition => T.Fait.Lire_Nom = Nom,
-            Message   => "[" & String (T.Fait.Lire_Nom) & "] " &
-               "devrait valoir [" & String (Nom) & "]"
+            Condition => T.Feuille.Valeur = Valeur,
+            Message   => "[" & T.Feuille.Valeur'Image & "] " &
+               "devrait valoir [" & Valeur'Image & "]"
          );
+   end Test_Creer;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Test_Interpreter
+      (T : in out Test_Fixt_T)
+   is
+      Valeur : constant Entier_T :=
+         Entier_Alea_P.Random (Gen => Generateur_Entier);
+
+      B : Base_Faits_P.Base_De_Faits_T;
+      V : Entier_T;
+   begin
+      T.Feuille := Creer (Valeur => Valeur);
+      V := T.Feuille.Interpreter (Base => B);
       AUnit.Assertions.Assert
          (
-            Condition => T.Fait.Lire_Valeur = Valeur,
-            Message   => "[" & T.Fait.Lire_Valeur'Image & "] " &
+            Condition => V = Valeur,
+            Message   => "[" & V'Image & "] " &
                "devrait valoir [" & Valeur'Image & "]"
          );
       AUnit.Assertions.Assert
          (
-            Condition => T.Fait.Lire_Type = Entier_E,
-            Message   => "[" & T.Fait.Lire_Type'Image & "] " &
-               "devrait valoir [" & Type_De_Fait_T'Image (Entier_E) & "]"
+            Condition => T.Feuille.Valeur = V,
+            Message   => "[" & T.Feuille.Valeur'Image & "] " &
+               "devrait valoir [" & V'Image & "]"
          );
-   end Test_Creer;
+   end Test_Interpreter;
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
@@ -79,4 +89,4 @@ begin
 
    Entier_Alea_P.Reset (Gen => Generateur_Entier);
 
-end Sys_Exp_P.Fait_P.Entier_P.Test_P;
+end Sys_Exp_P.Valeur_P.Constante_P.Test_P;
