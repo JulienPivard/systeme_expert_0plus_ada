@@ -1,5 +1,12 @@
 with Sys_Exp_P.Base_Faits_P;
 
+limited with Sys_Exp_P.Forme_P.Conclusion_P.Bool_False_P;
+limited with Sys_Exp_P.Forme_P.Conclusion_P.Bool_True_P;
+limited with Sys_Exp_P.Forme_P.Conclusion_P.Expression_Entiere_P;
+limited with Sys_Exp_P.Forme_P.Conclusion_P.Fait_Entier_P;
+limited with Sys_Exp_P.Forme_P.Conclusion_P.Symbole_Constant_P;
+limited with Sys_Exp_P.Forme_P.Conclusion_P.Symbole_Fait_P;
+
 private with Sys_Exp_P.Fait_P;
 
 --  @summary
@@ -74,6 +81,96 @@ is
    --  @param This
    --  Le visiteur.
    --  @return Le message d'erreur.
+
+   package Conclusion_R renames Sys_Exp_P.Forme_P.Conclusion_P;
+
+   procedure Visiter
+      (
+         This  : in out Visiteur_Forme_Abstrait_T;
+         Forme : in     Conclusion_R.Bool_False_P.Conclusion_False_T
+      )
+   is abstract;
+   --  Porte d'entrée pour visiter une conclusion booléenne fausse.
+   --  Ajoute la conclusion de la règle à la base de faits
+   --  si celle ci est déclenchée.
+   --  @param This
+   --  Le visiteur
+   --  @param Forme
+   --  La conclusion à visiter.
+
+   procedure Visiter
+      (
+         This  : in out Visiteur_Forme_Abstrait_T;
+         Forme : in     Conclusion_R.Bool_True_P.Conclusion_True_T
+      )
+   is abstract;
+   --  Porte d'entrée pour visiter une conclusion booléenne vraie.
+   --  Ajoute la conclusion de la règle à la base de faits
+   --  si celle ci est déclenchée.
+   --  @param This
+   --  Le visiteur
+   --  @param Forme
+   --  La conclusion à visiter.
+
+   package Expr_Entiere_R renames Conclusion_R.Expression_Entiere_P;
+
+   procedure Visiter
+      (
+         This  : in out Visiteur_Forme_Abstrait_T;
+         Forme : in     Expr_Entiere_R.Conclusion_Expression_T
+      )
+   is abstract;
+   --  Porte d'entrée pour visiter une conclusion d'expression entière.
+   --  Ajoute la conclusion de la règle à la base de faits
+   --  si celle ci est déclenchée.
+   --  @param This
+   --  Le visiteur
+   --  @param Forme
+   --  La conclusion à visiter.
+
+   procedure Visiter
+      (
+         This  : in out Visiteur_Forme_Abstrait_T;
+         Forme : in     Conclusion_R.Fait_Entier_P.Conclusion_Fait_T
+      )
+   is abstract;
+   --  Porte d'entrée pour visiter une conclusion de fait entier.
+   --  Ajoute la conclusion de la règle à la base de faits
+   --  si celle ci est déclenchée.
+   --  @param This
+   --  Le visiteur
+   --  @param Forme
+   --  La conclusion à visiter.
+
+   package Symbole_Constant_R renames Conclusion_R.Symbole_Constant_P;
+
+   procedure Visiter
+      (
+         This  : in out Visiteur_Forme_Abstrait_T;
+         Forme : in     Symbole_Constant_R.Conclusion_Symbolique_T
+      )
+   is abstract;
+   --  Porte d'entrée pour visiter une conclusion symbolique.
+   --  Ajoute la conclusion de la règle à la base de faits
+   --  si celle ci est déclenchée.
+   --  @param This
+   --  Le visiteur
+   --  @param Forme
+   --  La conclusion à visiter.
+
+   procedure Visiter
+      (
+         This  : in out Visiteur_Forme_Abstrait_T;
+         Forme : in     Conclusion_R.Symbole_Fait_P.Conclusion_Symbolique_T
+      )
+   is abstract;
+   --  Porte d'entrée pour visiter une conclusion de fait symbolique.
+   --  Ajoute la conclusion de la règle à la base de faits
+   --  si celle ci est déclenchée.
+   --  @param This
+   --  Le visiteur
+   --  @param Forme
+   --  La conclusion à visiter.
 
 private
 
