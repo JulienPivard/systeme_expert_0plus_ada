@@ -38,7 +38,7 @@ is
          Visiteur : in out Classe_Visiteur_Forme_T
       )
    is abstract;
-   --  Accepte un visiteur pour étendre le fonctions.
+   --  Accepte un visiteur pour étendre les fonctions.
    --  @param This
    --  La prémisse ou la conclusion.
    --  @param Visiteur

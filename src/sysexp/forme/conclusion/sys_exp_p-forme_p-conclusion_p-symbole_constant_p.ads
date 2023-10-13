@@ -20,7 +20,7 @@ is
          Nom_Symbole : in     Nom_Symbole_T
       )
       return Conclusion_Symbolique_T;
-   --  Crée une conclusion symbolique dont la valeur un nom de symbole.
+   --  Crée une conclusion symbolique dont la valeur est un nom de symbole.
    --  @param Nom
    --  Le nom de la conclusion.
    --  @param Nom_Symbole

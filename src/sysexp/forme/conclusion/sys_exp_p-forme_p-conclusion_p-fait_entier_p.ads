@@ -20,7 +20,7 @@ is
          Nom_Fait : in     Nom_T
       )
       return Conclusion_Fait_T;
-   --  Crée une conclusion entière dont la valeur un nom de fait entier.
+   --  Crée une conclusion entière dont la valeur est un nom de fait entier.
    --  @param Nom
    --  Le nom de la conclusion.
    --  @param Nom_Fait

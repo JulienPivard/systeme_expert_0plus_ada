@@ -21,7 +21,7 @@ is
       )
       return Conclusion_Symbolique_T;
    --  Crée une conclusion symbolique dont la
-   --  valeur un nom de fait symbolique.
+   --  valeur est un nom de fait symbolique.
    --  @param Nom
    --  Le nom de la conclusion.
    --  @param Nom_Fait

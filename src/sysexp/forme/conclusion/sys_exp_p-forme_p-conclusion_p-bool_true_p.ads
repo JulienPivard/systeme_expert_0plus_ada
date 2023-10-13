@@ -28,7 +28,7 @@ is
          This     : in     Conclusion_True_T;
          Visiteur : in out Classe_Visiteur_Forme_T
       );
-   --  Accepte un visiteur pour étendre le fonctions.
+   --  Accepte un visiteur pour étendre les fonctions.
    --  @param This
    --  La conclusion.
    --  @param Visiteur
