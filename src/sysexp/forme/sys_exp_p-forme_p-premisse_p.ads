@@ -24,6 +24,22 @@ is
    type Premisse_Abstraite_T is abstract new Forme_Abstraite_T with private;
    --  Une forme qui est une prémisse.
 
+   type Comparateur_Entier_T is access function
+      (
+         Gauche : in     Entier_T;
+         Droite : in     Entier_T
+      )
+      return Boolean;
+   --  Une opération de comparaison entre deux valeurs entières.
+
+   type Comparateur_Nom_Symbole_T is access function
+      (
+         Gauche : in     Nom_Symbole_T;
+         Droite : in     Nom_Symbole_T
+      )
+      return Boolean;
+   --  Une opération de comparaison entre deux noms symboliques.
+
 private
 
    type Premisse_Abstraite_T is abstract new Forme_Abstraite_T with

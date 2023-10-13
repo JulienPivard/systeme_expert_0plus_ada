@@ -7,6 +7,13 @@ limited with Sys_Exp_P.Forme_P.Conclusion_P.Fait_Entier_P;
 limited with Sys_Exp_P.Forme_P.Conclusion_P.Symbole_Constant_P;
 limited with Sys_Exp_P.Forme_P.Conclusion_P.Symbole_Fait_P;
 
+limited with Sys_Exp_P.Forme_P.Premisse_P.Bool_False_P;
+limited with Sys_Exp_P.Forme_P.Premisse_P.Bool_True_P;
+limited with Sys_Exp_P.Forme_P.Premisse_P.Expression_Entiere_P;
+limited with Sys_Exp_P.Forme_P.Premisse_P.Fait_Entier_P;
+limited with Sys_Exp_P.Forme_P.Premisse_P.Symbole_Constant_P;
+limited with Sys_Exp_P.Forme_P.Premisse_P.Symbole_Fait_P;
+
 private with Sys_Exp_P.Fait_P;
 
 --  @summary
@@ -171,6 +178,92 @@ is
    --  Le visiteur
    --  @param Forme
    --  La conclusion à visiter.
+
+   package Premisse_R renames Sys_Exp_P.Forme_P.Premisse_P;
+
+   procedure Visiter
+      (
+         This  : in out Visiteur_Forme_Abstrait_T;
+         Forme : in     Premisse_R.Bool_False_P.Premisse_False_T
+      )
+   is abstract;
+   --  Porte d'entrée pour visiter une prémisse booléenne fausse.
+   --  Ajoute la prémisse de la règle à la base de faits
+   --  si celle ci est déclenchée.
+   --  @param This
+   --  Le visiteur
+   --  @param Forme
+   --  La prémisse à visiter.
+
+   procedure Visiter
+      (
+         This  : in out Visiteur_Forme_Abstrait_T;
+         Forme : in     Premisse_R.Bool_True_P.Premisse_True_T
+      )
+   is abstract;
+   --  Porte d'entrée pour visiter une prémisse booléenne vraie.
+   --  Ajoute la prémisse de la règle à la base de faits
+   --  si celle ci est déclenchée.
+   --  @param This
+   --  Le visiteur
+   --  @param Forme
+   --  La prémisse à visiter.
+
+   procedure Visiter
+      (
+         This  : in out Visiteur_Forme_Abstrait_T;
+         Forme : in     Premisse_R.Expression_Entiere_P.Premisse_Expression_T
+      )
+   is abstract;
+   --  Porte d'entrée pour visiter une prémisse d'expression entière.
+   --  Ajoute la prémisse de la règle à la base de faits
+   --  si celle ci est déclenchée.
+   --  @param This
+   --  Le visiteur
+   --  @param Forme
+   --  La prémisse à visiter.
+
+   procedure Visiter
+      (
+         This  : in out Visiteur_Forme_Abstrait_T;
+         Forme : in     Premisse_R.Fait_Entier_P.Premisse_Fait_T
+      )
+   is abstract;
+   --  Porte d'entrée pour visiter une prémisse de fait entier.
+   --  Ajoute la prémisse de la règle à la base de faits
+   --  si celle ci est déclenchée.
+   --  @param This
+   --  Le visiteur
+   --  @param Forme
+   --  La prémisse à visiter.
+
+   procedure Visiter
+      (
+         This  : in out Visiteur_Forme_Abstrait_T;
+         Forme : in     Premisse_R.Symbole_Constant_P.Premisse_Symbolique_T
+      )
+   is abstract;
+   --  Porte d'entrée pour visiter une prémisse symbolique.
+   --  Ajoute la prémisse de la règle à la base de faits
+   --  si celle ci est déclenchée.
+   --  @param This
+   --  Le visiteur
+   --  @param Forme
+   --  La prémisse à visiter.
+
+   procedure Visiter
+      (
+         This  : in out Visiteur_Forme_Abstrait_T;
+         Forme : in     Premisse_R.Symbole_Fait_P.Premisse_Symbolique_T
+      )
+   is abstract;
+   --  Porte d'entrée pour visiter une prémisse de fait symbolique.
+   --  Ajoute la prémisse de la règle à la base de faits
+   --  si celle ci est déclenchée.
+   --  @param This
+   --  Le visiteur
+   --  @param Forme
+   --  La prémisse à visiter.
 
 private
 
