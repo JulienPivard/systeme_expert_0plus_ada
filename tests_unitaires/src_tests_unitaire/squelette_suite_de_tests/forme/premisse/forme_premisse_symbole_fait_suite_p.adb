@@ -29,6 +29,30 @@ is
                   Test => Scenario_R.Test_Creer'Access
                )
          );
+      Ptr_Test_Suite.all.Add_Test
+         (
+            T => Caller_P.Create
+               (
+                  Name => Nom_Test & "lire nom symbole",
+                  Test => Scenario_R.Test_Lire_Nom_Fait'Access
+               )
+         );
+      Ptr_Test_Suite.all.Add_Test
+         (
+            T => Caller_P.Create
+               (
+                  Name => Nom_Test & "egalite",
+                  Test => Scenario_R.Test_Comparaison_Egale'Access
+               )
+         );
+      Ptr_Test_Suite.all.Add_Test
+         (
+            T => Caller_P.Create
+               (
+                  Name => Nom_Test & "different",
+                  Test => Scenario_R.Test_Comparaison_Different'Access
+               )
+         );
 
       return Ptr_Test_Suite;
    end Fonc_Suite;

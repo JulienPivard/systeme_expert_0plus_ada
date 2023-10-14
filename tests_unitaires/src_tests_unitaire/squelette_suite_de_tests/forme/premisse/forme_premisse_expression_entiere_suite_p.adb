@@ -29,6 +29,62 @@ is
                   Test => Scenario_R.Test_Creer'Access
                )
          );
+      Ptr_Test_Suite.all.Add_Test
+         (
+            T => Caller_P.Create
+               (
+                  Name => Nom_Test & "lire valeur",
+                  Test => Scenario_R.Test_Lire_Valeur'Access
+               )
+         );
+      Ptr_Test_Suite.all.Add_Test
+         (
+            T => Caller_P.Create
+               (
+                  Name => Nom_Test & "egalite",
+                  Test => Scenario_R.Test_Comparaison_Egale'Access
+               )
+         );
+      Ptr_Test_Suite.all.Add_Test
+         (
+            T => Caller_P.Create
+               (
+                  Name => Nom_Test & "different",
+                  Test => Scenario_R.Test_Comparaison_Different'Access
+               )
+         );
+      Ptr_Test_Suite.all.Add_Test
+         (
+            T => Caller_P.Create
+               (
+                  Name => Nom_Test & "inferieur",
+                  Test => Scenario_R.Test_Comparaison_Inf'Access
+               )
+         );
+      Ptr_Test_Suite.all.Add_Test
+         (
+            T => Caller_P.Create
+               (
+                  Name => Nom_Test & "inferieur egale",
+                  Test => Scenario_R.Test_Comparaison_Inf_Egale'Access
+               )
+         );
+      Ptr_Test_Suite.all.Add_Test
+         (
+            T => Caller_P.Create
+               (
+                  Name => Nom_Test & "superieur",
+                  Test => Scenario_R.Test_Comparaison_Sup'Access
+               )
+         );
+      Ptr_Test_Suite.all.Add_Test
+         (
+            T => Caller_P.Create
+               (
+                  Name => Nom_Test & "superieur egale",
+                  Test => Scenario_R.Test_Comparaison_Sup_Egale'Access
+               )
+         );
 
       return Ptr_Test_Suite;
    end Fonc_Suite;

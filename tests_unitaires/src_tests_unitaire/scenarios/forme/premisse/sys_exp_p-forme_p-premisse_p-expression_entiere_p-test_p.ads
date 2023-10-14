@@ -30,4 +30,25 @@ is
    procedure Test_Creer
       (T : in out Test_Fixt_T);
 
+   procedure Test_Lire_Valeur
+      (T : in out Test_Fixt_T);
+
+   procedure Test_Comparaison_Egale
+      (T : in out Test_Fixt_T);
+
+   procedure Test_Comparaison_Different
+      (T : in out Test_Fixt_T);
+
+   procedure Test_Comparaison_Inf
+      (T : in out Test_Fixt_T);
+
+   procedure Test_Comparaison_Inf_Egale
+      (T : in out Test_Fixt_T);
+
+   procedure Test_Comparaison_Sup
+      (T : in out Test_Fixt_T);
+
+   procedure Test_Comparaison_Sup_Egale
+      (T : in out Test_Fixt_T);
+
 end Sys_Exp_P.Forme_P.Premisse_P.Expression_Entiere_P.Test_P;
