@@ -1,6 +1,6 @@
 private with Ada.Containers.Indefinite_Holders;
 
-with Sys_Exp_P.Visiteur_P;
+with Sys_Exp_P.Visiteur_Forme_P;
 
 --  @summary
 --  Squelette de représentation d'une prémisse ou d'une conclusion.
@@ -29,7 +29,7 @@ is
    --  @return Son nom.
 
    subtype Classe_Visiteur_Forme_T is
-      Sys_Exp_P.Visiteur_P.Visiteur_Forme_Abstrait_T'Class;
+      Sys_Exp_P.Visiteur_Forme_P.Visiteur_Forme_Abstrait_T'Class;
    --  N'importe quel visiteur de cette classe.
 
    procedure Accepte

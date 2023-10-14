@@ -1,7 +1,7 @@
 with Ada.Exceptions;
 with Ada.Strings.Fixed;
 
-package body Sys_Exp_P.Visiteur_P
+package body Sys_Exp_P.Visiteur_Forme_P
    with Spark_Mode => Off
 is
 
@@ -30,4 +30,4 @@ is
    --                             Partie privée                             --
    ---------------------------------------------------------------------------
 
-end Sys_Exp_P.Visiteur_P;
+end Sys_Exp_P.Visiteur_Forme_P;

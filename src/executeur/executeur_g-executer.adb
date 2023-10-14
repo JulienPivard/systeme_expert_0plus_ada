@@ -9,6 +9,9 @@ with Sys_Exp_P.Valeur_P.Operateur_P.Multiplication_P;
 with Sys_Exp_P.Valeur_P.Operateur_P.Addition_P;
 with Sys_Exp_P.Valeur_P.Text_IO;
 
+with Sys_Exp_P.Visiteur_Forme_P;
+with Sys_Exp_P.Visiteur_Forme_P.Declencheur_P;
+
 separate (Executeur_G)
 procedure Executer
    --  (Arguments)
