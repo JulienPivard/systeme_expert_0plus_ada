@@ -1,9 +1,6 @@
 with AUnit.Assertions;
 
 with Facilites_P;
---  with Facilites_P.Fait_P;
-
---  with Sys_Exp_P.Fait_P.Symbolique_P;
 
 package body Sys_Exp_P.Forme_P.Conclusion_P.Symbole_Fait_P.Test_P
    with Spark_Mode => Off
@@ -40,9 +37,6 @@ is
       Nom      : constant Nom_T := Facilites_P.Creer_Nom;
       Nom_Fait : constant Nom_T :=
          Facilites_P.Creer_Nom_Different (Nom => Nom);
-
-      --  Fait : constant Sys_Exp_P.Fait_P.Symbolique_P.Fait_Symbolique_T :=
-      --     Facilites_P.Fait_P.Creer_Fait_Symbolique (Nom => Nom_Fait);
    begin
       T.Conclusion := Creer
          (
@@ -56,6 +50,33 @@ is
                "devrait valoir [" & String (Nom) & "]"
          );
    end Test_Creer;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Test_Lire_Nom_Fait
+      (T : in out Test_Fixt_T)
+   is
+      Nom      : constant Nom_T := Facilites_P.Creer_Nom;
+      Nom_Fait : constant Nom_T :=
+         Facilites_P.Creer_Nom_Different (Nom => Nom);
+   begin
+      T.Conclusion := Creer
+         (
+            Nom      => Nom,
+            Nom_Fait => Nom_Fait
+         );
+      Bloc_Verification :
+      declare
+         N : constant Nom_T := T.Conclusion.Lire_Nom_Fait;
+      begin
+         AUnit.Assertions.Assert
+            (
+               Condition => N = Nom_Fait,
+               Message   => "[" & String (N) & "] " &
+                  "devrait valoir [" & String (Nom_Fait) & "]"
+            );
+      end Bloc_Verification;
+   end Test_Lire_Nom_Fait;
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------

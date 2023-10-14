@@ -52,6 +52,32 @@ is
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
+   procedure Test_Lire_Nom_Symbole
+      (T : in out Test_Fixt_T)
+   is
+      Nom         : constant Nom_T         := Facilites_P.Creer_Nom;
+      Nom_Symbole : constant Nom_Symbole_T := Facilites_P.Creer_Symbole;
+   begin
+      T.Conclusion := Creer
+         (
+            Nom         => Nom,
+            Nom_Symbole => Nom_Symbole
+         );
+      Bloc_Verification :
+      declare
+         N : constant Nom_Symbole_T := T.Conclusion.Lire_Nom_Symbole;
+      begin
+         AUnit.Assertions.Assert
+            (
+               Condition => N = Nom_Symbole,
+               Message   => "[" & String (N) & "] " &
+                  "devrait valoir [" & String (Nom_Symbole) & "]"
+            );
+      end Bloc_Verification;
+   end Test_Lire_Nom_Symbole;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
    --                             Partie privée                             --
    ---------------------------------------------------------------------------
 

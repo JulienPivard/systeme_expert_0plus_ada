@@ -61,6 +61,36 @@ is
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
+   procedure Test_Lire_Valeur
+      (T : in out Test_Fixt_T)
+   is
+      Nom : constant Nom_T := Facilites_P.Creer_Nom;
+
+      Base   : Sys_Exp_P.Base_Faits_P.Base_De_Faits_T;
+      Valeur : Sys_Exp_P.Entier_T;
+
+      V : Sys_Exp_P.Entier_T;
+   begin
+      T.Conclusion := Creer
+         (
+            Nom        => Nom,
+            Expression => Facilites_P.Valeur_P.Creer_Valeur
+               (
+                  Base   => Base,
+                  Valeur => Valeur
+               )
+         );
+      V := T.Conclusion.Lire_Valeur (Base => Base);
+      AUnit.Assertions.Assert
+         (
+            Condition => V = Valeur,
+            Message   => "[" & V'Image & "] " &
+               "devrait valoir [" & Valeur'Image & "]"
+         );
+   end Test_Lire_Valeur;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
    --                             Partie privée                             --
    ---------------------------------------------------------------------------
 
