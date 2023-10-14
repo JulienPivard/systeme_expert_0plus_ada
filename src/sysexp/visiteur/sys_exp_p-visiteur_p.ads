@@ -271,11 +271,11 @@ private
       record
          Base                        : Base_De_Faits_T;
          --  La base de faits où on va ajouter les conclusions déclenchées.
-         Premisse_A_Ete_Verifiee     : Boolean := False;
+         Premisse_A_Ete_Verifiee     : Boolean          := False;
          --  Permet de savoir si la prémisse est vérifiée.
-         Conclusion_A_Ete_Declenchee : Boolean := False;
+         Conclusion_A_Ete_Declenchee : Boolean          := False;
          --  Permet de savoir si on a ajouté une conclusion à la base de faits.
-         Code_Erreur                 : Code_Erreur_T := Tout_Va_Bien_E;
+         Code_Erreur                 : Code_Erreur_T    := Tout_Va_Bien_E;
          --  Permet de savoir quel type d'erreur a été rencontrée.
          Message_D_Erreur            : Message_Erreur_T :=
             Message_Erreur_T'(others => ' ');
