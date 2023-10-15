@@ -9,13 +9,20 @@ with Sys_Exp_P.Valeur_P.Operateur_P.Multiplication_P;
 with Sys_Exp_P.Valeur_P.Operateur_P.Addition_P;
 with Sys_Exp_P.Valeur_P.Text_IO;
 
-with Sys_Exp_P.Visiteur_Forme_P;
+with Sys_Exp_P.Forme_P.Conclusion_P.Bool_True_P;
+with Sys_Exp_P.Forme_P.Conclusion_P.Expression_Entiere_P;
+with Sys_Exp_P.Forme_P.Premisse_P.Bool_True_P;
+
 with Sys_Exp_P.Visiteur_Forme_P.Declencheur_P;
+with Sys_Exp_P.Visiteur_Forme_P.Text_IO;
 
 separate (Executeur_G)
 procedure Executer
    --  (Arguments)
 is
+   package Conclusion_R renames Sys_Exp_P.Forme_P.Conclusion_P;
+   package Premisse_R   renames Sys_Exp_P.Forme_P.Premisse_P;
+
    Nom    : constant Sys_Exp_P.Nom_T    := "coucou";
    Valeur : constant Sys_Exp_P.Entier_T := 666;
 
@@ -36,6 +43,8 @@ is
    Moins : Sys_Exp_P.Valeur_P.Operateur_P.Soustraction_P.Operateur_Moins_T;
    Mult  : Sys_Exp_P.Valeur_P.Operateur_P.Multiplication_P.Operateur_Mult_T;
    Plus  : Sys_Exp_P.Valeur_P.Operateur_P.Addition_P.Operateur_Plus_T;
+
+   Visiteur : Sys_Exp_P.Visiteur_Forme_P.Declencheur_P.Visiteur_T;
 begin
    B.Ajouter (Nouvel_Item => Fait);
 
@@ -85,4 +94,34 @@ begin
    Sys_Exp_P.Valeur_P.Text_IO.Put_Line (Item => Plus);
    V := Plus.Interpreter (Base => B);
    Ada.Text_IO.Put_Line (Item => "La valeur est [" & V'Image & "]");
+   Ada.Text_IO.New_Line (Spacing => 2);
+
+   Bloc_Visiter :
+   declare
+      C : Conclusion_R.Bool_True_P.Conclusion_True_T :=
+         Conclusion_R.Bool_True_P.Creer (Nom => "zioejcn");
+      P : Premisse_R.Bool_True_P.Premisse_True_T :=
+         Premisse_R.Bool_True_P.Creer (Nom => "zioejcn");
+      X : Conclusion_R.Expression_Entiere_P.Conclusion_Expression_T :=
+         Conclusion_R.Expression_Entiere_P.Creer
+            (
+               Nom        => "zioejcn",
+               Expression => Plus
+            );
+   begin
+      Sys_Exp_P.Visiteur_Forme_P.Text_IO.Put_Line (Item => Visiteur);
+      Ada.Text_IO.New_Line (Spacing => 2);
+
+      C.Accepte (Visiteur => Visiteur);
+      Sys_Exp_P.Visiteur_Forme_P.Text_IO.Put_Line (Item => Visiteur);
+      Ada.Text_IO.New_Line (Spacing => 2);
+
+      P.Accepte (Visiteur => Visiteur);
+      Sys_Exp_P.Visiteur_Forme_P.Text_IO.Put_Line (Item => Visiteur);
+      Ada.Text_IO.New_Line (Spacing => 2);
+
+      X.Accepte (Visiteur => Visiteur);
+      Sys_Exp_P.Visiteur_Forme_P.Text_IO.Put_Line (Item => Visiteur);
+      Ada.Text_IO.New_Line (Spacing => 2);
+   end Bloc_Visiter;
 end Executer;
