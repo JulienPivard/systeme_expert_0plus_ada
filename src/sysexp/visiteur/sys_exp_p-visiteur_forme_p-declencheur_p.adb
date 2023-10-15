@@ -5,6 +5,20 @@ with Sys_Exp_P.Fait_P.Booleen_P;
 with Sys_Exp_P.Fait_P.Entier_P;
 with Sys_Exp_P.Fait_P.Symbolique_P;
 
+with Sys_Exp_P.Forme_P.Conclusion_P.Bool_False_P;
+with Sys_Exp_P.Forme_P.Conclusion_P.Bool_True_P;
+with Sys_Exp_P.Forme_P.Conclusion_P.Expression_Entiere_P;
+with Sys_Exp_P.Forme_P.Conclusion_P.Fait_Entier_P;
+with Sys_Exp_P.Forme_P.Conclusion_P.Symbole_Constant_P;
+with Sys_Exp_P.Forme_P.Conclusion_P.Symbole_Fait_P;
+
+with Sys_Exp_P.Forme_P.Premisse_P.Bool_False_P;
+with Sys_Exp_P.Forme_P.Premisse_P.Bool_True_P;
+with Sys_Exp_P.Forme_P.Premisse_P.Expression_Entiere_P;
+with Sys_Exp_P.Forme_P.Premisse_P.Fait_Entier_P;
+with Sys_Exp_P.Forme_P.Premisse_P.Symbole_Constant_P;
+with Sys_Exp_P.Forme_P.Premisse_P.Symbole_Fait_P;
+
 with Sys_Exp_P.Valeur_P;
 
 package body Sys_Exp_P.Visiteur_Forme_P.Declencheur_P
@@ -27,7 +41,7 @@ is
    procedure Visiter
       (
          This  : in out Visiteur_T;
-         Forme : in     Conclusion_R.Bool_False_P.Conclusion_False_T
+         Forme : in     Forme_P.Conclusion_P.Bool_False_P.Conclusion_False_T
       )
    is
       Fait : constant Booleen_R.Fait_Booleen_T := Booleen_R.Creer
@@ -45,7 +59,7 @@ is
    procedure Visiter
       (
          This  : in out Visiteur_T;
-         Forme : in     Conclusion_R.Bool_True_P.Conclusion_True_T
+         Forme : in     Forme_P.Conclusion_P.Bool_True_P.Conclusion_True_T
       )
    is
       Fait : constant Booleen_R.Fait_Booleen_T := Booleen_R.Creer
@@ -63,7 +77,7 @@ is
    procedure Visiter
       (
          This  : in out Visiteur_T;
-         Forme : in     Expr_Entiere_R.Conclusion_Expression_T
+         Forme : in     Conclusion_Expression_T
       )
    is
    begin
@@ -112,7 +126,7 @@ is
    procedure Visiter
       (
          This  : in out Visiteur_T;
-         Forme : in     Conclusion_R.Fait_Entier_P.Conclusion_Fait_T
+         Forme : in     Conclusion_Fait_Entier_T
       )
    is
    begin
@@ -166,7 +180,7 @@ is
    procedure Visiter
       (
          This  : in out Visiteur_T;
-         Forme : in     Symbole_Constant_R.Conclusion_Symbolique_T
+         Forme : in     Conclusion_Symbolique_Constante_T
       )
    is
       Fait : constant Symbolique_R.Fait_Symbolique_T := Symbolique_R.Creer
@@ -184,7 +198,7 @@ is
    procedure Visiter
       (
          This  : in out Visiteur_T;
-         Forme : in     Conclusion_R.Symbole_Fait_P.Conclusion_Symbolique_T
+         Forme : in     Conclusion_Symbolique_Fait_T
       )
    is
    begin
@@ -243,7 +257,7 @@ is
    procedure Visiter
       (
          This  : in out Visiteur_T;
-         Forme : in     Premisse_R.Bool_False_P.Premisse_False_T
+         Forme : in     Premisse_False_T
       )
    is
    begin
@@ -280,7 +294,7 @@ is
    procedure Visiter
       (
          This  : in out Visiteur_T;
-         Forme : in     Premisse_R.Bool_True_P.Premisse_True_T
+         Forme : in     Premisse_True_T
       )
    is
    begin
@@ -317,7 +331,7 @@ is
    procedure Visiter
       (
          This  : in out Visiteur_T;
-         Forme : in     Premisse_R.Expression_Entiere_P.Premisse_Expression_T
+         Forme : in     Premisse_Expression_T
       )
    is
    begin
@@ -358,7 +372,7 @@ is
    procedure Visiter
       (
          This  : in out Visiteur_T;
-         Forme : in     Premisse_R.Fait_Entier_P.Premisse_Fait_T
+         Forme : in     Premisse_Fait_Entier_T
       )
    is
    begin
@@ -408,7 +422,7 @@ is
    procedure Visiter
       (
          This  : in out Visiteur_T;
-         Forme : in     Premisse_R.Symbole_Constant_P.Premisse_Symbolique_T
+         Forme : in     Premisse_Symbolique_Constante_T
       )
    is
    begin
@@ -449,7 +463,7 @@ is
    procedure Visiter
       (
          This  : in out Visiteur_T;
-         Forme : in     Premisse_R.Symbole_Fait_P.Premisse_Symbolique_T
+         Forme : in     Premisse_Symbolique_Fait_T
       )
    is
    begin

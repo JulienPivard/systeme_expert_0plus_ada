@@ -51,6 +51,8 @@ is
    subtype Message_Erreur_T is String (1 .. 100);
    --  Le message de l'erreur rencontrée.
 
+   Message_Vide : constant Message_Erreur_T;
+
    subtype Base_De_Faits_T is Sys_Exp_P.Base_Faits_P.Base_De_Faits_T;
 
    type Visiteur_Forme_Abstrait_T is abstract tagged limited private;
@@ -289,6 +291,9 @@ is
 
 private
 
+   Message_Vide : constant Message_Erreur_T :=
+      Message_Erreur_T'(others => ' ');
+
    type Visiteur_Forme_Abstrait_T is abstract tagged limited
       record
          Base                        : Base_De_Faits_T;
@@ -299,8 +304,7 @@ private
          --  Permet de savoir si on a ajouté une conclusion à la base de faits.
          Code_Erreur                 : Code_Erreur_T    := Tout_Va_Bien_E;
          --  Permet de savoir quel type d'erreur a été rencontrée.
-         Message_D_Erreur            : Message_Erreur_T :=
-            Message_Erreur_T'(others => ' ');
+         Message_D_Erreur            : Message_Erreur_T := Message_Vide;
          --  Le message de l'erreur qui à été déclenchée.
       end record;
 
