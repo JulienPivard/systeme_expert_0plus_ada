@@ -14,6 +14,7 @@ is
    is
    begin
       This.Base.Ajouter (Nouvel_Item => Fait);
+      This.Conclusion_A_Ete_Declenchee := True;
    exception
       when E : Sys_Exp_P.Base_Faits_P.E_Fait_Deja_Present =>
          This.Code_Erreur := Incoherence_Fait_E;
