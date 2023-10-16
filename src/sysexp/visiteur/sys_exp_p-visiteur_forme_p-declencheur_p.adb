@@ -131,12 +131,12 @@ is
    is
    begin
       --  Le fait appartient à la base.
-      if This.Base.Contient (Nom_Fait => Forme.Lire_Nom) then
+      if This.Base.Contient (Nom_Fait => Forme.Lire_Nom_Fait) then
          Bloc_Construire_Conclusion :
          declare
             --  Le fait trouvé dans la base.
             Fait : constant Sys_Exp_P.Fait_P.Fait_Abstrait_T'Class :=
-               This.Base.Trouver (Nom_Fait => Forme.Lire_Nom);
+               This.Base.Trouver (Nom_Fait => Forme.Lire_Nom_Fait);
             --  On le convertit en fait entier.
             Fait_Entier : Entier_R.Fait_Entier_T renames
                Entier_R.Fait_Entier_T (Fait);
@@ -203,12 +203,12 @@ is
    is
    begin
       --  Le fait appartient à la base.
-      if This.Base.Contient (Nom_Fait => Forme.Lire_Nom) then
+      if This.Base.Contient (Nom_Fait => Forme.Lire_Nom_Fait) then
          Bloc_Construire_Conclusion :
          declare
             --  Le fait trouvé dans la base.
             Fait_Trouve : constant Sys_Exp_P.Fait_P.Fait_Abstrait_T'Class :=
-               This.Base.Trouver (Nom_Fait => Forme.Lire_Nom);
+               This.Base.Trouver (Nom_Fait => Forme.Lire_Nom_Fait);
             --  On le convertit en fait symbolique.
             Fait_Symbole : Symbolique_R.Fait_Symbolique_T renames
                Symbolique_R.Fait_Symbolique_T (Fait_Trouve);
@@ -388,7 +388,7 @@ is
                This.Base.Trouver (Nom_Fait => Forme.Lire_Nom);
             --  Le fait trouvé dans la base.
             Autre_Fait  : constant Sys_Exp_P.Fait_P.Fait_Abstrait_T'Class :=
-               This.Base.Trouver (Nom_Fait => Forme.Lire_Nom);
+               This.Base.Trouver (Nom_Fait => Forme.Lire_Nom_Fait);
 
             --  On le convertit en fait entier.
             Fait_Entier       : Entier_R.Fait_Entier_T renames
@@ -479,7 +479,7 @@ is
                This.Base.Trouver (Nom_Fait => Forme.Lire_Nom);
             --  Le fait trouvé dans la base.
             Autre_Fait   : constant Sys_Exp_P.Fait_P.Fait_Abstrait_T'Class :=
-               This.Base.Trouver (Nom_Fait => Forme.Lire_Nom);
+               This.Base.Trouver (Nom_Fait => Forme.Lire_Nom_Fait);
 
             --  On le convertit en fait entier.
             Fait_Symbole       : Symbolique_R.Fait_Symbolique_T renames
