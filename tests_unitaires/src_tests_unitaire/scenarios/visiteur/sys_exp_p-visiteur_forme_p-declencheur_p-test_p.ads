@@ -30,4 +30,40 @@ is
    procedure Test_Creer
       (T : in out Test_Fixt_T);
 
+   procedure Test_Conclusion_Bool_False
+      (T : in out Test_Fixt_T);
+
+   procedure Test_Conclusion_Bool_True
+      (T : in out Test_Fixt_T);
+
+   procedure Test_Conclusion_Expression
+      (T : in out Test_Fixt_T);
+
+   procedure Test_Conclusion_Fait_Entier
+      (T : in out Test_Fixt_T);
+
+   procedure Test_Conclusion_Symbolique_Const
+      (T : in out Test_Fixt_T);
+
+   procedure Test_Conclusion_Symbolique_Fait
+      (T : in out Test_Fixt_T);
+
+   procedure Test_Premisse_Bool_False
+      (T : in out Test_Fixt_T);
+
+   procedure Test_Premisse_Bool_True
+      (T : in out Test_Fixt_T);
+
+   procedure Test_Premisse_Expression
+      (T : in out Test_Fixt_T);
+
+   procedure Test_Premisse_Fait_Entier
+      (T : in out Test_Fixt_T);
+
+   procedure Test_Premisse_Symbolique_Const
+      (T : in out Test_Fixt_T);
+
+   procedure Test_Premisse_Symbolique_Fait
+      (T : in out Test_Fixt_T);
+
 end Sys_Exp_P.Visiteur_Forme_P.Declencheur_P.Test_P;

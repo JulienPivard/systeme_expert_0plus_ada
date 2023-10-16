@@ -28,6 +28,103 @@ is
                   Test => Scenario_R.Test_Creer'Access
                )
          );
+      Ptr_Test_Suite.all.Add_Test
+         (
+            T => Caller_P.Create
+               (
+                  Name => Nom_Test & "conclusion booleene fausse",
+                  Test => Scenario_R.Test_Conclusion_Bool_False'Access
+               )
+         );
+      Ptr_Test_Suite.all.Add_Test
+         (
+            T => Caller_P.Create
+               (
+                  Name => Nom_Test & "conclusion booleene vrais",
+                  Test => Scenario_R.Test_Conclusion_Bool_True'Access
+               )
+         );
+      Ptr_Test_Suite.all.Add_Test
+         (
+            T => Caller_P.Create
+               (
+                  Name => Nom_Test & "conclusion expression entiere",
+                  Test => Scenario_R.Test_Conclusion_Expression'Access
+               )
+         );
+      Ptr_Test_Suite.all.Add_Test
+         (
+            T => Caller_P.Create
+               (
+                  Name => Nom_Test & "conclusion fait entier",
+                  Test => Scenario_R.Test_Conclusion_Fait_Entier'Access
+               )
+         );
+      Ptr_Test_Suite.all.Add_Test
+         (
+            T => Caller_P.Create
+               (
+                  Name => Nom_Test & "conclusion symbolique constant",
+                  Test => Scenario_R.Test_Conclusion_Symbolique_Const'Access
+               )
+         );
+      Ptr_Test_Suite.all.Add_Test
+         (
+            T => Caller_P.Create
+               (
+                  Name => Nom_Test & "conclusion symbolique fait",
+                  Test => Scenario_R.Test_Conclusion_Symbolique_Fait'Access
+               )
+         );
+
+      Ptr_Test_Suite.all.Add_Test
+         (
+            T => Caller_P.Create
+               (
+                  Name => Nom_Test & "premisse booleene fausse",
+                  Test => Scenario_R.Test_Premisse_Bool_False'Access
+               )
+         );
+      Ptr_Test_Suite.all.Add_Test
+         (
+            T => Caller_P.Create
+               (
+                  Name => Nom_Test & "premisse booleene vrais",
+                  Test => Scenario_R.Test_Premisse_Bool_True'Access
+               )
+         );
+      Ptr_Test_Suite.all.Add_Test
+         (
+            T => Caller_P.Create
+               (
+                  Name => Nom_Test & "premisse expression entiere",
+                  Test => Scenario_R.Test_Premisse_Expression'Access
+               )
+         );
+      Ptr_Test_Suite.all.Add_Test
+         (
+            T => Caller_P.Create
+               (
+                  Name => Nom_Test & "premisse fait entier",
+                  Test => Scenario_R.Test_Premisse_Fait_Entier'Access
+               )
+         );
+      Ptr_Test_Suite.all.Add_Test
+         (
+            T => Caller_P.Create
+               (
+                  Name => Nom_Test & "premisse symbolique constant",
+                  Test => Scenario_R.Test_Premisse_Symbolique_Const'Access
+               )
+         );
+      Ptr_Test_Suite.all.Add_Test
+         (
+            T => Caller_P.Create
+               (
+                  Name => Nom_Test & "premisse symbolique fait",
+                  Test => Scenario_R.Test_Premisse_Symbolique_Fait'Access
+               )
+         );
 
       return Ptr_Test_Suite;
    end Fonc_Suite;
