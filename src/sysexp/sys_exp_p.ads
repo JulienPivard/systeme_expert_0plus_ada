@@ -11,7 +11,7 @@ package Sys_Exp_P
       Spark_Mode     => Off
 is
 
-   type Entier_T is range -2**31 .. 2**31 - 1;
+   type Entier_T is range -2**63 .. 2**63 - 1;
    --  Une valeur entière.
 
    type Taille_Nom_T is range 1 .. 50;
