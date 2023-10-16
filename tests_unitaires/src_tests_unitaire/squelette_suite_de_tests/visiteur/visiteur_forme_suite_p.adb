@@ -81,6 +81,55 @@ is
          (
             T => Caller_P.Create
                (
+                  Name => Nom_Test & "premisse booleene fausse rate",
+                  Test => Scenario_R.Test_Premisse_Bool_False_Rate'Access
+               )
+         );
+      Ptr_Test_Suite.all.Add_Test
+         (
+            T => Caller_P.Create
+               (
+                  Name => Nom_Test & "premisse booleene vrais rate",
+                  Test => Scenario_R.Test_Premisse_Bool_True_Rate'Access
+               )
+         );
+      Ptr_Test_Suite.all.Add_Test
+         (
+            T => Caller_P.Create
+               (
+                  Name => Nom_Test & "premisse expression entiere rate",
+                  Test => Scenario_R.Test_Premisse_Expression_Rate'Access
+               )
+         );
+      Ptr_Test_Suite.all.Add_Test
+         (
+            T => Caller_P.Create
+               (
+                  Name => Nom_Test & "premisse fait entier rate",
+                  Test => Scenario_R.Test_Premisse_Fait_Entier_Rate'Access
+               )
+         );
+      Ptr_Test_Suite.all.Add_Test
+         (
+            T => Caller_P.Create
+               (
+                  Name => Nom_Test & "premisse symbolique constant rate",
+                  Test => Scenario_R.Test_Premisse_Symbolique_Const_Rate'Access
+               )
+         );
+      Ptr_Test_Suite.all.Add_Test
+         (
+            T => Caller_P.Create
+               (
+                  Name => Nom_Test & "premisse symbolique fait rate",
+                  Test => Scenario_R.Test_Premisse_Symbolique_Fait_Rate'Access
+               )
+         );
+
+      Ptr_Test_Suite.all.Add_Test
+         (
+            T => Caller_P.Create
+               (
                   Name => Nom_Test & "premisse booleene fausse",
                   Test => Scenario_R.Test_Premisse_Bool_False'Access
                )

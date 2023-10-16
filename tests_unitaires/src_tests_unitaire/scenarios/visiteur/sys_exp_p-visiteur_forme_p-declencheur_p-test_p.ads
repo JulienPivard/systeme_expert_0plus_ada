@@ -48,6 +48,24 @@ is
    procedure Test_Conclusion_Symbolique_Fait
       (T : in out Test_Fixt_T);
 
+   procedure Test_Premisse_Bool_False_Rate
+      (T : in out Test_Fixt_T);
+
+   procedure Test_Premisse_Bool_True_Rate
+      (T : in out Test_Fixt_T);
+
+   procedure Test_Premisse_Expression_Rate
+      (T : in out Test_Fixt_T);
+
+   procedure Test_Premisse_Fait_Entier_Rate
+      (T : in out Test_Fixt_T);
+
+   procedure Test_Premisse_Symbolique_Const_Rate
+      (T : in out Test_Fixt_T);
+
+   procedure Test_Premisse_Symbolique_Fait_Rate
+      (T : in out Test_Fixt_T);
+
    procedure Test_Premisse_Bool_False
       (T : in out Test_Fixt_T);
 
