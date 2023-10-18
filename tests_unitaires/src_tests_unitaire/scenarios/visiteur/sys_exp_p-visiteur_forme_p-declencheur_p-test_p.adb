@@ -569,7 +569,7 @@ is
       AUnit.Assertions.Assert
          (
             Condition => not T.Visiteur.Conclusion_A_Ete_Declenchee,
-            Message   => "Aucune conclusion doit etre declenchee"
+            Message   => "Aucune conclusion ne doit etre declenchee"
          );
       AUnit.Assertions.Assert
          (
@@ -598,7 +598,7 @@ is
       AUnit.Assertions.Assert
          (
             Condition => not T.Visiteur.Conclusion_A_Ete_Declenchee,
-            Message   => "Aucune conclusion doit etre declenchee"
+            Message   => "Aucune conclusion ne doit etre declenchee"
          );
       AUnit.Assertions.Assert
          (
@@ -643,7 +643,7 @@ is
       AUnit.Assertions.Assert
          (
             Condition => not T.Visiteur.Conclusion_A_Ete_Declenchee,
-            Message   => "Aucune conclusion doit etre declenchee"
+            Message   => "Aucune conclusion ne doit etre declenchee"
          );
       AUnit.Assertions.Assert
          (
@@ -672,7 +672,7 @@ is
       AUnit.Assertions.Assert
          (
             Condition => not T.Visiteur.Conclusion_A_Ete_Declenchee,
-            Message   => "Aucune conclusion doit etre declenchee"
+            Message   => "Aucune conclusion ne doit etre declenchee"
          );
       AUnit.Assertions.Assert
          (
@@ -729,7 +729,7 @@ is
       AUnit.Assertions.Assert
          (
             Condition => not T.Visiteur.Conclusion_A_Ete_Declenchee,
-            Message   => "Une conclusion doit etre declenchee"
+            Message   => "Aucune conclusion ne doit etre declenchee"
          );
       AUnit.Assertions.Assert
          (
@@ -758,7 +758,7 @@ is
       AUnit.Assertions.Assert
          (
             Condition => not T.Visiteur.Conclusion_A_Ete_Declenchee,
-            Message   => "Une conclusion doit etre declenchee"
+            Message   => "Aucune conclusion ne doit etre declenchee"
          );
       AUnit.Assertions.Assert
          (
@@ -811,7 +811,7 @@ is
       AUnit.Assertions.Assert
          (
             Condition => not T.Visiteur.Conclusion_A_Ete_Declenchee,
-            Message   => "Une conclusion doit etre declenchee"
+            Message   => "Aucune conclusion ne doit etre declenchee"
          );
       AUnit.Assertions.Assert
          (
@@ -851,7 +851,7 @@ is
       AUnit.Assertions.Assert
          (
             Condition => not T.Visiteur.Conclusion_A_Ete_Declenchee,
-            Message   => "Une conclusion doit etre declenchee"
+            Message   => "Aucune conclusion ne doit etre declenchee"
          );
       AUnit.Assertions.Assert
          (
@@ -908,7 +908,7 @@ is
       AUnit.Assertions.Assert
          (
             Condition => not T.Visiteur.Conclusion_A_Ete_Declenchee,
-            Message   => "Une conclusion doit etre declenchee"
+            Message   => "Aucune conclusion ne doit etre declenchee"
          );
       AUnit.Assertions.Assert
          (
@@ -937,7 +937,7 @@ is
       AUnit.Assertions.Assert
          (
             Condition => not T.Visiteur.Conclusion_A_Ete_Declenchee,
-            Message   => "Une conclusion doit etre declenchee"
+            Message   => "Aucune conclusion ne doit etre declenchee"
          );
       AUnit.Assertions.Assert
          (
@@ -990,7 +990,7 @@ is
       AUnit.Assertions.Assert
          (
             Condition => not T.Visiteur.Conclusion_A_Ete_Declenchee,
-            Message   => "Une conclusion doit etre declenchee"
+            Message   => "Aucune conclusion ne doit etre declenchee"
          );
       AUnit.Assertions.Assert
          (
@@ -1030,7 +1030,7 @@ is
       AUnit.Assertions.Assert
          (
             Condition => not T.Visiteur.Conclusion_A_Ete_Declenchee,
-            Message   => "Une conclusion doit etre declenchee"
+            Message   => "Aucune conclusion ne doit etre declenchee"
          );
       AUnit.Assertions.Assert
          (
@@ -1079,12 +1079,12 @@ is
       AUnit.Assertions.Assert
          (
             Condition => T.Visiteur.Premisse_A_Ete_Verifiee,
-            Message   => "Aucune premisse ne doit etre verifiee"
+            Message   => "Une premisse doit etre verifiee"
          );
       AUnit.Assertions.Assert
          (
             Condition => not T.Visiteur.Conclusion_A_Ete_Declenchee,
-            Message   => "Aucune conclusion doit etre declenchee"
+            Message   => "Aucune conclusion ne doit etre declenchee"
          );
       AUnit.Assertions.Assert
          (
@@ -1123,12 +1123,12 @@ is
       AUnit.Assertions.Assert
          (
             Condition => T.Visiteur.Premisse_A_Ete_Verifiee,
-            Message   => "Aucune premisse ne doit etre verifiee"
+            Message   => "Une premisse doit etre verifiee"
          );
       AUnit.Assertions.Assert
          (
             Condition => not T.Visiteur.Conclusion_A_Ete_Declenchee,
-            Message   => "Aucune conclusion doit etre declenchee"
+            Message   => "Aucune conclusion ne doit etre declenchee"
          );
       AUnit.Assertions.Assert
          (
@@ -1181,12 +1181,12 @@ is
       AUnit.Assertions.Assert
          (
             Condition => T.Visiteur.Premisse_A_Ete_Verifiee,
-            Message   => "Aucune premisse ne doit etre verifiee"
+            Message   => "Une premisse doit etre verifiee"
          );
       AUnit.Assertions.Assert
          (
             Condition => not T.Visiteur.Conclusion_A_Ete_Declenchee,
-            Message   => "Une conclusion doit etre declenchee"
+            Message   => "Aucune conclusion ne doit etre declenchee"
          );
       AUnit.Assertions.Assert
          (
@@ -1236,14 +1236,14 @@ is
       AUnit.Assertions.Assert
          (
             Condition => T.Visiteur.Premisse_A_Ete_Verifiee,
-            Message   => "Aucune premisse ne doit etre verifiee " &
+            Message   => "Une premisse doit etre verifiee " &
                "[" & F_1.Lire_Valeur'Image & "] = " &
                "[" & F_2.Lire_Valeur'Image & "]"
          );
       AUnit.Assertions.Assert
          (
             Condition => not T.Visiteur.Conclusion_A_Ete_Declenchee,
-            Message   => "Une conclusion doit etre declenchee"
+            Message   => "Aucune conclusion ne doit etre declenchee"
          );
       AUnit.Assertions.Assert
          (
@@ -1295,12 +1295,12 @@ is
       AUnit.Assertions.Assert
          (
             Condition => T.Visiteur.Premisse_A_Ete_Verifiee,
-            Message   => "Aucune premisse ne doit etre verifiee"
+            Message   => "une premisse doit etre verifiee"
          );
       AUnit.Assertions.Assert
          (
             Condition => not T.Visiteur.Conclusion_A_Ete_Declenchee,
-            Message   => "Une conclusion doit etre declenchee"
+            Message   => "Aucune conclusion ne doit etre declenchee"
          );
       AUnit.Assertions.Assert
          (
@@ -1350,14 +1350,14 @@ is
       AUnit.Assertions.Assert
          (
             Condition => T.Visiteur.Premisse_A_Ete_Verifiee,
-            Message   => "Aucune premisse ne doit etre verifiee " &
+            Message   => "une premisse doit etre verifiee " &
                "[" & String (F_1.Lire_Valeur) & "] = " &
                "[" & String (F_2.Lire_Valeur) & "]"
          );
       AUnit.Assertions.Assert
          (
             Condition => not T.Visiteur.Conclusion_A_Ete_Declenchee,
-            Message   => "Une conclusion doit etre declenchee"
+            Message   => "Aucune conclusion ne doit etre declenchee"
          );
       AUnit.Assertions.Assert
          (
