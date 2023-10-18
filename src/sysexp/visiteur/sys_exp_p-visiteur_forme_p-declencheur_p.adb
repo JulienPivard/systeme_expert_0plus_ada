@@ -282,7 +282,7 @@ is
          Ada.Strings.Fixed.Move
             (
                Source => "Le fait [" & String (Forme.Lire_Nom) & "] " &
-                  "n'est pas un fait symbolique",
+                  "n'est pas un fait booléen",
                Target => This.Message_D_Erreur,
                Drop   => Ada.Strings.Right
             );
@@ -319,7 +319,7 @@ is
          Ada.Strings.Fixed.Move
             (
                Source => "Le fait [" & String (Forme.Lire_Nom) & "] " &
-                  "n'est pas un fait symbolique",
+                  "n'est pas un fait booléen",
                Target => This.Message_D_Erreur,
                Drop   => Ada.Strings.Right
             );
@@ -360,7 +360,7 @@ is
          Ada.Strings.Fixed.Move
             (
                Source => "Le fait [" & String (Forme.Lire_Nom) & "] " &
-                  "n'est pas un fait symbolique",
+                  "n'est pas un fait entier",
                Target => This.Message_D_Erreur,
                Drop   => Ada.Strings.Right
             );
@@ -410,7 +410,7 @@ is
          Ada.Strings.Fixed.Move
             (
                Source => "Le fait [" & String (Forme.Lire_Nom) & "] " &
-                  "n'est pas un fait symbolique",
+                  "n'est pas un fait entier",
                Target => This.Message_D_Erreur,
                Drop   => Ada.Strings.Right
             );
