@@ -84,4 +84,13 @@ is
    procedure Test_Premisse_Symbolique_Fait
       (T : in out Test_Fixt_T);
 
+   procedure Test_Rate_Ajouter_Un_Fait_Booleen
+      (T : in out Test_Fixt_T);
+
+   procedure Test_Rate_Ajouter_Un_Fait_Entier
+      (T : in out Test_Fixt_T);
+
+   procedure Test_Rate_Ajouter_Fait_Symbolique
+      (T : in out Test_Fixt_T);
+
 end Sys_Exp_P.Visiteur_Forme_P.Declencheur_P.Test_P;

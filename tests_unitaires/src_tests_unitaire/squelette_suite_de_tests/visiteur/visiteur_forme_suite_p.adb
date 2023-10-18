@@ -175,6 +175,31 @@ is
                )
          );
 
+      Ptr_Test_Suite.all.Add_Test
+         (
+            T => Caller_P.Create
+               (
+                  Name => Nom_Test & "Ajoute deux fois fait booleen",
+                  Test => Scenario_R.Test_Rate_Ajouter_Un_Fait_Booleen'Access
+               )
+         );
+      Ptr_Test_Suite.all.Add_Test
+         (
+            T => Caller_P.Create
+               (
+                  Name => Nom_Test & "Ajoute deux fois fait entier",
+                  Test => Scenario_R.Test_Rate_Ajouter_Un_Fait_Entier'Access
+               )
+         );
+      Ptr_Test_Suite.all.Add_Test
+         (
+            T => Caller_P.Create
+               (
+                  Name => Nom_Test & "Ajoute deux fois fait symbolique",
+                  Test => Scenario_R.Test_Rate_Ajouter_Fait_Symbolique'Access
+               )
+         );
+
       return Ptr_Test_Suite;
    end Fonc_Suite;
    ---------------------------------------------------------------------------
