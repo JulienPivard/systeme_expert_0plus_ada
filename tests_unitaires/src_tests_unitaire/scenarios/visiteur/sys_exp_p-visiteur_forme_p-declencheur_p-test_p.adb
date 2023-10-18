@@ -101,7 +101,8 @@ is
       AUnit.Assertions.Assert
          (
             Condition => T.Visiteur.Message_D_Erreur = Message_Vide,
-            Message   => "le message d'erreur doit etre vide"
+            Message   => "le message d'erreur doit etre vide et pas " &
+               "[" & T.Visiteur.Message_D_Erreur & "]"
          );
    end Test_Creer;
    ---------------------------------------------------------------------------
@@ -134,7 +135,8 @@ is
       AUnit.Assertions.Assert
          (
             Condition => T.Visiteur.Message_D_Erreur = Message_Vide,
-            Message   => "le message d'erreur doit etre vide"
+            Message   => "le message d'erreur doit etre vide et pas " &
+               "[" & T.Visiteur.Message_D_Erreur & "]"
          );
       AUnit.Assertions.Assert
          (
@@ -202,7 +204,8 @@ is
       AUnit.Assertions.Assert
          (
             Condition => T.Visiteur.Message_D_Erreur = Message_Vide,
-            Message   => "le message d'erreur doit etre vide"
+            Message   => "le message d'erreur doit etre vide et pas " &
+               "[" & T.Visiteur.Message_D_Erreur & "]"
          );
       AUnit.Assertions.Assert
          (
@@ -281,7 +284,8 @@ is
       AUnit.Assertions.Assert
          (
             Condition => T.Visiteur.Message_D_Erreur = Message_Vide,
-            Message   => "le message d'erreur doit etre vide"
+            Message   => "le message d'erreur doit etre vide et pas " &
+               "[" & T.Visiteur.Message_D_Erreur & "]"
          );
       AUnit.Assertions.Assert
          (
@@ -357,7 +361,8 @@ is
       AUnit.Assertions.Assert
          (
             Condition => T.Visiteur.Message_D_Erreur = Message_Vide,
-            Message   => "le message d'erreur doit etre vide"
+            Message   => "le message d'erreur doit etre vide et pas " &
+               "[" & T.Visiteur.Message_D_Erreur & "]"
          );
       AUnit.Assertions.Assert
          (
@@ -429,7 +434,8 @@ is
       AUnit.Assertions.Assert
          (
             Condition => T.Visiteur.Message_D_Erreur = Message_Vide,
-            Message   => "le message d'erreur doit etre vide"
+            Message   => "le message d'erreur doit etre vide et pas " &
+               "[" & T.Visiteur.Message_D_Erreur & "]"
          );
       AUnit.Assertions.Assert
          (
@@ -505,7 +511,8 @@ is
       AUnit.Assertions.Assert
          (
             Condition => T.Visiteur.Message_D_Erreur = Message_Vide,
-            Message   => "le message d'erreur doit etre vide"
+            Message   => "le message d'erreur doit etre vide et pas " &
+               "[" & T.Visiteur.Message_D_Erreur & "]"
          );
       AUnit.Assertions.Assert
          (
@@ -579,7 +586,8 @@ is
       AUnit.Assertions.Assert
          (
             Condition => T.Visiteur.Message_D_Erreur = Message_Vide,
-            Message   => "le message d'erreur doit etre vide"
+            Message   => "le message d'erreur doit etre vide et pas " &
+               "[" & T.Visiteur.Message_D_Erreur & "]"
          );
       AUnit.Assertions.Assert
          (
@@ -608,7 +616,8 @@ is
       AUnit.Assertions.Assert
          (
             Condition => T.Visiteur.Message_D_Erreur = Message_Vide,
-            Message   => "le message d'erreur doit etre vide"
+            Message   => "le message d'erreur doit etre vide et pas " &
+               "[" & T.Visiteur.Message_D_Erreur & "]"
          );
       AUnit.Assertions.Assert
          (
@@ -653,7 +662,8 @@ is
       AUnit.Assertions.Assert
          (
             Condition => T.Visiteur.Message_D_Erreur = Message_Vide,
-            Message   => "le message d'erreur doit etre vide"
+            Message   => "le message d'erreur doit etre vide et pas " &
+               "[" & T.Visiteur.Message_D_Erreur & "]"
          );
       AUnit.Assertions.Assert
          (
@@ -682,7 +692,8 @@ is
       AUnit.Assertions.Assert
          (
             Condition => T.Visiteur.Message_D_Erreur = Message_Vide,
-            Message   => "le message d'erreur doit etre vide"
+            Message   => "le message d'erreur doit etre vide et pas " &
+               "[" & T.Visiteur.Message_D_Erreur & "]"
          );
       AUnit.Assertions.Assert
          (
@@ -739,7 +750,8 @@ is
       AUnit.Assertions.Assert
          (
             Condition => T.Visiteur.Message_D_Erreur = Message_Vide,
-            Message   => "le message d'erreur doit etre vide"
+            Message   => "le message d'erreur doit etre vide et pas " &
+               "[" & T.Visiteur.Message_D_Erreur & "]"
          );
       AUnit.Assertions.Assert
          (
@@ -768,7 +780,8 @@ is
       AUnit.Assertions.Assert
          (
             Condition => T.Visiteur.Message_D_Erreur = Message_Vide,
-            Message   => "le message d'erreur doit etre vide"
+            Message   => "le message d'erreur doit etre vide et pas " &
+               "[" & T.Visiteur.Message_D_Erreur & "]"
          );
       AUnit.Assertions.Assert
          (
@@ -821,7 +834,8 @@ is
       AUnit.Assertions.Assert
          (
             Condition => T.Visiteur.Message_D_Erreur = Message_Vide,
-            Message   => "le message d'erreur doit etre vide"
+            Message   => "le message d'erreur doit etre vide et pas " &
+               "[" & T.Visiteur.Message_D_Erreur & "]"
          );
       AUnit.Assertions.Assert
          (
@@ -861,7 +875,8 @@ is
       AUnit.Assertions.Assert
          (
             Condition => T.Visiteur.Message_D_Erreur = Message_Vide,
-            Message   => "le message d'erreur doit etre vide"
+            Message   => "le message d'erreur doit etre vide et pas " &
+               "[" & T.Visiteur.Message_D_Erreur & "]"
          );
       AUnit.Assertions.Assert
          (
@@ -918,7 +933,8 @@ is
       AUnit.Assertions.Assert
          (
             Condition => T.Visiteur.Message_D_Erreur = Message_Vide,
-            Message   => "le message d'erreur doit etre vide"
+            Message   => "le message d'erreur doit etre vide et pas " &
+               "[" & T.Visiteur.Message_D_Erreur & "]"
          );
       AUnit.Assertions.Assert
          (
@@ -947,7 +963,8 @@ is
       AUnit.Assertions.Assert
          (
             Condition => T.Visiteur.Message_D_Erreur = Message_Vide,
-            Message   => "le message d'erreur doit etre vide"
+            Message   => "le message d'erreur doit etre vide et pas " &
+               "[" & T.Visiteur.Message_D_Erreur & "]"
          );
       AUnit.Assertions.Assert
          (
@@ -1000,7 +1017,8 @@ is
       AUnit.Assertions.Assert
          (
             Condition => T.Visiteur.Message_D_Erreur = Message_Vide,
-            Message   => "le message d'erreur doit etre vide"
+            Message   => "le message d'erreur doit etre vide et pas " &
+               "[" & T.Visiteur.Message_D_Erreur & "]"
          );
       AUnit.Assertions.Assert
          (
@@ -1040,7 +1058,8 @@ is
       AUnit.Assertions.Assert
          (
             Condition => T.Visiteur.Message_D_Erreur = Message_Vide,
-            Message   => "le message d'erreur doit etre vide"
+            Message   => "le message d'erreur doit etre vide et pas " &
+               "[" & T.Visiteur.Message_D_Erreur & "]"
          );
       AUnit.Assertions.Assert
          (
@@ -1094,7 +1113,8 @@ is
       AUnit.Assertions.Assert
          (
             Condition => T.Visiteur.Message_D_Erreur = Message_Vide,
-            Message   => "le message d'erreur doit etre vide"
+            Message   => "le message d'erreur doit etre vide et pas " &
+               "[" & T.Visiteur.Message_D_Erreur & "]"
          );
       AUnit.Assertions.Assert
          (
@@ -1138,7 +1158,8 @@ is
       AUnit.Assertions.Assert
          (
             Condition => T.Visiteur.Message_D_Erreur = Message_Vide,
-            Message   => "le message d'erreur doit etre vide"
+            Message   => "le message d'erreur doit etre vide et pas " &
+               "[" & T.Visiteur.Message_D_Erreur & "]"
          );
       AUnit.Assertions.Assert
          (
@@ -1196,7 +1217,8 @@ is
       AUnit.Assertions.Assert
          (
             Condition => T.Visiteur.Message_D_Erreur = Message_Vide,
-            Message   => "le message d'erreur doit etre vide"
+            Message   => "le message d'erreur doit etre vide et pas " &
+               "[" & T.Visiteur.Message_D_Erreur & "]"
          );
       AUnit.Assertions.Assert
          (
@@ -1253,7 +1275,8 @@ is
       AUnit.Assertions.Assert
          (
             Condition => T.Visiteur.Message_D_Erreur = Message_Vide,
-            Message   => "le message d'erreur doit etre vide"
+            Message   => "le message d'erreur doit etre vide et pas " &
+               "[" & T.Visiteur.Message_D_Erreur & "]"
          );
       AUnit.Assertions.Assert
          (
@@ -1310,7 +1333,8 @@ is
       AUnit.Assertions.Assert
          (
             Condition => T.Visiteur.Message_D_Erreur = Message_Vide,
-            Message   => "le message d'erreur doit etre vide"
+            Message   => "le message d'erreur doit etre vide et pas " &
+               "[" & T.Visiteur.Message_D_Erreur & "]"
          );
       AUnit.Assertions.Assert
          (
@@ -1367,7 +1391,8 @@ is
       AUnit.Assertions.Assert
          (
             Condition => T.Visiteur.Message_D_Erreur = Message_Vide,
-            Message   => "le message d'erreur doit etre vide"
+            Message   => "le message d'erreur doit etre vide et pas " &
+               "[" & T.Visiteur.Message_D_Erreur & "]"
          );
       AUnit.Assertions.Assert
          (
