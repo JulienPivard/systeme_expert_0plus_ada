@@ -96,7 +96,8 @@ is
       AUnit.Assertions.Assert
          (
             Condition => T.Visiteur.Code_Erreur = Tout_Va_Bien_E,
-            Message   => "Le code d'erreur doit indiquer que tout va bien"
+            Message   => "Le code d'erreur doit indiquer que tout va bien " &
+               "et pas [" & T.Visiteur.Code_Erreur'Image & "]"
          );
       AUnit.Assertions.Assert
          (
@@ -130,7 +131,8 @@ is
       AUnit.Assertions.Assert
          (
             Condition => T.Visiteur.Code_Erreur = Tout_Va_Bien_E,
-            Message   => "Le code d'erreur doit indiquer que tout va bien"
+            Message   => "Le code d'erreur doit indiquer que tout va bien " &
+               "et pas [" & T.Visiteur.Code_Erreur'Image & "]"
          );
       AUnit.Assertions.Assert
          (
@@ -199,7 +201,8 @@ is
       AUnit.Assertions.Assert
          (
             Condition => T.Visiteur.Code_Erreur = Tout_Va_Bien_E,
-            Message   => "Le code d'erreur doit indiquer que tout va bien"
+            Message   => "Le code d'erreur doit indiquer que tout va bien " &
+               "et pas [" & T.Visiteur.Code_Erreur'Image & "]"
          );
       AUnit.Assertions.Assert
          (
@@ -279,7 +282,8 @@ is
       AUnit.Assertions.Assert
          (
             Condition => T.Visiteur.Code_Erreur = Tout_Va_Bien_E,
-            Message   => "Le code d'erreur doit indiquer que tout va bien"
+            Message   => "Le code d'erreur doit indiquer que tout va bien " &
+               "et pas [" & T.Visiteur.Code_Erreur'Image & "]"
          );
       AUnit.Assertions.Assert
          (
@@ -356,7 +360,8 @@ is
       AUnit.Assertions.Assert
          (
             Condition => T.Visiteur.Code_Erreur = Tout_Va_Bien_E,
-            Message   => "Le code d'erreur doit indiquer que tout va bien"
+            Message   => "Le code d'erreur doit indiquer que tout va bien " &
+               "et pas [" & T.Visiteur.Code_Erreur'Image & "]"
          );
       AUnit.Assertions.Assert
          (
@@ -429,7 +434,8 @@ is
       AUnit.Assertions.Assert
          (
             Condition => T.Visiteur.Code_Erreur = Tout_Va_Bien_E,
-            Message   => "Le code d'erreur doit indiquer que tout va bien"
+            Message   => "Le code d'erreur doit indiquer que tout va bien " &
+               "et pas [" & T.Visiteur.Code_Erreur'Image & "]"
          );
       AUnit.Assertions.Assert
          (
@@ -506,7 +512,8 @@ is
       AUnit.Assertions.Assert
          (
             Condition => T.Visiteur.Code_Erreur = Tout_Va_Bien_E,
-            Message   => "Le code d'erreur doit indiquer que tout va bien"
+            Message   => "Le code d'erreur doit indiquer que tout va bien " &
+               "et pas [" & T.Visiteur.Code_Erreur'Image & "]"
          );
       AUnit.Assertions.Assert
          (
@@ -581,7 +588,8 @@ is
       AUnit.Assertions.Assert
          (
             Condition => T.Visiteur.Code_Erreur = Tout_Va_Bien_E,
-            Message   => "Le code d'erreur doit indiquer que tout va bien"
+            Message   => "Le code d'erreur doit indiquer que tout va bien " &
+               "et pas [" & T.Visiteur.Code_Erreur'Image & "]"
          );
       AUnit.Assertions.Assert
          (
@@ -611,7 +619,8 @@ is
       AUnit.Assertions.Assert
          (
             Condition => T.Visiteur.Code_Erreur = Tout_Va_Bien_E,
-            Message   => "Le code d'erreur doit indiquer que tout va bien"
+            Message   => "Le code d'erreur doit indiquer que tout va bien " &
+               "et pas [" & T.Visiteur.Code_Erreur'Image & "]"
          );
       AUnit.Assertions.Assert
          (
@@ -657,7 +666,8 @@ is
       AUnit.Assertions.Assert
          (
             Condition => T.Visiteur.Code_Erreur = Tout_Va_Bien_E,
-            Message   => "Le code d'erreur doit indiquer que tout va bien"
+            Message   => "Le code d'erreur doit indiquer que tout va bien " &
+               "et pas [" & T.Visiteur.Code_Erreur'Image & "]"
          );
       AUnit.Assertions.Assert
          (
@@ -687,7 +697,8 @@ is
       AUnit.Assertions.Assert
          (
             Condition => T.Visiteur.Code_Erreur = Tout_Va_Bien_E,
-            Message   => "Le code d'erreur doit indiquer que tout va bien"
+            Message   => "Le code d'erreur doit indiquer que tout va bien " &
+               "et pas [" & T.Visiteur.Code_Erreur'Image & "]"
          );
       AUnit.Assertions.Assert
          (
@@ -745,7 +756,8 @@ is
       AUnit.Assertions.Assert
          (
             Condition => T.Visiteur.Code_Erreur = Tout_Va_Bien_E,
-            Message   => "Le code d'erreur doit indiquer que tout va bien"
+            Message   => "Le code d'erreur doit indiquer que tout va bien " &
+               "et pas [" & T.Visiteur.Code_Erreur'Image & "]"
          );
       AUnit.Assertions.Assert
          (
@@ -775,7 +787,8 @@ is
       AUnit.Assertions.Assert
          (
             Condition => T.Visiteur.Code_Erreur = Tout_Va_Bien_E,
-            Message   => "Le code d'erreur doit indiquer que tout va bien"
+            Message   => "Le code d'erreur doit indiquer que tout va bien " &
+               "et pas [" & T.Visiteur.Code_Erreur'Image & "]"
          );
       AUnit.Assertions.Assert
          (
@@ -829,7 +842,8 @@ is
       AUnit.Assertions.Assert
          (
             Condition => T.Visiteur.Code_Erreur = Tout_Va_Bien_E,
-            Message   => "Le code d'erreur doit indiquer que tout va bien"
+            Message   => "Le code d'erreur doit indiquer que tout va bien " &
+               "et pas [" & T.Visiteur.Code_Erreur'Image & "]"
          );
       AUnit.Assertions.Assert
          (
@@ -870,7 +884,8 @@ is
       AUnit.Assertions.Assert
          (
             Condition => T.Visiteur.Code_Erreur = Tout_Va_Bien_E,
-            Message   => "Le code d'erreur doit indiquer que tout va bien"
+            Message   => "Le code d'erreur doit indiquer que tout va bien " &
+               "et pas [" & T.Visiteur.Code_Erreur'Image & "]"
          );
       AUnit.Assertions.Assert
          (
@@ -928,7 +943,8 @@ is
       AUnit.Assertions.Assert
          (
             Condition => T.Visiteur.Code_Erreur = Tout_Va_Bien_E,
-            Message   => "Le code d'erreur doit indiquer que tout va bien"
+            Message   => "Le code d'erreur doit indiquer que tout va bien " &
+               "et pas [" & T.Visiteur.Code_Erreur'Image & "]"
          );
       AUnit.Assertions.Assert
          (
@@ -958,7 +974,8 @@ is
       AUnit.Assertions.Assert
          (
             Condition => T.Visiteur.Code_Erreur = Tout_Va_Bien_E,
-            Message   => "Le code d'erreur doit indiquer que tout va bien"
+            Message   => "Le code d'erreur doit indiquer que tout va bien " &
+               "et pas [" & T.Visiteur.Code_Erreur'Image & "]"
          );
       AUnit.Assertions.Assert
          (
@@ -1012,7 +1029,8 @@ is
       AUnit.Assertions.Assert
          (
             Condition => T.Visiteur.Code_Erreur = Tout_Va_Bien_E,
-            Message   => "Le code d'erreur doit indiquer que tout va bien"
+            Message   => "Le code d'erreur doit indiquer que tout va bien " &
+               "et pas [" & T.Visiteur.Code_Erreur'Image & "]"
          );
       AUnit.Assertions.Assert
          (
@@ -1053,7 +1071,8 @@ is
       AUnit.Assertions.Assert
          (
             Condition => T.Visiteur.Code_Erreur = Tout_Va_Bien_E,
-            Message   => "Le code d'erreur doit indiquer que tout va bien"
+            Message   => "Le code d'erreur doit indiquer que tout va bien " &
+               "et pas [" & T.Visiteur.Code_Erreur'Image & "]"
          );
       AUnit.Assertions.Assert
          (
@@ -1108,7 +1127,8 @@ is
       AUnit.Assertions.Assert
          (
             Condition => T.Visiteur.Code_Erreur = Tout_Va_Bien_E,
-            Message   => "Le code d'erreur doit indiquer que tout va bien"
+            Message   => "Le code d'erreur doit indiquer que tout va bien " &
+               "et pas [" & T.Visiteur.Code_Erreur'Image & "]"
          );
       AUnit.Assertions.Assert
          (
@@ -1153,7 +1173,8 @@ is
       AUnit.Assertions.Assert
          (
             Condition => T.Visiteur.Code_Erreur = Tout_Va_Bien_E,
-            Message   => "Le code d'erreur doit indiquer que tout va bien"
+            Message   => "Le code d'erreur doit indiquer que tout va bien " &
+               "et pas [" & T.Visiteur.Code_Erreur'Image & "]"
          );
       AUnit.Assertions.Assert
          (
@@ -1212,7 +1233,8 @@ is
       AUnit.Assertions.Assert
          (
             Condition => T.Visiteur.Code_Erreur = Tout_Va_Bien_E,
-            Message   => "Le code d'erreur doit indiquer que tout va bien"
+            Message   => "Le code d'erreur doit indiquer que tout va bien " &
+               "et pas [" & T.Visiteur.Code_Erreur'Image & "]"
          );
       AUnit.Assertions.Assert
          (
@@ -1270,7 +1292,8 @@ is
       AUnit.Assertions.Assert
          (
             Condition => T.Visiteur.Code_Erreur = Tout_Va_Bien_E,
-            Message   => "Le code d'erreur doit indiquer que tout va bien"
+            Message   => "Le code d'erreur doit indiquer que tout va bien " &
+               "et pas [" & T.Visiteur.Code_Erreur'Image & "]"
          );
       AUnit.Assertions.Assert
          (
@@ -1328,7 +1351,8 @@ is
       AUnit.Assertions.Assert
          (
             Condition => T.Visiteur.Code_Erreur = Tout_Va_Bien_E,
-            Message   => "Le code d'erreur doit indiquer que tout va bien"
+            Message   => "Le code d'erreur doit indiquer que tout va bien " &
+               "et pas [" & T.Visiteur.Code_Erreur'Image & "]"
          );
       AUnit.Assertions.Assert
          (
@@ -1386,7 +1410,8 @@ is
       AUnit.Assertions.Assert
          (
             Condition => T.Visiteur.Code_Erreur = Tout_Va_Bien_E,
-            Message   => "Le code d'erreur doit indiquer que tout va bien"
+            Message   => "Le code d'erreur doit indiquer que tout va bien " &
+               "et pas [" & T.Visiteur.Code_Erreur'Image & "]"
          );
       AUnit.Assertions.Assert
          (
@@ -1437,7 +1462,8 @@ is
       AUnit.Assertions.Assert
          (
             Condition => T.Visiteur.Code_Erreur = Incoherence_Fait_E,
-            Message   => "Le code d'erreur doit indiquer que tout va bien"
+            Message   => "Le code d'erreur doit indiquer que tout va bien " &
+               "et pas [" & T.Visiteur.Code_Erreur'Image & "]"
          );
       AUnit.Assertions.Assert
          (
@@ -1478,7 +1504,8 @@ is
       AUnit.Assertions.Assert
          (
             Condition => T.Visiteur.Code_Erreur = Incoherence_Fait_E,
-            Message   => "Le code d'erreur doit indiquer que tout va bien"
+            Message   => "Le code d'erreur doit indiquer que tout va bien " &
+               "et pas [" & T.Visiteur.Code_Erreur'Image & "]"
          );
       AUnit.Assertions.Assert
          (
@@ -1519,7 +1546,8 @@ is
       AUnit.Assertions.Assert
          (
             Condition => T.Visiteur.Code_Erreur = Incoherence_Fait_E,
-            Message   => "Le code d'erreur doit indiquer que tout va bien"
+            Message   => "Le code d'erreur doit indiquer que tout va bien " &
+               "et pas [" & T.Visiteur.Code_Erreur'Image & "]"
          );
       AUnit.Assertions.Assert
          (
