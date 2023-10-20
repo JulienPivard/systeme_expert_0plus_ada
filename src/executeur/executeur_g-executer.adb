@@ -98,11 +98,11 @@ begin
 
    Bloc_Visiter :
    declare
-      C : Conclusion_R.Bool_True_P.Conclusion_True_T :=
+      C : constant Conclusion_R.Bool_True_P.Conclusion_True_T :=
          Conclusion_R.Bool_True_P.Creer (Nom => "zioejcn");
-      P : Premisse_R.Bool_True_P.Premisse_True_T :=
+      P : constant Premisse_R.Bool_True_P.Premisse_True_T :=
          Premisse_R.Bool_True_P.Creer (Nom => "zioejcn");
-      X : Conclusion_R.Expression_Entiere_P.Conclusion_Expression_T :=
+      X : constant Conclusion_R.Expression_Entiere_P.Conclusion_Expression_T :=
          Conclusion_R.Expression_Entiere_P.Creer
             (
                Nom        => "zioejcn",
