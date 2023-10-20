@@ -375,6 +375,14 @@ is
             Message   => "Le fait entier [" & String (E.Lire_Nom) & "] " &
                "devrait etre dans la base"
          );
+      AUnit.Assertions.Assert
+         (
+            Condition => T.Visiteur.Base.Contient
+               (Nom_Fait => E.Lire_Nom_Fait),
+            Message   => "L'autre fait entier " &
+               "[" & String (E.Lire_Nom_Fait) & "] " &
+               "devrait etre dans la base"
+         );
 
       Bloc_Lire_Fait :
       declare
