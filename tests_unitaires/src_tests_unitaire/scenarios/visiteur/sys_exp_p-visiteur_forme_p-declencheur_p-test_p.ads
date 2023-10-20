@@ -93,4 +93,25 @@ is
    procedure Test_Rate_Ajouter_Fait_Symbolique
       (T : in out Test_Fixt_T);
 
+   procedure Test_Rate_Concl_Expr_Entier_Inconnu
+      (T : in out Test_Fixt_T);
+
+   procedure Test_Rate_Concl_Expr_Non_Entier
+      (T : in out Test_Fixt_T);
+
+   procedure Test_Rate_Concl_Expr_Div_Zero
+      (T : in out Test_Fixt_T);
+
+   procedure Test_Rate_Concl_Fait_Entier_Inconnu
+      (T : in out Test_Fixt_T);
+
+   procedure Test_Rate_Concl_Fait_Non_Entier
+      (T : in out Test_Fixt_T);
+
+   procedure Test_Rate_Concl_Fait_Sym_Inconnu
+      (T : in out Test_Fixt_T);
+
+   procedure Test_Rate_Concl_Fait_Non_Symbolique
+      (T : in out Test_Fixt_T);
+
 end Sys_Exp_P.Visiteur_Forme_P.Declencheur_P.Test_P;

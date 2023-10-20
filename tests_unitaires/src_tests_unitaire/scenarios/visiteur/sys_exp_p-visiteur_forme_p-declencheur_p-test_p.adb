@@ -1,5 +1,7 @@
 with AUnit.Assertions;
 
+with Sys_Exp_P.Base_Faits_P;
+
 with Facilites_P;
 with Facilites_P.Fait_P;
 with Facilites_P.Valeur_P;
@@ -24,6 +26,9 @@ with Sys_Exp_P.Forme_P.Premisse_P.Fait_Entier_P;
 with Sys_Exp_P.Forme_P.Premisse_P.Symbole_Constant_P;
 with Sys_Exp_P.Forme_P.Premisse_P.Symbole_Fait_P;
 
+with Sys_Exp_P.Valeur_P.Constante_P;
+with Sys_Exp_P.Valeur_P.Fait_P;
+with Sys_Exp_P.Valeur_P.Operateur_P.Division_P;
 with Sys_Exp_P.Valeur_P;
 
 package body Sys_Exp_P.Visiteur_Forme_P.Declencheur_P.Test_P
@@ -1570,6 +1575,374 @@ is
                "[" & String (Nom) & "] " & "devrait etre dans la base"
          );
    end Test_Rate_Ajouter_Fait_Symbolique;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Test_Rate_Concl_Expr_Entier_Inconnu
+      (T : in out Test_Fixt_T)
+   is
+      Valeur : Sys_Exp_P.Entier_T;
+      Base   : Sys_Exp_P.Base_Faits_P.Base_De_Faits_T;
+
+      V : constant Sys_Exp_P.Valeur_P.Valeur_Abstraite_T'Class :=
+         Facilites_P.Valeur_P.Creer_Valeur
+            (
+               Base   => Base,
+               Valeur => Valeur
+            );
+
+      E : constant Conclusion_Expression_T :=
+         Sys_Exp_P.Forme_P.Conclusion_P.Expression_Entiere_P.Creer
+            (
+               Nom        => Facilites_P.Creer_Nom,
+               Expression => V
+            );
+   begin
+      E.Accepte (Visiteur => T.Visiteur);
+      AUnit.Assertions.Assert
+         (
+            Condition => not T.Visiteur.Premisse_A_Ete_Verifiee,
+            Message   => "Aucune premisse ne doit etre verifiee"
+         );
+      AUnit.Assertions.Assert
+         (
+            Condition => not T.Visiteur.Conclusion_A_Ete_Declenchee,
+            Message   => "Aucune conclusion ne doit etre declenchee"
+         );
+      AUnit.Assertions.Assert
+         (
+            Condition => T.Visiteur.Code_Erreur = Fait_Expression_Inconnu_E,
+            Message   => "Le code d'erreur doit indiquer une expression " &
+               "inconnue et pas [" & T.Visiteur.Code_Erreur'Image & "]"
+         );
+      AUnit.Assertions.Assert
+         (
+            Condition => T.Visiteur.Message_D_Erreur /= Message_Vide,
+            Message   => "le message d'erreur doit etre vide et pas " &
+               "[" & T.Visiteur.Message_D_Erreur & "]"
+         );
+      AUnit.Assertions.Assert
+         (
+            Condition => not T.Visiteur.Base.Contient (Nom_Fait => E.Lire_Nom),
+            Message   => "Le fait entier [" & String (E.Lire_Nom) & "] " &
+               "ne devrait pas etre dans la base"
+         );
+   end Test_Rate_Concl_Expr_Entier_Inconnu;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Test_Rate_Concl_Expr_Non_Entier
+      (T : in out Test_Fixt_T)
+   is
+      Nom : constant Sys_Exp_P.Nom_T := Facilites_P.Creer_Nom;
+
+      V : constant Sys_Exp_P.Valeur_P.Fait_P.Feuille_Fait_T :=
+         Sys_Exp_P.Valeur_P.Fait_P.Creer (Nom => Nom);
+
+      E : constant Conclusion_Expression_T :=
+         Sys_Exp_P.Forme_P.Conclusion_P.Expression_Entiere_P.Creer
+            (
+               Nom        => Facilites_P.Creer_Nom,
+               Expression => V
+            );
+
+      F : constant Sys_Exp_P.Fait_P.Symbolique_P.Fait_Symbolique_T :=
+         Facilites_P.Fait_P.Creer_Fait_Symbolique (Nom => Nom);
+   begin
+      T.Visiteur.Ajouter_Un_Fait (Fait => F);
+      T.Visiteur.Conclusion_A_Ete_Declenchee := False;
+      E.Accepte (Visiteur => T.Visiteur);
+      AUnit.Assertions.Assert
+         (
+            Condition => not T.Visiteur.Premisse_A_Ete_Verifiee,
+            Message   => "Aucune premisse ne doit etre verifiee"
+         );
+      AUnit.Assertions.Assert
+         (
+            Condition => not T.Visiteur.Conclusion_A_Ete_Declenchee,
+            Message   => "Aucune conclusion ne doit etre declenchee"
+         );
+      AUnit.Assertions.Assert
+         (
+            Condition => T.Visiteur.Code_Erreur = Incoherence_Fait_E,
+            Message   => "Le code d'erreur doit indiquer une incoherence " &
+               "et pas [" & T.Visiteur.Code_Erreur'Image & "]"
+         );
+      AUnit.Assertions.Assert
+         (
+            Condition => T.Visiteur.Message_D_Erreur /= Message_Vide,
+            Message   => "le message d'erreur doit etre vide et pas " &
+               "[" & T.Visiteur.Message_D_Erreur & "]"
+         );
+      AUnit.Assertions.Assert
+         (
+            Condition => not T.Visiteur.Base.Contient (Nom_Fait => E.Lire_Nom),
+            Message   => "Le fait entier [" & String (E.Lire_Nom) & "] " &
+               "ne devrait pas etre dans la base"
+         );
+   end Test_Rate_Concl_Expr_Non_Entier;
+   ---------------------------------------------------------------------------
+
+   package Division_P renames Sys_Exp_P.Valeur_P.Operateur_P.Division_P;
+
+   ---------------------------------------------------------------------------
+   procedure Test_Rate_Concl_Expr_Div_Zero
+      (T : in out Test_Fixt_T)
+   is
+      Valeur : Sys_Exp_P.Entier_T;
+
+      V : constant Division_P.Operateur_Div_T := Division_P.Creer
+         (
+            Valeur_Gauche => Facilites_P.Valeur_P.Creer_Fait_Ou_Constante
+                  (
+                     Base   => T.Visiteur.Base,
+                     Valeur => Valeur
+                  ),
+            Valeur_Droite =>
+               Sys_Exp_P.Valeur_P.Constante_P.Creer (Valeur => 0)
+         );
+
+      E : constant Conclusion_Expression_T :=
+         Sys_Exp_P.Forme_P.Conclusion_P.Expression_Entiere_P.Creer
+            (
+               Nom        => Facilites_P.Creer_Nom,
+               Expression => V
+            );
+   begin
+      E.Accepte (Visiteur => T.Visiteur);
+      AUnit.Assertions.Assert
+         (
+            Condition => not T.Visiteur.Premisse_A_Ete_Verifiee,
+            Message   => "Aucune premisse ne doit etre verifiee"
+         );
+      AUnit.Assertions.Assert
+         (
+            Condition => not T.Visiteur.Conclusion_A_Ete_Declenchee,
+            Message   => "Aucune conclusion ne doit etre declenchee"
+         );
+      AUnit.Assertions.Assert
+         (
+            Condition => T.Visiteur.Code_Erreur = Div_Par_Zero_E,
+            Message   => "Le code d'erreur doit indiquer div par zero " &
+               "et pas [" & T.Visiteur.Code_Erreur'Image & "]"
+         );
+      AUnit.Assertions.Assert
+         (
+            Condition => T.Visiteur.Message_D_Erreur /= Message_Vide,
+            Message   => "le message d'erreur doit etre vide et pas " &
+               "[" & T.Visiteur.Message_D_Erreur & "]"
+         );
+      AUnit.Assertions.Assert
+         (
+            Condition => not T.Visiteur.Base.Contient (Nom_Fait => E.Lire_Nom),
+            Message   => "Le fait entier [" & String (E.Lire_Nom) & "] " &
+               "ne devrait pas etre dans la base"
+         );
+   end Test_Rate_Concl_Expr_Div_Zero;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Test_Rate_Concl_Fait_Entier_Inconnu
+      (T : in out Test_Fixt_T)
+   is
+      Nom : constant Sys_Exp_P.Nom_T := Facilites_P.Creer_Nom;
+
+      E : constant Conclusion_Fait_Entier_T :=
+         Sys_Exp_P.Forme_P.Conclusion_P.Fait_Entier_P.Creer
+            (
+               Nom      => Nom,
+               Nom_Fait => Facilites_P.Creer_Nom_Different (Nom => Nom)
+            );
+   begin
+      E.Accepte (Visiteur => T.Visiteur);
+      AUnit.Assertions.Assert
+         (
+            Condition => not T.Visiteur.Premisse_A_Ete_Verifiee,
+            Message   => "Aucune premisse ne doit etre verifiee"
+         );
+      AUnit.Assertions.Assert
+         (
+            Condition => not T.Visiteur.Conclusion_A_Ete_Declenchee,
+            Message   => "Aucune conclusion ne doit etre declenchee"
+         );
+      AUnit.Assertions.Assert
+         (
+            Condition => T.Visiteur.Code_Erreur = Fait_Entier_Inconnu_E,
+            Message   => "Le code d'erreur doit indiquer un fait inconnu " &
+               "et pas [" & T.Visiteur.Code_Erreur'Image & "]"
+         );
+      AUnit.Assertions.Assert
+         (
+            Condition => T.Visiteur.Message_D_Erreur /= Message_Vide,
+            Message   => "le message d'erreur ne doit pas etre vide"
+         );
+      AUnit.Assertions.Assert
+         (
+            Condition => not T.Visiteur.Base.Contient (Nom_Fait => E.Lire_Nom),
+            Message   => "Le fait entier [" & String (E.Lire_Nom) & "] " &
+               "ne devrait pas etre dans la base"
+         );
+      AUnit.Assertions.Assert
+         (
+            Condition => not T.Visiteur.Base.Contient
+               (Nom_Fait => E.Lire_Nom_Fait),
+            Message   => "L'autre fait entier " &
+               "[" & String (E.Lire_Nom_Fait) & "] " &
+               "ne devrait pas etre dans la base"
+         );
+   end Test_Rate_Concl_Fait_Entier_Inconnu;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Test_Rate_Concl_Fait_Non_Entier
+      (T : in out Test_Fixt_T)
+   is
+      Nom : constant Sys_Exp_P.Nom_T := Facilites_P.Creer_Nom;
+
+      E : constant Conclusion_Fait_Entier_T :=
+         Sys_Exp_P.Forme_P.Conclusion_P.Fait_Entier_P.Creer
+            (
+               Nom      => Nom,
+               Nom_Fait => Nom
+            );
+
+      F : constant Sys_Exp_P.Fait_P.Symbolique_P.Fait_Symbolique_T :=
+         Facilites_P.Fait_P.Creer_Fait_Symbolique (Nom => E.Lire_Nom);
+   begin
+      T.Visiteur.Ajouter_Un_Fait (Fait => F);
+      T.Visiteur.Conclusion_A_Ete_Declenchee := False;
+      E.Accepte (Visiteur => T.Visiteur);
+      AUnit.Assertions.Assert
+         (
+            Condition => not T.Visiteur.Premisse_A_Ete_Verifiee,
+            Message   => "Aucune premisse ne doit etre verifiee"
+         );
+      AUnit.Assertions.Assert
+         (
+            Condition => not T.Visiteur.Conclusion_A_Ete_Declenchee,
+            Message   => "Aucune conclusion ne doit etre declenchee"
+         );
+      AUnit.Assertions.Assert
+         (
+            Condition => T.Visiteur.Code_Erreur = Incoherence_Fait_E,
+            Message   => "Le code d'erreur doit indiquer une incoherence " &
+               "et pas [" & T.Visiteur.Code_Erreur'Image & "]"
+         );
+      AUnit.Assertions.Assert
+         (
+            Condition => T.Visiteur.Message_D_Erreur /= Message_Vide,
+            Message   => "le message d'erreur doit etre vide et pas " &
+               "[" & T.Visiteur.Message_D_Erreur & "]"
+         );
+      AUnit.Assertions.Assert
+         (
+            Condition => T.Visiteur.Base.Contient (Nom_Fait => E.Lire_Nom),
+            Message   => "Le fait entier [" & String (E.Lire_Nom) & "] " &
+               "devrait etre dans la base"
+         );
+   end Test_Rate_Concl_Fait_Non_Entier;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Test_Rate_Concl_Fait_Sym_Inconnu
+      (T : in out Test_Fixt_T)
+   is
+      Nom : constant Sys_Exp_P.Nom_T := Facilites_P.Creer_Nom;
+
+      E : constant Conclusion_Symbolique_Fait_T :=
+         Sys_Exp_P.Forme_P.Conclusion_P.Symbole_Fait_P.Creer
+            (
+               Nom      => Nom,
+               Nom_Fait => Facilites_P.Creer_Nom_Different (Nom => Nom)
+            );
+   begin
+      E.Accepte (Visiteur => T.Visiteur);
+      AUnit.Assertions.Assert
+         (
+            Condition => not T.Visiteur.Premisse_A_Ete_Verifiee,
+            Message   => "Aucune premisse ne doit etre verifiee"
+         );
+      AUnit.Assertions.Assert
+         (
+            Condition => not T.Visiteur.Conclusion_A_Ete_Declenchee,
+            Message   => "Aucune conclusion ne doit etre declenchee"
+         );
+      AUnit.Assertions.Assert
+         (
+            Condition => T.Visiteur.Code_Erreur = Fait_Symbolique_Inconnu_E,
+            Message   => "Le code d'erreur doit indiquer un fait inconnu " &
+               "et pas [" & T.Visiteur.Code_Erreur'Image & "]"
+         );
+      AUnit.Assertions.Assert
+         (
+            Condition => T.Visiteur.Message_D_Erreur /= Message_Vide,
+            Message   => "le message d'erreur ne doit pas etre vide"
+         );
+      AUnit.Assertions.Assert
+         (
+            Condition => not T.Visiteur.Base.Contient (Nom_Fait => E.Lire_Nom),
+            Message   => "Le fait symbolique [" & String (E.Lire_Nom) & "] " &
+               "ne devrait pas etre dans la base"
+         );
+      AUnit.Assertions.Assert
+         (
+            Condition => not T.Visiteur.Base.Contient
+               (Nom_Fait => E.Lire_Nom_Fait),
+            Message   => "L'autre fait symbolique " &
+               "[" & String (E.Lire_Nom_Fait) & "] " &
+               "ne devrait pas etre dans la base"
+         );
+   end Test_Rate_Concl_Fait_Sym_Inconnu;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Test_Rate_Concl_Fait_Non_Symbolique
+      (T : in out Test_Fixt_T)
+   is
+      Nom : constant Sys_Exp_P.Nom_T := Facilites_P.Creer_Nom;
+
+      E : constant Conclusion_Symbolique_Fait_T :=
+         Sys_Exp_P.Forme_P.Conclusion_P.Symbole_Fait_P.Creer
+            (
+               Nom      => Nom,
+               Nom_Fait => Nom
+            );
+
+      F : constant Sys_Exp_P.Fait_P.Entier_P.Fait_Entier_T :=
+         Facilites_P.Fait_P.Creer_Fait_Entier (Nom => E.Lire_Nom);
+   begin
+      T.Visiteur.Ajouter_Un_Fait (Fait => F);
+      T.Visiteur.Conclusion_A_Ete_Declenchee := False;
+      E.Accepte (Visiteur => T.Visiteur);
+      AUnit.Assertions.Assert
+         (
+            Condition => not T.Visiteur.Premisse_A_Ete_Verifiee,
+            Message   => "Aucune premisse ne doit etre verifiee"
+         );
+      AUnit.Assertions.Assert
+         (
+            Condition => not T.Visiteur.Conclusion_A_Ete_Declenchee,
+            Message   => "Aucune conclusion ne doit etre declenchee"
+         );
+      AUnit.Assertions.Assert
+         (
+            Condition => T.Visiteur.Code_Erreur = Incoherence_Fait_E,
+            Message   => "Le code d'erreur doit indiquer une incoherence " &
+               "et pas [" & T.Visiteur.Code_Erreur'Image & "]"
+         );
+      AUnit.Assertions.Assert
+         (
+            Condition => T.Visiteur.Message_D_Erreur /= Message_Vide,
+            Message   => "le message d'erreur doit etre vide et pas " &
+               "[" & T.Visiteur.Message_D_Erreur & "]"
+         );
+      AUnit.Assertions.Assert
+         (
+            Condition => T.Visiteur.Base.Contient (Nom_Fait => E.Lire_Nom),
+            Message   => "Le fait symbolique [" & String (E.Lire_Nom) & "] " &
+               "devrait etre dans la base"
+         );
+   end Test_Rate_Concl_Fait_Non_Symbolique;
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------

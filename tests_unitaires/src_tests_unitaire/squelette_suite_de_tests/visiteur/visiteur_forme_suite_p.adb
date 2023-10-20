@@ -200,6 +200,71 @@ is
                )
          );
 
+      Ptr_Test_Suite.all.Add_Test
+         (
+            T => Caller_P.Create
+               (
+                  Name => Nom_Test & "Evalue une conclusion expression " &
+                     "entiere absente de la base",
+                  Test => Scenario_R.Test_Rate_Concl_Expr_Entier_Inconnu'Access
+               )
+         );
+      Ptr_Test_Suite.all.Add_Test
+         (
+            T => Caller_P.Create
+               (
+                  Name => Nom_Test & "Evalue une conclusion expression " &
+                     "entiere qui n'est pas un fait entier",
+                  Test => Scenario_R.Test_Rate_Concl_Expr_Non_Entier'Access
+               )
+         );
+      Ptr_Test_Suite.all.Add_Test
+         (
+            T => Caller_P.Create
+               (
+                  Name => Nom_Test & "Evalue une conclusion expression " &
+                     "entiere avec une division par zero",
+                  Test => Scenario_R.Test_Rate_Concl_Expr_Div_Zero'Access
+               )
+         );
+      Ptr_Test_Suite.all.Add_Test
+         (
+            T => Caller_P.Create
+               (
+                  Name => Nom_Test & "Evalue une conclusion fait entier " &
+                     "absente de la base",
+                  Test => Scenario_R.Test_Rate_Concl_Fait_Entier_Inconnu'Access
+               )
+         );
+      Ptr_Test_Suite.all.Add_Test
+         (
+            T => Caller_P.Create
+               (
+                  Name => Nom_Test & "Evalue une conclusion fait entier " &
+                     "qui n'est pas un fait entier",
+                  Test => Scenario_R.Test_Rate_Concl_Fait_Non_Entier'Access
+               )
+         );
+
+      Ptr_Test_Suite.all.Add_Test
+         (
+            T => Caller_P.Create
+               (
+                  Name => Nom_Test & "Evalue une conclusion fait " &
+                     "symbolique absente de la base",
+                  Test => Scenario_R.Test_Rate_Concl_Fait_Sym_Inconnu'Access
+               )
+         );
+      Ptr_Test_Suite.all.Add_Test
+         (
+            T => Caller_P.Create
+               (
+                  Name => Nom_Test & "Evalue une conclusion fait " &
+                     "symbolique qui n'est pas un fait symbolique",
+                  Test => Scenario_R.Test_Rate_Concl_Fait_Non_Symbolique'Access
+               )
+         );
+
       return Ptr_Test_Suite;
    end Fonc_Suite;
    ---------------------------------------------------------------------------
