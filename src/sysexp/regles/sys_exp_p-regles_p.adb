@@ -23,7 +23,7 @@ is
    procedure Ajouter
       (
          This       : in out Regle_Abstraite_T;
-         Successeur : in     Regle_Abstraite_T'Class
+         Successeur : in     Regle_Interface_T'Class
       )
    is
    begin
@@ -36,7 +36,7 @@ is
    function Iterer
       (
          This : in out Regle_Abstraite_T;
-         Base : in out Accesseur_Base_T
+         Base : in     Accesseur_Base_T
       )
       return Boolean
    is
@@ -63,7 +63,7 @@ is
    function Declencher
       (
          This : in out Regle_Abstraite_T'Class;
-         Base : in out Accesseur_Base_T
+         Base : in     Accesseur_Base_T
       )
       return Boolean
    is

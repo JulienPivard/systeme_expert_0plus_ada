@@ -8,7 +8,7 @@ private with Ada.Containers.Indefinite_Holders;
 --  @description
 --  Une règle contient toujours une conclusion que l'on essayera
 --  de déclencher.
---  @group Regles
+--  @group Regle
 package Sys_Exp_P.Regles_P
    with
       Pure           => False,
@@ -17,16 +17,18 @@ package Sys_Exp_P.Regles_P
       Spark_Mode     => Off
 is
 
+   subtype Accesseur_Base_T is Sys_Exp_P.Base_Faits_P.Accesseur_Base_T;
+
+   package Conclusion_R renames Sys_Exp_P.Forme_P.Conclusion_P;
+
    type Regle_Interface_T is interface;
    --  Une règle abstraite qui représentera tous les type de
    --  règles possible dans le système expert.
 
-   subtype Accesseur_Base_T is Sys_Exp_P.Base_Faits_P.Accesseur_Base_T;
-
    function Iterer
       (
          This : in out Regle_Interface_T;
-         Base : in out Accesseur_Base_T
+         Base : in     Accesseur_Base_T
       )
       return Boolean
    is abstract;
@@ -68,7 +70,7 @@ is
    function Verifier_Premisse
       (
          This : in     Regle_Interface_T;
-         Base : in out Accesseur_Base_T
+         Base : in     Accesseur_Base_T
       )
       return Boolean
    is abstract;
@@ -89,7 +91,7 @@ is
    procedure Ajouter
       (
          This       : in out Regle_Abstraite_T;
-         Successeur : in     Regle_Abstraite_T'Class
+         Successeur : in     Regle_Interface_T'Class
       );
    --  Ajoute une règle successeur à la règle actuelle.
    --  @param This
@@ -101,7 +103,7 @@ is
    function Iterer
       (
          This : in out Regle_Abstraite_T;
-         Base : in out Accesseur_Base_T
+         Base : in     Accesseur_Base_T
       )
       return Boolean;
    --  Lance une visite des toutes les règles avec la
@@ -141,33 +143,35 @@ is
 
 private
 
-   package Conclusion_R renames Sys_Exp_P.Forme_P.Conclusion_P;
-
    package Conclusion_Holder_P is new Ada.Containers.Indefinite_Holders
       (
          Element_Type => Conclusion_R.Conclusion_Abstraite_T'Class,
          "="          => Conclusion_R."="
       );
 
+   subtype Conclusion_Class_T is Conclusion_Holder_P.Holder;
+
    package Regle_Holder_P is new Ada.Containers.Indefinite_Holders
       (Element_Type => Regle_Interface_T'Class);
+
+   subtype Successeur_T is Regle_Holder_P.Holder;
 
    type Regle_Abstraite_T is abstract new Regle_Interface_T with
       record
          ID_Regle         : ID_Regle_T := ID_Regle_T'First;
          --  Le numéro de la règles dans la base de règles.
-         Conclusion       : Conclusion_Holder_P.Holder;
+         Conclusion       : Conclusion_Class_T;
          --  La conclusion qui sera déclenchée par la règle si possible.
-         Regle_Declenchee : Boolean;
+         Regle_Declenchee : Boolean := False;
          --  Pour garder en mémoire si la règle a déjà été déclenchée.
-         Successeur       : Regle_Holder_P.Holder;
+         Successeur       : Successeur_T := Regle_Holder_P.Empty_Holder;
          --  La règle suivante.
       end record;
 
    function Declencher
       (
          This : in out Regle_Abstraite_T'Class;
-         Base : in out Accesseur_Base_T
+         Base : in     Accesseur_Base_T
       )
       return Boolean;
    --  Essaye de déclencher une conclusion.

@@ -1,4 +1,6 @@
 --  with GNAT.Source_Info;
+with Sys_Exp_P.Base_Faits_P.Text_IO;
+
 with Sys_Exp_P.Valeur_P.Constante_P;
 with Sys_Exp_P.Valeur_P.Fait_P;
 with Sys_Exp_P.Base_Faits_P;
@@ -16,7 +18,8 @@ with Sys_Exp_P.Forme_P.Premisse_P.Bool_True_P;
 with Sys_Exp_P.Visiteur_Forme_P.Declencheur_P;
 with Sys_Exp_P.Visiteur_Forme_P.Text_IO;
 
-with Sys_Exp_P.Regles_P;
+with Sys_Exp_P.Regles_P.Sans_Premisse_P;
+with Sys_Exp_P.Regles_P.Text_IO;
 
 separate (Executeur_G)
 procedure Executer
@@ -108,10 +111,20 @@ begin
                Nom        => "zioejcn",
                Expression => Plus
             );
+      D : constant Conclusion_R.Bool_True_P.Conclusion_True_T :=
+         Conclusion_R.Bool_True_P.Creer (Nom => "izeib");
 
       Visiteur : Sys_Exp_P.Visiteur_Forme_P.Declencheur_P.Visiteur_T :=
          Sys_Exp_P.Visiteur_Forme_P.Declencheur_P.Creer
             (Base => B'Unrestricted_Access);
+
+      Regle : Sys_Exp_P.Regles_P.Regle_Abstraite_T'Class :=
+         Sys_Exp_P.Regles_P.Sans_Premisse_P.Creer
+            (
+               ID_Regle   => 1,
+               Conclusion => D
+            );
+      Bool : Boolean;
    begin
       Sys_Exp_P.Visiteur_Forme_P.Text_IO.Put_Line (Item => Visiteur);
       Ada.Text_IO.New_Line (Spacing => 2);
@@ -127,5 +140,11 @@ begin
       X.Accepte (Visiteur => Visiteur);
       Sys_Exp_P.Visiteur_Forme_P.Text_IO.Put_Line (Item => Visiteur);
       Ada.Text_IO.New_Line (Spacing => 2);
+
+      Sys_Exp_P.Regles_P.Text_IO.Put_Line (Item => Regle);
+      Bool := Regle.Iterer (Base => B'Unrestricted_Access);
+      Sys_Exp_P.Base_Faits_P.Text_IO.Put_Line (Item => B);
+      Ada.Text_IO.Put_Line (Item => "OK [" & Bool'Image & "]");
+      Sys_Exp_P.Regles_P.Text_IO.Put_Line (Item => Regle);
    end Bloc_Visiter;
 end Executer;
