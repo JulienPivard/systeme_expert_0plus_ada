@@ -16,6 +16,8 @@ with Sys_Exp_P.Forme_P.Premisse_P.Bool_True_P;
 with Sys_Exp_P.Visiteur_Forme_P.Declencheur_P;
 with Sys_Exp_P.Visiteur_Forme_P.Text_IO;
 
+with Sys_Exp_P.Regles_P;
+
 separate (Executeur_G)
 procedure Executer
    --  (Arguments)

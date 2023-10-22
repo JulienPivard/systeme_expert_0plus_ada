@@ -1,0 +1,120 @@
+with Ada.Text_IO;
+
+with Sys_Exp_P.Visiteur_Forme_P.Declencheur_P;
+
+package body Sys_Exp_P.Regles_P
+   with Spark_Mode => Off
+is
+
+   package Visiteur_R renames Sys_Exp_P.Visiteur_Forme_P.Declencheur_P;
+
+   procedure Verifier_Flag_Erreur_Visiteur
+      (
+         Regle    : in out Regle_Abstraite_T'Class;
+         Visiteur : in     Visiteur_R.Visiteur_T
+      );
+   --  Vérifie le contenu des erreurs du visiteur.
+   --  @param Regle
+   --  La règle abstraite.
+   --  @param Visiteur
+   --  Le visiteur utilisé.
+
+   ---------------------------------------------------------------------------
+   procedure Ajouter
+      (
+         This       : in out Regle_Abstraite_T;
+         Successeur : in     Regle_Abstraite_T'Class
+      )
+   is
+   begin
+      This.Successeur := Regle_Holder_P.To_Holder (New_Item => Successeur);
+   end Ajouter;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   overriding
+   function Iterer
+      (
+         This : in out Regle_Abstraite_T;
+         Base : in out Accesseur_Base_T
+      )
+      return Boolean
+   is
+      Au_Moins_Une_Conclusion_Declenchee : constant Boolean :=
+         (
+            if This.Possede_Successeur then
+               This.Successeur.Reference.Iterer (Base => Base)
+            else
+               False
+         );
+      Resultat : constant Boolean :=
+         (
+            if This.Regle_Declenchee then
+               False
+            else
+               This.Declencher (Base => Base)
+         );
+   begin
+      return Resultat or else Au_Moins_Une_Conclusion_Declenchee;
+   end Iterer;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   function Declencher
+      (
+         This : in out Regle_Abstraite_T'Class;
+         Base : in out Accesseur_Base_T
+      )
+      return Boolean
+   is
+      Visiteur : Visiteur_R.Visiteur_T := Visiteur_R.Creer (Base => Base);
+   begin
+      if This.Verifier_Premisse (Base => Base) then
+         This.Conclusion.Element.Accepte (Visiteur => Visiteur);
+         This.Regle_Declenchee := Visiteur.Au_Moins_Une_Conclusion_Declenchee;
+         Verifier_Flag_Erreur_Visiteur
+            (
+               Regle    => This,
+               Visiteur => Visiteur
+            );
+      end if;
+
+      return This.Regle_Declenchee;
+   end Declencher;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   --                             Partie privée                             --
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Verifier_Flag_Erreur_Visiteur
+      (
+         Regle    : in out Regle_Abstraite_T'Class;
+         Visiteur : in     Visiteur_R.Visiteur_T
+      )
+   is
+      use type Visiteur_Forme_P.Code_Erreur_T;
+   begin
+      if Visiteur.Lire_Code_Erreur = Visiteur_Forme_P.Div_Par_Zero_E then
+         Ada.Text_IO.Put_Line
+            (
+               Item => "Erreur [" & Visiteur.Lire_Code_Erreur'Image & "] " &
+                  "avec la regle [" & Regle.ID_Regle'Image & "] " &
+                  "Message [" & Visiteur.Lire_Message_Erreur & "]"
+            );
+         raise E_Division_Par_Zero;
+      end if;
+      if Visiteur.Lire_Code_Erreur = Visiteur_Forme_P.Incoherence_Fait_E then
+         Ada.Text_IO.Put_Line
+            (
+               Item => "Erreur [" & Visiteur.Lire_Code_Erreur'Image & "] " &
+                  "avec la regle [" & Regle.ID_Regle'Image & "] " &
+                  "Message [" & Visiteur.Lire_Message_Erreur & "]"
+            );
+         raise E_Fait_Deja_Present;
+      end if;
+   end Verifier_Flag_Erreur_Visiteur;
+   ---------------------------------------------------------------------------
+
+end Sys_Exp_P.Regles_P;

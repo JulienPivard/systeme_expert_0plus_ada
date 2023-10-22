@@ -1,0 +1,204 @@
+with Sys_Exp_P.Base_Faits_P;
+with Sys_Exp_P.Forme_P.Conclusion_P;
+
+private with Ada.Containers.Indefinite_Holders;
+
+--  @summary
+--  Une règle avec ou sans prémisse.
+--  @description
+--  Une règle contient toujours une conclusion que l'on essayera
+--  de déclencher.
+--  @group Regles
+package Sys_Exp_P.Regles_P
+   with
+      Pure           => False,
+      Preelaborate   => False,
+      Elaborate_Body => True,
+      Spark_Mode     => Off
+is
+
+   type Regle_Interface_T is interface;
+   --  Une règle abstraite qui représentera tous les type de
+   --  règles possible dans le système expert.
+
+   subtype Accesseur_Base_T is Sys_Exp_P.Base_Faits_P.Accesseur_Base_T;
+
+   function Iterer
+      (
+         This : in out Regle_Interface_T;
+         Base : in out Accesseur_Base_T
+      )
+      return Boolean
+   is abstract;
+   --  Lance une visite des toutes les règles avec la
+   --  base de faits.
+   --  @param This
+   --  La règle actuelle.
+   --  @param Base
+   --  Le base de faits.
+   --  @return Au moins une règle a été déclenchée.
+
+   function Lire_Successeur
+      (This : in     Regle_Interface_T)
+      return Regle_Interface_T'Class
+   is abstract;
+   --  Lit la règle successeur de celle-ci.
+   --  @param This
+   --  La règle actuelle.
+   --  @return La règle successeur.
+
+   function Possede_Successeur
+      (This : in     Regle_Interface_T)
+      return Boolean
+   is abstract;
+   --  La règle possède une règle suivante.
+   --  @param This
+   --  La règle actuelle.
+   --  @return La règle possède un successeur.
+
+   function Est_Declenchee
+      (This : in     Regle_Interface_T)
+      return Boolean
+   is abstract;
+   --  La règle a déjà été déclenchée.
+   --  @param This
+   --  La règle actuelle.
+   --  @return La règle a déjà été déclenchée.
+
+   function Verifier_Premisse
+      (
+         This : in     Regle_Interface_T;
+         Base : in out Accesseur_Base_T
+      )
+      return Boolean
+   is abstract;
+   --  La prémisse a été vérifiée.
+   --  @param This
+   --  La règle actuelle.
+   --  @param Base
+   --  Le base de faits.
+   --  @return La prémisse de la règle a été vérifiée.
+
+   type ID_Regle_T is mod 2**32;
+   --  L'identifiant unique d'une règle.
+
+   type Regle_Abstraite_T is abstract new Regle_Interface_T with private;
+   --  Une règle abstraite qui représentera tous les type de
+   --  règles possible dans le système expert.
+
+   procedure Ajouter
+      (
+         This       : in out Regle_Abstraite_T;
+         Successeur : in     Regle_Abstraite_T'Class
+      );
+   --  Ajoute une règle successeur à la règle actuelle.
+   --  @param This
+   --  La règle à laquelle on ajoute un successeur.
+   --  @param Successeur
+   --  La règle qui sera la suivante.
+
+   overriding
+   function Iterer
+      (
+         This : in out Regle_Abstraite_T;
+         Base : in out Accesseur_Base_T
+      )
+      return Boolean;
+   --  Lance une visite des toutes les règles avec la
+   --  base de faits.
+   --  @param This
+   --  La règle actuelle.
+   --  @param Base
+   --  Le base de faits.
+   --  @return Au moins une règle a été déclenchée.
+
+   overriding
+   function Lire_Successeur
+      (This : in Regle_Abstraite_T)
+      return Regle_Interface_T'Class;
+   --  Lit la règle successeur de celle-ci.
+   --  @param This
+   --  La règle actuelle.
+   --  @return La règle successeur.
+
+   overriding
+   function Possede_Successeur
+      (This : in Regle_Abstraite_T)
+      return Boolean;
+   --  La règle possède une règle suivante.
+   --  @param This
+   --  La règle actuelle.
+   --  @return La règle possède un successeur.
+
+   overriding
+   function Est_Declenchee
+      (This : in Regle_Abstraite_T)
+      return Boolean;
+   --  La règle a déjà été déclenchée.
+   --  @param This
+   --  La règle actuelle.
+   --  @return La règle a déjà été déclenchée.
+
+private
+
+   package Conclusion_R renames Sys_Exp_P.Forme_P.Conclusion_P;
+
+   package Conclusion_Holder_P is new Ada.Containers.Indefinite_Holders
+      (
+         Element_Type => Conclusion_R.Conclusion_Abstraite_T'Class,
+         "="          => Conclusion_R."="
+      );
+
+   package Regle_Holder_P is new Ada.Containers.Indefinite_Holders
+      (Element_Type => Regle_Interface_T'Class);
+
+   type Regle_Abstraite_T is abstract new Regle_Interface_T with
+      record
+         ID_Regle         : ID_Regle_T := ID_Regle_T'First;
+         --  Le numéro de la règles dans la base de règles.
+         Conclusion       : Conclusion_Holder_P.Holder;
+         --  La conclusion qui sera déclenchée par la règle si possible.
+         Regle_Declenchee : Boolean;
+         --  Pour garder en mémoire si la règle a déjà été déclenchée.
+         Successeur       : Regle_Holder_P.Holder;
+         --  La règle suivante.
+      end record;
+
+   function Declencher
+      (
+         This : in out Regle_Abstraite_T'Class;
+         Base : in out Accesseur_Base_T
+      )
+      return Boolean;
+   --  Essaye de déclencher une conclusion.
+   --  @param This
+   --  La règle à déclencher.
+   --  @param Base
+   --  Le base de faits.
+   --  @return La conclusion a pu être ajoutée.
+
+   --------------------------------------
+   overriding
+   function Lire_Successeur
+      (This : in Regle_Abstraite_T)
+      return Regle_Interface_T'Class
+   is (This.Successeur.Element);
+   --------------------------------------
+
+   --------------------------------------
+   overriding
+   function Possede_Successeur
+      (This : in Regle_Abstraite_T)
+      return Boolean
+   is (not This.Successeur.Is_Empty);
+   --------------------------------------
+
+   --------------------------------------
+   overriding
+   function Est_Declenchee
+      (This : in Regle_Abstraite_T)
+      return Boolean
+   is (This.Regle_Declenchee);
+   --------------------------------------
+
+end Sys_Exp_P.Regles_P;
