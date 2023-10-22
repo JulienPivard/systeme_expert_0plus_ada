@@ -33,6 +33,23 @@ is
    package Symbolique_R renames Sys_Exp_P.Fait_P.Symbolique_P;
 
    ---------------------------------------------------------------------------
+   function Creer
+      (Base : in     Accesseur_Base_T)
+      return Visiteur_T
+   is
+   begin
+      return Visiteur_T'
+         (
+            Base                        => Base,
+            Premisse_A_Ete_Verifiee     => False,
+            Conclusion_A_Ete_Declenchee => False,
+            Code_Erreur                 => Tout_Va_Bien_E,
+            Message_D_Erreur            => Message_Vide
+         );
+   end Creer;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
    --                       La visite des conclusions                       --
    ---------------------------------------------------------------------------
 
@@ -84,7 +101,7 @@ is
       Bloc_Lire_Valeur :
       declare
          Valeur : constant Sys_Exp_P.Entier_T     :=
-            Forme.Lire_Valeur (Base => This.Base);
+            Forme.Lire_Valeur (Base => This.Base.all);
          Fait   : constant Entier_R.Fait_Entier_T := Entier_R.Creer
             (
                Nom    => Forme.Lire_Nom,
@@ -131,12 +148,12 @@ is
    is
    begin
       --  Le fait appartient à la base.
-      if This.Base.Contient (Nom_Fait => Forme.Lire_Nom_Fait) then
+      if This.Base.all.Contient (Nom_Fait => Forme.Lire_Nom_Fait) then
          Bloc_Construire_Conclusion :
          declare
             --  Le fait trouvé dans la base.
             Fait : constant Sys_Exp_P.Fait_P.Fait_Abstrait_T'Class :=
-               This.Base.Trouver (Nom_Fait => Forme.Lire_Nom_Fait);
+               This.Base.all.Trouver (Nom_Fait => Forme.Lire_Nom_Fait);
             --  On le convertit en fait entier.
             Fait_Entier : Entier_R.Fait_Entier_T renames
                Entier_R.Fait_Entier_T (Fait);
@@ -203,12 +220,12 @@ is
    is
    begin
       --  Le fait appartient à la base.
-      if This.Base.Contient (Nom_Fait => Forme.Lire_Nom_Fait) then
+      if This.Base.all.Contient (Nom_Fait => Forme.Lire_Nom_Fait) then
          Bloc_Construire_Conclusion :
          declare
             --  Le fait trouvé dans la base.
             Fait_Trouve : constant Sys_Exp_P.Fait_P.Fait_Abstrait_T'Class :=
-               This.Base.Trouver (Nom_Fait => Forme.Lire_Nom_Fait);
+               This.Base.all.Trouver (Nom_Fait => Forme.Lire_Nom_Fait);
             --  On le convertit en fait symbolique.
             Fait_Symbole : Symbolique_R.Fait_Symbolique_T renames
                Symbolique_R.Fait_Symbolique_T (Fait_Trouve);
@@ -262,12 +279,12 @@ is
    is
    begin
       --  Le fait appartient à la base.
-      if This.Base.Contient (Nom_Fait => Forme.Lire_Nom) then
+      if This.Base.all.Contient (Nom_Fait => Forme.Lire_Nom) then
          Bloc_Construire_Premisse :
          declare
             --  Le fait trouvé dans la base.
             Fait_Trouve : constant Sys_Exp_P.Fait_P.Fait_Abstrait_T'Class :=
-               This.Base.Trouver (Nom_Fait => Forme.Lire_Nom);
+               This.Base.all.Trouver (Nom_Fait => Forme.Lire_Nom);
             --  On le convertit en fait booléen.
             Fait_Bool   : Booleen_R.Fait_Booleen_T renames
                Booleen_R.Fait_Booleen_T (Fait_Trouve);
@@ -299,12 +316,12 @@ is
    is
    begin
       --  Le fait appartient à la base.
-      if This.Base.Contient (Nom_Fait => Forme.Lire_Nom) then
+      if This.Base.all.Contient (Nom_Fait => Forme.Lire_Nom) then
          Bloc_Construire_Premisse :
          declare
             --  Le fait trouvé dans la base.
             Fait_Trouve : constant Sys_Exp_P.Fait_P.Fait_Abstrait_T'Class :=
-               This.Base.Trouver (Nom_Fait => Forme.Lire_Nom);
+               This.Base.all.Trouver (Nom_Fait => Forme.Lire_Nom);
             --  On le convertit en fait booléen.
             Fait_Bool   : Booleen_R.Fait_Booleen_T renames
                Booleen_R.Fait_Booleen_T (Fait_Trouve);
@@ -336,12 +353,12 @@ is
    is
    begin
       --  Le fait appartient à la base.
-      if This.Base.Contient (Nom_Fait => Forme.Lire_Nom) then
+      if This.Base.all.Contient (Nom_Fait => Forme.Lire_Nom) then
          Bloc_Construire_Premisse :
          declare
             --  Le fait trouvé dans la base.
             Fait_Trouve : constant Sys_Exp_P.Fait_P.Fait_Abstrait_T'Class :=
-               This.Base.Trouver (Nom_Fait => Forme.Lire_Nom);
+               This.Base.all.Trouver (Nom_Fait => Forme.Lire_Nom);
             --  On le convertit en fait entier.
             Fait_Entier : Entier_R.Fait_Entier_T renames
                Entier_R.Fait_Entier_T (Fait_Trouve);
@@ -349,7 +366,7 @@ is
             This.Premisse_A_Ete_Verifiee := Forme.Comparer
                (
                   Gauche => Fait_Entier.Lire_Valeur,
-                  Droite => Forme.Lire_Valeur (Base => This.Base)
+                  Droite => Forme.Lire_Valeur (Base => This.Base.all)
                );
          end Bloc_Construire_Premisse;
       end if;
@@ -377,18 +394,18 @@ is
    is
    begin
       --  Le fait appartient à la base.
-      if This.Base.Contient (Nom_Fait => Forme.Lire_Nom)
+      if This.Base.all.Contient (Nom_Fait => Forme.Lire_Nom)
          and then
-         This.Base.Contient (Nom_Fait => Forme.Lire_Nom_Fait)
+         This.Base.all.Contient (Nom_Fait => Forme.Lire_Nom_Fait)
       then
          Bloc_Construire_Premisse :
          declare
             --  Le fait trouvé dans la base.
             Fait_Trouve : constant Sys_Exp_P.Fait_P.Fait_Abstrait_T'Class :=
-               This.Base.Trouver (Nom_Fait => Forme.Lire_Nom);
+               This.Base.all.Trouver (Nom_Fait => Forme.Lire_Nom);
             --  Le fait trouvé dans la base.
             Autre_Fait  : constant Sys_Exp_P.Fait_P.Fait_Abstrait_T'Class :=
-               This.Base.Trouver (Nom_Fait => Forme.Lire_Nom_Fait);
+               This.Base.all.Trouver (Nom_Fait => Forme.Lire_Nom_Fait);
 
             --  On le convertit en fait entier.
             Fait_Entier       : Entier_R.Fait_Entier_T renames
@@ -427,12 +444,12 @@ is
    is
    begin
       --  Le fait appartient à la base.
-      if This.Base.Contient (Nom_Fait => Forme.Lire_Nom) then
+      if This.Base.all.Contient (Nom_Fait => Forme.Lire_Nom) then
          Bloc_Construire_Premisse :
          declare
             --  Le fait trouvé dans la base.
             Fait_Trouve  : constant Sys_Exp_P.Fait_P.Fait_Abstrait_T'Class :=
-               This.Base.Trouver (Nom_Fait => Forme.Lire_Nom);
+               This.Base.all.Trouver (Nom_Fait => Forme.Lire_Nom);
             --  On le convertit en fait entier.
             Fait_Symbole : Symbolique_R.Fait_Symbolique_T renames
                Symbolique_R.Fait_Symbolique_T (Fait_Trouve);
@@ -468,18 +485,18 @@ is
    is
    begin
       --  Le fait appartient à la base.
-      if This.Base.Contient (Nom_Fait => Forme.Lire_Nom)
+      if This.Base.all.Contient (Nom_Fait => Forme.Lire_Nom)
          and then
-         This.Base.Contient (Nom_Fait => Forme.Lire_Nom_Fait)
+         This.Base.all.Contient (Nom_Fait => Forme.Lire_Nom_Fait)
       then
          Bloc_Construire_Premisse :
          declare
             --  Le fait trouvé dans la base.
             Fait_Trouve  : constant Sys_Exp_P.Fait_P.Fait_Abstrait_T'Class :=
-               This.Base.Trouver (Nom_Fait => Forme.Lire_Nom);
+               This.Base.all.Trouver (Nom_Fait => Forme.Lire_Nom);
             --  Le fait trouvé dans la base.
             Autre_Fait   : constant Sys_Exp_P.Fait_P.Fait_Abstrait_T'Class :=
-               This.Base.Trouver (Nom_Fait => Forme.Lire_Nom_Fait);
+               This.Base.all.Trouver (Nom_Fait => Forme.Lire_Nom_Fait);
 
             --  On le convertit en fait entier.
             Fait_Symbole       : Symbolique_R.Fait_Symbolique_T renames

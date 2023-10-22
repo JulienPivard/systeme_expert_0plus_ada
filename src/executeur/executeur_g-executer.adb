@@ -35,7 +35,7 @@ is
    C : Sys_Exp_P.Valeur_P.Constante_P.Feuille_Constante_T;
    F : Sys_Exp_P.Valeur_P.Fait_P.Feuille_Fait_T;
 
-   B : Sys_Exp_P.Base_Faits_P.Base_De_Faits_T;
+   B : aliased Sys_Exp_P.Base_Faits_P.Base_De_Faits_T;
 
    V : Sys_Exp_P.Entier_T;
 
@@ -43,8 +43,6 @@ is
    Moins : Sys_Exp_P.Valeur_P.Operateur_P.Soustraction_P.Operateur_Moins_T;
    Mult  : Sys_Exp_P.Valeur_P.Operateur_P.Multiplication_P.Operateur_Mult_T;
    Plus  : Sys_Exp_P.Valeur_P.Operateur_P.Addition_P.Operateur_Plus_T;
-
-   Visiteur : Sys_Exp_P.Visiteur_Forme_P.Declencheur_P.Visiteur_T;
 begin
    B.Ajouter (Nouvel_Item => Fait);
 
@@ -108,6 +106,10 @@ begin
                Nom        => "zioejcn",
                Expression => Plus
             );
+
+      Visiteur : Sys_Exp_P.Visiteur_Forme_P.Declencheur_P.Visiteur_T :=
+         Sys_Exp_P.Visiteur_Forme_P.Declencheur_P.Creer
+            (Base => B'Unrestricted_Access);
    begin
       Sys_Exp_P.Visiteur_Forme_P.Text_IO.Put_Line (Item => Visiteur);
       Ada.Text_IO.New_Line (Spacing => 2);

@@ -45,7 +45,7 @@ is
       end case;
 
       Ada.Text_IO.Put_Line (Item => "Contenu de la base");
-      Sys_Exp_P.Base_Faits_P.Text_IO.Put_Line (Item => Item.Base);
+      Sys_Exp_P.Base_Faits_P.Text_IO.Put_Line (Item => Item.Base.all);
 
       Ada.Text_IO.Put_Line
          (Item => "[" & Ada.Tags.Expanded_Name (T => Item'Tag) & "]");

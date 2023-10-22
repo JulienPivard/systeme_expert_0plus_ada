@@ -35,6 +35,8 @@ package body Sys_Exp_P.Visiteur_Forme_P.Declencheur_P.Test_P
    with Spark_Mode => Off
 is
 
+   Base : aliased Sys_Exp_P.Base_Faits_P.Base_De_Faits_T;
+
    --------------------------------------
    function Test_Egale
       (
@@ -61,7 +63,8 @@ is
       (T : in out Test_Fixt_T)
    is
    begin
-      Sys_Exp_P.Base_Faits_P.Extension_P.R_A_Z (Base => T.Visiteur.Base);
+      T.Visiteur.Base := Base'Access;
+      Sys_Exp_P.Base_Faits_P.Extension_P.R_A_Z (Base => Base);
       T.Visiteur.Premisse_A_Ete_Verifiee     := False;
       T.Visiteur.Conclusion_A_Ete_Declenchee := False;
       T.Visiteur.Code_Erreur                 := Tout_Va_Bien_E;
@@ -147,7 +150,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => T.Visiteur.Base.Contient (Nom_Fait => C.Lire_Nom),
+            Condition => T.Visiteur.Base.all.Contient (Nom_Fait => C.Lire_Nom),
             Message   => "Le fait booleen [" & String (C.Lire_Nom) & "] " &
                "devrait etre dans la base"
          );
@@ -157,7 +160,7 @@ is
          use type Sys_Exp_P.Fait_P.Type_De_Fait_T;
 
          Fait : constant Sys_Exp_P.Fait_P.Fait_Abstrait_T'Class :=
-            T.Visiteur.Base.Trouver (Nom_Fait => C.Lire_Nom);
+            T.Visiteur.Base.all.Trouver (Nom_Fait => C.Lire_Nom);
       begin
          AUnit.Assertions.Assert
             (
@@ -217,7 +220,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => T.Visiteur.Base.Contient (Nom_Fait => C.Lire_Nom),
+            Condition => T.Visiteur.Base.all.Contient (Nom_Fait => C.Lire_Nom),
             Message   => "Le fait booleen [" & String (C.Lire_Nom) & "] " &
                "devrait etre dans la base"
          );
@@ -227,7 +230,7 @@ is
          use type Sys_Exp_P.Fait_P.Type_De_Fait_T;
 
          Fait : constant Sys_Exp_P.Fait_P.Fait_Abstrait_T'Class :=
-            T.Visiteur.Base.Trouver (Nom_Fait => C.Lire_Nom);
+            T.Visiteur.Base.all.Trouver (Nom_Fait => C.Lire_Nom);
       begin
          AUnit.Assertions.Assert
             (
@@ -262,7 +265,7 @@ is
       V : constant Sys_Exp_P.Valeur_P.Valeur_Abstraite_T'Class :=
          Facilites_P.Valeur_P.Creer_Valeur
             (
-               Base   => T.Visiteur.Base,
+               Base   => T.Visiteur.Base.all,
                Valeur => Valeur
             );
 
@@ -298,7 +301,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => T.Visiteur.Base.Contient (Nom_Fait => E.Lire_Nom),
+            Condition => T.Visiteur.Base.all.Contient (Nom_Fait => E.Lire_Nom),
             Message   => "Le fait entier [" & String (E.Lire_Nom) & "] " &
                "devrait etre dans la base"
          );
@@ -308,7 +311,7 @@ is
          use type Sys_Exp_P.Fait_P.Type_De_Fait_T;
 
          Fait : constant Sys_Exp_P.Fait_P.Fait_Abstrait_T'Class :=
-            T.Visiteur.Base.Trouver (Nom_Fait => E.Lire_Nom);
+            T.Visiteur.Base.all.Trouver (Nom_Fait => E.Lire_Nom);
       begin
          AUnit.Assertions.Assert
             (
@@ -350,7 +353,7 @@ is
       V : constant Sys_Exp_P.Fait_P.Entier_P.Fait_Entier_T :=
          Facilites_P.Fait_P.Creer_Fait_Entier (Nom => E.Lire_Nom_Fait);
    begin
-      T.Visiteur.Base.Ajouter (Nouvel_Item => V);
+      T.Visiteur.Base.all.Ajouter (Nouvel_Item => V);
       E.Accepte (Visiteur => T.Visiteur);
       AUnit.Assertions.Assert
          (
@@ -376,13 +379,13 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => T.Visiteur.Base.Contient (Nom_Fait => E.Lire_Nom),
+            Condition => T.Visiteur.Base.all.Contient (Nom_Fait => E.Lire_Nom),
             Message   => "Le fait entier [" & String (E.Lire_Nom) & "] " &
                "devrait etre dans la base"
          );
       AUnit.Assertions.Assert
          (
-            Condition => T.Visiteur.Base.Contient
+            Condition => T.Visiteur.Base.all.Contient
                (Nom_Fait => E.Lire_Nom_Fait),
             Message   => "L'autre fait entier " &
                "[" & String (E.Lire_Nom_Fait) & "] " &
@@ -394,7 +397,7 @@ is
          use type Sys_Exp_P.Fait_P.Type_De_Fait_T;
 
          Fait : constant Sys_Exp_P.Fait_P.Fait_Abstrait_T'Class :=
-            T.Visiteur.Base.Trouver (Nom_Fait => E.Lire_Nom);
+            T.Visiteur.Base.all.Trouver (Nom_Fait => E.Lire_Nom);
       begin
          AUnit.Assertions.Assert
             (
@@ -458,7 +461,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => T.Visiteur.Base.Contient (Nom_Fait => S.Lire_Nom),
+            Condition => T.Visiteur.Base.all.Contient (Nom_Fait => S.Lire_Nom),
             Message   => "Le fait symbolique [" & String (S.Lire_Nom) & "] " &
                "devrait etre dans la base"
          );
@@ -468,7 +471,7 @@ is
          use type Sys_Exp_P.Fait_P.Type_De_Fait_T;
 
          Fait : constant Sys_Exp_P.Fait_P.Fait_Abstrait_T'Class :=
-            T.Visiteur.Base.Trouver (Nom_Fait => S.Lire_Nom);
+            T.Visiteur.Base.all.Trouver (Nom_Fait => S.Lire_Nom);
       begin
          AUnit.Assertions.Assert
             (
@@ -510,7 +513,7 @@ is
       F : constant Sys_Exp_P.Fait_P.Symbolique_P.Fait_Symbolique_T :=
          Facilites_P.Fait_P.Creer_Fait_Symbolique (Nom => S.Lire_Nom_Fait);
    begin
-      T.Visiteur.Base.Ajouter (Nouvel_Item => F);
+      T.Visiteur.Base.all.Ajouter (Nouvel_Item => F);
       S.Accepte (Visiteur => T.Visiteur);
       AUnit.Assertions.Assert
          (
@@ -536,7 +539,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => T.Visiteur.Base.Contient (Nom_Fait => S.Lire_Nom),
+            Condition => T.Visiteur.Base.all.Contient (Nom_Fait => S.Lire_Nom),
             Message   => "Le fait symbolique [" & String (S.Lire_Nom) & "] " &
                "devrait etre dans la base"
          );
@@ -546,7 +549,7 @@ is
          use type Sys_Exp_P.Fait_P.Type_De_Fait_T;
 
          Fait : constant Sys_Exp_P.Fait_P.Fait_Abstrait_T'Class :=
-            T.Visiteur.Base.Trouver (Nom_Fait => S.Lire_Nom);
+            T.Visiteur.Base.all.Trouver (Nom_Fait => S.Lire_Nom);
       begin
          AUnit.Assertions.Assert
             (
@@ -612,12 +615,13 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => not T.Visiteur.Base.Contient (Nom_Fait => P.Lire_Nom),
+            Condition =>
+               not T.Visiteur.Base.all.Contient (Nom_Fait => P.Lire_Nom),
             Message   => "Le fait booleen [" & String (P.Lire_Nom) & "] " &
                "ne devrait pas etre dans la base"
          );
 
-      T.Visiteur.Base.Ajouter (Nouvel_Item => Fait);
+      T.Visiteur.Base.all.Ajouter (Nouvel_Item => Fait);
       P.Accepte (Visiteur => T.Visiteur);
       AUnit.Assertions.Assert
          (
@@ -643,7 +647,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => T.Visiteur.Base.Contient (Nom_Fait => P.Lire_Nom),
+            Condition => T.Visiteur.Base.all.Contient (Nom_Fait => P.Lire_Nom),
             Message   => "Le fait booleen [" & String (P.Lire_Nom) & "] " &
                "devrait etre dans la base"
          );
@@ -690,12 +694,13 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => not T.Visiteur.Base.Contient (Nom_Fait => P.Lire_Nom),
+            Condition =>
+               not T.Visiteur.Base.all.Contient (Nom_Fait => P.Lire_Nom),
             Message   => "Le fait booleen [" & String (P.Lire_Nom) & "] " &
                "ne devrait pas etre dans la base"
          );
 
-      T.Visiteur.Base.Ajouter (Nouvel_Item => Fait);
+      T.Visiteur.Base.all.Ajouter (Nouvel_Item => Fait);
       P.Accepte (Visiteur => T.Visiteur);
       AUnit.Assertions.Assert
          (
@@ -721,7 +726,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => T.Visiteur.Base.Contient (Nom_Fait => P.Lire_Nom),
+            Condition => T.Visiteur.Base.all.Contient (Nom_Fait => P.Lire_Nom),
             Message   => "Le fait booleen [" & String (P.Lire_Nom) & "] " &
                "devrait etre dans la base"
          );
@@ -737,7 +742,7 @@ is
       V : constant Sys_Exp_P.Valeur_P.Valeur_Abstraite_T'Class :=
          Facilites_P.Valeur_P.Creer_Valeur
             (
-               Base   => T.Visiteur.Base,
+               Base   => T.Visiteur.Base.all,
                Valeur => Valeur
             );
 
@@ -780,12 +785,13 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => not T.Visiteur.Base.Contient (Nom_Fait => E.Lire_Nom),
+            Condition =>
+               not T.Visiteur.Base.all.Contient (Nom_Fait => E.Lire_Nom),
             Message   => "Le fait entier [" & String (E.Lire_Nom) & "] " &
                "ne devrait pas etre dans la base"
          );
 
-      T.Visiteur.Base.Ajouter (Nouvel_Item => F);
+      T.Visiteur.Base.all.Ajouter (Nouvel_Item => F);
       E.Accepte (Visiteur => T.Visiteur);
       AUnit.Assertions.Assert
          (
@@ -811,7 +817,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => T.Visiteur.Base.Contient (Nom_Fait => E.Lire_Nom),
+            Condition => T.Visiteur.Base.all.Contient (Nom_Fait => E.Lire_Nom),
             Message   => "Le fait entier [" & String (E.Lire_Nom) & "] " &
                "devrait etre dans la base"
          );
@@ -866,21 +872,21 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => not T.Visiteur.Base.Contient
+            Condition => not T.Visiteur.Base.all.Contient
                (Nom_Fait => E.Lire_Nom),
             Message   => "Le fait entier [" & String (E.Lire_Nom) & "] " &
                "ne devrait pas etre dans la base"
          );
       AUnit.Assertions.Assert
          (
-            Condition => not T.Visiteur.Base.Contient
+            Condition => not T.Visiteur.Base.all.Contient
                (Nom_Fait => E.Lire_Nom_Fait),
             Message   => "Le fait entier [" & String (E.Lire_Nom) & "] " &
                "ne devrait pas etre dans la base"
          );
 
-      T.Visiteur.Base.Ajouter (Nouvel_Item => F_1);
-      T.Visiteur.Base.Ajouter (Nouvel_Item => F_2);
+      T.Visiteur.Base.all.Ajouter (Nouvel_Item => F_1);
+      T.Visiteur.Base.all.Ajouter (Nouvel_Item => F_2);
       E.Accepte (Visiteur => T.Visiteur);
       AUnit.Assertions.Assert
          (
@@ -908,14 +914,14 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => T.Visiteur.Base.Contient
+            Condition => T.Visiteur.Base.all.Contient
                (Nom_Fait => E.Lire_Nom),
             Message   => "Le fait entier [" & String (E.Lire_Nom) & "] " &
                "devrait pas dans la base"
          );
       AUnit.Assertions.Assert
          (
-            Condition => T.Visiteur.Base.Contient
+            Condition => T.Visiteur.Base.all.Contient
                (Nom_Fait => E.Lire_Nom_Fait),
             Message   => "Le fait entier [" & String (E.Lire_Nom_Fait) & "] " &
                "devrait pas dans la base"
@@ -967,12 +973,13 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => not T.Visiteur.Base.Contient (Nom_Fait => E.Lire_Nom),
+            Condition =>
+               not T.Visiteur.Base.all.Contient (Nom_Fait => E.Lire_Nom),
             Message   => "Le fait entier [" & String (E.Lire_Nom) & "] " &
                "ne devrait pas etre dans la base"
          );
 
-      T.Visiteur.Base.Ajouter (Nouvel_Item => F);
+      T.Visiteur.Base.all.Ajouter (Nouvel_Item => F);
       E.Accepte (Visiteur => T.Visiteur);
       AUnit.Assertions.Assert
          (
@@ -998,7 +1005,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => T.Visiteur.Base.Contient (Nom_Fait => E.Lire_Nom),
+            Condition => T.Visiteur.Base.all.Contient (Nom_Fait => E.Lire_Nom),
             Message   => "Le fait symbolique [" & String (E.Lire_Nom) & "] " &
                "devrait etre dans la base"
          );
@@ -1053,21 +1060,21 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => not T.Visiteur.Base.Contient
+            Condition => not T.Visiteur.Base.all.Contient
                (Nom_Fait => E.Lire_Nom),
             Message   => "Le fait symbolique [" & String (E.Lire_Nom) & "] " &
                "ne devrait pas etre dans la base"
          );
       AUnit.Assertions.Assert
          (
-            Condition => not T.Visiteur.Base.Contient
+            Condition => not T.Visiteur.Base.all.Contient
                (Nom_Fait => E.Lire_Nom_Fait),
             Message   => "Le fait symbolique [" & String (E.Lire_Nom) & "] " &
                "ne devrait pas etre dans la base"
          );
 
-      T.Visiteur.Base.Ajouter (Nouvel_Item => F_1);
-      T.Visiteur.Base.Ajouter (Nouvel_Item => F_2);
+      T.Visiteur.Base.all.Ajouter (Nouvel_Item => F_1);
+      T.Visiteur.Base.all.Ajouter (Nouvel_Item => F_2);
       E.Accepte (Visiteur => T.Visiteur);
       AUnit.Assertions.Assert
          (
@@ -1095,7 +1102,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => T.Visiteur.Base.Contient
+            Condition => T.Visiteur.Base.all.Contient
                (Nom_Fait => E.Lire_Nom),
             Message   => "Le fait symbolique " &
                "[" & String (E.Lire_Nom) & "] " &
@@ -1103,7 +1110,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => T.Visiteur.Base.Contient
+            Condition => T.Visiteur.Base.all.Contient
                (Nom_Fait => E.Lire_Nom_Fait),
             Message   => "Le fait symbolique " &
                "[" & String (E.Lire_Nom_Fait) & "] " &
@@ -1125,7 +1132,7 @@ is
                Valeur => False
             );
    begin
-      T.Visiteur.Base.Ajouter (Nouvel_Item => Fait);
+      T.Visiteur.Base.all.Ajouter (Nouvel_Item => Fait);
       P.Accepte (Visiteur => T.Visiteur);
       AUnit.Assertions.Assert
          (
@@ -1151,7 +1158,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => T.Visiteur.Base.Contient (Nom_Fait => P.Lire_Nom),
+            Condition => T.Visiteur.Base.all.Contient (Nom_Fait => P.Lire_Nom),
             Message   => "Le fait booleen [" & String (P.Lire_Nom) & "] " &
                "devrait etre dans la base"
          );
@@ -1171,7 +1178,7 @@ is
                Valeur => True
             );
    begin
-      T.Visiteur.Base.Ajouter (Nouvel_Item => Fait);
+      T.Visiteur.Base.all.Ajouter (Nouvel_Item => Fait);
       P.Accepte (Visiteur => T.Visiteur);
       AUnit.Assertions.Assert
          (
@@ -1197,7 +1204,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => T.Visiteur.Base.Contient (Nom_Fait => P.Lire_Nom),
+            Condition => T.Visiteur.Base.all.Contient (Nom_Fait => P.Lire_Nom),
             Message   => "Le fait booleen [" & String (P.Lire_Nom) & "] " &
                "devrait etre dans la base"
          );
@@ -1213,7 +1220,7 @@ is
       V : constant Sys_Exp_P.Valeur_P.Valeur_Abstraite_T'Class :=
          Facilites_P.Valeur_P.Creer_Valeur
             (
-               Base   => T.Visiteur.Base,
+               Base   => T.Visiteur.Base.all,
                Valeur => Valeur
             );
 
@@ -1231,7 +1238,7 @@ is
                Valeur => Valeur
             );
    begin
-      T.Visiteur.Base.Ajouter (Nouvel_Item => F);
+      T.Visiteur.Base.all.Ajouter (Nouvel_Item => F);
       E.Accepte (Visiteur => T.Visiteur);
       AUnit.Assertions.Assert
          (
@@ -1257,7 +1264,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => T.Visiteur.Base.Contient (Nom_Fait => E.Lire_Nom),
+            Condition => T.Visiteur.Base.all.Contient (Nom_Fait => E.Lire_Nom),
             Message   => "Le fait entier [" & String (E.Lire_Nom) & "] " &
                "devrait etre dans la base"
          );
@@ -1287,8 +1294,8 @@ is
                Valeur => F_1.Lire_Valeur
             );
    begin
-      T.Visiteur.Base.Ajouter (Nouvel_Item => F_1);
-      T.Visiteur.Base.Ajouter (Nouvel_Item => F_2);
+      T.Visiteur.Base.all.Ajouter (Nouvel_Item => F_1);
+      T.Visiteur.Base.all.Ajouter (Nouvel_Item => F_2);
       E.Accepte (Visiteur => T.Visiteur);
       AUnit.Assertions.Assert
          (
@@ -1316,14 +1323,14 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => T.Visiteur.Base.Contient
+            Condition => T.Visiteur.Base.all.Contient
                (Nom_Fait => E.Lire_Nom),
             Message   => "Le fait entier [" & String (E.Lire_Nom) & "] " &
                "devrait pas dans la base"
          );
       AUnit.Assertions.Assert
          (
-            Condition => T.Visiteur.Base.Contient
+            Condition => T.Visiteur.Base.all.Contient
                (Nom_Fait => E.Lire_Nom_Fait),
             Message   => "Le fait entier [" & String (E.Lire_Nom_Fait) & "] " &
                "devrait pas dans la base"
@@ -1349,7 +1356,7 @@ is
                Valeur => E.Lire_Nom_Symbole
             );
    begin
-      T.Visiteur.Base.Ajouter (Nouvel_Item => F);
+      T.Visiteur.Base.all.Ajouter (Nouvel_Item => F);
       E.Accepte (Visiteur => T.Visiteur);
       AUnit.Assertions.Assert
          (
@@ -1375,7 +1382,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => T.Visiteur.Base.Contient (Nom_Fait => E.Lire_Nom),
+            Condition => T.Visiteur.Base.all.Contient (Nom_Fait => E.Lire_Nom),
             Message   => "Le fait symbolique [" & String (E.Lire_Nom) & "] " &
                "devrait etre dans la base"
          );
@@ -1405,8 +1412,8 @@ is
                Valeur => F_1.Lire_Valeur
             );
    begin
-      T.Visiteur.Base.Ajouter (Nouvel_Item => F_1);
-      T.Visiteur.Base.Ajouter (Nouvel_Item => F_2);
+      T.Visiteur.Base.all.Ajouter (Nouvel_Item => F_1);
+      T.Visiteur.Base.all.Ajouter (Nouvel_Item => F_2);
       E.Accepte (Visiteur => T.Visiteur);
       AUnit.Assertions.Assert
          (
@@ -1434,7 +1441,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => T.Visiteur.Base.Contient
+            Condition => T.Visiteur.Base.all.Contient
                (Nom_Fait => E.Lire_Nom),
             Message   => "Le fait symbolique " &
                "[" & String (E.Lire_Nom) & "] " &
@@ -1442,7 +1449,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => T.Visiteur.Base.Contient
+            Condition => T.Visiteur.Base.all.Contient
                (Nom_Fait => E.Lire_Nom_Fait),
             Message   => "Le fait symbolique " &
                "[" & String (E.Lire_Nom_Fait) & "] " &
@@ -1486,7 +1493,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => T.Visiteur.Base.Contient (Nom_Fait => Nom),
+            Condition => T.Visiteur.Base.all.Contient (Nom_Fait => Nom),
             Message   => "Le fait booleen " &
                "[" & String (Nom) & "] " & "devrait etre dans la base"
          );
@@ -1528,7 +1535,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => T.Visiteur.Base.Contient (Nom_Fait => Nom),
+            Condition => T.Visiteur.Base.all.Contient (Nom_Fait => Nom),
             Message   => "Le fait entier " &
                "[" & String (Nom) & "] " & "devrait etre dans la base"
          );
@@ -1570,7 +1577,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => T.Visiteur.Base.Contient (Nom_Fait => Nom),
+            Condition => T.Visiteur.Base.all.Contient (Nom_Fait => Nom),
             Message   => "Le fait symbolique " &
                "[" & String (Nom) & "] " & "devrait etre dans la base"
          );
@@ -1581,13 +1588,13 @@ is
    procedure Test_Rate_Concl_Expr_Entier_Inconnu
       (T : in out Test_Fixt_T)
    is
-      Valeur : Sys_Exp_P.Entier_T;
-      Base   : Sys_Exp_P.Base_Faits_P.Base_De_Faits_T;
+      Valeur   : Sys_Exp_P.Entier_T;
+      Base_Tmp : Sys_Exp_P.Base_Faits_P.Base_De_Faits_T;
 
       V : constant Sys_Exp_P.Valeur_P.Valeur_Abstraite_T'Class :=
          Facilites_P.Valeur_P.Creer_Valeur
             (
-               Base   => Base,
+               Base   => Base_Tmp,
                Valeur => Valeur
             );
 
@@ -1623,7 +1630,8 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => not T.Visiteur.Base.Contient (Nom_Fait => E.Lire_Nom),
+            Condition =>
+               not T.Visiteur.Base.all.Contient (Nom_Fait => E.Lire_Nom),
             Message   => "Le fait entier [" & String (E.Lire_Nom) & "] " &
                "ne devrait pas etre dans la base"
          );
@@ -1676,7 +1684,8 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => not T.Visiteur.Base.Contient (Nom_Fait => E.Lire_Nom),
+            Condition =>
+               not T.Visiteur.Base.all.Contient (Nom_Fait => E.Lire_Nom),
             Message   => "Le fait entier [" & String (E.Lire_Nom) & "] " &
                "ne devrait pas etre dans la base"
          );
@@ -1695,7 +1704,7 @@ is
          (
             Valeur_Gauche => Facilites_P.Valeur_P.Creer_Fait_Ou_Constante
                   (
-                     Base   => T.Visiteur.Base,
+                     Base   => T.Visiteur.Base.all,
                      Valeur => Valeur
                   ),
             Valeur_Droite =>
@@ -1734,7 +1743,8 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => not T.Visiteur.Base.Contient (Nom_Fait => E.Lire_Nom),
+            Condition =>
+               not T.Visiteur.Base.all.Contient (Nom_Fait => E.Lire_Nom),
             Message   => "Le fait entier [" & String (E.Lire_Nom) & "] " &
                "ne devrait pas etre dans la base"
          );
@@ -1778,13 +1788,14 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => not T.Visiteur.Base.Contient (Nom_Fait => E.Lire_Nom),
+            Condition =>
+               not T.Visiteur.Base.all.Contient (Nom_Fait => E.Lire_Nom),
             Message   => "Le fait entier [" & String (E.Lire_Nom) & "] " &
                "ne devrait pas etre dans la base"
          );
       AUnit.Assertions.Assert
          (
-            Condition => not T.Visiteur.Base.Contient
+            Condition => not T.Visiteur.Base.all.Contient
                (Nom_Fait => E.Lire_Nom_Fait),
             Message   => "L'autre fait entier " &
                "[" & String (E.Lire_Nom_Fait) & "] " &
@@ -1836,7 +1847,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => T.Visiteur.Base.Contient (Nom_Fait => E.Lire_Nom),
+            Condition => T.Visiteur.Base.all.Contient (Nom_Fait => E.Lire_Nom),
             Message   => "Le fait entier [" & String (E.Lire_Nom) & "] " &
                "devrait etre dans la base"
          );
@@ -1880,13 +1891,14 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => not T.Visiteur.Base.Contient (Nom_Fait => E.Lire_Nom),
+            Condition =>
+               not T.Visiteur.Base.all.Contient (Nom_Fait => E.Lire_Nom),
             Message   => "Le fait symbolique [" & String (E.Lire_Nom) & "] " &
                "ne devrait pas etre dans la base"
          );
       AUnit.Assertions.Assert
          (
-            Condition => not T.Visiteur.Base.Contient
+            Condition => not T.Visiteur.Base.all.Contient
                (Nom_Fait => E.Lire_Nom_Fait),
             Message   => "L'autre fait symbolique " &
                "[" & String (E.Lire_Nom_Fait) & "] " &
@@ -1938,7 +1950,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => T.Visiteur.Base.Contient (Nom_Fait => E.Lire_Nom),
+            Condition => T.Visiteur.Base.all.Contient (Nom_Fait => E.Lire_Nom),
             Message   => "Le fait symbolique [" & String (E.Lire_Nom) & "] " &
                "devrait etre dans la base"
          );

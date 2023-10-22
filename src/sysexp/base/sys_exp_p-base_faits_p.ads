@@ -23,6 +23,10 @@ is
    subtype Fait_Abstrait_T is Sys_Exp_P.Fait_P.Fait_Abstrait_T;
 
    type Base_De_Faits_T is tagged limited private;
+   --  La base de faits.
+
+   type Accesseur_Base_T is access all Base_De_Faits_T
+      with Storage_Size => 0;
 
    function Contient
       (
