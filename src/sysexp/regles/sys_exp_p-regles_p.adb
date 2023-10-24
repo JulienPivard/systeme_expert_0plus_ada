@@ -6,18 +6,7 @@ package body Sys_Exp_P.Regles_P
    with Spark_Mode => Off
 is
 
-   package Visiteur_R renames Sys_Exp_P.Visiteur_Forme_P.Declencheur_P;
-
-   procedure Verifier_Flag_Erreur_Visiteur
-      (
-         Regle    : in out Regle_Abstraite_T'Class;
-         Visiteur : in     Visiteur_R.Visiteur_T
-      );
-   --  Vérifie le contenu des erreurs du visiteur.
-   --  @param Regle
-   --  La règle abstraite.
-   --  @param Visiteur
-   --  Le visiteur utilisé.
+   package Declencheur_R renames Sys_Exp_P.Visiteur_Forme_P.Declencheur_P;
 
    ---------------------------------------------------------------------------
    procedure Ajouter
@@ -67,7 +56,8 @@ is
       )
       return Boolean
    is
-      Visiteur : Visiteur_R.Visiteur_T := Visiteur_R.Creer (Base => Base);
+      Visiteur : Declencheur_R.Visiteur_T :=
+         Declencheur_R.Creer (Base => Base);
    begin
       if This.Verifier_Premisse (Base => Base) then
          This.Conclusion.Element.Accepte (Visiteur => Visiteur);
@@ -90,8 +80,8 @@ is
    ---------------------------------------------------------------------------
    procedure Verifier_Flag_Erreur_Visiteur
       (
-         Regle    : in out Regle_Abstraite_T'Class;
-         Visiteur : in     Visiteur_R.Visiteur_T
+         Regle    : in     Regle_Abstraite_T'Class;
+         Visiteur : in     Visiteur_R.Visiteur_Forme_Abstrait_T'Class
       )
    is
       use type Visiteur_Forme_P.Code_Erreur_T;

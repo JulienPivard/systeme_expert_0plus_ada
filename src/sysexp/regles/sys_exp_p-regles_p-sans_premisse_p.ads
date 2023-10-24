@@ -13,8 +13,7 @@ package Sys_Exp_P.Regles_P.Sans_Premisse_P
 is
 
    type Regle_T is new Regle_Abstraite_T with private;
-   --  Une règle abstraite qui représentera tous les type de
-   --  règles possible dans le système expert.
+   --  Une règle sans prémisses.
 
    function Creer
       (

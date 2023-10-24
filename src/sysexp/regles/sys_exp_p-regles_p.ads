@@ -1,5 +1,6 @@
 with Sys_Exp_P.Base_Faits_P;
 with Sys_Exp_P.Forme_P.Conclusion_P;
+with Sys_Exp_P.Visiteur_Forme_P;
 
 private with Ada.Containers.Indefinite_Holders;
 
@@ -180,6 +181,19 @@ private
    --  @param Base
    --  Le base de faits.
    --  @return La conclusion a pu être ajoutée.
+
+   package Visiteur_R renames Sys_Exp_P.Visiteur_Forme_P;
+
+   procedure Verifier_Flag_Erreur_Visiteur
+      (
+         Regle    : in     Regle_Abstraite_T'Class;
+         Visiteur : in     Visiteur_R.Visiteur_Forme_Abstrait_T'Class
+      );
+   --  Vérifie le contenu des erreurs du visiteur.
+   --  @param Regle
+   --  La règle abstraite.
+   --  @param Visiteur
+   --  Le visiteur utilisé.
 
    --------------------------------------
    overriding
