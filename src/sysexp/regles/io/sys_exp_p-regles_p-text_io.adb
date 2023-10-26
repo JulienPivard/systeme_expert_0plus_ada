@@ -6,6 +6,16 @@ is
 
    ---------------------------------------------------------------------------
    procedure Put_Line
+      (I : in     Regle_Interface_T'Class)
+   is
+      Regle : Regle_Abstraite_T'Class renames Regle_Abstraite_T'Class (I);
+   begin
+      Put_Line (Item => Regle);
+   end Put_Line;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Put_Line
       (Item : in     Regle_Abstraite_T'Class)
    is
    begin
@@ -20,7 +30,7 @@ is
                "[" & String (Item.Conclusion.Element.Lire_Nom) & "]"
          );
       if Item.Possede_Successeur then
-         Put_Line (Item => Item);
+         Put_Line (I => Item.Lire_Successeur);
       end if;
    end Put_Line;
    ---------------------------------------------------------------------------
