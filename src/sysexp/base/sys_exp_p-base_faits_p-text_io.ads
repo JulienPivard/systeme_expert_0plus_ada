@@ -14,4 +14,7 @@ is
    procedure Put_Line
       (Item : in     Base_De_Faits_T);
 
+   procedure Afficher
+      (Item : in     Base_De_Faits_T);
+
 end Sys_Exp_P.Base_Faits_P.Text_IO;
