@@ -12,9 +12,9 @@ package Sys_Exp_P.Valeur_P.Constante_P.Text_IO
 is
 
    procedure Put
-      (Item : in     Feuille_Constante_T);
+      (Item : in     Valeur_Constante_T);
 
    procedure Put_Line
-      (Item : in     Feuille_Constante_T);
+      (Item : in     Valeur_Constante_T);
 
 end Sys_Exp_P.Valeur_P.Constante_P.Text_IO;

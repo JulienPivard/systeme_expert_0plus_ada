@@ -16,7 +16,7 @@ is
 
    type Test_Fixt_T is new AUnit.Test_Fixtures.Test_Fixture with
       record
-         Feuille : Feuille_Constante_T;
+         Feuille : Valeur_Constante_T;
       end record;
 
    overriding

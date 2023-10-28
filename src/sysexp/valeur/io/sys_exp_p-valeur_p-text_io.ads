@@ -24,13 +24,13 @@ is
 private
 
    procedure Afficher
-      (Fait : in     Fait_P.Feuille_Fait_T);
+      (Fait : in     Fait_P.Valeur_Fait_T);
    --  Affiche la valeur sur une ligne.
    --  @param Fait
    --  Le fait à afficher.
 
    procedure Afficher
-      (Constante : in     Constante_P.Feuille_Constante_T);
+      (Constante : in     Constante_P.Valeur_Constante_T);
    --  Affiche la valeur sur une ligne.
    --  @param Constante
    --  La constante à afficher.

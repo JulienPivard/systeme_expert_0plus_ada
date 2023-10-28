@@ -6,7 +6,7 @@ is
 
    ---------------------------------------------------------------------------
    procedure Put
-      (Item : in     Feuille_Constante_T)
+      (Item : in     Valeur_Constante_T)
    is
    begin
       Ada.Text_IO.Put (Item => "Constante [" & Item.Valeur'Image & "]");
@@ -15,7 +15,7 @@ is
 
    ---------------------------------------------------------------------------
    procedure Put_Line
-      (Item : in     Feuille_Constante_T)
+      (Item : in     Valeur_Constante_T)
    is
    begin
       Put                  (Item    => Item);

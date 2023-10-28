@@ -5,10 +5,10 @@ is
    ---------------------------------------------------------------------------
    function Creer
       (Valeur : in     Entier_T)
-      return Feuille_Constante_T
+      return Valeur_Constante_T
    is
    begin
-      return Feuille_Constante_T'(Valeur => Valeur);
+      return Valeur_Constante_T'(Valeur => Valeur);
    end Creer;
    ---------------------------------------------------------------------------
 
@@ -16,7 +16,7 @@ is
    overriding
    function Interpreter
       (
-         This : in     Feuille_Constante_T;
+         This : in     Valeur_Constante_T;
          Base : in     Base_Faits_P.Base_De_Faits_T
       )
       return Entier_T

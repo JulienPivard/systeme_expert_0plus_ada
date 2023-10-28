@@ -38,8 +38,8 @@ is
             Nom    => Nom,
             Valeur => Valeur
          );
-   C : Sys_Exp_P.Valeur_P.Constante_P.Feuille_Constante_T;
-   F : Sys_Exp_P.Valeur_P.Fait_P.Feuille_Fait_T;
+   C : Sys_Exp_P.Valeur_P.Constante_P.Valeur_Constante_T;
+   F : Sys_Exp_P.Valeur_P.Fait_P.Valeur_Fait_T;
 
    B : aliased Sys_Exp_P.Base_Faits_P.Base_De_Faits_T;
 
@@ -149,7 +149,7 @@ begin
 
    Bloc_Iterer_Moteur :
    declare
-      E : constant Sys_Exp_P.Valeur_P.Constante_P.Feuille_Constante_T :=
+      E : constant Sys_Exp_P.Valeur_P.Constante_P.Valeur_Constante_T :=
          Sys_Exp_P.Valeur_P.Constante_P.Creer (Valeur => Valeur);
 
       A : constant Conclusion_R.Expression_Entiere_P.Conclusion_Expression_T :=

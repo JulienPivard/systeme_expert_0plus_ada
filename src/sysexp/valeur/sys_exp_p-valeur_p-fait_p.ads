@@ -16,14 +16,14 @@ package Sys_Exp_P.Valeur_P.Fait_P
       Spark_Mode     => Off
 is
 
-   type Feuille_Fait_T is new Valeur_Abstraite_T with private;
+   type Valeur_Fait_T is new Valeur_Abstraite_T with private;
    --  Une valeur d'un fait. La valeur est lue dans la base
    --  de faits, et peux donc changer au cours de l'exécution
    --  du programme.
 
    function Creer
       (Nom : in     Nom_T)
-      return Feuille_Fait_T;
+      return Valeur_Fait_T;
    --  Crée une référence à une valeur d'un fait qui peut être utilisée,
    --  ou dans une expression en partie gauche ou droite.
    --  @param Valeur
@@ -33,7 +33,7 @@ is
    overriding
    function Interpreter
       (
-         This : in     Feuille_Fait_T;
+         This : in     Valeur_Fait_T;
          Base : in     Base_Faits_P.Base_De_Faits_T
       )
       return Entier_T;
@@ -49,7 +49,7 @@ private
    package Nom_P is new Ada.Containers.Indefinite_Holders
       (Element_Type => Nom_T);
 
-   type Feuille_Fait_T is new Valeur_Abstraite_T with
+   type Valeur_Fait_T is new Valeur_Abstraite_T with
       record
          Nom : Nom_P.Holder;
          --  La valeur constante à stocker.

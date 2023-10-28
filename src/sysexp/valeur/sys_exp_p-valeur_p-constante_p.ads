@@ -12,13 +12,13 @@ package Sys_Exp_P.Valeur_P.Constante_P
       Spark_Mode     => Off
 is
 
-   type Feuille_Constante_T is new Valeur_Abstraite_T with private;
+   type Valeur_Constante_T is new Valeur_Abstraite_T with private;
    --  Une valeur constante, dont la valeur ne changera pas
    --  au cours de l'exécution.
 
    function Creer
       (Valeur : in     Entier_T)
-      return Feuille_Constante_T;
+      return Valeur_Constante_T;
    --  Crée une valeur constante qui peut être utilisée tel quel,
    --  ou dans une expression en partie gauche ou droite.
    --  @param Valeur
@@ -28,7 +28,7 @@ is
    overriding
    function Interpreter
       (
-         This : in     Feuille_Constante_T;
+         This : in     Valeur_Constante_T;
          Base : in     Base_Faits_P.Base_De_Faits_T
       )
       return Entier_T;
@@ -41,7 +41,7 @@ is
 
 private
 
-   type Feuille_Constante_T is new Valeur_Abstraite_T with
+   type Valeur_Constante_T is new Valeur_Abstraite_T with
       record
          Valeur : Entier_T;
          --  La valeur constante à stocker.
