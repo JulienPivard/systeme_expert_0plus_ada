@@ -18,7 +18,7 @@ package Sys_Exp_P.Moteur_Inference_P
       Spark_Mode     => Off
 is
 
-   type Moteur_Inference_T is tagged limited private;
+   type Moteur_Inference_T (<>) is tagged limited private;
 
    function Creer
       (Base_De_Regles : in     Regles_P.Regle_Abstraite_T'Class)
