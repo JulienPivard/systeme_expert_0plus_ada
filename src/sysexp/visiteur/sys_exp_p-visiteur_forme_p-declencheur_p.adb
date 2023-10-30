@@ -19,17 +19,13 @@ with Sys_Exp_P.Forme_P.Premisse_P.Fait_Entier_P;
 with Sys_Exp_P.Forme_P.Premisse_P.Symbole_Constant_P;
 with Sys_Exp_P.Forme_P.Premisse_P.Symbole_Fait_P;
 
-with Sys_Exp_P.Valeur_P;
-
 package body Sys_Exp_P.Visiteur_Forme_P.Declencheur_P
    with Spark_Mode => Off
 is
 
    package Booleen_R renames Sys_Exp_P.Fait_P.Booleen_P;
    package Entier_R  renames Sys_Exp_P.Fait_P.Entier_P;
-   package Valeur_R  renames Sys_Exp_P.Valeur_P;
 
-   package Base_Faits_R renames Sys_Exp_P.Base_Faits_P;
    package Symbolique_R renames Sys_Exp_P.Fait_P.Symbolique_P;
 
    ---------------------------------------------------------------------------
@@ -111,7 +107,7 @@ is
          This.Ajouter_Un_Fait (Fait => Fait);
       end Bloc_Lire_Valeur;
    exception
-      when E : Base_Faits_R.E_Fait_Inconnu | Valeur_R.E_Fait_Inconnu =>
+      when E : E_Fait_Inconnu =>
          This.Code_Erreur := Fait_Expression_Inconnu_E;
          Ada.Strings.Fixed.Move
             (
@@ -119,7 +115,7 @@ is
                Target => This.Message_D_Erreur,
                Drop   => Ada.Strings.Right
             );
-      when E : Valeur_R.E_Fait_Non_Entier =>
+      when E : E_Fait_Non_Entier =>
          This.Code_Erreur := Incoherence_Fait_E;
          Ada.Strings.Fixed.Move
             (
@@ -127,7 +123,7 @@ is
                Target => This.Message_D_Erreur,
                Drop   => Ada.Strings.Right
             );
-      when E : Valeur_R.E_Division_Par_Zero =>
+      when E : E_Division_Par_Zero =>
          This.Code_Erreur := Div_Par_Zero_E;
          Ada.Strings.Fixed.Move
             (

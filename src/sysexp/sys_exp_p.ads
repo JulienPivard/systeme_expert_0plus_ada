@@ -22,4 +22,13 @@ is
    type Nom_Symbole_T is new Nom_T;
    --  Un nom symbolique différent d'un nom.
 
+   E_Fait_Non_Entier   : exception;
+   --  Exception déclenchée quand le fait lu n'est pas un entier.
+   E_Division_Par_Zero : exception;
+   --  Exception déclenché par une division par zéro.
+   E_Fait_Deja_Present : exception;
+   --  Exception déclenchée quand un fait est déjà présent dans la base.
+   E_Fait_Inconnu      : exception;
+   --  Exception déclenchée quand le fait est inconnu de la base.
+
 end Sys_Exp_P;

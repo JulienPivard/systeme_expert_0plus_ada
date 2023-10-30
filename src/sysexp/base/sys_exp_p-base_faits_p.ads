@@ -15,11 +15,6 @@ package Sys_Exp_P.Base_Faits_P
       Spark_Mode     => Off
 is
 
-   E_Fait_Deja_Present : exception;
-   --  Exception déclenchée quand un fait est déjà présent dans la base.
-   E_Fait_Inconnu      : exception;
-   --  Exception déclenchée quand le fait est inconnu de la base.
-
    subtype Fait_Abstrait_T is Sys_Exp_P.Fait_P.Fait_Abstrait_T;
 
    type Base_De_Faits_T is tagged limited private;

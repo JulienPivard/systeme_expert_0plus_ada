@@ -16,7 +16,7 @@ is
       This.Base.all.Ajouter (Nouvel_Item => Fait);
       This.Conclusion_A_Ete_Declenchee := True;
    exception
-      when E : Sys_Exp_P.Base_Faits_P.E_Fait_Deja_Present =>
+      when E : E_Fait_Deja_Present =>
          This.Code_Erreur := Incoherence_Fait_E;
          Ada.Strings.Fixed.Move
             (
