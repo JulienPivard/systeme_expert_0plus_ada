@@ -63,8 +63,8 @@ is
       (T : in out Test_Fixt_T)
    is
    begin
-      T.Visiteur.Base := Base'Access;
       Sys_Exp_P.Base_Faits_P.Extension_P.R_A_Z (Base => Base);
+      T.Visiteur.Base                        := Base'Access;
       T.Visiteur.Premisse_A_Ete_Verifiee     := False;
       T.Visiteur.Conclusion_A_Ete_Declenchee := False;
       T.Visiteur.Code_Erreur                 := Tout_Va_Bien_E;
@@ -1592,7 +1592,7 @@ is
       Base_Tmp : Sys_Exp_P.Base_Faits_P.Base_De_Faits_T;
 
       V : constant Sys_Exp_P.Valeur_P.Valeur_Abstraite_T'Class :=
-         Facilites_P.Valeur_P.Creer_Valeur
+         Facilites_P.Valeur_P.Creer_Fait
             (
                Base   => Base_Tmp,
                Valeur => Valeur
