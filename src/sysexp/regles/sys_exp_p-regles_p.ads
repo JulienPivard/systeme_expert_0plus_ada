@@ -117,7 +117,7 @@ is
 
    overriding
    function Lire_Successeur
-      (This : in Regle_Abstraite_T)
+      (This : in     Regle_Abstraite_T)
       return Regle_Interface_T'Class;
    --  Lit la règle successeur de celle-ci.
    --  @param This
@@ -126,7 +126,7 @@ is
 
    overriding
    function Possede_Successeur
-      (This : in Regle_Abstraite_T)
+      (This : in     Regle_Abstraite_T)
       return Boolean;
    --  La règle possède une règle suivante.
    --  @param This
@@ -135,7 +135,7 @@ is
 
    overriding
    function Est_Declenchee
-      (This : in Regle_Abstraite_T)
+      (This : in     Regle_Abstraite_T)
       return Boolean;
    --  La règle a déjà été déclenchée.
    --  @param This
@@ -150,11 +150,12 @@ private
          "="          => Conclusion_R."="
       );
 
-   subtype Conclusion_T is Conclusion_Holder_P.Holder;
-
    package Regle_Holder_P is new Ada.Containers.Indefinite_Holders
       (Element_Type => Regle_Interface_T'Class);
 
+   package Visiteur_R renames Sys_Exp_P.Visiteur_Forme_P;
+
+   subtype Conclusion_T is Conclusion_Holder_P.Holder;
    subtype Successeur_T is Regle_Holder_P.Holder;
 
    type Regle_Abstraite_T is abstract new Regle_Interface_T with
@@ -182,8 +183,6 @@ private
    --  Le base de faits.
    --  @return La conclusion a pu être ajoutée.
 
-   package Visiteur_R renames Sys_Exp_P.Visiteur_Forme_P;
-
    procedure Verifier_Flag_Erreur_Visiteur
       (
          Regle    : in     Regle_Abstraite_T'Class;
@@ -198,7 +197,7 @@ private
    --------------------------------------
    overriding
    function Lire_Successeur
-      (This : in Regle_Abstraite_T)
+      (This : in     Regle_Abstraite_T)
       return Regle_Interface_T'Class
    is (This.Successeur.Element);
    --------------------------------------
@@ -206,7 +205,7 @@ private
    --------------------------------------
    overriding
    function Possede_Successeur
-      (This : in Regle_Abstraite_T)
+      (This : in     Regle_Abstraite_T)
       return Boolean
    is (not This.Successeur.Is_Empty);
    --------------------------------------
@@ -214,7 +213,7 @@ private
    --------------------------------------
    overriding
    function Est_Declenchee
-      (This : in Regle_Abstraite_T)
+      (This : in     Regle_Abstraite_T)
       return Boolean
    is (This.Regle_Declenchee);
    --------------------------------------

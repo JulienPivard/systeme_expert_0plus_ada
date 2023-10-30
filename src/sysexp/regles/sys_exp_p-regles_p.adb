@@ -29,14 +29,14 @@ is
       )
       return Boolean
    is
-      Au_Moins_Une_Conclusion_Declenchee : constant Boolean :=
+      Une_Conclusion_Declenchee : constant Boolean :=
          (
             if This.Possede_Successeur then
                This.Successeur.Reference.Iterer (Base => Base)
             else
                False
          );
-      Resultat : constant Boolean :=
+      La_Regle_A_Ete_Declenchee : constant Boolean :=
          (
             if This.Regle_Declenchee then
                False
@@ -44,7 +44,7 @@ is
                This.Declencher (Base => Base)
          );
    begin
-      return Resultat or else Au_Moins_Une_Conclusion_Declenchee;
+      return La_Regle_A_Ete_Declenchee or else Une_Conclusion_Declenchee;
    end Iterer;
    ---------------------------------------------------------------------------
 
