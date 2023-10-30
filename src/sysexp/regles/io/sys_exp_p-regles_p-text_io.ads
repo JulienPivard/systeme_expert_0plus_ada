@@ -12,6 +12,9 @@ package Sys_Exp_P.Regles_P.Text_IO
 is
 
    procedure Put_Line
+      (I : in     Regle_Interface_T'Class);
+
+   procedure Put_Line
       (Item : in     Regle_Abstraite_T'Class);
 
 end Sys_Exp_P.Regles_P.Text_IO;

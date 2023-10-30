@@ -49,7 +49,7 @@ is
    procedure Fait_Inconnu is
       Nom : constant Nom_T := Facilites_P.Creer_Nom;
 
-      Feuille : constant Feuille_Fait_T := Creer (Nom => Nom);
+      Feuille : constant Valeur_Fait_T := Creer (Nom => Nom);
 
       B : Base_Faits_P.Base_De_Faits_T;
       V : Entier_T;
@@ -72,8 +72,8 @@ is
    procedure Fait_N_Est_Pas_Entier is
       use type Sys_Exp_P.Fait_P.Type_De_Fait_T;
 
-      Nom     : constant Nom_T          := Facilites_P.Creer_Nom;
-      Feuille : constant Feuille_Fait_T := Creer (Nom => Nom);
+      Nom     : constant Nom_T         := Facilites_P.Creer_Nom;
+      Feuille : constant Valeur_Fait_T := Creer (Nom => Nom);
 
       Base  : Sys_Exp_P.Base_Faits_P.Base_De_Faits_T;
       Sorte : Sys_Exp_P.Fait_P.Type_De_Fait_T;

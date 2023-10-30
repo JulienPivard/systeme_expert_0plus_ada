@@ -13,10 +13,10 @@ is
       (Item : in     Valeur_Abstraite_T'Class)
    is
    begin
-      if    Item in Fait_P.Feuille_Fait_T                  then
-         Afficher (Fait      => Fait_P.Feuille_Fait_T                  (Item));
-      elsif Item in Constante_P.Feuille_Constante_T        then
-         Afficher (Constante => Constante_P.Feuille_Constante_T        (Item));
+      if    Item in Fait_P.Valeur_Fait_T                   then
+         Afficher (Fait      => Fait_P.Valeur_Fait_T (Item));
+      elsif Item in Constante_P.Valeur_Constante_T         then
+         Afficher (Constante => Constante_P.Valeur_Constante_T (Item));
       elsif Item in Operateur_P.Operateur_Abstrait_T'Class then
          Afficher (Operateur => Operateur_P.Operateur_Abstrait_T'Class (Item));
       end if;
@@ -39,7 +39,7 @@ is
 
    ---------------------------------------------------------------------------
    procedure Afficher
-      (Fait : in     Fait_P.Feuille_Fait_T)
+      (Fait : in     Fait_P.Valeur_Fait_T)
    is
    begin
       Fait_P.Text_IO.Put (Item => Fait);
@@ -48,7 +48,7 @@ is
 
    ---------------------------------------------------------------------------
    procedure Afficher
-      (Constante : in     Constante_P.Feuille_Constante_T)
+      (Constante : in     Constante_P.Valeur_Constante_T)
    is
    begin
       Constante_P.Text_IO.Put (Item => Constante);

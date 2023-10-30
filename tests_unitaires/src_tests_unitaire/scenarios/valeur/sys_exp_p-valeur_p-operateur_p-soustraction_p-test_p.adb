@@ -52,15 +52,15 @@ is
       Nom_1 : constant Nom_T := Facilites_P.Creer_Nom;
       Nom_2 : constant Nom_T := Facilites_P.Creer_Nom_Different (Nom => Nom_1);
 
-      V_1 : constant Sys_Exp_P.Valeur_P.Fait_P.Feuille_Fait_T :=
+      V_1 : constant Sys_Exp_P.Valeur_P.Fait_P.Valeur_Fait_T :=
          Sys_Exp_P.Valeur_P.Fait_P.Creer (Nom => Nom_1);
-      V_2 : constant Sys_Exp_P.Valeur_P.Fait_P.Feuille_Fait_T :=
+      V_2 : constant Sys_Exp_P.Valeur_P.Fait_P.Valeur_Fait_T :=
          Sys_Exp_P.Valeur_P.Fait_P.Creer (Nom => Nom_2);
 
-      V_3 : constant Sys_Exp_P.Valeur_P.Constante_P.Feuille_Constante_T :=
+      V_3 : constant Sys_Exp_P.Valeur_P.Constante_P.Valeur_Constante_T :=
          Sys_Exp_P.Valeur_P.Constante_P.Creer
             (Valeur => Entier_Alea_P.Random (Gen => Generateur_Entier));
-      V_4 : constant Sys_Exp_P.Valeur_P.Constante_P.Feuille_Constante_T :=
+      V_4 : constant Sys_Exp_P.Valeur_P.Constante_P.Valeur_Constante_T :=
          Sys_Exp_P.Valeur_P.Constante_P.Creer
             (Valeur => Entier_Alea_P.Random (Gen => Generateur_Entier));
    begin
@@ -140,13 +140,13 @@ is
    begin
       Bloc_Creer_Valeur :
       declare
-         F_1 : constant Sys_Exp_P.Valeur_P.Fait_P.Feuille_Fait_T :=
+         F_1 : constant Sys_Exp_P.Valeur_P.Fait_P.Valeur_Fait_T :=
             Facilites_P.Valeur_P.Creer_Fait
                (
                   Base   => Base,
                   Valeur => Valeur_1
                );
-         F_2 : constant Sys_Exp_P.Valeur_P.Fait_P.Feuille_Fait_T :=
+         F_2 : constant Sys_Exp_P.Valeur_P.Fait_P.Valeur_Fait_T :=
             Facilites_P.Valeur_P.Creer_Fait
                (
                   Base   => Base,
@@ -184,9 +184,9 @@ is
    begin
       Bloc_Creer_Valeur :
       declare
-         C_1 : constant Sys_Exp_P.Valeur_P.Constante_P.Feuille_Constante_T :=
+         C_1 : constant Sys_Exp_P.Valeur_P.Constante_P.Valeur_Constante_T :=
             Facilites_P.Valeur_P.Creer_Constante (Valeur => Valeur_1);
-         C_2 : constant Sys_Exp_P.Valeur_P.Constante_P.Feuille_Constante_T :=
+         C_2 : constant Sys_Exp_P.Valeur_P.Constante_P.Valeur_Constante_T :=
             Facilites_P.Valeur_P.Creer_Constante (Valeur => Valeur_2);
 
          Resultat : constant Entier_T := Valeur_1 - Valeur_2;

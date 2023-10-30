@@ -1644,7 +1644,7 @@ is
    is
       Nom : constant Sys_Exp_P.Nom_T := Facilites_P.Creer_Nom;
 
-      V : constant Sys_Exp_P.Valeur_P.Fait_P.Feuille_Fait_T :=
+      V : constant Sys_Exp_P.Valeur_P.Fait_P.Valeur_Fait_T :=
          Sys_Exp_P.Valeur_P.Fait_P.Creer (Nom => Nom);
 
       E : constant Conclusion_Expression_T :=

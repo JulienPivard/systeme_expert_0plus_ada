@@ -20,7 +20,7 @@ is
          Zero_Exclus : in     Boolean := False;
          Valeur      :    out Sys_Exp_P.Entier_T
       )
-      return Sys_Exp_P.Valeur_P.Constante_P.Feuille_Constante_T;
+      return Sys_Exp_P.Valeur_P.Constante_P.Valeur_Constante_T;
 
    function Creer_Fait
       (
@@ -28,7 +28,7 @@ is
          Base        : in out Sys_Exp_P.Base_Faits_P.Base_De_Faits_T;
          Valeur      :    out Sys_Exp_P.Entier_T
       )
-      return Sys_Exp_P.Valeur_P.Fait_P.Feuille_Fait_T;
+      return Sys_Exp_P.Valeur_P.Fait_P.Valeur_Fait_T;
 
    function Creer_Fait_Ou_Constante
       (

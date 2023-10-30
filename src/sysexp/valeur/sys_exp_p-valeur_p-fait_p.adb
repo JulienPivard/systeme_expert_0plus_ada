@@ -8,10 +8,10 @@ is
    ---------------------------------------------------------------------------
    function Creer
       (Nom : in     Nom_T)
-      return Feuille_Fait_T
+      return Valeur_Fait_T
    is
    begin
-      return Feuille_Fait_T'(Nom => Nom_P.To_Holder (New_Item => Nom));
+      return Valeur_Fait_T'(Nom => Nom_P.To_Holder (New_Item => Nom));
    end Creer;
    ---------------------------------------------------------------------------
 
@@ -19,7 +19,7 @@ is
    overriding
    function Interpreter
       (
-         This : in     Feuille_Fait_T;
+         This : in     Valeur_Fait_T;
          Base : in     Base_Faits_P.Base_De_Faits_T
       )
       return Entier_T
