@@ -2,14 +2,22 @@ with Ada.Numerics.Discrete_Random;
 
 with AUnit.Assertions;
 
+with Sys_Exp_P.Fait_P.Booleen_P;
+
 with Sys_Exp_P.Forme_P.Conclusion_P.Bool_False_P;
 with Sys_Exp_P.Forme_P.Premisse_P.Bool_False_P;
+with Sys_Exp_P.Forme_P.Premisse_P.Bool_True_P;
+
+with Sys_Exp_P.Base_Faits_P;
+with Sys_Exp_P.Base_Faits_P.Extension_P;
 
 with Facilites_P;
 
 package body Sys_Exp_P.Regles_P.Avec_Premisse_P.Test_P
    with Spark_Mode => Off
 is
+
+   Base : aliased Sys_Exp_P.Base_Faits_P.Base_De_Faits_T;
 
    package ID_Alea_P is new Ada.Numerics.Discrete_Random
       (Result_Subtype => ID_Regle_T);
@@ -21,8 +29,9 @@ is
    procedure Set_Up
       (T : in out Test_Fixt_T)
    is
+      pragma Unreferenced (T);
    begin
-      null;
+      Sys_Exp_P.Base_Faits_P.Extension_P.R_A_Z (Base => Base);
    end Set_Up;
    ---------------------------------------------------------------------------
 
@@ -51,8 +60,8 @@ is
 
       C : constant Conclusion_R.Bool_False_P.Conclusion_False_T :=
          Conclusion_R.Bool_False_P.Creer (Nom => Nom);
-      P : constant Premisse_R.Bool_False_P.Premisse_False_T :=
-         Premisse_R.Bool_False_P.Creer (Nom => Nom);
+      P : constant Premisse_R.Bool_False_P.Premisse_False_T     :=
+         Premisse_R.Bool_False_P.Creer   (Nom => Nom);
    begin
       AUnit.Assertions.Assert
          (
@@ -74,7 +83,12 @@ is
             Condition => T.Regle.Premisses.Is_Empty,
             Message   => "Les premisses doivent être vide"
          );
-      T.Regle := Creer (ID_Regle => ID, Conclusion => C, Premisse => P);
+      T.Regle := Creer
+         (
+            ID_Regle   => ID,
+            Conclusion => C,
+            Premisse   => P
+         );
       AUnit.Assertions.Assert
          (
             Condition => T.Regle.ID_Regle = ID,
@@ -111,6 +125,129 @@ is
                "[" & String (T.Regle.Conclusion.Element.Lire_Nom) & "]"
          );
    end Test_Creer;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Test_Ajouter_Premisse
+      (T : in out Test_Fixt_T)
+   is
+      use type Ada.Containers.Count_Type;
+
+      subtype NB_Item_T is Ada.Containers.Count_Type;
+
+      ID : constant ID_Regle_T := ID_Alea_P.Random (Gen => Generateur_ID);
+
+      Nom_1 : constant Nom_T := Facilites_P.Creer_Nom;
+      Nom_2 : constant Nom_T := Facilites_P.Creer_Nom_Different (Nom => Nom_1);
+
+      C : constant Conclusion_R.Bool_False_P.Conclusion_False_T :=
+         Conclusion_R.Bool_False_P.Creer (Nom => Nom_1);
+      P : constant Premisse_R.Bool_True_P.Premisse_True_T       :=
+         Premisse_R.Bool_True_P.Creer    (Nom => Nom_2);
+   begin
+      T.Regle := Creer
+         (
+            ID_Regle   => ID,
+            Conclusion => C,
+            Premisse   => P
+         );
+      AUnit.Assertions.Assert
+         (
+            Condition => T.Regle.Premisses.Length = 1,
+            Message   => "Les premisses doivent en contenir au " &
+               "moins une et pas " &
+               "[" & T.Regle.Premisses.Length'Image & "] "
+         );
+      Boucle_Verifier_Ajout :
+      for I in 2 .. 10 loop
+         Bloc_Ajouter_Premisse :
+         declare
+            Nom_3 : constant Nom_T :=
+               Facilites_P.Creer_Nom_Different (Nom => Nom_1);
+            Q     : constant Premisse_R.Bool_False_P.Premisse_False_T :=
+               Premisse_R.Bool_False_P.Creer   (Nom => Nom_3);
+         begin
+            T.Regle.Ajouter (Premisse => Q);
+         end Bloc_Ajouter_Premisse;
+
+         AUnit.Assertions.Assert
+            (
+               Condition => T.Regle.Premisses.Length = NB_Item_T (I),
+               Message   => "Les premisses doivent en contenir au " &
+                  "moins [" & I'Image & "] et pas " &
+                  "[" & T.Regle.Premisses.Length'Image & "] "
+            );
+      end loop Boucle_Verifier_Ajout;
+   end Test_Ajouter_Premisse;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Test_Verifier_Premisse
+      (T : in out Test_Fixt_T)
+   is
+      use type Ada.Containers.Count_Type;
+
+      ID : constant ID_Regle_T := ID_Alea_P.Random (Gen => Generateur_ID);
+
+      Nom_1 : constant Nom_T := Facilites_P.Creer_Nom;
+      Nom_2 : constant Nom_T := Facilites_P.Creer_Nom_Different (Nom => Nom_1);
+      Nom_3 : constant Nom_T := Facilites_P.Creer_Nom_Different (Nom => Nom_2);
+
+      C : constant Conclusion_R.Bool_False_P.Conclusion_False_T :=
+         Conclusion_R.Bool_False_P.Creer (Nom => Nom_1);
+      P : constant Premisse_R.Bool_True_P.Premisse_True_T       :=
+         Premisse_R.Bool_True_P.Creer    (Nom => Nom_2);
+      Q : constant Premisse_R.Bool_False_P.Premisse_False_T     :=
+         Premisse_R.Bool_False_P.Creer   (Nom => Nom_3);
+
+      F_V : constant Sys_Exp_P.Fait_P.Booleen_P.Fait_Booleen_T :=
+         Sys_Exp_P.Fait_P.Booleen_P.Creer
+            (
+               Nom    => Nom_2,
+               Valeur => True
+            );
+      F_F : constant Sys_Exp_P.Fait_P.Booleen_P.Fait_Booleen_T :=
+         Sys_Exp_P.Fait_P.Booleen_P.Creer
+            (
+               Nom    => Nom_3,
+               Valeur => False
+            );
+
+      Premisse_Verifiee : Boolean;
+   begin
+      Base.Ajouter (Nouvel_Item => F_V);
+      T.Regle := Creer
+         (
+            ID_Regle   => ID,
+            Conclusion => C,
+            Premisse   => P
+         );
+      Premisse_Verifiee := T.Regle.Verifier_Premisse (Base => Base'Access);
+      AUnit.Assertions.Assert
+         (
+            Condition => Premisse_Verifiee,
+            Message   => "La premisse [" & String (Nom_2) & "] " &
+               "doit etre verifiee"
+         );
+
+      T.Regle.Ajouter (Premisse => Q);
+
+      Base.Ajouter (Nouvel_Item => F_F);
+      Premisse_Verifiee := T.Regle.Verifier_Premisse (Base => Base'Access);
+      AUnit.Assertions.Assert
+         (
+            Condition => T.Regle.Premisses.Length = 2,
+            Message   => "Les premisses doivent en contenir au " &
+               "moins deux et pas " &
+               "[" & T.Regle.Premisses.Length'Image & "] "
+         );
+      AUnit.Assertions.Assert
+         (
+            Condition => Premisse_Verifiee,
+            Message   => "La premisse [" & String (Nom_3) & "] " &
+               "doit etre verifiee"
+         );
+   end Test_Verifier_Premisse;
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------

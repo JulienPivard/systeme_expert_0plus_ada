@@ -30,4 +30,10 @@ is
    procedure Test_Creer
       (T : in out Test_Fixt_T);
 
+   procedure Test_Ajouter_Premisse
+      (T : in out Test_Fixt_T);
+
+   procedure Test_Verifier_Premisse
+      (T : in out Test_Fixt_T);
+
 end Sys_Exp_P.Regles_P.Avec_Premisse_P.Test_P;
