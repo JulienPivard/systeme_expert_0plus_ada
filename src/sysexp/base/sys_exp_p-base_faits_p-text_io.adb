@@ -14,8 +14,8 @@ is
    is
    begin
       for E : Fait_P.Fait_Abstrait_T'Class of Item.Map_Faits loop
-         Ada.Text_IO.Put_Line
-            (Item => "Type de fait [" & E.Lire_Type'Image & "]");
+         Ada.Text_IO.Put
+            (Item => "Type de fait [" & E.Lire_Type'Image & "] ");
 
          case E.Lire_Type is
             when Fait_P.Booleen_E =>
