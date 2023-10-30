@@ -150,7 +150,7 @@ private
          "="          => Conclusion_R."="
       );
 
-   subtype Conclusion_Class_T is Conclusion_Holder_P.Holder;
+   subtype Conclusion_T is Conclusion_Holder_P.Holder;
 
    package Regle_Holder_P is new Ada.Containers.Indefinite_Holders
       (Element_Type => Regle_Interface_T'Class);
@@ -159,11 +159,11 @@ private
 
    type Regle_Abstraite_T is abstract new Regle_Interface_T with
       record
-         ID_Regle         : ID_Regle_T := ID_Regle_T'First;
+         ID_Regle         : ID_Regle_T   := ID_Regle_T'First;
          --  Le numéro de la règles dans la base de règles.
-         Conclusion       : Conclusion_Class_T;
+         Conclusion       : Conclusion_T := Conclusion_Holder_P.Empty_Holder;
          --  La conclusion qui sera déclenchée par la règle si possible.
-         Regle_Declenchee : Boolean := False;
+         Regle_Declenchee : Boolean      := False;
          --  Pour garder en mémoire si la règle a déjà été déclenchée.
          Successeur       : Successeur_T := Regle_Holder_P.Empty_Holder;
          --  La règle suivante.
