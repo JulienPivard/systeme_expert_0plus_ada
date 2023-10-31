@@ -41,15 +41,6 @@ is
    --  Le base de faits.
    --  @return Au moins une règle a été déclenchée.
 
-   function Lire_Successeur
-      (This : in     Regle_Interface_T)
-      return Regle_Interface_T'Class
-   is abstract;
-   --  Lit la règle successeur de celle-ci.
-   --  @param This
-   --  La règle actuelle.
-   --  @return La règle successeur.
-
    function Possede_Successeur
       (This : in     Regle_Interface_T)
       return Boolean
@@ -114,15 +105,6 @@ is
    --  @param Base
    --  Le base de faits.
    --  @return Au moins une règle a été déclenchée.
-
-   overriding
-   function Lire_Successeur
-      (This : in     Regle_Abstraite_T)
-      return Regle_Interface_T'Class;
-   --  Lit la règle successeur de celle-ci.
-   --  @param This
-   --  La règle actuelle.
-   --  @return La règle successeur.
 
    overriding
    function Possede_Successeur
@@ -193,14 +175,6 @@ private
    --  La règle abstraite.
    --  @param Visiteur
    --  Le visiteur utilisé.
-
-   --------------------------------------
-   overriding
-   function Lire_Successeur
-      (This : in     Regle_Abstraite_T)
-      return Regle_Interface_T'Class
-   is (This.Successeur.Element);
-   --------------------------------------
 
    --------------------------------------
    overriding
