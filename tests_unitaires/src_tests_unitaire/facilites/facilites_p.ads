@@ -37,6 +37,8 @@ is
       return Nom_T;
    --  Crée aléatoirement un nom de taille aléatoire
    --  différent de celui donné en entré.
+   --  @param Nom
+   --  Le nom de base.
    --  @return Un nom aléatoire différent.
 
    function Creer_Symbole
@@ -49,6 +51,8 @@ is
       return Nom_Symbole_T;
    --  Crée aléatoirement un nom symbolique de taille aléatoire
    --  différent de celui donné en entré.
+   --  @param Nom
+   --  Le nom de base.
    --  @return Un nom symbolique aléatoire différent.
 
 end Facilites_P;

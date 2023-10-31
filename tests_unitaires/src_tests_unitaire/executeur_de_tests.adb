@@ -10,6 +10,7 @@ with Suite_De_Tests_Faits;
 with Suite_De_Tests_Forme_Conclusion;
 with Suite_De_Tests_Forme_Premisse;
 with Suite_De_Tests_Operateur;
+with Suite_De_Tests_Regles;
 with Suite_De_Tests_Valeur;
 with Suite_De_Tests_Visiteur_Forme;
 
@@ -23,6 +24,8 @@ procedure Executeur_De_Tests is
       (Suite => Suite_De_Tests_Operateur);
    procedure Runner_Suite_Valeur    is new AUnit.Run.Test_Runner
       (Suite => Suite_De_Tests_Valeur);
+   procedure Runner_Suite_Regles    is new AUnit.Run.Test_Runner
+      (Suite => Suite_De_Tests_Regles);
 
    procedure Runner_Suite_Forme_Conclusion is new AUnit.Run.Test_Runner
       (Suite => Suite_De_Tests_Forme_Conclusion);
@@ -81,6 +84,11 @@ begin
          Options  => Options
       );
    Runner_Suite_Visiteur_Forme
+      (
+         Reporter => Reporter,
+         Options  => Options
+      );
+   Runner_Suite_Regles
       (
          Reporter => Reporter,
          Options  => Options

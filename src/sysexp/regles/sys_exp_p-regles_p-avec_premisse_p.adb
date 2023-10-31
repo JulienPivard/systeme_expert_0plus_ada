@@ -55,9 +55,7 @@ is
                   Regle    => This,
                   Visiteur => Visiteur
                );
-            Premisses_Verifiee :=
-               Premisses_Verifiee
-               and then
+            Premisses_Verifiee := Premisses_Verifiee and then
                Visiteur.Au_Moins_Une_Premisse_Verifiee;
          end Bloc_Visiter;
 

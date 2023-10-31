@@ -30,7 +30,7 @@ is
                "[" & String (Item.Conclusion.Element.Lire_Nom) & "]"
          );
       if Item.Possede_Successeur then
-         Put_Line (I => Item.Lire_Successeur);
+         Put_Line (I => Item.Successeur.Element);
       end if;
    end Put_Line;
    ---------------------------------------------------------------------------

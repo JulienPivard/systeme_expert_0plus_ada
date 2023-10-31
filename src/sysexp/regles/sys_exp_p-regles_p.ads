@@ -41,15 +41,6 @@ is
    --  Le base de faits.
    --  @return Au moins une règle a été déclenchée.
 
-   function Lire_Successeur
-      (This : in     Regle_Interface_T)
-      return Regle_Interface_T'Class
-   is abstract;
-   --  Lit la règle successeur de celle-ci.
-   --  @param This
-   --  La règle actuelle.
-   --  @return La règle successeur.
-
    function Possede_Successeur
       (This : in     Regle_Interface_T)
       return Boolean
@@ -116,17 +107,8 @@ is
    --  @return Au moins une règle a été déclenchée.
 
    overriding
-   function Lire_Successeur
-      (This : in Regle_Abstraite_T)
-      return Regle_Interface_T'Class;
-   --  Lit la règle successeur de celle-ci.
-   --  @param This
-   --  La règle actuelle.
-   --  @return La règle successeur.
-
-   overriding
    function Possede_Successeur
-      (This : in Regle_Abstraite_T)
+      (This : in     Regle_Abstraite_T)
       return Boolean;
    --  La règle possède une règle suivante.
    --  @param This
@@ -135,7 +117,7 @@ is
 
    overriding
    function Est_Declenchee
-      (This : in Regle_Abstraite_T)
+      (This : in     Regle_Abstraite_T)
       return Boolean;
    --  La règle a déjà été déclenchée.
    --  @param This
@@ -150,20 +132,21 @@ private
          "="          => Conclusion_R."="
       );
 
-   subtype Conclusion_Class_T is Conclusion_Holder_P.Holder;
-
    package Regle_Holder_P is new Ada.Containers.Indefinite_Holders
       (Element_Type => Regle_Interface_T'Class);
 
+   package Visiteur_R renames Sys_Exp_P.Visiteur_Forme_P;
+
+   subtype Conclusion_T is Conclusion_Holder_P.Holder;
    subtype Successeur_T is Regle_Holder_P.Holder;
 
    type Regle_Abstraite_T is abstract new Regle_Interface_T with
       record
-         ID_Regle         : ID_Regle_T := ID_Regle_T'First;
+         ID_Regle         : ID_Regle_T   := ID_Regle_T'First;
          --  Le numéro de la règles dans la base de règles.
-         Conclusion       : Conclusion_Class_T;
+         Conclusion       : Conclusion_T := Conclusion_Holder_P.Empty_Holder;
          --  La conclusion qui sera déclenchée par la règle si possible.
-         Regle_Declenchee : Boolean := False;
+         Regle_Declenchee : Boolean      := False;
          --  Pour garder en mémoire si la règle a déjà été déclenchée.
          Successeur       : Successeur_T := Regle_Holder_P.Empty_Holder;
          --  La règle suivante.
@@ -182,8 +165,6 @@ private
    --  Le base de faits.
    --  @return La conclusion a pu être ajoutée.
 
-   package Visiteur_R renames Sys_Exp_P.Visiteur_Forme_P;
-
    procedure Verifier_Flag_Erreur_Visiteur
       (
          Regle    : in     Regle_Abstraite_T'Class;
@@ -197,16 +178,8 @@ private
 
    --------------------------------------
    overriding
-   function Lire_Successeur
-      (This : in Regle_Abstraite_T)
-      return Regle_Interface_T'Class
-   is (This.Successeur.Element);
-   --------------------------------------
-
-   --------------------------------------
-   overriding
    function Possede_Successeur
-      (This : in Regle_Abstraite_T)
+      (This : in     Regle_Abstraite_T)
       return Boolean
    is (not This.Successeur.Is_Empty);
    --------------------------------------
@@ -214,7 +187,7 @@ private
    --------------------------------------
    overriding
    function Est_Declenchee
-      (This : in Regle_Abstraite_T)
+      (This : in     Regle_Abstraite_T)
       return Boolean
    is (This.Regle_Declenchee);
    --------------------------------------
