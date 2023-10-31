@@ -30,4 +30,16 @@ is
    procedure Test_Creer
       (T : in out Test_Fixt_T);
 
+   procedure Test_Ajouter_Successeur
+      (T : in out Test_Fixt_T);
+
+   procedure Test_Possede_Successeur
+      (T : in out Test_Fixt_T);
+
+   procedure Test_Iterer
+      (T : in out Test_Fixt_T);
+
+   procedure Test_Est_Declenchee
+      (T : in out Test_Fixt_T);
+
 end Sys_Exp_P.Regles_P.Sans_Premisse_P.Test_P;

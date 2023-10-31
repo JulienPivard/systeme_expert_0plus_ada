@@ -128,6 +128,270 @@ is
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
+   procedure Test_Ajouter_Successeur
+      (T : in out Test_Fixt_T)
+   is
+      ID : constant ID_Regle_T := ID_Alea_P.Random (Gen => Generateur_ID);
+
+      Nom_1 : constant Nom_T := Facilites_P.Creer_Nom;
+      Nom_2 : constant Nom_T := Facilites_P.Creer_Nom_Different (Nom => Nom_1);
+
+      C : constant Conclusion_R.Bool_False_P.Conclusion_False_T :=
+         Conclusion_R.Bool_False_P.Creer (Nom => Nom_1);
+      P : constant Premisse_R.Bool_True_P.Premisse_True_T       :=
+         Premisse_R.Bool_True_P.Creer    (Nom => Nom_2);
+   begin
+      T.Regle := Creer
+         (
+            ID_Regle   => ID,
+            Conclusion => C,
+            Premisse   => P
+         );
+      AUnit.Assertions.Assert
+         (
+            Condition => T.Regle.Successeur.Is_Empty,
+            Message   => "La regle ne doit avoir aucun successeur"
+         );
+
+      Bloc_Autre_Regle :
+      declare
+         ID_Bis : constant ID_Regle_T :=
+            ID_Alea_P.Random (Gen => Generateur_ID);
+
+         R : constant Regle_T := Creer
+            (
+               ID_Regle   => ID_Bis,
+               Conclusion => C,
+               Premisse   => P
+            );
+      begin
+         T.Regle.Ajouter (Successeur => R);
+      end Bloc_Autre_Regle;
+
+      AUnit.Assertions.Assert
+         (
+            Condition => not T.Regle.Successeur.Is_Empty,
+            Message   => "La regle doit avoir un successeur"
+         );
+   end Test_Ajouter_Successeur;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Test_Possede_Successeur
+      (T : in out Test_Fixt_T)
+   is
+      ID : constant ID_Regle_T := ID_Alea_P.Random (Gen => Generateur_ID);
+
+      Nom_1 : constant Nom_T := Facilites_P.Creer_Nom;
+      Nom_2 : constant Nom_T := Facilites_P.Creer_Nom_Different (Nom => Nom_1);
+
+      C : constant Conclusion_R.Bool_False_P.Conclusion_False_T :=
+         Conclusion_R.Bool_False_P.Creer (Nom => Nom_1);
+      P : constant Premisse_R.Bool_True_P.Premisse_True_T       :=
+         Premisse_R.Bool_True_P.Creer    (Nom => Nom_2);
+   begin
+      T.Regle := Creer
+         (
+            ID_Regle   => ID,
+            Conclusion => C,
+            Premisse   => P
+         );
+      AUnit.Assertions.Assert
+         (
+            Condition => not T.Regle.Possede_Successeur,
+            Message   => "La regle ne doit avoir aucun successeur"
+         );
+
+      Bloc_Autre_Regle :
+      declare
+         ID_Bis : constant ID_Regle_T :=
+            ID_Alea_P.Random (Gen => Generateur_ID);
+
+         R : constant Regle_T := Creer
+            (
+               ID_Regle   => ID_Bis,
+               Conclusion => C,
+               Premisse   => P
+            );
+      begin
+         T.Regle.Ajouter (Successeur => R);
+      end Bloc_Autre_Regle;
+
+      AUnit.Assertions.Assert
+         (
+            Condition => T.Regle.Possede_Successeur,
+            Message   => "La regle doit avoir un successeur"
+         );
+   end Test_Possede_Successeur;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Test_Iterer
+      (T : in out Test_Fixt_T)
+   is
+      ID : constant ID_Regle_T := ID_Alea_P.Random (Gen => Generateur_ID);
+
+      Nom_1 : constant Nom_T := Facilites_P.Creer_Nom;
+      Nom_2 : constant Nom_T := Facilites_P.Creer_Nom_Different (Nom => Nom_1);
+      Nom_3 : constant Nom_T := Facilites_P.Creer_Nom_Different (Nom => Nom_1);
+
+      C : constant Conclusion_R.Bool_False_P.Conclusion_False_T :=
+         Conclusion_R.Bool_False_P.Creer (Nom => Nom_1);
+      P : constant Premisse_R.Bool_True_P.Premisse_True_T       :=
+         Premisse_R.Bool_True_P.Creer    (Nom => Nom_3);
+
+      F_V : constant Sys_Exp_P.Fait_P.Booleen_P.Fait_Booleen_T :=
+         Sys_Exp_P.Fait_P.Booleen_P.Creer
+            (
+               Nom    => Nom_2,
+               Valeur => True
+            );
+
+      Reussi : Boolean;
+   begin
+      T.Regle := Creer
+         (
+            ID_Regle   => ID,
+            Conclusion => C,
+            Premisse   => P
+         );
+
+      Bloc_Autre_Regle :
+      declare
+         ID_Bis : constant ID_Regle_T :=
+            ID_Alea_P.Random (Gen => Generateur_ID);
+
+         C_Bis : constant Conclusion_R.Bool_False_P.Conclusion_False_T :=
+            Conclusion_R.Bool_False_P.Creer (Nom => Nom_3);
+         P_Bis : constant Premisse_R.Bool_True_P.Premisse_True_T       :=
+            Premisse_R.Bool_True_P.Creer    (Nom => Nom_2);
+
+         R : constant Regle_T := Creer
+            (
+               ID_Regle   => ID_Bis,
+               Conclusion => C_Bis,
+               Premisse   => P_Bis
+            );
+      begin
+         T.Regle.Ajouter (Successeur => R);
+      end Bloc_Autre_Regle;
+
+      AUnit.Assertions.Assert
+         (
+            Condition => T.Regle.Possede_Successeur,
+            Message   => "La regle doit avoir un successeur"
+         );
+
+      Reussi := T.Regle.Iterer (Base => Base'Access);
+      AUnit.Assertions.Assert
+         (
+            Condition => not Reussi,
+            Message   => "Aucune regle ne doit avoir ete declenchee"
+         );
+      AUnit.Assertions.Assert
+         (
+            Condition => not T.Regle.Est_Declenchee,
+            Message   => "La regle ne doit pas avoir ete declenchee"
+         );
+      Base.Ajouter (Nouvel_Item => F_V);
+      Reussi := T.Regle.Iterer (Base => Base'Access);
+      AUnit.Assertions.Assert
+         (
+            Condition => Reussi,
+            Message   => "Au moins une regle doit avoir ete declenchee"
+         );
+      AUnit.Assertions.Assert
+         (
+            Condition => not T.Regle.Est_Declenchee,
+            Message   => "La regle ne doit pas avoir ete declenchee"
+         );
+   end Test_Iterer;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Test_Est_Declenchee
+      (T : in out Test_Fixt_T)
+   is
+      ID : constant ID_Regle_T := ID_Alea_P.Random (Gen => Generateur_ID);
+
+      Nom_1 : constant Nom_T := Facilites_P.Creer_Nom;
+      Nom_2 : constant Nom_T := Facilites_P.Creer_Nom_Different (Nom => Nom_1);
+      Nom_3 : constant Nom_T := Facilites_P.Creer_Nom_Different (Nom => Nom_1);
+
+      C : constant Conclusion_R.Bool_False_P.Conclusion_False_T :=
+         Conclusion_R.Bool_False_P.Creer (Nom => Nom_1);
+      P : constant Premisse_R.Bool_True_P.Premisse_True_T       :=
+         Premisse_R.Bool_True_P.Creer    (Nom => Nom_2);
+
+      F_V : constant Sys_Exp_P.Fait_P.Booleen_P.Fait_Booleen_T :=
+         Sys_Exp_P.Fait_P.Booleen_P.Creer
+            (
+               Nom    => Nom_2,
+               Valeur => True
+            );
+
+      Reussi : Boolean;
+   begin
+      T.Regle := Creer
+         (
+            ID_Regle   => ID,
+            Conclusion => C,
+            Premisse   => P
+         );
+
+      Bloc_Autre_Regle :
+      declare
+         ID_Bis : constant ID_Regle_T :=
+            ID_Alea_P.Random (Gen => Generateur_ID);
+
+         C_Bis : constant Conclusion_R.Bool_False_P.Conclusion_False_T :=
+            Conclusion_R.Bool_False_P.Creer (Nom => Nom_3);
+         P_Bis : constant Premisse_R.Bool_True_P.Premisse_True_T       :=
+            Premisse_R.Bool_True_P.Creer    (Nom => Nom_3);
+
+         R : constant Regle_T := Creer
+            (
+               ID_Regle   => ID_Bis,
+               Conclusion => C_Bis,
+               Premisse   => P_Bis
+            );
+      begin
+         T.Regle.Ajouter (Successeur => R);
+      end Bloc_Autre_Regle;
+
+      AUnit.Assertions.Assert
+         (
+            Condition => T.Regle.Possede_Successeur,
+            Message   => "La regle doit avoir un successeur"
+         );
+
+      Reussi := T.Regle.Iterer (Base => Base'Access);
+      AUnit.Assertions.Assert
+         (
+            Condition => not Reussi,
+            Message   => "Aucune regle ne doit avoir ete declenchee"
+         );
+      AUnit.Assertions.Assert
+         (
+            Condition => not T.Regle.Est_Declenchee,
+            Message   => "La regle ne doit pas avoir ete declenchee"
+         );
+      Base.Ajouter (Nouvel_Item => F_V);
+      Reussi := T.Regle.Iterer (Base => Base'Access);
+      AUnit.Assertions.Assert
+         (
+            Condition => Reussi,
+            Message   => "Au moins une regle doit avoir ete declenchee"
+         );
+      AUnit.Assertions.Assert
+         (
+            Condition => T.Regle.Est_Declenchee,
+            Message   => "La regle doit avoir ete declenchee"
+         );
+   end Test_Est_Declenchee;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
    procedure Test_Ajouter_Premisse
       (T : in out Test_Fixt_T)
    is
@@ -159,7 +423,7 @@ is
                "[" & T.Regle.Premisses.Length'Image & "] "
          );
       Boucle_Verifier_Ajout :
-      for I in 2 .. 10 loop
+      for I in 2 .. 11 loop
          Bloc_Ajouter_Premisse :
          declare
             Nom_3 : constant Nom_T :=

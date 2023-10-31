@@ -32,6 +32,38 @@ is
          (
             T => Caller_P.Create
                (
+                  Name => Nom_Test & "ajouter successeur",
+                  Test => Scenario_R.Test_Ajouter_Successeur'Access
+               )
+         );
+      Ptr_Test_Suite.all.Add_Test
+         (
+            T => Caller_P.Create
+               (
+                  Name => Nom_Test & "possede succeseur",
+                  Test => Scenario_R.Test_Possede_Successeur'Access
+               )
+         );
+      Ptr_Test_Suite.all.Add_Test
+         (
+            T => Caller_P.Create
+               (
+                  Name => Nom_Test & "iterer",
+                  Test => Scenario_R.Test_Iterer'Access
+               )
+         );
+      Ptr_Test_Suite.all.Add_Test
+         (
+            T => Caller_P.Create
+               (
+                  Name => Nom_Test & "est declenche",
+                  Test => Scenario_R.Test_Est_Declenchee'Access
+               )
+         );
+      Ptr_Test_Suite.all.Add_Test
+         (
+            T => Caller_P.Create
+               (
                   Name => Nom_Test & "ajouter premisse",
                   Test => Scenario_R.Test_Ajouter_Premisse'Access
                )
