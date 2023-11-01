@@ -22,6 +22,9 @@ with Sys_Exp_P.Regles_P.Text_IO;
 with Sys_Exp_P.Moteur_Inference_P;
 with Sys_Exp_P.Moteur_Inference_P.Text_IO;
 
+with Sys_Exp_P.Monteur_P.Directeur_P;
+with Sys_Exp_P.Monteur_P.Test_P;
+
 separate (Executeur_G)
 procedure Executer
    --  (Arguments)
@@ -149,62 +152,19 @@ begin
 
    Bloc_Iterer_Moteur :
    declare
-      E : constant Sys_Exp_P.Valeur_P.Constante_P.Valeur_Constante_T :=
-         Sys_Exp_P.Valeur_P.Constante_P.Creer (Valeur => Valeur);
+      M : Sys_Exp_P.Monteur_P.Test_P.Monteur_T;
 
-      A : constant Conclusion_R.Expression_Entiere_P.Conclusion_Expression_T :=
-         Conclusion_R.Expression_Entiere_P.Creer
-            (
-               Nom        => Nom,
-               Expression => E
-            );
-      C : constant Conclusion_R.Bool_True_P.Conclusion_True_T :=
-         Conclusion_R.Bool_True_P.Creer (Nom => "zioejcn");
-      P : constant Premisse_R.Bool_True_P.Premisse_True_T :=
-         Premisse_R.Bool_True_P.Creer (Nom => "zioejcn");
-      X : constant Conclusion_R.Expression_Entiere_P.Conclusion_Expression_T :=
-         Conclusion_R.Expression_Entiere_P.Creer
-            (
-               Nom        => "toto",
-               Expression => Plus
-            );
-      D : constant Conclusion_R.Bool_True_P.Conclusion_True_T :=
-         Conclusion_R.Bool_True_P.Creer (Nom => "izeib");
-
-      Regle_C : Sys_Exp_P.Regles_P.Regle_Abstraite_T'Class :=
-         Sys_Exp_P.Regles_P.Sans_Premisse_P.Creer
-            (
-               ID_Regle   => 1,
-               Conclusion => C
-            );
-      Regle_D : Sys_Exp_P.Regles_P.Regle_Abstraite_T'Class :=
-         Sys_Exp_P.Regles_P.Sans_Premisse_P.Creer
-            (
-               ID_Regle   => 2,
-               Conclusion => D
-            );
-      Regle_P : Sys_Exp_P.Regles_P.Regle_Abstraite_T'Class :=
-         Sys_Exp_P.Regles_P.Avec_Premisse_P.Creer
-            (
-               ID_Regle   => 3,
-               Conclusion => X,
-               Premisse   => P
-            );
-      Regle_Q : constant Sys_Exp_P.Regles_P.Regle_Abstraite_T'Class :=
-         Sys_Exp_P.Regles_P.Sans_Premisse_P.Creer
-            (
-               ID_Regle   => 4,
-               Conclusion => A
-            );
+      D : Sys_Exp_P.Monteur_P.Directeur_P.Directeur_T :=
+         Sys_Exp_P.Monteur_P.Directeur_P.Creer (Monteur => M);
    begin
-      Regle_P.Ajouter (Successeur => Regle_Q);
-      Regle_D.Ajouter (Successeur => Regle_P);
-      Regle_C.Ajouter (Successeur => Regle_D);
+      D.Construire_Jeu_De_Regles;
 
       Bloc_Moteur :
       declare
+         R : constant Sys_Exp_P.Regles_P.Regle_Abstraite_T'Class := D.Livrer;
+
          Moteur : Sys_Exp_P.Moteur_Inference_P.Moteur_Inference_T :=
-            Sys_Exp_P.Moteur_Inference_P.Creer (Base_De_Regles => Regle_C);
+            Sys_Exp_P.Moteur_Inference_P.Creer (Base_De_Regles => R);
       begin
          Moteur.Analyser_Base_Regles;
 
