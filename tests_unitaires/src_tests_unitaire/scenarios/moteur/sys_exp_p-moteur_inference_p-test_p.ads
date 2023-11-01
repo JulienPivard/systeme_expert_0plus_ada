@@ -2,9 +2,9 @@ with AUnit;
 with AUnit.Test_Fixtures;
 
 --  @summary
---  Les scénarios de tests des règles sans prémisses.
+--  Les scénarios de tests du moteur d'inférence.
 --  @description
---  Les scénarios de tests des règles sans prémisses.
+--  Les scénarios de tests du moteur d'inférence.
 --  @group Regle
 package Sys_Exp_P.Moteur_Inference_P.Test_P
    with
