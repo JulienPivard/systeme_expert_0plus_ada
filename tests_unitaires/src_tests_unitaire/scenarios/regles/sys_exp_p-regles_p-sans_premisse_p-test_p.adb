@@ -234,12 +234,12 @@ is
       AUnit.Assertions.Assert
          (
             Condition => Reussi,
-            Message   => "Aucune regle ne doit avoir ete declenchee"
+            Message   => "Au moins une regle doit avoir ete declenchee"
          );
       AUnit.Assertions.Assert
          (
             Condition => T.Regle.Est_Declenchee,
-            Message   => "La regle ne doit pas avoir ete declenchee"
+            Message   => "La regle doit avoir ete declenchee"
          );
    end Test_Iterer;
    ---------------------------------------------------------------------------
