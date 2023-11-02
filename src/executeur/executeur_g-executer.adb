@@ -15,6 +15,8 @@ with Sys_Exp_P.Forme_P.Conclusion_P.Bool_True_P;
 with Sys_Exp_P.Forme_P.Conclusion_P.Expression_Entiere_P;
 with Sys_Exp_P.Forme_P.Premisse_P.Bool_True_P;
 
+with Sys_Exp_P.Forme_P.Text_IO;
+
 with Sys_Exp_P.Regles_P.Avec_Premisse_P;
 with Sys_Exp_P.Regles_P.Sans_Premisse_P;
 with Sys_Exp_P.Regles_P.Text_IO;
@@ -139,6 +141,9 @@ begin
             );
       Bool : Boolean;
    begin
+      Sys_Exp_P.Forme_P.Text_IO.Put_Line (Item => C);
+      Ada.Text_IO.New_Line (Spacing => 2);
+
       Regle_D.Ajouter (Successeur => Regle_P);
       Regle_C.Ajouter (Successeur => Regle_D);
 
