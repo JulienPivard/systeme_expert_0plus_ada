@@ -14,6 +14,9 @@ package Sys_Exp_P.Monteur_P
       Spark_Mode     => Off
 is
 
+   E_Parse : exception;
+   --  Exception levé par le parseur.
+
    subtype Base_De_Regles_T is Sys_Exp_P.Regles_P.Regle_Abstraite_T'Class;
 
    type Monteur_Abstrait_T is interface;
