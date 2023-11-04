@@ -71,7 +71,7 @@ is
                ID_Regle   => 2,
                Conclusion => G
             );
-      Regle_P : Sys_Exp_P.Regles_P.Regle_Abstraite_T'Class :=
+      Regle_A : Sys_Exp_P.Regles_P.Regle_Abstraite_T'Class :=
          Sys_Exp_P.Regles_P.Avec_Premisse_P.Creer
             (
                ID_Regle   => 3,
@@ -85,8 +85,8 @@ is
                Conclusion => A
             );
    begin
-      Regle_P.Ajouter (Successeur => Regle_Q);
-      Regle_D.Ajouter (Successeur => Regle_P);
+      Regle_A.Ajouter (Successeur => Regle_Q);
+      Regle_D.Ajouter (Successeur => Regle_A);
       Regle_C.Ajouter (Successeur => Regle_D);
 
       This.Base_De_Regles :=
