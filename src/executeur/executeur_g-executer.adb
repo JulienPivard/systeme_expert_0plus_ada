@@ -29,6 +29,7 @@ with Sys_Exp_P.Monteur_P.Directeur_P;
 with Sys_Exp_P.Monteur_P.Test_P;
 
 with Sys_Exp_P.Monteur_P.Lorraine_P.Jeton_P;
+with Sys_Exp_P.Monteur_P.Lorraine_P.Jeton_P.Fabrique_P;
 
 separate (Executeur_G)
 procedure Executer
