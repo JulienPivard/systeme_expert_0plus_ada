@@ -1,10 +1,11 @@
 --  with GNAT.Source_Info;
 with Sys_Exp_P.Base_Faits_P.Text_IO;
 
-with Sys_Exp_P.Valeur_P.Constante_P;
-with Sys_Exp_P.Valeur_P.Fait_P;
 with Sys_Exp_P.Base_Faits_P;
 with Sys_Exp_P.Fait_P.Entier_P;
+
+with Sys_Exp_P.Valeur_P.Constante_P;
+with Sys_Exp_P.Valeur_P.Fait_P;
 with Sys_Exp_P.Valeur_P.Operateur_P.Division_P;
 with Sys_Exp_P.Valeur_P.Operateur_P.Soustraction_P;
 with Sys_Exp_P.Valeur_P.Operateur_P.Multiplication_P;
@@ -26,6 +27,8 @@ with Sys_Exp_P.Moteur_Inference_P.Text_IO;
 
 with Sys_Exp_P.Monteur_P.Directeur_P;
 with Sys_Exp_P.Monteur_P.Test_P;
+
+with Sys_Exp_P.Monteur_P.Lorraine_P.Jeton_P;
 
 separate (Executeur_G)
 procedure Executer
