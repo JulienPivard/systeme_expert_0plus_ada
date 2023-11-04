@@ -31,6 +31,7 @@ with Sys_Exp_P.Monteur_P.Test_P;
 with Sys_Exp_P.Monteur_P.Lorraine_P.Jeton_P;
 with Sys_Exp_P.Monteur_P.Lorraine_P.Jeton_P.Fabrique_P;
 with Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_P;
+with Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_P;
 
 separate (Executeur_G)
 procedure Executer
