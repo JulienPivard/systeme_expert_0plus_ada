@@ -18,7 +18,7 @@ is
       return String
    is
    begin
-      return This.Representation;
+      return This.Representation.Element;
    end Lire_Representation;
    ---------------------------------------------------------------------------
 

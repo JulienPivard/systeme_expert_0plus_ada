@@ -1,3 +1,5 @@
+private with Ada.Containers.Indefinite_Holders;
+
 --  @summary
 --  Les jetons qui seront utilisé pour gérer le contenu du fichier.
 --  @description
@@ -68,7 +70,7 @@ is
       );
    --  Les différentes sortes de jetons possibles.
 
-   type Jeton_T (<>) is tagged private;
+   type Jeton_T is tagged private;
    --  Un jeton qui représentera un objet lu et identifié dans le fichier.
 
    function Lire_Sorte
@@ -289,11 +291,16 @@ is
 
 private
 
-   type Jeton_T (Taille : Integer) is tagged
+   package String_Holder_P is new Ada.Containers.Indefinite_Holders
+      (Element_Type => String);
+
+   subtype String_T is String_Holder_P.Holder;
+
+   type Jeton_T is tagged
       record
          Sorte          : Sorte_T;
          --  La sorte de jeton.
-         Representation : String (1 .. Taille);
+         Representation : String_T := String_Holder_P.Empty_Holder;
          --  La chaine de caractères associé au jeton.
       end record;
 

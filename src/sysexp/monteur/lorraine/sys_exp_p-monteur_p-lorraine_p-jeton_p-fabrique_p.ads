@@ -158,9 +158,9 @@ private
       (
          Jeton_T'
             (
-               Taille         => Representation'Length,
                Sorte          => Sorte,
-               Representation => Representation
+               Representation => String_Holder_P.To_Holder
+                  (New_Item => Representation)
             )
       );
    --------------------------------------
