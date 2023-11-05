@@ -1,8 +1,51 @@
-with Ada.Text_IO;
-
 with Sys_Exp_P.Monteur_P.Lorraine_P.Jeton_P;
 
 private with Ada.Containers.Indefinite_Holders;
+
+generic
+
+   type Numero_Ligne_G_T is (<>);
+   --  Un numéro de ligne.
+
+   type Contenu_G_T is limited private;
+   --  Le contenu à parser.
+
+   with procedure Ouvrir_G
+      (
+         Contenu : in out Contenu_G_T;
+         Nom     : in     String
+      );
+   --  Initialise le contenu à lire. Pour l'application
+   --  on veux passer par un fichier, mais il peux être
+   --  utile de pouvoir passer par un tout autre contenant.
+   --  @param Contenu
+   --  Le contenu à parser.
+   --  @param Nom
+   --  Le nom associé au contenu.
+
+   with function Lire_Ligne_G
+      (Contenu : in out Contenu_G_T)
+      return String;
+   --  Lit la prochaine ligne à lire dans le contenu.
+   --  @param Contenu
+   --  Le contenu à parser.
+   --  @return La prochaine ligne.
+
+   with function Lire_Numero_Ligne_G
+      (Contenu : in     Contenu_G_T)
+      return Numero_Ligne_G_T;
+   --  Lit le numéro de la ligne en cours.
+   --  @param Contenu
+   --  Le contenu à parser.
+   --  @return Le numéro de la ligne en cours.
+
+   with function Fin_Est_Atteinte_G
+      (Contenu : in     Contenu_G_T)
+      return Boolean;
+   --  Indique si on a atteint la fin du contenu.
+   --  @param Contenu
+   --  Le contenu à parser.
+   --  @return La fin du contenu a été atteinte.
 
 --  @summary
 --  Un analyseur lexical de la grammaire Lorraine.
@@ -11,7 +54,7 @@ private with Ada.Containers.Indefinite_Holders;
 --  L'analyseur lexical ne s'occupe pas du sens de ce qu'il lit
 --  mais uniquement de reconnaitre les mots présents.
 --  @group Monteur
-package Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_P
+package Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_G
    with
       Pure           => False,
       Preelaborate   => False,
@@ -58,7 +101,7 @@ is
 
    function Lire_Numero_Ligne
       (This : in     Lexical_T)
-      return Ada.Text_IO.Positive_Count;
+      return Numero_Ligne_G_T;
    --  Lit le numéro de la ligne en cours.
    --  @param This
    --  L'analyseur lexical.
@@ -79,14 +122,14 @@ private
 
    type Lexical_T is tagged limited
       record
-         Fichier           : Ada.Text_IO.File_Type;
+         Fichier           : Contenu_G_T;
          --  Le fichier à analyser.
          Position          : Integer := Integer'Last;
          --  La position actuelle du jeton.
          Ancienne_Position : Integer := Integer'Last;
          --  Position du jeton précédent dans le fichier
          --  (pour l'affichage des erreurs).
-         Num_Ligne         : Ada.Text_IO.Positive_Count := 1;
+         Num_Ligne         : Numero_Ligne_G_T := Numero_Ligne_G_T'First;
          --  Le numéro de la ligne en cours.
          Ligne_En_Cours    : Ligne_P.Holder :=
             Ligne_P.To_Holder (New_Item => "");
@@ -148,8 +191,8 @@ private
    --------------------------------------
    function Lire_Numero_Ligne
       (This : in     Lexical_T)
-      return Ada.Text_IO.Positive_Count
+      return Numero_Ligne_G_T
    is (This.Num_Ligne);
    --------------------------------------
 
-end Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_P;
+end Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_G;

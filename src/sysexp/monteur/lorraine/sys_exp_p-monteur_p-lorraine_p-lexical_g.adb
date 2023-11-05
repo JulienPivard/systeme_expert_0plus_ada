@@ -1,6 +1,6 @@
 with Sys_Exp_P.Monteur_P.Lorraine_P.Jeton_P.Fabrique_P;
 
-package body Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_P
+package body Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_G
    with Spark_Mode => Off
 is
 
@@ -16,11 +16,10 @@ is
    is
    begin
       return Lexical : Lexical_T do
-         Ada.Text_IO.Open
+         Ouvrir_G
             (
-               File => Lexical.Fichier,
-               Name => Nom_Fichier,
-               Mode => Ada.Text_IO.In_File
+               Contenu => Lexical.Fichier,
+               Nom     => Nom_Fichier
             );
       end return;
    end Creer;
@@ -138,13 +137,13 @@ is
          exit Boucle_Lire_Ligne when OK;
 
          --  On quitte si on a atteint la fin du fichier.
-         Fin_Fichier := Ada.Text_IO.End_Of_File (File => This.Fichier);
+         Fin_Fichier := Fin_Est_Atteinte_G (Contenu => This.Fichier);
          exit Boucle_Lire_Ligne when Fin_Fichier;
 
          --  Si on est pas a la fin du fichier on prend la ligne suivante.
          This.Ligne_En_Cours := Ligne_P.To_Holder
-            (New_Item => Ada.Text_IO.Get_Line (This.Fichier));
-         This.Num_Ligne := Ada.Text_IO.Line (File => This.Fichier);
+            (New_Item => Lire_Ligne_G (Contenu => This.Fichier));
+         This.Num_Ligne := Lire_Numero_Ligne_G (Contenu => This.Fichier);
          This.Position  := This.Ligne_En_Cours.Element'First;
       end loop Boucle_Lire_Ligne;
 
@@ -245,4 +244,4 @@ is
    end Extraire_Chaine;
    ---------------------------------------------------------------------------
 
-end Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_P;
+end Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_G;
