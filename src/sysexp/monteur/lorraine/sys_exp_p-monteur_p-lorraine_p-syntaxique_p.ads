@@ -3,6 +3,9 @@ with Sys_Exp_P.Regles_P;
 
 private with Ada.Containers.Indefinite_Holders;
 
+private with Sys_Exp_P.Monteur_P.Lorraine_P.Jeton_P;
+private with Sys_Exp_P.Monteur_P.Lorraine_P.Jeton_P.Fabrique_P;
+
 --  @summary
 --  Un analyseur syntaxique de la grammaire Lorraine.
 --  @description
@@ -22,16 +25,11 @@ is
    --  Le parseur syntaxique.
 
    function Parser
-      (
-         This    : in out Syntaxique_T;
-         Lexical : in out Lexical_P.Lexical_T
-      )
+      (This : in out Syntaxique_T)
       return Base_De_Regles_T;
    --  Construit la base de règles à partir d'un parseur lexical.
    --  @param This
    --  Le parseur syntaxique.
-   --  @param Lexical
-   --  Le parseur lexical.
    --  @return La base de règles.
 
 private
@@ -44,7 +42,15 @@ private
 
    type Syntaxique_T is tagged limited
       record
-         null;
+         Parseur_Lexical : Lexical_P.Lexical_T;
+         --  Le parseur lexical.
+         Jeton_Precharge : Jeton_P.Jeton_T :=
+            Jeton_P.Fabrique_P.Faire_Inconnu (Representation => "");
+         --  Le dernier jeton lu depuis le parseur lexical.
       end record;
+
+   procedure Suivant
+      (This : in out Syntaxique_T);
+   --  Passe au jeton lexical suivant.
 
 end Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_P;

@@ -32,10 +32,7 @@ is
 
    ---------------------------------------------------------------------------
    function Parser
-      (
-         This    : in out Syntaxique_T;
-         Lexical : in out Lexical_P.Lexical_T
-      )
+      (This : in out Syntaxique_T)
       return Base_De_Regles_T
    is
       G : constant Conclusion_R.Bool_True_P.Conclusion_True_T :=
@@ -53,6 +50,15 @@ is
 
    ---------------------------------------------------------------------------
    --                             Partie privée                             --
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Suivant
+      (This : in out Syntaxique_T)
+   is
+   begin
+      This.Jeton_Precharge := This.Parseur_Lexical.Suivant;
+   end Suivant;
    ---------------------------------------------------------------------------
 
 end Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_P;
