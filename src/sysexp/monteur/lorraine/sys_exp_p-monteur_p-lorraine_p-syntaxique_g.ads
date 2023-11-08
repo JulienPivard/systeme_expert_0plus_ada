@@ -1,10 +1,15 @@
-with Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_P;
+with Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_G;
 with Sys_Exp_P.Regles_P;
 
 private with Ada.Containers.Indefinite_Holders;
 
 private with Sys_Exp_P.Monteur_P.Lorraine_P.Jeton_P;
 private with Sys_Exp_P.Monteur_P.Lorraine_P.Jeton_P.Fabrique_P;
+
+generic
+
+   with package Lexical_P is new Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_G
+      (others => <>);
 
 --  @summary
 --  Un analyseur syntaxique de la grammaire Lorraine.
@@ -13,16 +18,20 @@ private with Sys_Exp_P.Monteur_P.Lorraine_P.Jeton_P.Fabrique_P;
 --  L'analyseur syntaxique va utiliser le parseur lexical
 --  pour lire le contenu et va lui donner un sens.
 --  @group Monteur
-package Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_P
-   with
-      Pure           => False,
-      Preelaborate   => False,
-      Elaborate_Body => True,
-      Spark_Mode     => Off
-is
+package Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
 
-   type Syntaxique_T is tagged limited private;
+   pragma Elaborate_Body;
+
+   type Syntaxique_T (<>) is tagged limited private;
    --  Le parseur syntaxique.
+
+   function Creer
+      (Nom_Fichier : in     String)
+      return Syntaxique_T;
+   --  Crée un parseur syntaxique.
+   --  @param Nom_Fichier
+   --  Le nom du fichier à parser.
+   --  @return Le parseur syntaxique.
 
    function Parser
       (This : in out Syntaxique_T)
@@ -53,4 +62,4 @@ private
       (This : in out Syntaxique_T);
    --  Passe au jeton lexical suivant.
 
-end Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_P;
+end Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G;

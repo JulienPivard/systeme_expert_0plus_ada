@@ -22,13 +22,25 @@ with Sys_Exp_P.Forme_P.Premisse_P.Symbole_Fait_P;
 with Sys_Exp_P.Regles_P.Avec_Premisse_P;
 with Sys_Exp_P.Regles_P.Sans_Premisse_P;
 
-package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_P
-   with Spark_Mode => Off
-is
+package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
 
    package Conclusion_R renames Sys_Exp_P.Forme_P.Conclusion_P;
    package Premisse_R   renames Sys_Exp_P.Forme_P.Premisse_P;
    package Valeur_R     renames Sys_Exp_P.Valeur_P;
+
+   ---------------------------------------------------------------------------
+   function Creer
+      (Nom_Fichier : in     String)
+      return Syntaxique_T
+   is
+   begin
+      return Syntaxique_T'
+         (
+            Parseur_Lexical => Lexical_P.Creer (Nom_Fichier => Nom_Fichier),
+            Jeton_Precharge => <>
+         );
+   end Creer;
+   ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
    function Parser
@@ -61,4 +73,4 @@ is
    end Suivant;
    ---------------------------------------------------------------------------
 
-end Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_P;
+end Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G;
