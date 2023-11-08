@@ -1,8 +1,6 @@
 with Sys_Exp_P.Monteur_P.Lorraine_P.Jeton_P.Fabrique_P;
 
-package body Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_G
-   with Spark_Mode => Off
-is
+package body Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_G is
 
    subtype Chiffre_T is Character
       with Static_Predicate => Chiffre_T in '0' .. '9';

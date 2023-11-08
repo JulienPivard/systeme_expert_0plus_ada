@@ -54,13 +54,9 @@ generic
 --  L'analyseur lexical ne s'occupe pas du sens de ce qu'il lit
 --  mais uniquement de reconnaitre les mots présents.
 --  @group Monteur
-package Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_G
-   with
-      Pure           => False,
-      Preelaborate   => False,
-      Elaborate_Body => True,
-      Spark_Mode     => Off
-is
+package Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_G is
+
+   pragma Elaborate_Body;
 
    subtype Jeton_T is Sys_Exp_P.Monteur_P.Lorraine_P.Jeton_P.Jeton_T;
 
