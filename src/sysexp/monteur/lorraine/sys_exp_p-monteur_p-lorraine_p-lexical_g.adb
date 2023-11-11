@@ -3,7 +3,8 @@ with Sys_Exp_P.Monteur_P.Lorraine_P.Jeton_P.Fabrique_P;
 package body Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_G is
 
    subtype Chiffre_T is Character
-      with Static_Predicate => Chiffre_T in '0' .. '9';
+      with Static_Predicate => Chiffre_T in
+         '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9';
    subtype Lettre_T  is Character
       with Static_Predicate => Lettre_T  in 'a' .. 'z' | 'A' .. 'Z';
 
@@ -80,10 +81,13 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_G is
             when ',' =>
                return Jeton_P.Fabrique_P.Faire_Separateur;
             when Chiffre_T =>
+               This.Position := This.Position - 1;
                return This.Extraire_Entier;
             when Lettre_T =>
+               This.Position := This.Position - 1;
                return This.Extraire_Chaine;
             when others =>
+               This.Position := This.Position - 1;
                return Jeton_P.Fabrique_P.Faire_Inconnu
                   (Representation => Lettre & "");
          end case;
@@ -108,11 +112,11 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_G is
    begin
       Boucle_Sauter_Espaces :
       loop
-         This.Position := This.Position + 1;
-
          exit Boucle_Sauter_Espaces when This.Position > Chaine'Last;
          Est_Une_Espace := Chaine (This.Position) in Espace_T;
          exit Boucle_Sauter_Espaces when not Est_Une_Espace;
+
+         This.Position := This.Position + 1;
       end loop Boucle_Sauter_Espaces;
    end Aller_Au_Prochain_Char_Non_Blanc;
    ---------------------------------------------------------------------------
@@ -174,12 +178,10 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_G is
          exit Boucle_Sauter_Chiffre when not Est_Un_Chiffre;
       end loop Boucle_Sauter_Chiffre;
 
-      This.Position := This.Position - 1;
       --  Il fait revenir de 1 en arrière, car la position est
       --  sur un caractère invalide.
-
       return Jeton_P.Fabrique_P.Faire_Entier
-         (Representation => Chaine (Debut .. This.Position));
+         (Representation => Chaine (Debut .. This.Position - 1));
    end Extraire_Entier;
    ---------------------------------------------------------------------------
 
@@ -201,22 +203,21 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_G is
       begin
          Boucle_Sauter_Chaine :
          loop
-            This.Position := This.Position + 1;
-
             exit Boucle_Sauter_Chaine when This.Position > Chaine'Last;
             Est_Une_Chaine := Chaine (This.Position) in Chaine_T;
             exit Boucle_Sauter_Chaine when not Est_Une_Chaine;
+
+            This.Position := This.Position + 1;
          end loop Boucle_Sauter_Chaine;
       end Bloc_Sauter_Chaine;
 
-      This.Position := This.Position - 1;
       --  Il fait revenir de 1 en arrière, car la position est
       --  sur un caractère invalide.
-
       Bloc_Analyser_Chaine :
       declare
-         Chaine_Trouvee : constant String :=
-            This.Ligne_En_Cours.Element (Debut .. This.Position);
+         Fin            : constant Integer := This.Position - 1;
+         Chaine_Trouvee : constant String  :=
+            This.Ligne_En_Cours.Element (Debut .. Fin);
       begin
          return
             (
