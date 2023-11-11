@@ -319,6 +319,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
                This.Creer_Exception (Message => "le fait n'a pas été declare");
             end if;
 
+            This.Suivant;
             return Conclusion_R.Bool_False_P.Creer
                (Nom => Nom_T (Jeton_ID.Lire_Representation));
          end Bloc_Lire_Nom_Bool;
@@ -340,6 +341,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
 
       if This.Jeton_Precharge.Est_Egal then
          This.Suivant;
+
          Bloc_Lire_Nom_Symb :
          declare
             Jeton_ID : constant Jeton_P.Jeton_T := This.Jeton_Precharge;
@@ -354,6 +356,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
                if This.Noms_Faits.Element
                   (Key => Jeton_ID.Lire_Representation) = Symbolique_E
                then
+                  This.Suivant;
                   return Conclusion_R.Symbole_Fait_P.Creer
                      (
                         Nom      => Nom_T (Jeton.Lire_Representation),
@@ -364,6 +367,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
                      (Message => "le fait n'est pas symbolique");
                end if;
             else
+               This.Suivant;
                return Conclusion_R.Symbole_Constant_P.Creer
                   (
                      Nom         => Nom_T (Jeton.Lire_Representation),
