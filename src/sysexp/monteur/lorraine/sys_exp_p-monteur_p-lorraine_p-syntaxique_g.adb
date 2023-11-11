@@ -145,7 +145,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
    procedure Faire_Liste_Faits
       (
          This : in out Syntaxique_T;
-         Race : in     Race_Fait_T
+         Race : in     Type_De_Fait_T
       )
    is
    begin
@@ -278,7 +278,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
                   return This.Faire_Conclusion_Entiere;
                when Symbolique_E =>
                   return This.Faire_Conclusion_Symbolique;
-               when Booleen_E =>
+               when Booleen_E    =>
                   return This.Faire_Conclusion_Booleenne;
             end case;
          else
@@ -470,7 +470,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
                   return This.Faire_Premisse_Entiere;
                when Symbolique_E =>
                   return This.Faire_Premisse_Symbolique;
-               when Booleen_E =>
+               when Booleen_E    =>
                   return This.Faire_Premisse_Booleenne;
             end case;
          else
@@ -550,7 +550,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
             then
                Bloc_Faire_Fait_Symbolique :
                declare
-                  Race : constant Race_Fait_T := This.Noms_Faits.Element
+                  Race : constant Type_De_Fait_T := This.Noms_Faits.Element
                      (Key => Jeton_ID.Lire_Representation);
                begin
                   if Race = Symbolique_E then
@@ -815,7 +815,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
       elsif This.Noms_Faits.Contains (Key => Jeton.Lire_Representation) then
          Bloc_Faire_Fait_Symbolique :
          declare
-            Race : constant Race_Fait_T := This.Noms_Faits.Element
+            Race : constant Type_De_Fait_T := This.Noms_Faits.Element
                (Key => Jeton.Lire_Representation);
          begin
             if Race = Entier_E then

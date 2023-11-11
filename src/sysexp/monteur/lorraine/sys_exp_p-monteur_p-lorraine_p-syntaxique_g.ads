@@ -52,19 +52,10 @@ package Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
 
 private
 
-   type Race_Fait_T is (Entier_E, Symbolique_E, Booleen_E);
-   --  Le type de fait.
-   --  @value Entier_E
-   --  C'est un fait entier.
-   --  @value Symbolique_E
-   --  C'est un fait symbolique.
-   --  @value Booleen_E
-   --  C'est un fait booléen.
-
    package Map_Fait_P is new Ada.Containers.Indefinite_Hashed_Maps
       (
          Key_Type        => String,
-         Element_Type    => Race_Fait_T,
+         Element_Type    => Type_De_Fait_T,
          Hash            => Ada.Strings.Hash,
          Equivalent_Keys => Standard."="
       );
@@ -131,7 +122,7 @@ private
    procedure Faire_Liste_Faits
       (
          This : in out Syntaxique_T;
-         Race : in     Race_Fait_T
+         Race : in     Type_De_Fait_T
       );
    --  Ajout les noms de faits à la liste de fait avec le type de fait
    --  auquel il est associé.

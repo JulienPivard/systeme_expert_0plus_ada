@@ -52,8 +52,6 @@ is
       else
          Bloc_Detail_Erreur :
          declare
-            use type Fait_P.Type_De_Fait_T;
-
             Fait : constant Fait_P.Fait_Abstrait_T'Class :=
                This.Trouver (Nom_Fait => Nouvel_Item.Lire_Nom);
          begin

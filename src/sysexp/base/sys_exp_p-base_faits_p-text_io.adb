@@ -19,7 +19,7 @@ is
             (Item => "Type de fait [" & E.Lire_Type'Image & "] ");
 
          case E.Lire_Type is
-            when Fait_P.Booleen_E =>
+            when Booleen_E =>
                Bloc_Afficher_Booleen :
                declare
                   F : constant Fait_P.Booleen_P.Fait_Booleen_T :=
@@ -28,7 +28,7 @@ is
                   Fait_P.Booleen_P.Text_IO.Put_Line (Item => F);
                end Bloc_Afficher_Booleen;
 
-            when Fait_P.Entier_E =>
+            when Entier_E =>
                Bloc_Afficher_Entier :
                declare
                   F : constant Fait_P.Entier_P.Fait_Entier_T :=
@@ -37,7 +37,7 @@ is
                   Fait_P.Entier_P.Text_IO.Put_Line (Item => F);
                end Bloc_Afficher_Entier;
 
-            when Fait_P.Symbolique_E =>
+            when Symbolique_E =>
                Bloc_Afficher_Symbole :
                declare
                   F : constant Fait_P.Symbolique_P.Fait_Symbolique_T :=
@@ -64,7 +64,7 @@ is
          W_W_IO_R.Put (Item => "└─────────  ");
 
          case E.Lire_Type is
-            when Fait_P.Booleen_E =>
+            when Booleen_E =>
                Bloc_Afficher_Booleen :
                declare
                   F : constant Fait_P.Booleen_P.Fait_Booleen_T :=
@@ -77,7 +77,7 @@ is
                      (Item => "[" & String (F.Lire_Nom) & "]");
                end Bloc_Afficher_Booleen;
 
-            when Fait_P.Entier_E =>
+            when Entier_E =>
                Bloc_Afficher_Entier :
                declare
                   F : constant Fait_P.Entier_P.Fait_Entier_T :=
@@ -89,7 +89,7 @@ is
                      (Item => "[" & F.Lire_Valeur'Image & "]");
                end Bloc_Afficher_Entier;
 
-            when Fait_P.Symbolique_E =>
+            when Symbolique_E =>
                Bloc_Afficher_Symbole :
                declare
                   F : constant Fait_P.Symbolique_P.Fait_Symbolique_T :=

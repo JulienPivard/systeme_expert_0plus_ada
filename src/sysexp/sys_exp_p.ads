@@ -22,6 +22,15 @@ is
    type Nom_Symbole_T is new Nom_T;
    --  Un nom symbolique différent d'un nom.
 
+   type Type_De_Fait_T is (Booleen_E, Entier_E, Symbolique_E);
+   --  Les différents type de fait possible.
+   --  @Value Booleen_E
+   --  C'est un fait booléen.
+   --  @Value Entier_E
+   --  C'est un fait entier.
+   --  @Value Symbolique_E
+   --  C'est un fait symbolique.
+
    E_Fait_Non_Entier   : exception;
    --  Exception déclenchée quand le fait lu n'est pas un entier.
    E_Division_Par_Zero : exception;

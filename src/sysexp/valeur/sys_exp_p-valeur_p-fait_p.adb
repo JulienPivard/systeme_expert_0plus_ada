@@ -24,8 +24,6 @@ is
       )
       return Entier_T
    is
-      use type Sys_Exp_P.Fait_P.Type_De_Fait_T;
-
       Valeur : Entier_T;
    begin
       if Base.Contient (Nom_Fait => This.Nom.Element) then
@@ -34,7 +32,7 @@ is
             F : constant Sys_Exp_P.Fait_P.Fait_Abstrait_T'Class :=
                Base.Trouver (Nom_Fait => This.Nom.Element);
          begin
-            if F.Lire_Type = Sys_Exp_P.Fait_P.Entier_E then
+            if F.Lire_Type = Entier_E then
                Bloc_Lire_Valeur_Fait_Entier :
                declare
                   Fait : Sys_Exp_P.Fait_P.Entier_P.Fait_Entier_T renames
