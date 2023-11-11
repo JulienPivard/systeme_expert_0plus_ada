@@ -14,13 +14,13 @@ package Sys_Exp_P.Fait_P
       Spark_Mode     => Off
 is
 
-   type Type_De_Fait_T is (Booleen_E, Entier_E, Symbole_E);
+   type Type_De_Fait_T is (Booleen_E, Entier_E, Symbolique_E);
    --  Les différents type de fait possible.
    --  @Value Booleen_E
    --  C'est un fait booléen.
    --  @Value Entier_E
    --  C'est un fait entier.
-   --  @Value Symbole_E
+   --  @Value Symbolique_E
    --  C'est un fait symbolique.
 
    type Fait_Abstrait_T is abstract tagged private;

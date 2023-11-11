@@ -27,7 +27,7 @@ is
    is
       pragma Unreferenced (This);
    begin
-      return Symbole_E;
+      return Symbolique_E;
    end Lire_Type;
    ---------------------------------------------------------------------------
 

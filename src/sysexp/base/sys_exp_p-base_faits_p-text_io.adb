@@ -37,7 +37,7 @@ is
                   Fait_P.Entier_P.Text_IO.Put_Line (Item => F);
                end Bloc_Afficher_Entier;
 
-            when Fait_P.Symbole_E =>
+            when Fait_P.Symbolique_E =>
                Bloc_Afficher_Symbole :
                declare
                   F : constant Fait_P.Symbolique_P.Fait_Symbolique_T :=
@@ -89,7 +89,7 @@ is
                      (Item => "[" & F.Lire_Valeur'Image & "]");
                end Bloc_Afficher_Entier;
 
-            when Fait_P.Symbole_E =>
+            when Fait_P.Symbolique_E =>
                Bloc_Afficher_Symbole :
                declare
                   F : constant Fait_P.Symbolique_P.Fait_Symbolique_T :=
