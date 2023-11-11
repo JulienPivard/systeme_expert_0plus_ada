@@ -1469,13 +1469,13 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => T.Visiteur.Code_Erreur = Incoherence_Fait_E,
+            Condition => T.Visiteur.Code_Erreur = Tout_Va_Bien_E,
             Message   => "Le code d'erreur doit indiquer que tout va bien " &
                "et pas [" & T.Visiteur.Code_Erreur'Image & "]"
          );
       AUnit.Assertions.Assert
          (
-            Condition => T.Visiteur.Message_D_Erreur /= Message_Vide,
+            Condition => T.Visiteur.Message_D_Erreur = Message_Vide,
             Message   => "le message d'erreur doit etre vide et pas " &
                "[" & T.Visiteur.Message_D_Erreur & "]"
          );
@@ -1511,13 +1511,13 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => T.Visiteur.Code_Erreur = Incoherence_Fait_E,
+            Condition => T.Visiteur.Code_Erreur = Tout_Va_Bien_E,
             Message   => "Le code d'erreur doit indiquer que tout va bien " &
                "et pas [" & T.Visiteur.Code_Erreur'Image & "]"
          );
       AUnit.Assertions.Assert
          (
-            Condition => T.Visiteur.Message_D_Erreur /= Message_Vide,
+            Condition => T.Visiteur.Message_D_Erreur = Message_Vide,
             Message   => "le message d'erreur doit etre vide et pas " &
                "[" & T.Visiteur.Message_D_Erreur & "]"
          );
@@ -1553,13 +1553,13 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => T.Visiteur.Code_Erreur = Incoherence_Fait_E,
+            Condition => T.Visiteur.Code_Erreur = Tout_Va_Bien_E,
             Message   => "Le code d'erreur doit indiquer que tout va bien " &
                "et pas [" & T.Visiteur.Code_Erreur'Image & "]"
          );
       AUnit.Assertions.Assert
          (
-            Condition => T.Visiteur.Message_D_Erreur /= Message_Vide,
+            Condition => T.Visiteur.Message_D_Erreur = Message_Vide,
             Message   => "le message d'erreur doit etre vide et pas " &
                "[" & T.Visiteur.Message_D_Erreur & "]"
          );

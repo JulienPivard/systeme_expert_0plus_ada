@@ -101,32 +101,6 @@ is
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
-   procedure Ajouter_Deux_Fois_Le_Meme;
-   --  Doit déclencher une exception sur un fait déjà présent.
-
-   --------------------
-   procedure Ajouter_Deux_Fois_Le_Meme is
-      Base : Base_De_Faits_T;
-   begin
-      Bloc_Ajouter_Fait_En_Double :
-      declare
-         Nom  : constant Nom_T := Facilites_P.Creer_Nom;
-         Fait : constant Fait_P.Fait_Abstrait_T'Class :=
-            Facilites_P.Fait_P.Creer_Fait (Nom => Nom);
-      begin
-         Base.Ajouter (Nouvel_Item => Fait);
-         Base.Ajouter (Nouvel_Item => Fait);
-      end Bloc_Ajouter_Fait_En_Double;
-      pragma Unreferenced (Base);
-   exception
-      when E_Fait_Deja_Present =>
-         raise;
-      when others =>
-         null;
-   end Ajouter_Deux_Fois_Le_Meme;
-   ---------------------------------------------------------------------------
-
-   ---------------------------------------------------------------------------
    procedure Ajouter_Deux_Fois;
    --  Doit déclencher une exception sur un fait déjà présent.
 
@@ -281,12 +255,24 @@ is
    procedure Test_Ajouter_Deux_Fois_Le_Meme
       (T : in out Test_Fixt_T)
    is
-      pragma Unreferenced (T);
+      use type Ada.Containers.Count_Type;
+
+      Nom  : constant Nom_T := Facilites_P.Creer_Nom;
+      Fait : constant Fait_P.Fait_Abstrait_T'Class :=
+         Facilites_P.Fait_P.Creer_Fait (Nom => Nom);
    begin
-      AUnit.Assertions.Assert_Exception
+      T.Base.Ajouter (Nouvel_Item => Fait);
+      T.Base.Ajouter (Nouvel_Item => Fait);
+
+      AUnit.Assertions.Assert
          (
-            Proc    => Ajouter_Deux_Fois_Le_Meme'Access,
-            Message => "La base de faits doit deja contenir le fait"
+            Condition => T.Base.Map_Faits.Length = 1,
+            Message   => "La base de faits doit contenir 1 fait"
+         );
+      AUnit.Assertions.Assert
+         (
+            Condition => T.Base.Contient (Nom_Fait => Nom),
+            Message   => "La base de faits doit etre vide"
          );
    end Test_Ajouter_Deux_Fois_Le_Meme;
    ---------------------------------------------------------------------------

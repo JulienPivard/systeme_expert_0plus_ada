@@ -1,5 +1,9 @@
 with Ada.Strings.Hash;
 
+with Sys_Exp_P.Fait_P.Booleen_P;
+with Sys_Exp_P.Fait_P.Entier_P;
+with Sys_Exp_P.Fait_P.Symbolique_P;
+
 package body Sys_Exp_P.Base_Faits_P
    with Spark_Mode => Off
 is
@@ -56,7 +60,62 @@ is
                This.Trouver (Nom_Fait => Nouvel_Item.Lire_Nom);
          begin
             if Fait.Lire_Type = Nouvel_Item.Lire_Type then
-               null;
+               case Fait.Lire_Type is
+                  when Booleen_E    =>
+                     Bloc_Err_Bool :
+                     declare
+                        use type Fait_P.Booleen_P.Fait_Booleen_T;
+
+                        Fait_B : Fait_P.Booleen_P.Fait_Booleen_T renames
+                           Fait_P.Booleen_P.Fait_Booleen_T (Fait);
+                        Nouv_B : Fait_P.Booleen_P.Fait_Booleen_T renames
+                           Fait_P.Booleen_P.Fait_Booleen_T (Nouvel_Item);
+                     begin
+                        if Fait_B /= Nouv_B then
+                           raise E_Fait_Deja_Present with
+                              "Le fait booleen " &
+                              "[" & String (Nouvel_Item.Lire_Nom) & "] " &
+                              "est déjà présent avec la valeur " &
+                              "[" & Fait_B.Lire_Valeur'Image & "]";
+                        end if;
+                     end Bloc_Err_Bool;
+                  when Entier_E     =>
+                     Bloc_Err_Entier :
+                     declare
+                        use type Fait_P.Entier_P.Fait_Entier_T;
+
+                        Fait_E : Fait_P.Entier_P.Fait_Entier_T renames
+                           Fait_P.Entier_P.Fait_Entier_T (Fait);
+                        Nouv_E : Fait_P.Entier_P.Fait_Entier_T renames
+                           Fait_P.Entier_P.Fait_Entier_T (Nouvel_Item);
+                     begin
+                        if Fait_E /= Nouv_E then
+                           raise E_Fait_Deja_Present with
+                              "Le fait entier " &
+                              "[" & String (Nouvel_Item.Lire_Nom) & "] " &
+                              "est déjà présent avec la valeur " &
+                              "[" & Fait_E.Lire_Valeur'Image & "]";
+                        end if;
+                     end Bloc_Err_Entier;
+                  when Symbolique_E =>
+                     Bloc_Err_Symbole :
+                     declare
+                        use type Fait_P.Symbolique_P.Fait_Symbolique_T;
+
+                        Fait_S : Fait_P.Symbolique_P.Fait_Symbolique_T renames
+                           Fait_P.Symbolique_P.Fait_Symbolique_T (Fait);
+                        Nouv_S : Fait_P.Symbolique_P.Fait_Symbolique_T renames
+                           Fait_P.Symbolique_P.Fait_Symbolique_T (Nouvel_Item);
+                     begin
+                        if Fait_S /= Nouv_S then
+                           raise E_Fait_Deja_Present with
+                              "Le fait symbolique " &
+                              "[" & String (Nouvel_Item.Lire_Nom) & "] " &
+                              "est déjà présent avec la valeur " &
+                              "[" & String (Fait_S.Lire_Valeur) & "]";
+                        end if;
+                     end Bloc_Err_Symbole;
+               end case;
             else
                raise E_Fait_Deja_Present with
                   "Le fait [" & String (Nouvel_Item.Lire_Nom) & "] " &
