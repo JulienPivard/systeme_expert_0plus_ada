@@ -58,13 +58,11 @@ is
                This.Trouver (Nom_Fait => Nouvel_Item.Lire_Nom);
          begin
             if Fait.Lire_Type = Nouvel_Item.Lire_Type then
-               raise E_Fait_Deja_Present with
-                  "Le fait [" & String (Nouvel_Item.Lire_Nom) & "] " &
-                  "est déjà présent de type [" & Fait.Lire_Type'Image & "]";
+               null;
             else
                raise E_Fait_Deja_Present with
                   "Le fait [" & String (Nouvel_Item.Lire_Nom) & "] " &
-                  "est déjà présent";
+                  "est déjà présent de type [" & Fait.Lire_Type'Image & "]";
             end if;
          end Bloc_Detail_Erreur;
       end if;

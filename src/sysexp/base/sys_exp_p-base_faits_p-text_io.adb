@@ -71,7 +71,7 @@ is
                      Fait_P.Booleen_P.Fait_Booleen_T (E);
                begin
                   if not F.Lire_Valeur then
-                     Ada.Text_IO.Put (Item => "non ");
+                     Ada.Text_IO.Put (Item => "Non ");
                   end if;
                   Ada.Text_IO.Put_Line
                      (Item => "[" & String (F.Lire_Nom) & "]");
