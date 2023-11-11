@@ -302,22 +302,22 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
          declare
             Jeton_ID : constant Jeton_P.Jeton_T := This.Jeton_Precharge;
          begin
-            if    This.Jeton_Precharge.Est_Identificateur then
-               This.Creer_Exception (Message => "attendu: un fait booléen");
+            if    not Jeton_ID.Est_Identificateur then
+               This.Creer_Exception (Message => "attendu: un fait booleen");
             elsif This.Noms_Faits.Contains
-               (Key => This.Jeton_Precharge.Lire_Representation)
+               (Key => Jeton_ID.Lire_Representation)
             then
                if not (This.Noms_Faits.Element
-                  (Key => This.Jeton_Precharge.Lire_Representation) = Booleen_E)
+                  (Key => Jeton_ID.Lire_Representation) = Booleen_E)
                then
-                  This.Creer_Exception (Message => "le fait n'est pas booléen");
+                  This.Creer_Exception (Message => "le fait n'est pas booleen");
                end if;
             else
                This.Creer_Exception (Message => "le fait n'a pas été declare");
             end if;
 
             return Conclusion_R.Bool_False_P.Creer
-               (Nom => Nom_T (This.Jeton_Precharge.Lire_Representation));
+               (Nom => Nom_T (Jeton_ID.Lire_Representation));
          end Bloc_Lire_Nom_Bool;
       else
          return Conclusion_R.Bool_True_P.Creer
@@ -341,20 +341,20 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
          declare
             Jeton_ID : constant Jeton_P.Jeton_T := This.Jeton_Precharge;
          begin
-            if not This.Jeton_Precharge.Est_Identificateur then
+            if not Jeton_ID.Est_Identificateur then
                This.Creer_Exception (Message => "attendu : identificateur");
             end if;
 
             if This.Noms_Faits.Contains
-               (Key => This.Jeton_Precharge.Lire_Representation)
+               (Key => Jeton_ID.Lire_Representation)
             then
                if This.Noms_Faits.Element
-                  (Key => This.Jeton_Precharge.Lire_Representation) = Symbolique_E
+                  (Key => Jeton_ID.Lire_Representation) = Symbolique_E
                then
                   return Conclusion_R.Symbole_Fait_P.Creer
                      (
                         Nom      => Nom_T (Jeton.Lire_Representation),
-                        Nom_Fait => Nom_T (This.Jeton_Precharge.Lire_Representation)
+                        Nom_Fait => Nom_T (Jeton_ID.Lire_Representation)
                      );
                else
                   This.Creer_Exception
@@ -364,7 +364,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
                return Conclusion_R.Symbole_Constant_P.Creer
                   (
                      Nom         => Nom_T (Jeton.Lire_Representation),
-                     Nom_Symbole => Nom_Symbole_T (This.Jeton_Precharge.Lire_Representation)
+                     Nom_Symbole => Nom_Symbole_T (Jeton_ID.Lire_Representation)
                   );
             end if;
          end Bloc_Lire_Nom_Symb;
