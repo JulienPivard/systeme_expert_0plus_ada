@@ -53,7 +53,15 @@ package Executeur_G is
    --  Vérifie combien d'arguments ont été donné sur la ligne de
    --  commande.
 
-   procedure Executer;
+   function Verifier_Nom_Fichier
+      return String;
+   --  Vérifie que le fichier existe.
+   --  @return Le nom du fichier.
+
+   procedure Executer
+      (Nom_Fichier : in     String);
    --  Exécute le programme.
+   --  @param Nom_Fichier
+   --  Le nom du fichier de règles lorraine.
 
 end Executeur_G;

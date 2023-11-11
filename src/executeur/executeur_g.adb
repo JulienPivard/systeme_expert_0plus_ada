@@ -5,6 +5,7 @@ package body Executeur_G is
 
    ---------------------------------------------------------------------------
    procedure Executer
+      (Nom_Fichier : in     String)
       --  (Arguments)
    is separate;
    ---------------------------------------------------------------------------
@@ -72,6 +73,26 @@ package body Executeur_G is
 
       end if;
    end Verifier_Nombre_D_Arguments;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   function Verifier_Nom_Fichier
+      return String
+   is
+      Nom : constant String := Ada.Command_Line.Argument (Number => 1);
+   begin
+      if not Ada.Directories.Exists (Name => Nom) then
+         Ada.Command_Line.Set_Exit_Status (Code => Ada.Command_Line.Failure);
+         Ada.Text_IO.Put_Line
+            (
+               Item => "Le fichier [" & Nom & "] n'existe pas dans " &
+                  "[" & Ada.Directories.Current_Directory & "]"
+            );
+         raise Valeur_Option_Incorrect_E;
+      end if;
+
+      return Nom;
+   end Verifier_Nom_Fichier;
    ---------------------------------------------------------------------------
 
 end Executeur_G;
