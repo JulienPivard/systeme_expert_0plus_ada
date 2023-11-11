@@ -52,12 +52,6 @@ package Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
 
 private
 
-   package Base_De_Regles_P is new Ada.Containers.Indefinite_Holders
-      (
-         Element_Type => Base_De_Regles_T,
-         "="          => Sys_Exp_P.Regles_P."="
-      );
-
    type Race_Fait_T is (Entier_E, Symbolique_E, Booleen_E);
    --  Le type de fait.
    --  @value Entier_E
@@ -148,7 +142,7 @@ private
 
    function Faire_Base_De_Regles
       (This : in out Syntaxique_T)
-      return Sys_Exp_P.Regles_P.Regle_Abstraite_T'Class;
+      return Base_De_Regles_T;
    --  Construit la base de règles à partir du parseur lexical.
    --  @param This
    --  Le parseur syntaxique.
