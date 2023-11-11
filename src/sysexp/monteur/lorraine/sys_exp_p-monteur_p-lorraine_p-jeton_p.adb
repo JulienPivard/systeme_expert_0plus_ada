@@ -268,7 +268,7 @@ is
       return Boolean
    is
    begin
-      return This.Sorte = Entier_E;
+      return This.Sorte = Fait_Entier_E;
    end Est_Fait_Entier;
    ---------------------------------------------------------------------------
 
