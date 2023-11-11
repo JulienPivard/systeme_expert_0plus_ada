@@ -325,8 +325,6 @@ is
    is
       use type Ada.Containers.Count_Type;
 
-      use type Fait_P.Type_De_Fait_T;
-
       Nom : constant Nom_T := Facilites_P.Creer_Nom;
 
       Fait : constant Fait_Booleen_T :=
@@ -380,8 +378,6 @@ is
       (T : in out Test_Fixt_T)
    is
       use type Ada.Containers.Count_Type;
-
-      use type Fait_P.Type_De_Fait_T;
 
       Nom : constant Nom_T := Facilites_P.Creer_Nom;
 
@@ -437,8 +433,6 @@ is
    is
       use type Ada.Containers.Count_Type;
 
-      use type Fait_P.Type_De_Fait_T;
-
       Nom : constant Nom_T := Facilites_P.Creer_Nom;
 
       Fait : constant Fait_Symbole_T :=
@@ -493,11 +487,9 @@ is
    is
       use type Ada.Containers.Count_Type;
 
-      use type Fait_P.Type_De_Fait_T;
-
       type Memoire_T is
          record
-            Sorte : Fait_P.Type_De_Fait_T;
+            Sorte : Type_De_Fait_T;
             Nom   : Nom_T (Taille_Nom_T);
             --  case Sorte is
             --     when Fait_P.Booleen_E =>

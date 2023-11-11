@@ -56,9 +56,9 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => T.Fait.Lire_Type = Symbole_E,
+            Condition => T.Fait.Lire_Type = Symbolique_E,
             Message   => "[" & T.Fait.Lire_Type'Image & "] " &
-               "devrait valoir [" & Type_De_Fait_T'Image (Symbole_E) & "]"
+               "devrait valoir [" & Type_De_Fait_T'Image (Symbolique_E) & "]"
          );
    end Test_Creer;
    ---------------------------------------------------------------------------

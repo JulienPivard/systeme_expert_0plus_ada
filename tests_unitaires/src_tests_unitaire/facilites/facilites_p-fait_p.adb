@@ -13,7 +13,7 @@ is
    package Entier_Alea_P     is new Ada.Numerics.Discrete_Random
       (Result_Subtype => Sys_Exp_P.Entier_T);
    package Sorte_Fait_Alea_P is new Ada.Numerics.Discrete_Random
-      (Result_Subtype => Sys_Exp_P.Fait_P.Type_De_Fait_T);
+      (Result_Subtype => Sys_Exp_P.Type_De_Fait_T);
 
    Generateur_Booleen    : Booleen_Alea_P.Generator;
    Generateur_Entier     : Entier_Alea_P.Generator;
@@ -24,7 +24,7 @@ is
       (Nom : in     Sys_Exp_P.Nom_T)
       return Sys_Exp_P.Fait_P.Fait_Abstrait_T'Class
    is
-      Sorte : constant Sys_Exp_P.Fait_P.Type_De_Fait_T :=
+      Sorte : constant Sys_Exp_P.Type_De_Fait_T :=
          Sorte_Fait_Alea_P.Random (Gen => Generateur_Sorte_Fait);
    begin
       return Creer_Fait
@@ -39,7 +39,7 @@ is
    function Creer_Fait
       (
          Nom   : in     Sys_Exp_P.Nom_T;
-         Sorte : in     Sys_Exp_P.Fait_P.Type_De_Fait_T
+         Sorte : in     Sys_Exp_P.Type_De_Fait_T
       )
       return Sys_Exp_P.Fait_P.Fait_Abstrait_T'Class
    is
@@ -47,11 +47,11 @@ is
       return
          (
             case Sorte is
-               when Sys_Exp_P.Fait_P.Booleen_E =>
+               when Sys_Exp_P.Booleen_E    =>
                   Creer_Fait_Booleen    (Nom => Nom),
-               when Sys_Exp_P.Fait_P.Entier_E =>
+               when Sys_Exp_P.Entier_E     =>
                   Creer_Fait_Entier     (Nom => Nom),
-               when Sys_Exp_P.Fait_P.Symbole_E =>
+               when Sys_Exp_P.Symbolique_E =>
                   Creer_Fait_Symbolique (Nom => Nom)
          );
    end Creer_Fait;
@@ -107,9 +107,9 @@ is
       )
       return Sys_Exp_P.Fait_P.Fait_Abstrait_T'Class
    is
-      use type Sys_Exp_P.Fait_P.Type_De_Fait_T;
+      use type Sys_Exp_P.Type_De_Fait_T;
 
-      Sorte : Sys_Exp_P.Fait_P.Type_De_Fait_T;
+      Sorte : Sys_Exp_P.Type_De_Fait_T;
    begin
       B_Sorte_Differente :
       loop
@@ -131,30 +131,30 @@ is
       (
          Fait  : in     Sys_Exp_P.Fait_P.Fait_Abstrait_T'Class;
          Nom   : in     Sys_Exp_P.Nom_T;
-         Sorte : in     Sys_Exp_P.Fait_P.Type_De_Fait_T
+         Sorte : in     Sys_Exp_P.Type_De_Fait_T
       )
       return Sys_Exp_P.Fait_P.Fait_Abstrait_T'Class
    is
-      use type Sys_Exp_P.Fait_P.Type_De_Fait_T;
+      use type Sys_Exp_P.Type_De_Fait_T;
    begin
       return
          (
             if Fait.Lire_Type = Sorte then
                (
                   case Sorte is
-                     when Sys_Exp_P.Fait_P.Booleen_E =>
+                     when Sys_Exp_P.Booleen_E =>
                         Creer_Fait_Booleen_Different
                            (
                               Fait => Fait_Booleen_T (Fait),
                               Nom  => Nom
                            ),
-                     when Sys_Exp_P.Fait_P.Entier_E =>
+                     when Sys_Exp_P.Entier_E =>
                         Creer_Fait_Entier_Different
                            (
                               Fait => Fait_Entier_T (Fait),
                               Nom  => Nom
                            ),
-                     when Sys_Exp_P.Fait_P.Symbole_E =>
+                     when Sys_Exp_P.Symbolique_E =>
                         Creer_Fait_Symbolique_Different
                            (
                               Fait => Fait_Symbole_T (Fait),

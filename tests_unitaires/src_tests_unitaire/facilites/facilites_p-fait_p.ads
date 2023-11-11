@@ -27,7 +27,7 @@ is
    function Creer_Fait
       (
          Nom   : in     Sys_Exp_P.Nom_T;
-         Sorte : in     Sys_Exp_P.Fait_P.Type_De_Fait_T
+         Sorte : in     Sys_Exp_P.Type_De_Fait_T
       )
       return Sys_Exp_P.Fait_P.Fait_Abstrait_T'Class;
    --  Crée un fait du type demandé avec des valeurs aléatoires.
@@ -80,7 +80,7 @@ is
       (
          Fait  : in     Sys_Exp_P.Fait_P.Fait_Abstrait_T'Class;
          Nom   : in     Sys_Exp_P.Nom_T;
-         Sorte : in     Sys_Exp_P.Fait_P.Type_De_Fait_T
+         Sorte : in     Sys_Exp_P.Type_De_Fait_T
       )
       return Sys_Exp_P.Fait_P.Fait_Abstrait_T'Class;
    --  Crée un fait du type demandé avec des valeurs aléatoires

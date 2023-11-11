@@ -157,14 +157,12 @@ is
 
       Bloc_Lire_Fait :
       declare
-         use type Sys_Exp_P.Fait_P.Type_De_Fait_T;
-
          Fait : constant Sys_Exp_P.Fait_P.Fait_Abstrait_T'Class :=
             T.Visiteur.Base.all.Trouver (Nom_Fait => C.Lire_Nom);
       begin
          AUnit.Assertions.Assert
             (
-               Condition => Fait.Lire_Type = Sys_Exp_P.Fait_P.Booleen_E,
+               Condition => Fait.Lire_Type = Sys_Exp_P.Booleen_E,
                Message   => "Le fait [" & String (C.Lire_Nom) & "] " &
                   "devrait etre de type BOOLEEN mais est " &
                   "[" & Fait.Lire_Type'Image & "]"
@@ -227,14 +225,12 @@ is
 
       Bloc_Lire_Fait :
       declare
-         use type Sys_Exp_P.Fait_P.Type_De_Fait_T;
-
          Fait : constant Sys_Exp_P.Fait_P.Fait_Abstrait_T'Class :=
             T.Visiteur.Base.all.Trouver (Nom_Fait => C.Lire_Nom);
       begin
          AUnit.Assertions.Assert
             (
-               Condition => Fait.Lire_Type = Sys_Exp_P.Fait_P.Booleen_E,
+               Condition => Fait.Lire_Type = Sys_Exp_P.Booleen_E,
                Message   => "Le fait [" & String (C.Lire_Nom) & "] " &
                   "devrait etre de type BOOLEEN mais est " &
                   "[" & Fait.Lire_Type'Image & "]"
@@ -308,14 +304,12 @@ is
 
       Bloc_Lire_Fait :
       declare
-         use type Sys_Exp_P.Fait_P.Type_De_Fait_T;
-
          Fait : constant Sys_Exp_P.Fait_P.Fait_Abstrait_T'Class :=
             T.Visiteur.Base.all.Trouver (Nom_Fait => E.Lire_Nom);
       begin
          AUnit.Assertions.Assert
             (
-               Condition => Fait.Lire_Type = Sys_Exp_P.Fait_P.Entier_E,
+               Condition => Fait.Lire_Type = Sys_Exp_P.Entier_E,
                Message   => "Le fait [" & String (E.Lire_Nom) & "] " &
                   "devrait etre de type ENTIER mais est " &
                   "[" & Fait.Lire_Type'Image & "]"
@@ -394,14 +388,12 @@ is
 
       Bloc_Lire_Fait :
       declare
-         use type Sys_Exp_P.Fait_P.Type_De_Fait_T;
-
          Fait : constant Sys_Exp_P.Fait_P.Fait_Abstrait_T'Class :=
             T.Visiteur.Base.all.Trouver (Nom_Fait => E.Lire_Nom);
       begin
          AUnit.Assertions.Assert
             (
-               Condition => Fait.Lire_Type = Sys_Exp_P.Fait_P.Entier_E,
+               Condition => Fait.Lire_Type = Sys_Exp_P.Entier_E,
                Message   => "Le fait [" & String (E.Lire_Nom) & "] " &
                   "devrait etre de type ENTIER mais est " &
                   "[" & Fait.Lire_Type'Image & "]"
@@ -468,14 +460,12 @@ is
 
       Bloc_Lire_Fait :
       declare
-         use type Sys_Exp_P.Fait_P.Type_De_Fait_T;
-
          Fait : constant Sys_Exp_P.Fait_P.Fait_Abstrait_T'Class :=
             T.Visiteur.Base.all.Trouver (Nom_Fait => S.Lire_Nom);
       begin
          AUnit.Assertions.Assert
             (
-               Condition => Fait.Lire_Type = Sys_Exp_P.Fait_P.Symbole_E,
+               Condition => Fait.Lire_Type = Sys_Exp_P.Symbolique_E,
                Message   => "Le fait [" & String (S.Lire_Nom) & "] " &
                   "devrait etre de type SYMBOLIQUE mais est " &
                   "[" & Fait.Lire_Type'Image & "]"
@@ -546,14 +536,12 @@ is
 
       Bloc_Lire_Fait :
       declare
-         use type Sys_Exp_P.Fait_P.Type_De_Fait_T;
-
          Fait : constant Sys_Exp_P.Fait_P.Fait_Abstrait_T'Class :=
             T.Visiteur.Base.all.Trouver (Nom_Fait => S.Lire_Nom);
       begin
          AUnit.Assertions.Assert
             (
-               Condition => Fait.Lire_Type = Sys_Exp_P.Fait_P.Symbole_E,
+               Condition => Fait.Lire_Type = Sys_Exp_P.Symbolique_E,
                Message   => "Le fait [" & String (S.Lire_Nom) & "] " &
                   "devrait etre de type SYMBOLIQUE mais est " &
                   "[" & Fait.Lire_Type'Image & "]"
