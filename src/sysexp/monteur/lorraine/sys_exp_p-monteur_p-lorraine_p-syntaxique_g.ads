@@ -1,19 +1,17 @@
 with Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_G;
-with Sys_Exp_P.Regles_P;
 
 private with Ada.Containers.Indefinite_Doubly_Linked_Lists;
 private with Ada.Containers.Indefinite_Hashed_Maps;
 private with Ada.Containers.Indefinite_Holders;
 private with Ada.Strings.Hash;
 
-private with Sys_Exp_P.Monteur_P.Lorraine_P.Jeton_P;
-private with Sys_Exp_P.Monteur_P.Lorraine_P.Jeton_P.Fabrique_P;
 private with Sys_Exp_P.Forme_P.Conclusion_P;
 private with Sys_Exp_P.Forme_P.Premisse_P;
+private with Sys_Exp_P.Monteur_P.Lorraine_P.Jeton_P.Fabrique_P;
+private with Sys_Exp_P.Monteur_P.Lorraine_P.Jeton_P;
+private with Sys_Exp_P.Regles_P.Avec_Premisse_P;
+private with Sys_Exp_P.Regles_P.Sans_Premisse_P;
 private with Sys_Exp_P.Valeur_P;
-
-with Sys_Exp_P.Regles_P.Avec_Premisse_P;
-with Sys_Exp_P.Regles_P.Sans_Premisse_P;
 
 generic
 
@@ -51,6 +49,8 @@ package Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
    --  @return La base de règles.
 
 private
+
+   subtype ID_Regle_T is Sys_Exp_P.Regles_P.ID_Regle_T;
 
    package Map_Fait_P is new Ada.Containers.Indefinite_Hashed_Maps
       (
@@ -142,7 +142,7 @@ private
    function Faire_Regle
       (
          This : in out Syntaxique_T;
-         ID   : in     Sys_Exp_P.Regles_P.ID_Regle_T
+         ID   : in     ID_Regle_T
       )
       return Sys_Exp_P.Regles_P.Regle_Abstraite_T'Class;
    --  Construit une règle avec ou sans prémisses.
@@ -153,7 +153,7 @@ private
    function Faire_Regle_Sans_Premisse
       (
          This : in out Syntaxique_T;
-         ID   : in     Sys_Exp_P.Regles_P.ID_Regle_T
+         ID   : in     ID_Regle_T
       )
       return Sans_Premisse_R.Regle_T;
    --  Construit une règle sans prémisses.
@@ -196,7 +196,7 @@ private
    function Faire_Regle_Avec_Premisse
       (
          This : in out Syntaxique_T;
-         ID   : in     Sys_Exp_P.Regles_P.ID_Regle_T
+         ID   : in     ID_Regle_T
       )
       return Avec_Premisse_R.Regle_T;
    --  Construit une règle avec prémisses.

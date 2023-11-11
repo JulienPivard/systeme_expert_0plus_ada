@@ -23,6 +23,26 @@ is
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
+   function Lire_Representation
+      (This : in     Jeton_T)
+      return Nom_T
+   is
+   begin
+      return Nom_T (This.Representation.Element);
+   end Lire_Representation;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   function Lire_Representation
+      (This : in     Jeton_T)
+      return Nom_Symbole_T
+   is
+   begin
+      return Nom_Symbole_T (This.Representation.Element);
+   end Lire_Representation;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
    function Est_Parenthese_Ouvrante
       (This : in     Jeton_T)
       return Boolean

@@ -190,11 +190,11 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
       (This : in out Syntaxique_T)
       return Base_De_Regles_T
    is
-      use type Sys_Exp_P.Regles_P.ID_Regle_T;
+      use type ID_Regle_T;
 
       Base_De_Regles : Base_De_Regles_P.Holder;
 
-      ID : Sys_Exp_P.Regles_P.ID_Regle_T := Sys_Exp_P.Regles_P.ID_Regle_T'First;
+      ID : ID_Regle_T := ID_Regle_T'First;
    begin
       Base_De_Regles := Base_De_Regles_P.To_Holder
          (New_Item => This.Faire_Regle (ID => ID));
@@ -228,7 +228,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
    function Faire_Regle
       (
          This : in out Syntaxique_T;
-         ID   : in     Sys_Exp_P.Regles_P.ID_Regle_T
+         ID   : in     ID_Regle_T
       )
       return Sys_Exp_P.Regles_P.Regle_Abstraite_T'Class
    is
@@ -251,7 +251,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
    function Faire_Regle_Sans_Premisse
       (
          This : in out Syntaxique_T;
-         ID   : in     Sys_Exp_P.Regles_P.ID_Regle_T
+         ID   : in     ID_Regle_T
       )
       return Sans_Premisse_R.Regle_T
    is
@@ -307,26 +307,29 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
             Jeton_ID : constant Jeton_P.Jeton_T := This.Jeton_Precharge;
          begin
             if    not Jeton_ID.Est_Identificateur then
-               This.Creer_Exception (Message => "attendu: un fait booleen");
+               This.Creer_Exception
+                  (Message => "attendu: un fait booleen");
             elsif This.Noms_Faits.Contains
                (Key => Jeton_ID.Lire_Representation)
             then
                if not (This.Noms_Faits.Element
                   (Key => Jeton_ID.Lire_Representation) = Booleen_E)
                then
-                  This.Creer_Exception (Message => "le fait n'est pas booleen");
+                  This.Creer_Exception
+                     (Message => "le fait n'est pas booleen");
                end if;
             else
-               This.Creer_Exception (Message => "le fait n'a pas été declare");
+               This.Creer_Exception
+                  (Message => "le fait n'a pas été declare");
             end if;
 
             This.Suivant;
             return Conclusion_R.Bool_False_P.Creer
-               (Nom => Nom_T (Jeton_ID.Lire_Representation));
+               (Nom => Jeton_ID.Lire_Representation);
          end Bloc_Lire_Nom_Bool;
       else
          return Conclusion_R.Bool_True_P.Creer
-            (Nom => Nom_T (Jeton.Lire_Representation));
+            (Nom => Jeton.Lire_Representation);
       end if;
    end Faire_Conclusion_Booleenne;
    ---------------------------------------------------------------------------
@@ -360,8 +363,8 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
                   This.Suivant;
                   return Conclusion_R.Symbole_Fait_P.Creer
                      (
-                        Nom      => Nom_T (Jeton.Lire_Representation),
-                        Nom_Fait => Nom_T (Jeton_ID.Lire_Representation)
+                        Nom      => Jeton.Lire_Representation,
+                        Nom_Fait => Jeton_ID.Lire_Representation
                      );
                else
                   This.Creer_Exception
@@ -371,8 +374,8 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
                This.Suivant;
                return Conclusion_R.Symbole_Constant_P.Creer
                   (
-                     Nom         => Nom_T (Jeton.Lire_Representation),
-                     Nom_Symbole => Nom_Symbole_T (Jeton_ID.Lire_Representation)
+                     Nom         => Jeton.Lire_Representation,
+                     Nom_Symbole => Jeton_ID.Lire_Representation
                   );
             end if;
          end Bloc_Lire_Nom_Symb;
@@ -394,7 +397,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
          This.Suivant;
          return Conclusion_R.Expression_Entiere_P.Creer
             (
-               Nom        => Nom_T (Jeton.Lire_Representation),
+               Nom        => Jeton.Lire_Representation,
                Expression => This.Faire_Expression_Entiere
             );
       else
@@ -407,7 +410,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
    function Faire_Regle_Avec_Premisse
       (
          This : in out Syntaxique_T;
-         ID   : in     Sys_Exp_P.Regles_P.ID_Regle_T
+         ID   : in     ID_Regle_T
       )
       return Avec_Premisse_R.Regle_T
    is
@@ -509,10 +512,10 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
          end if;
 
          return Premisse_R.Bool_False_P.Creer
-            (Nom => Nom_T (This.Jeton_Precharge.Lire_Representation));
+            (Nom => This.Jeton_Precharge.Lire_Representation);
       else
          return Premisse_R.Bool_True_P.Creer
-            (Nom => Nom_T (Jeton.Lire_Representation));
+            (Nom => Jeton.Lire_Representation);
       end if;
    end Faire_Premisse_Booleenne;
    ---------------------------------------------------------------------------
@@ -556,8 +559,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
                   if Race = Symbolique_E then
                      return Premisse_R.Symbole_Fait_P.Creer
                         (
-                           Nom         => Nom_T
-                              (Jeton_Sym.Lire_Representation),
+                           Nom         => Jeton_Sym.Lire_Representation,
                            Comparateur =>
                               (
                                  if    Jeton_Signe.Est_Egal           then
@@ -567,7 +569,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
                                  else
                                     null
                               ),
-                           Nom_Fait    => Nom_T (Jeton_ID.Lire_Representation)
+                           Nom_Fait    => Jeton_ID.Lire_Representation
                         );
                   else
                      This.Creer_Exception ("le fait n'est pas symbolique");
@@ -576,7 +578,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
             else
                return Premisse_R.Symbole_Constant_P.Creer
                   (
-                     Nom         => Nom_T (Jeton_Sym.Lire_Representation),
+                     Nom         => Jeton_Sym.Lire_Representation,
                      Comparateur =>
                         (
                            if    Jeton_Signe.Est_Egal           then
@@ -586,8 +588,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
                            else
                               null
                         ),
-                     Nom_Symbole => Nom_Symbole_T
-                        (Jeton_ID.Lire_Representation)
+                     Nom_Symbole => Jeton_ID.Lire_Representation
                   );
             end if;
          end Bloc_Analyse_Identifier;
@@ -620,7 +621,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
 
          return Premisse_R.Expression_Entiere_P.Creer
             (
-               Nom         => Nom_T (Jeton_Entier.Lire_Representation),
+               Nom         => Jeton_Entier.Lire_Representation,
                Comparateur =>
                   (
                      if    Jeton_Signe.Est_Egal           then
@@ -822,7 +823,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
                Facteur := Valeur_Holder_P.To_Holder
                   (
                      New_Item => Valeur_R.Fait_P.Creer
-                        (Nom => Nom_T (Jeton.Lire_Representation))
+                        (Nom => Jeton.Lire_Representation)
                   );
             else
                This.Creer_Exception ("Le fait n'est pas entier");

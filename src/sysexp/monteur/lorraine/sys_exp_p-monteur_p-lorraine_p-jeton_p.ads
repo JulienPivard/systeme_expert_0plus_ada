@@ -89,6 +89,22 @@ is
    --  Le jeton.
    --  @return La représentation du jeton.
 
+   function Lire_Representation
+      (This : in     Jeton_T)
+      return Nom_T;
+   --  Lit la représentation du jeton.
+   --  @param This
+   --  Le jeton.
+   --  @return La représentation du jeton.
+
+   function Lire_Representation
+      (This : in     Jeton_T)
+      return Nom_Symbole_T;
+   --  Lit la représentation du jeton.
+   --  @param This
+   --  Le jeton.
+   --  @return La représentation du jeton.
+
    function Est_Parenthese_Ouvrante
       (This : in     Jeton_T)
       return Boolean;
