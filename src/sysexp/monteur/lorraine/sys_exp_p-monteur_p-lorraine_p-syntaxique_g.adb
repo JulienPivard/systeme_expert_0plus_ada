@@ -233,6 +233,9 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
    is
       Jeton : constant Jeton_P.Jeton_T := This.Jeton_Precharge;
    begin
+      if Jeton.Est_Si then
+         This.Suivant;
+      end if;
       return
          (
             if Jeton.Est_Si then
