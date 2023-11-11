@@ -178,10 +178,10 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_G is
          exit Boucle_Sauter_Chiffre when not Est_Un_Chiffre;
       end loop Boucle_Sauter_Chiffre;
 
-      --  Il fait revenir de 1 en arrière, car la position est
-      --  sur un caractère invalide.
       return Jeton_P.Fabrique_P.Faire_Entier
          (Representation => Chaine (Debut .. This.Position - 1));
+      --  Il fait revenir de 1 en arrière, car la position est
+      --  sur un caractère invalide.
    end Extraire_Entier;
    ---------------------------------------------------------------------------
 
@@ -211,11 +211,11 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_G is
          end loop Boucle_Sauter_Chaine;
       end Bloc_Sauter_Chaine;
 
-      --  Il fait revenir de 1 en arrière, car la position est
-      --  sur un caractère invalide.
       Bloc_Analyser_Chaine :
       declare
          Fin            : constant Integer := This.Position - 1;
+         --  Il fait revenir de 1 en arrière, car la position est
+         --  sur un caractère invalide.
          Chaine_Trouvee : constant String  :=
             This.Ligne_En_Cours.Element (Debut .. Fin);
       begin
