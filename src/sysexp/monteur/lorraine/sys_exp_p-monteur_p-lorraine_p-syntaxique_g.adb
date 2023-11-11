@@ -214,7 +214,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
             R : Sys_Exp_P.Regles_P.Regle_Abstraite_T'Class :=
                This.Faire_Regle (ID => ID);
          begin
-            R .Ajouter (Successeur => Base_De_Regles.Element);
+            R.Ajouter (Successeur => Base_De_Regles.Element);
             Base_De_Regles := Base_De_Regles_P.To_Holder (New_Item => R);
          end Bloc_Faire_Base;
       end loop B_Faire_Base;
@@ -231,10 +231,11 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
       )
       return Sys_Exp_P.Regles_P.Regle_Abstraite_T'Class
    is
+      Jeton : constant Jeton_P.Jeton_T := This.Jeton_Precharge;
    begin
       return
          (
-            if This.Jeton_Precharge.Est_Si then
+            if Jeton.Est_Si then
                This.Faire_Regle_Avec_Premisse (ID => ID)
             else
                This.Faire_Regle_Sans_Premisse (ID => ID)
@@ -297,6 +298,10 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
       This.Suivant;
 
       if Jeton.Est_Non then
+         Bloc_Lire_Nom_Bool :
+         declare
+            Jeton_ID : constant Jeton_P.Jeton_T := This.Jeton_Precharge;
+         begin
          if    This.Jeton_Precharge.Est_Identificateur then
             This.Creer_Exception (Message => "attendu: un fait booléen");
          elsif This.Noms_Faits.Contains
@@ -313,6 +318,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
 
          return Conclusion_R.Bool_False_P.Creer
             (Nom => Nom_T (This.Jeton_Precharge.Lire_Representation));
+         end Bloc_Lire_Nom_Bool;
       else
          return Conclusion_R.Bool_True_P.Creer
             (Nom => Nom_T (Jeton.Lire_Representation));
@@ -331,6 +337,10 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
 
       if This.Jeton_Precharge.Est_Egal then
          This.Suivant;
+         Bloc_Lire_Nom_Symb :
+         declare
+            Jeton_ID : constant Jeton_P.Jeton_T := This.Jeton_Precharge;
+         begin
          if not This.Jeton_Precharge.Est_Identificateur then
             This.Creer_Exception (Message => "attendu : identificateur");
          end if;
@@ -357,6 +367,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
                   Nom_Symbole => Nom_Symbole_T (This.Jeton_Precharge.Lire_Representation)
                );
          end if;
+         end Bloc_Lire_Nom_Symb;
       else
          This.Creer_Exception (Message => "attendu '='");
       end if;
@@ -392,13 +403,11 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
       )
       return Avec_Premisse_R.Regle_T
    is
-      Jeton : constant Jeton_P.Jeton_T := This.Jeton_Precharge;
-
       Premisses : Liste_Premisses_T := This.Faire_Condition;
 
       Regle : Avec_Premisse_R.Regle_T;
    begin
-      if not Jeton.Est_Alors then
+      if not This.Jeton_Precharge.Est_Alors then
          This.Creer_Exception (Message => "attendu: 'alors'");
       end if;
       This.Suivant;
