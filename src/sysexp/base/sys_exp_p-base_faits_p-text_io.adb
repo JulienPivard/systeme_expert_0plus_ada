@@ -59,8 +59,13 @@ is
    is
    begin
       for E : Fait_P.Fait_Abstrait_T'Class of Item.Map_Faits loop
-         Ada.Text_IO.Put_Line
-            (Item => "[" & E.Lire_Type'Image & "] ");
+         Bloc_Afficher_Type :
+         declare
+            Nom : constant String := E.Lire_Type'Image;
+         begin
+            Ada.Text_IO.Put_Line
+               (Item => "[" & Nom (Nom'First .. Nom'Last - 2) & "]");
+         end Bloc_Afficher_Type;
          W_W_IO_R.Put (Item => "└─────────  ");
 
          case E.Lire_Type is
