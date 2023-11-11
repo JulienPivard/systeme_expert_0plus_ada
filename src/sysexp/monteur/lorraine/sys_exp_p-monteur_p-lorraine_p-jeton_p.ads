@@ -289,6 +289,24 @@ is
    --  Le jeton.
    --  @return Le jeton est littéralement fait_entier.
 
+   function Est_Un_Signe_De_Comparaison_Symbolique
+      (This : in     Jeton_T)
+      return Boolean;
+   --  Indique si le jeton est un des signes
+   --  de comparaison : = /=.
+   --  @param This
+   --  Le jeton.
+   --  @return Le jeton est un signe de comparaison.
+
+   function Est_Un_Signe_De_Comparaison_Entiere
+      (This : in     Jeton_T)
+      return Boolean;
+   --  Indique si le jeton est un des signes
+   --  de comparaison : = /= < > >= <=.
+   --  @param This
+   --  Le jeton.
+   --  @return Le jeton est un signe de comparaison.
+
 private
 
    package String_Holder_P is new Ada.Containers.Indefinite_Holders

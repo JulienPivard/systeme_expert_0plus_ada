@@ -273,6 +273,34 @@ is
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
+   function Est_Un_Signe_De_Comparaison_Symbolique
+      (This : in     Jeton_T)
+      return Boolean
+   is
+      subtype Signe_De_Comparaison_T is  Sorte_T
+         with Static_Predicate =>
+            Signe_De_Comparaison_T in Egal_E | Different_E;
+   begin
+      return This.Sorte in Signe_De_Comparaison_T;
+   end Est_Un_Signe_De_Comparaison_Symbolique;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   function Est_Un_Signe_De_Comparaison_Entiere
+      (This : in     Jeton_T)
+      return Boolean
+   is
+      subtype Signe_De_Comparaison_T is  Sorte_T
+         with Static_Predicate => Signe_De_Comparaison_T in
+            Egal_E           | Different_E |
+            Inferieur_E      | Superieur_E |
+            Inferieur_Egal_E | Superieur_Egal_E;
+   begin
+      return This.Sorte in Signe_De_Comparaison_T;
+   end Est_Un_Signe_De_Comparaison_Entiere;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
    --                             Partie privée                             --
    ---------------------------------------------------------------------------
 
