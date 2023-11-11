@@ -447,8 +447,9 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
       Boucle_Ajouter_Premisse :
       loop
          Liste.Append (New_Item => This.Faire_Premisse);
+         exit Boucle_Ajouter_Premisse when This.Jeton_Precharge.Est_Alors;
          This.Suivant;
-         exit Boucle_Ajouter_Premisse when not This.Jeton_Precharge.Est_Et;
+         exit Boucle_Ajouter_Premisse when This.Jeton_Precharge.Est_Alors;
       end loop Boucle_Ajouter_Premisse;
 
       return Liste;
