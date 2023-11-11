@@ -577,7 +577,8 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
                            Nom_Fait    => Jeton_ID.Lire_Representation
                         );
                   else
-                     This.Creer_Exception ("le fait n'est pas symbolique");
+                     This.Creer_Exception
+                        (Message => "le fait n'est pas symbolique");
                   end if;
                end Bloc_Faire_Fait_Symbolique;
             else
@@ -830,7 +831,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
                         (Nom => Jeton.Lire_Representation)
                   );
             else
-               This.Creer_Exception ("Le fait n'est pas entier");
+               This.Creer_Exception (Message => "Le fait n'est pas entier");
             end if;
          end Bloc_Faire_Fait_Symbolique;
 
