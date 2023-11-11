@@ -31,12 +31,15 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
       return Syntaxique_T
    is
    begin
-      return Syntaxique_T'
+      return S : Syntaxique_T := Syntaxique_T'
          (
             Parseur_Lexical => Lexical_P.Creer (Nom_Fichier => Nom_Fichier),
             Jeton_Precharge => <>,
             Noms_Faits      => <>
-         );
+         )
+      do
+         S.Suivant;
+      end return;
    end Creer;
    ---------------------------------------------------------------------------
 
