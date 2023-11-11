@@ -493,14 +493,14 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
 
       if Jeton.Est_Non then
          if    This.Jeton_Precharge.Est_Identificateur then
-            This.Creer_Exception (Message => "attendu: un fait booléen");
+            This.Creer_Exception (Message => "attendu: un fait booleen");
          elsif This.Noms_Faits.Contains
             (Key => This.Jeton_Precharge.Lire_Representation)
          then
             if not (This.Noms_Faits.Element
                (Key => This.Jeton_Precharge.Lire_Representation) = Booleen_E)
             then
-               This.Creer_Exception (Message => "le fait n'est pas booléen");
+               This.Creer_Exception (Message => "le fait n'est pas booleen");
             end if;
          else
             This.Creer_Exception (Message => "le fait n'a pas été declare");
