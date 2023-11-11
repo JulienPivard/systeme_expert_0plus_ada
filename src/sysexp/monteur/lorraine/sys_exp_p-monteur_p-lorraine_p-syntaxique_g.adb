@@ -73,7 +73,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
       raise E_Parse with "Erreur " &
          "[" & Ligne (Ancienne .. Position) & "] ligne " &
          This.Parseur_Lexical.Lire_Numero_Ligne'Image &
-         " [" & Message & "]";
+         " [" & Message & "] position " & Ancienne'Image;
    end Creer_Exception;
    ---------------------------------------------------------------------------
 
