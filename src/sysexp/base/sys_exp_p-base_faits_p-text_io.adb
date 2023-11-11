@@ -66,7 +66,7 @@ is
             Ada.Text_IO.Put_Line
                (Item => "[" & Nom (Nom'First .. Nom'Last - 2) & "]");
          end Bloc_Afficher_Type;
-         W_W_IO_R.Put (Item => "└─────────  ");
+         W_W_IO_R.Put (Item => "└────────────  ");
 
          case E.Lire_Type is
             when Booleen_E =>
