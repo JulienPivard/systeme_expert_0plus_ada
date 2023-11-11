@@ -104,7 +104,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_G is
       (This : in out Lexical_T)
    is
       subtype Espace_T is Character
-         with Static_Predicate => Espace_T in ' ';
+         with Static_Predicate => Espace_T in ' ' | ASCII.HT | ASCII.VT;
 
       Chaine : constant String  := This.Ligne_En_Cours.Element;
 
