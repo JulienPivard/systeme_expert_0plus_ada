@@ -143,10 +143,10 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_G is
          exit Boucle_Lire_Ligne when Fin_Fichier;
 
          --  Si on est pas a la fin du fichier on prend la ligne suivante.
+         This.Num_Ligne      := Lire_Numero_Ligne_G (Contenu => This.Fichier);
          This.Ligne_En_Cours := Ligne_P.To_Holder
             (New_Item => Lire_Ligne_G (Contenu => This.Fichier));
-         This.Num_Ligne := Lire_Numero_Ligne_G (Contenu => This.Fichier);
-         This.Position  := This.Ligne_En_Cours.Element'First;
+         This.Position       := This.Ligne_En_Cours.Element'First;
       end loop Boucle_Lire_Ligne;
 
       --  Si le caractère sous la tète de lecture est
