@@ -195,6 +195,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
                New_Item => Race
             );
          This.Suivant;
+
          exit B_Parcours_Faits when This.Jeton_Precharge.Est_Fin_Expression;
          if not This.Jeton_Precharge.Est_Separateur then
             This.Creer_Exception (Message => "attendu : ','");
@@ -232,8 +233,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
 
          Bloc_Faire_Base :
          declare
-            R : Sys_Exp_P.Regles_P.Regle_Abstraite_T'Class :=
-               This.Faire_Regle (ID => ID);
+            R : Base_De_Regles_T := This.Faire_Regle (ID => ID);
          begin
             R.Ajouter (Successeur => Base_De_Regles.Element);
             Base_De_Regles := Base_De_Regles_P.To_Holder (New_Item => R);
