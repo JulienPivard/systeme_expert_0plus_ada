@@ -188,7 +188,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
    ---------------------------------------------------------------------------
    function Faire_Base_De_Regles
       (This : in out Syntaxique_T)
-      return Sys_Exp_P.Regles_P.Regle_Abstraite_T'Class
+      return Base_De_Regles_T
    is
       use type Sys_Exp_P.Regles_P.ID_Regle_T;
 
