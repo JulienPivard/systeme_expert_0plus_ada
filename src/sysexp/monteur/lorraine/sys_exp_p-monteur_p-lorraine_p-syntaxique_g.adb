@@ -8,14 +8,12 @@ with Sys_Exp_P.Valeur_P.Operateur_P.Soustraction_P;
 with Sys_Exp_P.Forme_P.Conclusion_P.Bool_False_P;
 with Sys_Exp_P.Forme_P.Conclusion_P.Bool_True_P;
 with Sys_Exp_P.Forme_P.Conclusion_P.Expression_Entiere_P;
-with Sys_Exp_P.Forme_P.Conclusion_P.Fait_Entier_P;
 with Sys_Exp_P.Forme_P.Conclusion_P.Symbole_Constant_P;
 with Sys_Exp_P.Forme_P.Conclusion_P.Symbole_Fait_P;
 
 with Sys_Exp_P.Forme_P.Premisse_P.Bool_False_P;
 with Sys_Exp_P.Forme_P.Premisse_P.Bool_True_P;
 with Sys_Exp_P.Forme_P.Premisse_P.Expression_Entiere_P;
-with Sys_Exp_P.Forme_P.Premisse_P.Fait_Entier_P;
 with Sys_Exp_P.Forme_P.Premisse_P.Symbole_Constant_P;
 with Sys_Exp_P.Forme_P.Premisse_P.Symbole_Fait_P;
 
