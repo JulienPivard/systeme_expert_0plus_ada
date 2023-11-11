@@ -89,6 +89,22 @@ private
    --  Le message à remonter.
    pragma No_Return (Creer_Exception);
 
+   function Jeton_Est_Un_Nom_De_Fait
+      (This : in     Syntaxique_T)
+      return Boolean;
+   --  Le Jeton préchargé par le parseur est il un nom de fait.
+   --  @param This
+   --  Le parseur syntaxique.
+   --  @return Le jeton préchargé est un nom de fait.
+
+   function Lire_Type_Jeton_Fait
+      (This : in     Syntaxique_T)
+      return Type_De_Fait_T;
+   --  Lit le type de fait du Jeton préchargé par le parseur.
+   --  @param This
+   --  Le parseur syntaxique.
+   --  @return Le type de fait jeton préchargé.
+
    procedure Suivant
       (This : in out Syntaxique_T);
    --  Passe au jeton lexical suivant.
