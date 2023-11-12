@@ -3,6 +3,7 @@ package body Sys_Exp_P.Forme_P.Conclusion_P.Symbole_Fait_P
 is
 
    ---------------------------------------------------------------------------
+   not overriding
    function Creer
       (
          Nom      : in     Nom_T;
@@ -33,6 +34,7 @@ is
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
+   not overriding
    function Lire_Nom_Fait
       (This : in     Conclusion_Symbolique_T)
       return Nom_T

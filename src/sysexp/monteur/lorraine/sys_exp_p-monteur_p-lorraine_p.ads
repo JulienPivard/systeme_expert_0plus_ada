@@ -15,6 +15,7 @@ is
 
    type Monteur_T is new Monteur_Abstrait_T with private;
 
+   not overriding
    function Creer
       (Nom_Fichier : in     String)
       return Monteur_T;

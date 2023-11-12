@@ -14,6 +14,7 @@ is
    type Premisse_Fait_T is new Premisse_Abstraite_T with private;
    --  Une prémisse dont la valeur est définie par un fait entier.
 
+   not overriding
    function Creer
       (
          Nom         : in     Nom_T;
@@ -42,6 +43,7 @@ is
    --  @param Visiteur
    --  Le visiteur de forme.
 
+   not overriding
    function Comparer
       (
          This   : in     Premisse_Fait_T;
@@ -58,6 +60,7 @@ is
    --  Le partie droite de l'expression.
    --  @return Le résultat de la comparaison.
 
+   not overriding
    function Lire_Nom_Fait
       (This : in     Premisse_Fait_T)
       return Nom_T;

@@ -3,6 +3,7 @@ package body Sys_Exp_P.Valeur_P.Constante_P
 is
 
    ---------------------------------------------------------------------------
+   not overriding
    function Creer
       (Valeur : in     Entier_T)
       return Valeur_Constante_T

@@ -14,6 +14,7 @@ is
    type Conclusion_True_T is new Conclusion_Abstraite_T with private;
    --  Une conclusion booléenne dont la valeur est vraie.
 
+   not overriding
    function Creer
       (Nom : in     Nom_T)
       return Conclusion_True_T;

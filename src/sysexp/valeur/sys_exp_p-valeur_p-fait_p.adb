@@ -6,6 +6,7 @@ package body Sys_Exp_P.Valeur_P.Fait_P
 is
 
    ---------------------------------------------------------------------------
+   not overriding
    function Creer
       (Nom : in     Nom_T)
       return Valeur_Fait_T

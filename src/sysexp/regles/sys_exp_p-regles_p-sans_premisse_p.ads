@@ -15,6 +15,7 @@ is
    type Regle_T is new Regle_Abstraite_T with private;
    --  Une règle sans prémisses.
 
+   not overriding
    function Creer
       (
          ID_Regle   : in     ID_Regle_T;

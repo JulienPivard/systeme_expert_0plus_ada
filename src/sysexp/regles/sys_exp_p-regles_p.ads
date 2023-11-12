@@ -80,6 +80,7 @@ is
    --  Une règle abstraite qui représentera tous les type de
    --  règles possible dans le système expert.
 
+   not overriding
    procedure Ajouter
       (
          This       : in out Regle_Abstraite_T;

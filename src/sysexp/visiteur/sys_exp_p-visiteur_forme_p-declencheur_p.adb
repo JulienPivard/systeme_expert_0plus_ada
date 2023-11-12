@@ -29,6 +29,7 @@ is
    package Symbolique_R renames Sys_Exp_P.Fait_P.Symbolique_P;
 
    ---------------------------------------------------------------------------
+   not overriding
    function Creer
       (Base : in     Accesseur_Base_T)
       return Visiteur_T

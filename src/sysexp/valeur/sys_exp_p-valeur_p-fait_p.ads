@@ -21,6 +21,7 @@ is
    --  de faits, et peux donc changer au cours de l'exécution
    --  du programme.
 
+   not overriding
    function Creer
       (Nom : in     Nom_T)
       return Valeur_Fait_T;

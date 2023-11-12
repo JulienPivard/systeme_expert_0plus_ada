@@ -3,6 +3,7 @@ package body Sys_Exp_P.Fait_P.Entier_P
 is
 
    ---------------------------------------------------------------------------
+   not overriding
    function Creer
       (
          Nom    : in     Nom_T;
@@ -32,6 +33,7 @@ is
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
+   not overriding
    function Lire_Valeur
       (This : in     Fait_Entier_T)
       return Entier_T

@@ -14,6 +14,7 @@ is
    type Conclusion_Symbolique_T is new Conclusion_Abstraite_T with private;
    --  Une conclusion dont la valeur est un nom de symbole.
 
+   not overriding
    function Creer
       (
          Nom         : in     Nom_T;
@@ -39,6 +40,7 @@ is
    --  @param Visiteur
    --  Le visiteur de forme.
 
+   not overriding
    function Lire_Nom_Symbole
       (This : in     Conclusion_Symbolique_T)
       return Nom_Symbole_T;

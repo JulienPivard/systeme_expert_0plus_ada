@@ -3,6 +3,7 @@ package body Sys_Exp_P.Regles_P.Sans_Premisse_P
 is
 
    ---------------------------------------------------------------------------
+   not overriding
    function Creer
       (
          ID_Regle   : in     ID_Regle_T;

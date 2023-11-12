@@ -14,6 +14,7 @@ is
    type Conclusion_Fait_T is new Conclusion_Abstraite_T with private;
    --  Une conclusion dont la valeur est définie par un fait entier.
 
+   not overriding
    function Creer
       (
          Nom      : in     Nom_T;
@@ -39,6 +40,7 @@ is
    --  @param Visiteur
    --  Le visiteur de forme.
 
+   not overriding
    function Lire_Nom_Fait
       (This : in     Conclusion_Fait_T)
       return Nom_T;

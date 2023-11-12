@@ -15,6 +15,7 @@ is
    type Visiteur_T is new Visiteur_Forme_Abstrait_T with private;
    --  Visiteur concret de règles conclusion et de prémisses.
 
+   not overriding
    function Creer
       (Base : in     Accesseur_Base_T)
       return Visiteur_T;

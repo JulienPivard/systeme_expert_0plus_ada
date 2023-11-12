@@ -16,6 +16,7 @@ is
    --  Une valeur constante, dont la valeur ne changera pas
    --  au cours de l'exécution.
 
+   not overriding
    function Creer
       (Valeur : in     Entier_T)
       return Valeur_Constante_T;

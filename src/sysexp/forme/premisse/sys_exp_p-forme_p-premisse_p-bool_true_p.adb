@@ -3,6 +3,7 @@ package body Sys_Exp_P.Forme_P.Premisse_P.Bool_True_P
 is
 
    ---------------------------------------------------------------------------
+   not overriding
    function Creer
       (Nom : in     Nom_T)
       return Premisse_True_T

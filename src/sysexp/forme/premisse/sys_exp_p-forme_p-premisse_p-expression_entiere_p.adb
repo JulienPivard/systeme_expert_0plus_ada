@@ -3,6 +3,7 @@ package body Sys_Exp_P.Forme_P.Premisse_P.Expression_Entiere_P
 is
 
    ---------------------------------------------------------------------------
+   not overriding
    function Creer
       (
          Nom         : in     Nom_T;
@@ -36,6 +37,7 @@ is
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
+   not overriding
    function Comparer
       (
          This   : in     Premisse_Expression_T;
@@ -54,6 +56,7 @@ is
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
+   not overriding
    function Lire_Valeur
       (
          This : in     Premisse_Expression_T;

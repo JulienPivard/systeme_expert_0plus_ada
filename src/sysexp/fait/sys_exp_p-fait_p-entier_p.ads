@@ -14,6 +14,7 @@ is
    type Fait_Entier_T is new Fait_Abstrait_T with private;
    --  Représentation concrète d'un fait entier.
 
+   not overriding
    function Creer
       (
          Nom    : in     Nom_T;
@@ -36,6 +37,7 @@ is
    --  Le fait,
    --  @return Le type du fait.
 
+   not overriding
    function Lire_Valeur
       (This : in     Fait_Entier_T)
       return Entier_T;

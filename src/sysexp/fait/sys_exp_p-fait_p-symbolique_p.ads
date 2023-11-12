@@ -16,6 +16,7 @@ is
    type Fait_Symbolique_T is new Fait_Abstrait_T with private;
    --  Représentation concrète d'un fait symbolique.
 
+   not overriding
    function Creer
       (
          Nom    : in     Nom_T;
@@ -38,6 +39,7 @@ is
    --  Le fait,
    --  @return Le type du fait.
 
+   not overriding
    function Lire_Valeur
       (This : in     Fait_Symbolique_T)
       return Nom_Symbole_T;

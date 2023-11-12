@@ -3,6 +3,7 @@ package body Sys_Exp_P.Forme_P.Conclusion_P.Expression_Entiere_P
 is
 
    ---------------------------------------------------------------------------
+   not overriding
    function Creer
       (
          Nom        : in     Nom_T;
@@ -33,6 +34,7 @@ is
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
+   not overriding
    function Lire_Valeur
       (
          This : in     Conclusion_Expression_T;

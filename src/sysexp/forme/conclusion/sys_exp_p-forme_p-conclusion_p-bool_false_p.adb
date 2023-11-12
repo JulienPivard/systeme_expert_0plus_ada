@@ -3,6 +3,7 @@ package body Sys_Exp_P.Forme_P.Conclusion_P.Bool_False_P
 is
 
    ---------------------------------------------------------------------------
+   not overriding
    function Creer
       (Nom : in     Nom_T)
       return Conclusion_False_T

@@ -21,6 +21,7 @@ is
    type Operateur_Abstrait_T is abstract new Valeur_Abstraite_T with private;
    --  Représentation abstraite d'une opération.
 
+   not overriding
    function Creer
       (
          Valeur_Gauche : in     Valeur_Abstraite_T'Class;
@@ -35,6 +36,7 @@ is
    --  La valeur gauche.
    --  @return L'opérateur.
 
+   not overriding
    function Lire_Symbole
       (This : in     Operateur_Abstrait_T)
       return Symbole_T

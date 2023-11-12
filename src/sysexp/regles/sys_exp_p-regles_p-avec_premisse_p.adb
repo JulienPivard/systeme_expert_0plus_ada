@@ -7,6 +7,7 @@ is
    package Declencheur_R renames Sys_Exp_P.Visiteur_Forme_P.Declencheur_P;
 
    ---------------------------------------------------------------------------
+   not overriding
    function Creer
       (
          ID_Regle   : in     ID_Regle_T;

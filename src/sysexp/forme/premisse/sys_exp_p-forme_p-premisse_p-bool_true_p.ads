@@ -14,6 +14,7 @@ is
    type Premisse_True_T is new Premisse_Abstraite_T with private;
    --  Une prémisse booléenne dont la valeur est vraie.
 
+   not overriding
    function Creer
       (Nom : in     Nom_T)
       return Premisse_True_T;

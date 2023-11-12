@@ -18,6 +18,7 @@ is
    type Conclusion_Expression_T is new Conclusion_Abstraite_T with private;
    --  Une conclusion entière dont la valeur est définie par une expression.
 
+   not overriding
    function Creer
       (
          Nom        : in     Nom_T;
@@ -43,6 +44,7 @@ is
    --  @param Visiteur
    --  Le visiteur de forme.
 
+   not overriding
    function Lire_Valeur
       (
          This : in     Conclusion_Expression_T;
