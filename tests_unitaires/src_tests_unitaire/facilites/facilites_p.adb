@@ -20,6 +20,16 @@ is
    Generateur_Taille : Taille_Nom_Alea_P.Generator;
 
    ---------------------------------------------------------------------------
+   function Creer_Chaine
+      return String
+   is
+      Nom : constant Nom_T := Creer_Nom;
+   begin
+      return String (Nom);
+   end Creer_Chaine;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
    function Creer_Nom
       return Nom_T
    is

@@ -18,6 +18,11 @@ is
    subtype Nom_T         is Sys_Exp_P.Nom_T;
    subtype Nom_Symbole_T is Sys_Exp_P.Nom_Symbole_T;
 
+   function Creer_Chaine
+      return String;
+   --  Crée aléatoirement une chaine de taille aléatoire.
+   --  @return Une chaine aléatoire.
+
    function Creer_Nom
       return Nom_T;
    --  Crée aléatoirement un nom de taille aléatoire.
