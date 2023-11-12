@@ -15,6 +15,8 @@ with Suite_De_Tests_Valeur;
 with Suite_De_Tests_Visiteur_Forme;
 with Suite_De_Tests_Moteur_Inference;
 
+with Suite_De_Tests_Jeton;
+
 procedure Executeur_De_Tests is
    --  Instanciation des procédures de tests.
    procedure Runner_Suite_Base      is new AUnit.Run.Test_Runner
@@ -36,6 +38,9 @@ procedure Executeur_De_Tests is
       (Suite => Suite_De_Tests_Forme_Premisse);
    procedure Runner_Suite_Visiteur_Forme   is new AUnit.Run.Test_Runner
       (Suite => Suite_De_Tests_Visiteur_Forme);
+
+   procedure Runner_Suite_Jeton is new AUnit.Run.Test_Runner
+      (Suite => Suite_De_Tests_Jeton);
 
    --  Options d'affichage du reporter
    Options : constant AUnit.Options.AUnit_Options :=
@@ -97,6 +102,12 @@ begin
          Options  => Options
       );
    Runner_Suite_Moteur
+      (
+         Reporter => Reporter,
+         Options  => Options
+      );
+
+   Runner_Suite_Jeton
       (
          Reporter => Reporter,
          Options  => Options
