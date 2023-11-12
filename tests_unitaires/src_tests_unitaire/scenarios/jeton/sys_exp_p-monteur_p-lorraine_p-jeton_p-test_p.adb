@@ -114,7 +114,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => T.Jeton.Lire_Sorte = Sorte,
+            Condition => T.Jeton.Est_Parenthese_Ouvrante,
             Message   => "Le jeton vaut " &
                "[" & T.Jeton.Lire_Sorte'Image & "] " &
                "mais devrais valoir [" & Sorte'Image & "]"
@@ -122,7 +122,7 @@ is
 
       Boucle_Tester_Les_Autres_Types :
       for S in Sorte_T loop
-         if S = Sorte then
+         if S /= Sorte then
             T.Jeton := Jeton_T'
                (
                   Sorte          => S,
@@ -131,7 +131,7 @@ is
                );
             AUnit.Assertions.Assert
                (
-                  Condition => T.Jeton.Lire_Sorte = S,
+                  Condition => not T.Jeton.Est_Parenthese_Ouvrante,
                   Message   => "Le jeton vaut " &
                      "[" & T.Jeton.Lire_Sorte'Image & "] " &
                      "et ne devrais pas valoir [" & S'Image & "]"
@@ -155,7 +155,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => T.Jeton.Lire_Sorte = Sorte,
+            Condition => T.Jeton.Est_Parenthese_Fermante,
             Message   => "Le jeton vaut " &
                "[" & T.Jeton.Lire_Sorte'Image & "] " &
                "mais devrais valoir [" & Sorte'Image & "]"
@@ -163,7 +163,7 @@ is
 
       Boucle_Tester_Les_Autres_Types :
       for S in Sorte_T loop
-         if S = Sorte then
+         if S /= Sorte then
             T.Jeton := Jeton_T'
                (
                   Sorte          => S,
@@ -172,7 +172,7 @@ is
                );
             AUnit.Assertions.Assert
                (
-                  Condition => T.Jeton.Lire_Sorte = S,
+                  Condition => not T.Jeton.Est_Parenthese_Fermante,
                   Message   => "Le jeton vaut " &
                      "[" & T.Jeton.Lire_Sorte'Image & "] " &
                      "et ne devrais pas valoir [" & S'Image & "]"
@@ -196,7 +196,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => T.Jeton.Lire_Sorte = Sorte,
+            Condition => T.Jeton.Est_Operateur_Plus,
             Message   => "Le jeton vaut " &
                "[" & T.Jeton.Lire_Sorte'Image & "] " &
                "mais devrais valoir [" & Sorte'Image & "]"
@@ -204,7 +204,7 @@ is
 
       Boucle_Tester_Les_Autres_Types :
       for S in Sorte_T loop
-         if S = Sorte then
+         if S /= Sorte then
             T.Jeton := Jeton_T'
                (
                   Sorte          => S,
@@ -213,7 +213,7 @@ is
                );
             AUnit.Assertions.Assert
                (
-                  Condition => T.Jeton.Lire_Sorte = S,
+                  Condition => not T.Jeton.Est_Operateur_Plus,
                   Message   => "Le jeton vaut " &
                      "[" & T.Jeton.Lire_Sorte'Image & "] " &
                      "et ne devrais pas valoir [" & S'Image & "]"
@@ -237,7 +237,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => T.Jeton.Lire_Sorte = Sorte,
+            Condition => T.Jeton.Est_Operateur_Moins,
             Message   => "Le jeton vaut " &
                "[" & T.Jeton.Lire_Sorte'Image & "] " &
                "mais devrais valoir [" & Sorte'Image & "]"
@@ -245,7 +245,7 @@ is
 
       Boucle_Tester_Les_Autres_Types :
       for S in Sorte_T loop
-         if S = Sorte then
+         if S /= Sorte then
             T.Jeton := Jeton_T'
                (
                   Sorte          => S,
@@ -254,7 +254,7 @@ is
                );
             AUnit.Assertions.Assert
                (
-                  Condition => T.Jeton.Lire_Sorte = S,
+                  Condition => not T.Jeton.Est_Operateur_Moins,
                   Message   => "Le jeton vaut " &
                      "[" & T.Jeton.Lire_Sorte'Image & "] " &
                      "et ne devrais pas valoir [" & S'Image & "]"
@@ -278,7 +278,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => T.Jeton.Lire_Sorte = Sorte,
+            Condition => T.Jeton.Est_Operateur_Multiplier,
             Message   => "Le jeton vaut " &
                "[" & T.Jeton.Lire_Sorte'Image & "] " &
                "mais devrais valoir [" & Sorte'Image & "]"
@@ -286,7 +286,7 @@ is
 
       Boucle_Tester_Les_Autres_Types :
       for S in Sorte_T loop
-         if S = Sorte then
+         if S /= Sorte then
             T.Jeton := Jeton_T'
                (
                   Sorte          => S,
@@ -295,7 +295,7 @@ is
                );
             AUnit.Assertions.Assert
                (
-                  Condition => T.Jeton.Lire_Sorte = S,
+                  Condition => not T.Jeton.Est_Operateur_Multiplier,
                   Message   => "Le jeton vaut " &
                      "[" & T.Jeton.Lire_Sorte'Image & "] " &
                      "et ne devrais pas valoir [" & S'Image & "]"
@@ -319,7 +319,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => T.Jeton.Lire_Sorte = Sorte,
+            Condition => T.Jeton.Est_Operateur_Diviser,
             Message   => "Le jeton vaut " &
                "[" & T.Jeton.Lire_Sorte'Image & "] " &
                "mais devrais valoir [" & Sorte'Image & "]"
@@ -327,7 +327,7 @@ is
 
       Boucle_Tester_Les_Autres_Types :
       for S in Sorte_T loop
-         if S = Sorte then
+         if S /= Sorte then
             T.Jeton := Jeton_T'
                (
                   Sorte          => S,
@@ -336,7 +336,7 @@ is
                );
             AUnit.Assertions.Assert
                (
-                  Condition => T.Jeton.Lire_Sorte = S,
+                  Condition => not T.Jeton.Est_Operateur_Diviser,
                   Message   => "Le jeton vaut " &
                      "[" & T.Jeton.Lire_Sorte'Image & "] " &
                      "et ne devrais pas valoir [" & S'Image & "]"
@@ -360,7 +360,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => T.Jeton.Lire_Sorte = Sorte,
+            Condition => T.Jeton.Est_Separateur,
             Message   => "Le jeton vaut " &
                "[" & T.Jeton.Lire_Sorte'Image & "] " &
                "mais devrais valoir [" & Sorte'Image & "]"
@@ -368,7 +368,7 @@ is
 
       Boucle_Tester_Les_Autres_Types :
       for S in Sorte_T loop
-         if S = Sorte then
+         if S /= Sorte then
             T.Jeton := Jeton_T'
                (
                   Sorte          => S,
@@ -377,7 +377,7 @@ is
                );
             AUnit.Assertions.Assert
                (
-                  Condition => T.Jeton.Lire_Sorte = S,
+                  Condition => not T.Jeton.Est_Separateur,
                   Message   => "Le jeton vaut " &
                      "[" & T.Jeton.Lire_Sorte'Image & "] " &
                      "et ne devrais pas valoir [" & S'Image & "]"
@@ -401,7 +401,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => T.Jeton.Lire_Sorte = Sorte,
+            Condition => T.Jeton.Est_Fin_Expression,
             Message   => "Le jeton vaut " &
                "[" & T.Jeton.Lire_Sorte'Image & "] " &
                "mais devrais valoir [" & Sorte'Image & "]"
@@ -409,7 +409,7 @@ is
 
       Boucle_Tester_Les_Autres_Types :
       for S in Sorte_T loop
-         if S = Sorte then
+         if S /= Sorte then
             T.Jeton := Jeton_T'
                (
                   Sorte          => S,
@@ -418,7 +418,7 @@ is
                );
             AUnit.Assertions.Assert
                (
-                  Condition => T.Jeton.Lire_Sorte = S,
+                  Condition => not T.Jeton.Est_Fin_Expression,
                   Message   => "Le jeton vaut " &
                      "[" & T.Jeton.Lire_Sorte'Image & "] " &
                      "et ne devrais pas valoir [" & S'Image & "]"
@@ -442,7 +442,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => T.Jeton.Lire_Sorte = Sorte,
+            Condition => T.Jeton.Est_Fin_Fichier,
             Message   => "Le jeton vaut " &
                "[" & T.Jeton.Lire_Sorte'Image & "] " &
                "mais devrais valoir [" & Sorte'Image & "]"
@@ -450,7 +450,7 @@ is
 
       Boucle_Tester_Les_Autres_Types :
       for S in Sorte_T loop
-         if S = Sorte then
+         if S /= Sorte then
             T.Jeton := Jeton_T'
                (
                   Sorte          => S,
@@ -459,7 +459,7 @@ is
                );
             AUnit.Assertions.Assert
                (
-                  Condition => T.Jeton.Lire_Sorte = S,
+                  Condition => not T.Jeton.Est_Fin_Fichier,
                   Message   => "Le jeton vaut " &
                      "[" & T.Jeton.Lire_Sorte'Image & "] " &
                      "et ne devrais pas valoir [" & S'Image & "]"
@@ -483,7 +483,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => T.Jeton.Lire_Sorte = Sorte,
+            Condition => T.Jeton.Est_Identificateur,
             Message   => "Le jeton vaut " &
                "[" & T.Jeton.Lire_Sorte'Image & "] " &
                "mais devrais valoir [" & Sorte'Image & "]"
@@ -491,7 +491,7 @@ is
 
       Boucle_Tester_Les_Autres_Types :
       for S in Sorte_T loop
-         if S = Sorte then
+         if S /= Sorte then
             T.Jeton := Jeton_T'
                (
                   Sorte          => S,
@@ -500,7 +500,7 @@ is
                );
             AUnit.Assertions.Assert
                (
-                  Condition => T.Jeton.Lire_Sorte = S,
+                  Condition => not T.Jeton.Est_Identificateur,
                   Message   => "Le jeton vaut " &
                      "[" & T.Jeton.Lire_Sorte'Image & "] " &
                      "et ne devrais pas valoir [" & S'Image & "]"
@@ -524,7 +524,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => T.Jeton.Lire_Sorte = Sorte,
+            Condition => T.Jeton.Est_Entier,
             Message   => "Le jeton vaut " &
                "[" & T.Jeton.Lire_Sorte'Image & "] " &
                "mais devrais valoir [" & Sorte'Image & "]"
@@ -532,7 +532,7 @@ is
 
       Boucle_Tester_Les_Autres_Types :
       for S in Sorte_T loop
-         if S = Sorte then
+         if S /= Sorte then
             T.Jeton := Jeton_T'
                (
                   Sorte          => S,
@@ -541,7 +541,7 @@ is
                );
             AUnit.Assertions.Assert
                (
-                  Condition => T.Jeton.Lire_Sorte = S,
+                  Condition => not T.Jeton.Est_Entier,
                   Message   => "Le jeton vaut " &
                      "[" & T.Jeton.Lire_Sorte'Image & "] " &
                      "et ne devrais pas valoir [" & S'Image & "]"
@@ -565,7 +565,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => T.Jeton.Lire_Sorte = Sorte,
+            Condition => T.Jeton.Est_Si,
             Message   => "Le jeton vaut " &
                "[" & T.Jeton.Lire_Sorte'Image & "] " &
                "mais devrais valoir [" & Sorte'Image & "]"
@@ -573,7 +573,7 @@ is
 
       Boucle_Tester_Les_Autres_Types :
       for S in Sorte_T loop
-         if S = Sorte then
+         if S /= Sorte then
             T.Jeton := Jeton_T'
                (
                   Sorte          => S,
@@ -582,7 +582,7 @@ is
                );
             AUnit.Assertions.Assert
                (
-                  Condition => T.Jeton.Lire_Sorte = S,
+                  Condition => not T.Jeton.Est_Si,
                   Message   => "Le jeton vaut " &
                      "[" & T.Jeton.Lire_Sorte'Image & "] " &
                      "et ne devrais pas valoir [" & S'Image & "]"
@@ -606,7 +606,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => T.Jeton.Lire_Sorte = Sorte,
+            Condition => T.Jeton.Est_Non,
             Message   => "Le jeton vaut " &
                "[" & T.Jeton.Lire_Sorte'Image & "] " &
                "mais devrais valoir [" & Sorte'Image & "]"
@@ -614,7 +614,7 @@ is
 
       Boucle_Tester_Les_Autres_Types :
       for S in Sorte_T loop
-         if S = Sorte then
+         if S /= Sorte then
             T.Jeton := Jeton_T'
                (
                   Sorte          => S,
@@ -623,7 +623,7 @@ is
                );
             AUnit.Assertions.Assert
                (
-                  Condition => T.Jeton.Lire_Sorte = S,
+                  Condition => not T.Jeton.Est_Non,
                   Message   => "Le jeton vaut " &
                      "[" & T.Jeton.Lire_Sorte'Image & "] " &
                      "et ne devrais pas valoir [" & S'Image & "]"
@@ -647,7 +647,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => T.Jeton.Lire_Sorte = Sorte,
+            Condition => T.Jeton.Est_Et,
             Message   => "Le jeton vaut " &
                "[" & T.Jeton.Lire_Sorte'Image & "] " &
                "mais devrais valoir [" & Sorte'Image & "]"
@@ -655,7 +655,7 @@ is
 
       Boucle_Tester_Les_Autres_Types :
       for S in Sorte_T loop
-         if S = Sorte then
+         if S /= Sorte then
             T.Jeton := Jeton_T'
                (
                   Sorte          => S,
@@ -664,7 +664,7 @@ is
                );
             AUnit.Assertions.Assert
                (
-                  Condition => T.Jeton.Lire_Sorte = S,
+                  Condition => not T.Jeton.Est_Et,
                   Message   => "Le jeton vaut " &
                      "[" & T.Jeton.Lire_Sorte'Image & "] " &
                      "et ne devrais pas valoir [" & S'Image & "]"
@@ -688,7 +688,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => T.Jeton.Lire_Sorte = Sorte,
+            Condition => T.Jeton.Est_Alors,
             Message   => "Le jeton vaut " &
                "[" & T.Jeton.Lire_Sorte'Image & "] " &
                "mais devrais valoir [" & Sorte'Image & "]"
@@ -696,7 +696,7 @@ is
 
       Boucle_Tester_Les_Autres_Types :
       for S in Sorte_T loop
-         if S = Sorte then
+         if S /= Sorte then
             T.Jeton := Jeton_T'
                (
                   Sorte          => S,
@@ -705,7 +705,7 @@ is
                );
             AUnit.Assertions.Assert
                (
-                  Condition => T.Jeton.Lire_Sorte = S,
+                  Condition => not T.Jeton.Est_Alors,
                   Message   => "Le jeton vaut " &
                      "[" & T.Jeton.Lire_Sorte'Image & "] " &
                      "et ne devrais pas valoir [" & S'Image & "]"
@@ -729,7 +729,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => T.Jeton.Lire_Sorte = Sorte,
+            Condition => T.Jeton.Est_Egal,
             Message   => "Le jeton vaut " &
                "[" & T.Jeton.Lire_Sorte'Image & "] " &
                "mais devrais valoir [" & Sorte'Image & "]"
@@ -737,7 +737,7 @@ is
 
       Boucle_Tester_Les_Autres_Types :
       for S in Sorte_T loop
-         if S = Sorte then
+         if S /= Sorte then
             T.Jeton := Jeton_T'
                (
                   Sorte          => S,
@@ -746,7 +746,7 @@ is
                );
             AUnit.Assertions.Assert
                (
-                  Condition => T.Jeton.Lire_Sorte = S,
+                  Condition => not T.Jeton.Est_Egal,
                   Message   => "Le jeton vaut " &
                      "[" & T.Jeton.Lire_Sorte'Image & "] " &
                      "et ne devrais pas valoir [" & S'Image & "]"
@@ -770,7 +770,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => T.Jeton.Lire_Sorte = Sorte,
+            Condition => T.Jeton.Est_Superieur,
             Message   => "Le jeton vaut " &
                "[" & T.Jeton.Lire_Sorte'Image & "] " &
                "mais devrais valoir [" & Sorte'Image & "]"
@@ -778,7 +778,7 @@ is
 
       Boucle_Tester_Les_Autres_Types :
       for S in Sorte_T loop
-         if S = Sorte then
+         if S /= Sorte then
             T.Jeton := Jeton_T'
                (
                   Sorte          => S,
@@ -787,7 +787,7 @@ is
                );
             AUnit.Assertions.Assert
                (
-                  Condition => T.Jeton.Lire_Sorte = S,
+                  Condition => not T.Jeton.Est_Superieur,
                   Message   => "Le jeton vaut " &
                      "[" & T.Jeton.Lire_Sorte'Image & "] " &
                      "et ne devrais pas valoir [" & S'Image & "]"
@@ -811,7 +811,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => T.Jeton.Lire_Sorte = Sorte,
+            Condition => T.Jeton.Est_Inferieur,
             Message   => "Le jeton vaut " &
                "[" & T.Jeton.Lire_Sorte'Image & "] " &
                "mais devrais valoir [" & Sorte'Image & "]"
@@ -819,7 +819,7 @@ is
 
       Boucle_Tester_Les_Autres_Types :
       for S in Sorte_T loop
-         if S = Sorte then
+         if S /= Sorte then
             T.Jeton := Jeton_T'
                (
                   Sorte          => S,
@@ -828,7 +828,7 @@ is
                );
             AUnit.Assertions.Assert
                (
-                  Condition => T.Jeton.Lire_Sorte = S,
+                  Condition => not T.Jeton.Est_Inferieur,
                   Message   => "Le jeton vaut " &
                      "[" & T.Jeton.Lire_Sorte'Image & "] " &
                      "et ne devrais pas valoir [" & S'Image & "]"
@@ -852,7 +852,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => T.Jeton.Lire_Sorte = Sorte,
+            Condition => T.Jeton.Est_Superieur_Egal,
             Message   => "Le jeton vaut " &
                "[" & T.Jeton.Lire_Sorte'Image & "] " &
                "mais devrais valoir [" & Sorte'Image & "]"
@@ -860,7 +860,7 @@ is
 
       Boucle_Tester_Les_Autres_Types :
       for S in Sorte_T loop
-         if S = Sorte then
+         if S /= Sorte then
             T.Jeton := Jeton_T'
                (
                   Sorte          => S,
@@ -869,7 +869,7 @@ is
                );
             AUnit.Assertions.Assert
                (
-                  Condition => T.Jeton.Lire_Sorte = S,
+                  Condition => not T.Jeton.Est_Superieur_Egal,
                   Message   => "Le jeton vaut " &
                      "[" & T.Jeton.Lire_Sorte'Image & "] " &
                      "et ne devrais pas valoir [" & S'Image & "]"
@@ -893,7 +893,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => T.Jeton.Lire_Sorte = Sorte,
+            Condition => T.Jeton.Est_Inferieur_Egal,
             Message   => "Le jeton vaut " &
                "[" & T.Jeton.Lire_Sorte'Image & "] " &
                "mais devrais valoir [" & Sorte'Image & "]"
@@ -901,7 +901,7 @@ is
 
       Boucle_Tester_Les_Autres_Types :
       for S in Sorte_T loop
-         if S = Sorte then
+         if S /= Sorte then
             T.Jeton := Jeton_T'
                (
                   Sorte          => S,
@@ -910,7 +910,7 @@ is
                );
             AUnit.Assertions.Assert
                (
-                  Condition => T.Jeton.Lire_Sorte = S,
+                  Condition => not T.Jeton.Est_Inferieur_Egal,
                   Message   => "Le jeton vaut " &
                      "[" & T.Jeton.Lire_Sorte'Image & "] " &
                      "et ne devrais pas valoir [" & S'Image & "]"
@@ -934,7 +934,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => T.Jeton.Lire_Sorte = Sorte,
+            Condition => T.Jeton.Est_Different,
             Message   => "Le jeton vaut " &
                "[" & T.Jeton.Lire_Sorte'Image & "] " &
                "mais devrais valoir [" & Sorte'Image & "]"
@@ -942,7 +942,7 @@ is
 
       Boucle_Tester_Les_Autres_Types :
       for S in Sorte_T loop
-         if S = Sorte then
+         if S /= Sorte then
             T.Jeton := Jeton_T'
                (
                   Sorte          => S,
@@ -951,7 +951,7 @@ is
                );
             AUnit.Assertions.Assert
                (
-                  Condition => T.Jeton.Lire_Sorte = S,
+                  Condition => not T.Jeton.Est_Different,
                   Message   => "Le jeton vaut " &
                      "[" & T.Jeton.Lire_Sorte'Image & "] " &
                      "et ne devrais pas valoir [" & S'Image & "]"
@@ -975,7 +975,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => T.Jeton.Lire_Sorte = Sorte,
+            Condition => T.Jeton.Est_Fait_Booleen,
             Message   => "Le jeton vaut " &
                "[" & T.Jeton.Lire_Sorte'Image & "] " &
                "mais devrais valoir [" & Sorte'Image & "]"
@@ -983,7 +983,7 @@ is
 
       Boucle_Tester_Les_Autres_Types :
       for S in Sorte_T loop
-         if S = Sorte then
+         if S /= Sorte then
             T.Jeton := Jeton_T'
                (
                   Sorte          => S,
@@ -992,7 +992,7 @@ is
                );
             AUnit.Assertions.Assert
                (
-                  Condition => T.Jeton.Lire_Sorte = S,
+                  Condition => not T.Jeton.Est_Fait_Booleen,
                   Message   => "Le jeton vaut " &
                      "[" & T.Jeton.Lire_Sorte'Image & "] " &
                      "et ne devrais pas valoir [" & S'Image & "]"
@@ -1016,7 +1016,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => T.Jeton.Lire_Sorte = Sorte,
+            Condition => T.Jeton.Est_Fait_Symbolique,
             Message   => "Le jeton vaut " &
                "[" & T.Jeton.Lire_Sorte'Image & "] " &
                "mais devrais valoir [" & Sorte'Image & "]"
@@ -1024,7 +1024,7 @@ is
 
       Boucle_Tester_Les_Autres_Types :
       for S in Sorte_T loop
-         if S = Sorte then
+         if S /= Sorte then
             T.Jeton := Jeton_T'
                (
                   Sorte          => S,
@@ -1033,7 +1033,7 @@ is
                );
             AUnit.Assertions.Assert
                (
-                  Condition => T.Jeton.Lire_Sorte = S,
+                  Condition => not T.Jeton.Est_Fait_Symbolique,
                   Message   => "Le jeton vaut " &
                      "[" & T.Jeton.Lire_Sorte'Image & "] " &
                      "et ne devrais pas valoir [" & S'Image & "]"
@@ -1057,7 +1057,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => T.Jeton.Lire_Sorte = Sorte,
+            Condition => T.Jeton.Est_Fait_Entier,
             Message   => "Le jeton vaut " &
                "[" & T.Jeton.Lire_Sorte'Image & "] " &
                "mais devrais valoir [" & Sorte'Image & "]"
@@ -1065,7 +1065,7 @@ is
 
       Boucle_Tester_Les_Autres_Types :
       for S in Sorte_T loop
-         if S = Sorte then
+         if S /= Sorte then
             T.Jeton := Jeton_T'
                (
                   Sorte          => S,
@@ -1074,7 +1074,7 @@ is
                );
             AUnit.Assertions.Assert
                (
-                  Condition => T.Jeton.Lire_Sorte = S,
+                  Condition => not T.Jeton.Est_Fait_Entier,
                   Message   => "Le jeton vaut " &
                      "[" & T.Jeton.Lire_Sorte'Image & "] " &
                      "et ne devrais pas valoir [" & S'Image & "]"
@@ -1098,7 +1098,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => T.Jeton.Lire_Sorte = Sorte,
+            Condition => T.Jeton.Est_Inconnu,
             Message   => "Le jeton vaut " &
                "[" & T.Jeton.Lire_Sorte'Image & "] " &
                "mais devrais valoir [" & Sorte'Image & "]"
@@ -1106,7 +1106,7 @@ is
 
       Boucle_Tester_Les_Autres_Types :
       for S in Sorte_T loop
-         if S = Sorte then
+         if S /= Sorte then
             T.Jeton := Jeton_T'
                (
                   Sorte          => S,
@@ -1115,7 +1115,7 @@ is
                );
             AUnit.Assertions.Assert
                (
-                  Condition => T.Jeton.Lire_Sorte = S,
+                  Condition => not T.Jeton.Est_Inconnu,
                   Message   => "Le jeton vaut " &
                      "[" & T.Jeton.Lire_Sorte'Image & "] " &
                      "et ne devrais pas valoir [" & S'Image & "]"
