@@ -16,7 +16,7 @@ is
 
    type Test_Fixt_T is new AUnit.Test_Fixtures.Test_Fixture with
       record
-         Visiteur : Visiteur_T;
+         null;
       end record;
 
    overriding
