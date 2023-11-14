@@ -17,7 +17,7 @@ is
 
    not overriding
    function Creer
-      (Base : in     Accesseur_Base_T)
+      (Base : in     not null Accesseur_Base_T)
       return Visiteur_T;
    --  Crée un visiteur de Formes.
    --  @param Base
