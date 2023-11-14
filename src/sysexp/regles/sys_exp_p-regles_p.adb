@@ -26,7 +26,7 @@ is
    function Iterer
       (
          This : in out Regle_Abstraite_T;
-         Base : in     Accesseur_Base_T
+         Base : in out Base_Faits_P.Base_De_Faits_T
       )
       return Boolean
    is
@@ -57,12 +57,12 @@ is
    function Declencher
       (
          This : in out Regle_Abstraite_T'Class;
-         Base : in     Accesseur_Base_T
+         Base : in out Base_Faits_P.Base_De_Faits_T
       )
       return Boolean
    is
       Visiteur : Declencheur_R.Visiteur_T :=
-         Declencheur_R.Creer (Base => Base);
+         Declencheur_R.Creer (Base => Base'Unchecked_Access);
    begin
       if This.Verifier_Premisse (Base => Base) then
          This.Conclusion.Element.Accepte (Visiteur => Visiteur);

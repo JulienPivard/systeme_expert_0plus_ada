@@ -37,7 +37,7 @@ is
    function Verifier_Premisse
       (
          This : in     Regle_T;
-         Base : in     Accesseur_Base_T
+         Base : in out Base_Faits_P.Base_De_Faits_T
       )
       return Boolean
    is
@@ -48,7 +48,7 @@ is
          Bloc_Visiter :
          declare
             Visiteur : Declencheur_R.Visiteur_T :=
-               Declencheur_R.Creer (Base => Base);
+               Declencheur_R.Creer (Base => Base'Unchecked_Access);
          begin
             E.Accepte (Visiteur => Visiteur);
             Verifier_Flag_Erreur_Visiteur

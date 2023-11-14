@@ -230,7 +230,7 @@ is
             Message   => "La regle doit avoir un successeur"
          );
 
-      Reussi := T.Regle.Iterer (Base => Base'Access);
+      Reussi := T.Regle.Iterer (Base => Base);
       AUnit.Assertions.Assert
          (
             Condition => Reussi,
@@ -287,7 +287,7 @@ is
             Message   => "La regle doit avoir un successeur"
          );
 
-      Reussi := T.Regle.Iterer (Base => Base'Access);
+      Reussi := T.Regle.Iterer (Base => Base);
       AUnit.Assertions.Assert
          (
             Condition => Reussi,

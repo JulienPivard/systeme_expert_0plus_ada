@@ -18,8 +18,6 @@ package Sys_Exp_P.Regles_P
       Spark_Mode     => Off
 is
 
-   subtype Accesseur_Base_T is Sys_Exp_P.Base_Faits_P.Accesseur_Base_T;
-
    package Conclusion_R renames Sys_Exp_P.Forme_P.Conclusion_P;
 
    type Regle_Interface_T is interface;
@@ -29,7 +27,7 @@ is
    function Iterer
       (
          This : in out Regle_Interface_T;
-         Base : in     Accesseur_Base_T
+         Base : in out Base_Faits_P.Base_De_Faits_T
       )
       return Boolean
    is abstract;
@@ -62,7 +60,7 @@ is
    function Verifier_Premisse
       (
          This : in     Regle_Interface_T;
-         Base : in     Accesseur_Base_T
+         Base : in out Base_Faits_P.Base_De_Faits_T
       )
       return Boolean
    is abstract;
@@ -96,7 +94,7 @@ is
    function Iterer
       (
          This : in out Regle_Abstraite_T;
-         Base : in     Accesseur_Base_T
+         Base : in out Base_Faits_P.Base_De_Faits_T
       )
       return Boolean;
    --  Lance une visite des toutes les règles avec la
@@ -156,7 +154,7 @@ private
    function Declencher
       (
          This : in out Regle_Abstraite_T'Class;
-         Base : in     Accesseur_Base_T
+         Base : in out Base_Faits_P.Base_De_Faits_T
       )
       return Boolean;
    --  Essaye de déclencher une conclusion.

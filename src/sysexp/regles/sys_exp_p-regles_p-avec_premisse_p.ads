@@ -42,7 +42,7 @@ is
    function Verifier_Premisse
       (
          This : in     Regle_T;
-         Base : in     Accesseur_Base_T
+         Base : in out Base_Faits_P.Base_De_Faits_T
       )
       return Boolean;
    --  Toutes les prémisses ont été vérifiées.

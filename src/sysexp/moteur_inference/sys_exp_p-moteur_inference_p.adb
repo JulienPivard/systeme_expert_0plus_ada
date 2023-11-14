@@ -25,8 +25,7 @@ is
    begin
       Boucle_Analyser :
       loop
-         Continuer := This.Regles.Reference.Iterer
-            (This.Base'Unchecked_Access);
+         Continuer := This.Regles.Reference.Iterer (Base => This.Base);
          exit Boucle_Analyser when not Continuer;
       end loop Boucle_Analyser;
    end Analyser_Base_Regles;
