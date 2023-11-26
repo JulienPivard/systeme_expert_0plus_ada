@@ -259,6 +259,8 @@ is
    end Test_Conclusion_Bool_True;
    ---------------------------------------------------------------------------
 
+   package C_Expr_R renames Forme_P.Conclusion_P.Expression_Entiere_P;
+
    ---------------------------------------------------------------------------
    procedure Test_Conclusion_Expression
       (T : in out Test_Fixt_T)
@@ -276,8 +278,7 @@ is
                Valeur => Valeur
             );
 
-      E : constant Conclusion_Expression_T :=
-         Sys_Exp_P.Forme_P.Conclusion_P.Expression_Entiere_P.Creer
+      E : constant C_Expr_R.Conclusion_T := C_Expr_R.Creer
             (
                Nom        => Facilites_P.Creer_Nom,
                Expression => V
@@ -342,6 +343,8 @@ is
    end Test_Conclusion_Expression;
    ---------------------------------------------------------------------------
 
+   package C_Fait_Entier_R renames Forme_P.Conclusion_P.Fait_Entier_P;
+
    ---------------------------------------------------------------------------
    procedure Test_Conclusion_Fait_Entier
       (T : in out Test_Fixt_T)
@@ -350,8 +353,7 @@ is
 
       Nom : constant Sys_Exp_P.Nom_T := Facilites_P.Creer_Nom;
 
-      E : constant Conclusion_Fait_Entier_T :=
-         Sys_Exp_P.Forme_P.Conclusion_P.Fait_Entier_P.Creer
+      E : constant C_Fait_Entier_R.Conclusion_T := C_Fait_Entier_R.Creer
             (
                Nom      => Nom,
                Nom_Fait => Facilites_P.Creer_Nom_Different (Nom => Nom)
@@ -430,6 +432,8 @@ is
    end Test_Conclusion_Fait_Entier;
    ---------------------------------------------------------------------------
 
+   package C_Sym_Constant_R renames Forme_P.Conclusion_P.Symbole_Constant_P;
+
    ---------------------------------------------------------------------------
    procedure Test_Conclusion_Symbolique_Const
       (T : in out Test_Fixt_T)
@@ -438,8 +442,7 @@ is
 
       Nom : constant Sys_Exp_P.Nom_T := Facilites_P.Creer_Nom;
 
-      S : constant Conclusion_Symbolique_Constante_T :=
-         Sys_Exp_P.Forme_P.Conclusion_P.Symbole_Constant_P.Creer
+      S : constant C_Sym_Constant_R.Conclusion_T := C_Sym_Constant_R.Creer
             (
                Nom         => Nom,
                Nom_Symbole => Facilites_P.Creer_Symbole
@@ -506,6 +509,8 @@ is
    end Test_Conclusion_Symbolique_Const;
    ---------------------------------------------------------------------------
 
+   package C_Sym_Fait_R renames Sys_Exp_P.Forme_P.Conclusion_P.Symbole_Fait_P;
+
    ---------------------------------------------------------------------------
    procedure Test_Conclusion_Symbolique_Fait
       (T : in out Test_Fixt_T)
@@ -514,8 +519,7 @@ is
 
       Nom : constant Sys_Exp_P.Nom_T := Facilites_P.Creer_Nom;
 
-      S : constant Conclusion_Symbolique_Fait_T :=
-         Sys_Exp_P.Forme_P.Conclusion_P.Symbole_Fait_P.Creer
+      S : constant C_Sym_Fait_R.Conclusion_T := C_Sym_Fait_R.Creer
             (
                Nom      => Nom,
                Nom_Fait => Facilites_P.Creer_Nom_Different (Nom => Nom)
@@ -752,6 +756,8 @@ is
    end Test_Premisse_Bool_True_Rate;
    ---------------------------------------------------------------------------
 
+   package P_Expr_R renames Sys_Exp_P.Forme_P.Premisse_P.Expression_Entiere_P;
+
    ---------------------------------------------------------------------------
    procedure Test_Premisse_Expression_Rate
       (T : in out Test_Fixt_T)
@@ -769,8 +775,7 @@ is
                Valeur => Valeur
             );
 
-      E : constant Premisse_Expression_T :=
-         Sys_Exp_P.Forme_P.Premisse_P.Expression_Entiere_P.Creer
+      E : constant P_Expr_R.Premisse_T := P_Expr_R.Creer
             (
                Nom         => Facilites_P.Creer_Nom,
                Comparateur => Test_Egale'Access,
@@ -847,6 +852,8 @@ is
    end Test_Premisse_Expression_Rate;
    ---------------------------------------------------------------------------
 
+   package P_Fait_Entier_R renames Sys_Exp_P.Forme_P.Premisse_P.Fait_Entier_P;
+
    ---------------------------------------------------------------------------
    procedure Test_Premisse_Fait_Entier_Rate
       (T : in out Test_Fixt_T)
@@ -855,8 +862,7 @@ is
 
       Nom : constant Sys_Exp_P.Nom_T := Facilites_P.Creer_Nom;
 
-      E : constant Premisse_Fait_Entier_T :=
-         Sys_Exp_P.Forme_P.Premisse_P.Fait_Entier_P.Creer
+      E : constant P_Fait_Entier_R.Premisse_T := P_Fait_Entier_R.Creer
             (
                Nom         => Nom,
                Comparateur => Test_Egale'Access,
@@ -956,14 +962,15 @@ is
    end Test_Premisse_Fait_Entier_Rate;
    ---------------------------------------------------------------------------
 
+   package P_Sym_Constant_R renames Forme_P.Premisse_P.Symbole_Constant_P;
+
    ---------------------------------------------------------------------------
    procedure Test_Premisse_Symbolique_Const_Rate
       (T : in out Test_Fixt_T)
    is
       pragma Unreferenced (T);
 
-      E : constant Premisse_Symbolique_Constante_T :=
-         Sys_Exp_P.Forme_P.Premisse_P.Symbole_Constant_P.Creer
+      E : constant P_Sym_Constant_R.Premisse_T := P_Sym_Constant_R.Creer
             (
                Nom         => Facilites_P.Creer_Nom,
                Comparateur => Test_Egale'Access,
@@ -1043,6 +1050,8 @@ is
    end Test_Premisse_Symbolique_Const_Rate;
    ---------------------------------------------------------------------------
 
+   package P_Sym_Fait_R renames Sys_Exp_P.Forme_P.Premisse_P.Symbole_Fait_P;
+
    ---------------------------------------------------------------------------
    procedure Test_Premisse_Symbolique_Fait_Rate
       (T : in out Test_Fixt_T)
@@ -1051,8 +1060,7 @@ is
 
       Nom : constant Sys_Exp_P.Nom_T := Facilites_P.Creer_Nom;
 
-      E : constant Premisse_Symbolique_Fait_T :=
-         Sys_Exp_P.Forme_P.Premisse_P.Symbole_Fait_P.Creer
+      E : constant P_Sym_Fait_R.Premisse_T := P_Sym_Fait_R.Creer
             (
                Nom         => Nom,
                Comparateur => Test_Egale'Access,
@@ -1271,8 +1279,7 @@ is
                Valeur => Valeur
             );
 
-      E : constant Premisse_Expression_T :=
-         Sys_Exp_P.Forme_P.Premisse_P.Expression_Entiere_P.Creer
+      E : constant P_Expr_R.Premisse_T := P_Expr_R.Creer
             (
                Nom         => Facilites_P.Creer_Nom,
                Comparateur => Test_Egale'Access,
@@ -1326,8 +1333,7 @@ is
 
       Nom : constant Sys_Exp_P.Nom_T := Facilites_P.Creer_Nom;
 
-      E : constant Premisse_Fait_Entier_T :=
-         Sys_Exp_P.Forme_P.Premisse_P.Fait_Entier_P.Creer
+      E : constant P_Fait_Entier_R.Premisse_T := P_Fait_Entier_R.Creer
             (
                Nom         => Nom,
                Comparateur => Test_Egale'Access,
@@ -1395,8 +1401,7 @@ is
    is
       pragma Unreferenced (T);
 
-      E : constant Premisse_Symbolique_Constante_T :=
-         Sys_Exp_P.Forme_P.Premisse_P.Symbole_Constant_P.Creer
+      E : constant P_Sym_Constant_R.Premisse_T := P_Sym_Constant_R.Creer
             (
                Nom         => Facilites_P.Creer_Nom,
                Comparateur => Test_Egale'Access,
@@ -1452,8 +1457,7 @@ is
 
       Nom : constant Sys_Exp_P.Nom_T := Facilites_P.Creer_Nom;
 
-      E : constant Premisse_Symbolique_Fait_T :=
-         Sys_Exp_P.Forme_P.Premisse_P.Symbole_Fait_P.Creer
+      E : constant P_Sym_Fait_R.Premisse_T := P_Sym_Fait_R.Creer
             (
                Nom         => Nom,
                Comparateur => Test_Egale'Access,
@@ -1671,8 +1675,7 @@ is
                Valeur => Valeur
             );
 
-      E : constant Conclusion_Expression_T :=
-         Sys_Exp_P.Forme_P.Conclusion_P.Expression_Entiere_P.Creer
+      E : constant C_Expr_R.Conclusion_T := C_Expr_R.Creer
             (
                Nom        => Facilites_P.Creer_Nom,
                Expression => V
@@ -1724,8 +1727,7 @@ is
       V : constant Sys_Exp_P.Valeur_P.Fait_P.Valeur_Fait_T :=
          Sys_Exp_P.Valeur_P.Fait_P.Creer (Nom => Nom);
 
-      E : constant Conclusion_Expression_T :=
-         Sys_Exp_P.Forme_P.Conclusion_P.Expression_Entiere_P.Creer
+      E : constant C_Expr_R.Conclusion_T := C_Expr_R.Creer
             (
                Nom        => Facilites_P.Creer_Nom,
                Expression => V
@@ -1794,8 +1796,7 @@ is
                Sys_Exp_P.Valeur_P.Constante_P.Creer (Valeur => 0)
          );
 
-      E : constant Conclusion_Expression_T :=
-         Sys_Exp_P.Forme_P.Conclusion_P.Expression_Entiere_P.Creer
+      E : constant C_Expr_R.Conclusion_T := C_Expr_R.Creer
             (
                Nom        => Facilites_P.Creer_Nom,
                Expression => V
@@ -1842,8 +1843,7 @@ is
 
       Nom : constant Sys_Exp_P.Nom_T := Facilites_P.Creer_Nom;
 
-      E : constant Conclusion_Fait_Entier_T :=
-         Sys_Exp_P.Forme_P.Conclusion_P.Fait_Entier_P.Creer
+      E : constant C_Fait_Entier_R.Conclusion_T := C_Fait_Entier_R.Creer
             (
                Nom      => Nom,
                Nom_Fait => Facilites_P.Creer_Nom_Different (Nom => Nom)
@@ -1899,8 +1899,7 @@ is
 
       Nom : constant Sys_Exp_P.Nom_T := Facilites_P.Creer_Nom;
 
-      E : constant Conclusion_Fait_Entier_T :=
-         Sys_Exp_P.Forme_P.Conclusion_P.Fait_Entier_P.Creer
+      E : constant C_Fait_Entier_R.Conclusion_T := C_Fait_Entier_R.Creer
             (
                Nom      => Nom,
                Nom_Fait => Nom
@@ -1953,8 +1952,7 @@ is
 
       Nom : constant Sys_Exp_P.Nom_T := Facilites_P.Creer_Nom;
 
-      E : constant Conclusion_Symbolique_Fait_T :=
-         Sys_Exp_P.Forme_P.Conclusion_P.Symbole_Fait_P.Creer
+      E : constant C_Sym_Fait_R.Conclusion_T := C_Sym_Fait_R.Creer
             (
                Nom      => Nom,
                Nom_Fait => Facilites_P.Creer_Nom_Different (Nom => Nom)
@@ -2010,8 +2008,7 @@ is
 
       Nom : constant Sys_Exp_P.Nom_T := Facilites_P.Creer_Nom;
 
-      E : constant Conclusion_Symbolique_Fait_T :=
-         Sys_Exp_P.Forme_P.Conclusion_P.Symbole_Fait_P.Creer
+      E : constant C_Sym_Fait_R.Conclusion_T := C_Sym_Fait_R.Creer
             (
                Nom      => Nom,
                Nom_Fait => Nom
