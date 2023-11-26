@@ -1,12 +1,8 @@
 with Ada.Text_IO;
 
-with Sys_Exp_P.Visiteur_Forme_P.Declencheur_P;
-
 package body Sys_Exp_P.Regles_P
    with Spark_Mode => Off
 is
-
-   package Declencheur_R renames Sys_Exp_P.Visiteur_Forme_P.Declencheur_P;
 
    ---------------------------------------------------------------------------
    not overriding
@@ -66,7 +62,7 @@ is
          Bloc_Visiter :
          declare
             Visiteur : Visiteur_R.Visiteur_Forme_Abstrait_T'Class :=
-               Declencheur_R.Creer (Base => Base'Unchecked_Access);
+               This.Creer_Visiteur (Base => Base);
          begin
             This.Conclusion.Element.Accepte (Visiteur => Visiteur);
             This.Regle_Declenchee :=

@@ -43,6 +43,20 @@ is
    --  Le base de faits.
    --  @return La prémisse de la règle a été vérifiée.
 
+   overriding
+   function Creer_Visiteur
+      (
+         This : in     Regle_T;
+         Base : in out Base_Faits_P.Base_De_Faits_T
+      )
+      return Visiteur_Forme_P.Visiteur_Forme_Abstrait_T'Class;
+   --  Crée un nouveau visiteur de forme.
+   --  @param This
+   --  La règle actuelle.
+   --  @param Base
+   --  Le base de faits.
+   --  @return Un visiteur de forme.
+
 private
 
    type Regle_T is new Regle_Abstraite_T with

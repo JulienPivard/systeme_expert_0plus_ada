@@ -1,6 +1,10 @@
+with Sys_Exp_P.Visiteur_Forme_P.Declencheur_P;
+
 package body Sys_Exp_P.Regles_P.Sans_Premisse_P
    with Spark_Mode => Off
 is
+
+   package Declencheur_R renames Sys_Exp_P.Visiteur_Forme_P.Declencheur_P;
 
    ---------------------------------------------------------------------------
    not overriding
@@ -37,6 +41,21 @@ is
    begin
       return True;
    end Verifier_Premisse;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   overriding
+   function Creer_Visiteur
+      (
+         This : in     Regle_T;
+         Base : in out Base_Faits_P.Base_De_Faits_T
+      )
+      return Visiteur_Forme_P.Visiteur_Forme_Abstrait_T'Class
+   is
+      pragma Unreferenced (This);
+   begin
+      return Declencheur_R.Creer (Base => Base'Unchecked_Access);
+   end Creer_Visiteur;
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------

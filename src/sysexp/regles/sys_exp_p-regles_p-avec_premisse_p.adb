@@ -68,6 +68,21 @@ is
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
+   overriding
+   function Creer_Visiteur
+      (
+         This : in     Regle_T;
+         Base : in out Base_Faits_P.Base_De_Faits_T
+      )
+      return Visiteur_Forme_P.Visiteur_Forme_Abstrait_T'Class
+   is
+      pragma Unreferenced (This);
+   begin
+      return Declencheur_R.Creer (Base => Base'Unchecked_Access);
+   end Creer_Visiteur;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
    procedure Ajouter
       (
          This     : in out Regle_T;

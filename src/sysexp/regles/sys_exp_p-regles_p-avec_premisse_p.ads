@@ -52,6 +52,20 @@ is
    --  Le base de faits.
    --  @return Toutes les prémisses sont vérifié.
 
+   overriding
+   function Creer_Visiteur
+      (
+         This : in     Regle_T;
+         Base : in out Base_Faits_P.Base_De_Faits_T
+      )
+      return Visiteur_Forme_P.Visiteur_Forme_Abstrait_T'Class;
+   --  Crée un nouveau visiteur de forme.
+   --  @param This
+   --  La règle actuelle.
+   --  @param Base
+   --  Le base de faits.
+   --  @return Un visiteur de forme.
+
    procedure Ajouter
       (
          This     : in out Regle_T;

@@ -19,6 +19,7 @@ package Sys_Exp_P.Regles_P
 is
 
    package Conclusion_R renames Sys_Exp_P.Forme_P.Conclusion_P;
+   package Visiteur_R   renames Sys_Exp_P.Visiteur_Forme_P;
 
    type Regle_Interface_T is interface;
    --  Une règle abstraite qui représentera tous les type de
@@ -56,6 +57,20 @@ is
    --  @param This
    --  La règle actuelle.
    --  @return La règle a déjà été déclenchée.
+
+   function Creer_Visiteur
+      (
+         This : in     Regle_Interface_T;
+         Base : in out Base_Faits_P.Base_De_Faits_T
+      )
+      return Visiteur_R.Visiteur_Forme_Abstrait_T'Class
+   is abstract;
+   --  Crée un nouveau visiteur de forme.
+   --  @param This
+   --  La règle actuelle.
+   --  @param Base
+   --  Le base de faits.
+   --  @return Un visiteur de forme.
 
    function Verifier_Premisse
       (
@@ -133,8 +148,6 @@ private
 
    package Regle_Holder_P is new Ada.Containers.Indefinite_Holders
       (Element_Type => Regle_Interface_T'Class);
-
-   package Visiteur_R renames Sys_Exp_P.Visiteur_Forme_P;
 
    subtype Conclusion_T is Conclusion_Holder_P.Holder;
    subtype Successeur_T is Regle_Holder_P.Holder;
