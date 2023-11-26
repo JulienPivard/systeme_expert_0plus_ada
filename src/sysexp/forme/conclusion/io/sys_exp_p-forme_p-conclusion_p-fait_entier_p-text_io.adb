@@ -6,7 +6,7 @@ is
 
    ---------------------------------------------------------------------------
    procedure Put_Line
-      (Item : in     Conclusion_Fait_T)
+      (Item : in     Conclusion_T)
    is
    begin
       Ada.Text_IO.Put_Line ("Fait [" & String (Item.Nom_Fait.Element) & "]");

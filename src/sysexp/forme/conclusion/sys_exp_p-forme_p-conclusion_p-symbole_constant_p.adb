@@ -9,10 +9,10 @@ is
          Nom         : in     Nom_T;
          Nom_Symbole : in     Nom_Symbole_T
       )
-      return Conclusion_Symbolique_T
+      return Conclusion_T
    is
    begin
-      return Conclusion_Symbolique_T'
+      return Conclusion_T'
          (
             Nom         => Nom_P.To_Holder         (New_Item => Nom),
             Nom_Symbole => Nom_Symbole_P.To_Holder (New_Item => Nom_Symbole)
@@ -24,7 +24,7 @@ is
    overriding
    procedure Accepte
       (
-         This     : in     Conclusion_Symbolique_T;
+         This     : in     Conclusion_T;
          Visiteur : in out Classe_Visiteur_Forme_T
       )
    is
@@ -36,7 +36,7 @@ is
    ---------------------------------------------------------------------------
    not overriding
    function Lire_Nom_Symbole
-      (This : in     Conclusion_Symbolique_T)
+      (This : in     Conclusion_T)
       return Nom_Symbole_T
    is
    begin

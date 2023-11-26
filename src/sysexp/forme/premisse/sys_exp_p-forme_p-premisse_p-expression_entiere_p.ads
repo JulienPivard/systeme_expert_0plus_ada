@@ -15,7 +15,7 @@ package Sys_Exp_P.Forme_P.Premisse_P.Expression_Entiere_P
       Spark_Mode     => Off
 is
 
-   type Premisse_Expression_T is new Premisse_Abstraite_T with private;
+   type Premisse_T is new Premisse_Abstraite_T with private;
    --  Une prémisse entière dont la valeur est définie par une expression.
 
    not overriding
@@ -25,7 +25,7 @@ is
          Comparateur : in     Comparateur_Entier_T;
          Expression  : in     Sys_Exp_P.Valeur_P.Valeur_Abstraite_T'Class
       )
-      return Premisse_Expression_T;
+      return Premisse_T;
    --  Crée une prémisse entière dont la valeur est une expression.
    --  @param Nom
    --  Le nom de la prémisse.
@@ -38,7 +38,7 @@ is
    overriding
    procedure Accepte
       (
-         This     : in     Premisse_Expression_T;
+         This     : in     Premisse_T;
          Visiteur : in out Classe_Visiteur_Forme_T
       );
    --  Accepte un visiteur pour étendre les fonctions.
@@ -50,7 +50,7 @@ is
    not overriding
    function Comparer
       (
-         This   : in     Premisse_Expression_T;
+         This   : in     Premisse_T;
          Gauche : in     Entier_T;
          Droite : in     Entier_T
       )
@@ -67,7 +67,7 @@ is
    not overriding
    function Lire_Valeur
       (
-         This : in     Premisse_Expression_T;
+         This : in     Premisse_T;
          Base : in     Sys_Exp_P.Base_Faits_P.Base_De_Faits_T
       )
       return Entier_T;
@@ -88,7 +88,7 @@ private
          "="          => Sys_Exp_P.Valeur_P."="
       );
 
-   type Premisse_Expression_T is new Premisse_Abstraite_T with
+   type Premisse_T is new Premisse_Abstraite_T with
       record
          Comparateur : Comparateur_Entier_T;
          --  Opérateur de comparaison.

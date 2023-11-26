@@ -94,7 +94,7 @@ is
    procedure Visiter
       (
          This  : in out Visiteur_Forme_Abstrait_T;
-         Forme : in     Forme_P.Conclusion_P.Bool_False_P.Conclusion_False_T
+         Forme : in     Forme_P.Conclusion_P.Bool_False_P.Conclusion_T
       )
    is abstract;
    --  Porte d'entrée pour visiter une conclusion booléenne fausse.
@@ -108,7 +108,7 @@ is
    procedure Visiter
       (
          This  : in out Visiteur_Forme_Abstrait_T;
-         Forme : in     Forme_P.Conclusion_P.Bool_True_P.Conclusion_True_T
+         Forme : in     Forme_P.Conclusion_P.Bool_True_P.Conclusion_T
       )
    is abstract;
    --  Porte d'entrée pour visiter une conclusion booléenne vraie.
@@ -120,7 +120,7 @@ is
    --  La conclusion à visiter.
 
    subtype Conclusion_Expression_T is
-      Forme_P.Conclusion_P.Expression_Entiere_P.Conclusion_Expression_T;
+      Forme_P.Conclusion_P.Expression_Entiere_P.Conclusion_T;
 
    procedure Visiter
       (
@@ -137,7 +137,7 @@ is
    --  La conclusion à visiter.
 
    subtype Conclusion_Fait_Entier_T is
-      Forme_P.Conclusion_P.Fait_Entier_P.Conclusion_Fait_T;
+      Forme_P.Conclusion_P.Fait_Entier_P.Conclusion_T;
 
    procedure Visiter
       (
@@ -154,7 +154,7 @@ is
    --  La conclusion à visiter.
 
    subtype Conclusion_Symbolique_Constante_T is
-      Forme_P.Conclusion_P.Symbole_Constant_P.Conclusion_Symbolique_T;
+      Forme_P.Conclusion_P.Symbole_Constant_P.Conclusion_T;
 
    procedure Visiter
       (
@@ -171,7 +171,7 @@ is
    --  La conclusion à visiter.
 
    subtype Conclusion_Symbolique_Fait_T is
-      Forme_P.Conclusion_P.Symbole_Fait_P.Conclusion_Symbolique_T;
+      Forme_P.Conclusion_P.Symbole_Fait_P.Conclusion_T;
 
    procedure Visiter
       (
@@ -188,7 +188,7 @@ is
    --  La conclusion à visiter.
 
    subtype Premisse_False_T is
-      Sys_Exp_P.Forme_P.Premisse_P.Bool_False_P.Premisse_False_T;
+      Sys_Exp_P.Forme_P.Premisse_P.Bool_False_P.Premisse_T;
 
    procedure Visiter
       (
@@ -205,7 +205,7 @@ is
    --  La prémisse à visiter.
 
    subtype Premisse_True_T is
-      Sys_Exp_P.Forme_P.Premisse_P.Bool_True_P.Premisse_True_T;
+      Sys_Exp_P.Forme_P.Premisse_P.Bool_True_P.Premisse_T;
 
    procedure Visiter
       (
@@ -222,7 +222,7 @@ is
    --  La prémisse à visiter.
 
    subtype Premisse_Expression_T is
-      Sys_Exp_P.Forme_P.Premisse_P.Expression_Entiere_P.Premisse_Expression_T;
+      Sys_Exp_P.Forme_P.Premisse_P.Expression_Entiere_P.Premisse_T;
 
    procedure Visiter
       (
@@ -239,7 +239,7 @@ is
    --  La prémisse à visiter.
 
    subtype Premisse_Fait_Entier_T is
-      Sys_Exp_P.Forme_P.Premisse_P.Fait_Entier_P.Premisse_Fait_T;
+      Sys_Exp_P.Forme_P.Premisse_P.Fait_Entier_P.Premisse_T;
 
    procedure Visiter
       (
@@ -256,7 +256,7 @@ is
    --  La prémisse à visiter.
 
    subtype Premisse_Symbolique_Constante_T is
-      Sys_Exp_P.Forme_P.Premisse_P.Symbole_Constant_P.Premisse_Symbolique_T;
+      Sys_Exp_P.Forme_P.Premisse_P.Symbole_Constant_P.Premisse_T;
 
    procedure Visiter
       (
@@ -273,7 +273,7 @@ is
    --  La prémisse à visiter.
 
    subtype Premisse_Symbolique_Fait_T is
-      Sys_Exp_P.Forme_P.Premisse_P.Symbole_Fait_P.Premisse_Symbolique_T;
+      Sys_Exp_P.Forme_P.Premisse_P.Symbole_Fait_P.Premisse_T;
 
    procedure Visiter
       (

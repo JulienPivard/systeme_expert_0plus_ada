@@ -11,7 +11,7 @@ package Sys_Exp_P.Forme_P.Conclusion_P.Symbole_Fait_P
       Spark_Mode     => Off
 is
 
-   type Conclusion_Symbolique_T is new Conclusion_Abstraite_T with private;
+   type Conclusion_T is new Conclusion_Abstraite_T with private;
    --  Une conclusion dont la valeur est le nom d'un fait symbolique.
 
    not overriding
@@ -20,7 +20,7 @@ is
          Nom      : in     Nom_T;
          Nom_Fait : in     Nom_T
       )
-      return Conclusion_Symbolique_T;
+      return Conclusion_T;
    --  Crée une conclusion symbolique dont la
    --  valeur est un nom de fait symbolique.
    --  @param Nom
@@ -32,7 +32,7 @@ is
    overriding
    procedure Accepte
       (
-         This     : in     Conclusion_Symbolique_T;
+         This     : in     Conclusion_T;
          Visiteur : in out Classe_Visiteur_Forme_T
       );
    --  Accepte un visiteur pour étendre les fonctions.
@@ -43,7 +43,7 @@ is
 
    not overriding
    function Lire_Nom_Fait
-      (This : in     Conclusion_Symbolique_T)
+      (This : in     Conclusion_T)
       return Nom_T;
    --  Lit le nom du fait symbolique stocké dans la conclusion.
    --  @param This
@@ -52,7 +52,7 @@ is
 
 private
 
-   type Conclusion_Symbolique_T is new Conclusion_Abstraite_T with
+   type Conclusion_T is new Conclusion_Abstraite_T with
       record
          Nom_Fait : Nom_P.Holder;
          --  Le nom fait symbolique.

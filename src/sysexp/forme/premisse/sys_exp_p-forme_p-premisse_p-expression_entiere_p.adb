@@ -10,10 +10,10 @@ is
          Comparateur : in     Comparateur_Entier_T;
          Expression  : in     Sys_Exp_P.Valeur_P.Valeur_Abstraite_T'Class
       )
-      return Premisse_Expression_T
+      return Premisse_T
    is
    begin
-      return Premisse_Expression_T'
+      return Premisse_T'
          (
             Nom         => Nom_P.To_Holder (New_Item => Nom),
             Comparateur => Comparateur,
@@ -27,7 +27,7 @@ is
    overriding
    procedure Accepte
       (
-         This     : in     Premisse_Expression_T;
+         This     : in     Premisse_T;
          Visiteur : in out Classe_Visiteur_Forme_T
       )
    is
@@ -40,7 +40,7 @@ is
    not overriding
    function Comparer
       (
-         This   : in     Premisse_Expression_T;
+         This   : in     Premisse_T;
          Gauche : in     Entier_T;
          Droite : in     Entier_T
       )
@@ -59,7 +59,7 @@ is
    not overriding
    function Lire_Valeur
       (
-         This : in     Premisse_Expression_T;
+         This : in     Premisse_T;
          Base : in     Sys_Exp_P.Base_Faits_P.Base_De_Faits_T
       )
       return Entier_T

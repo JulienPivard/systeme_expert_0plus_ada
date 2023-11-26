@@ -6,10 +6,10 @@ is
    not overriding
    function Creer
       (Nom : in     Nom_T)
-      return Premisse_True_T
+      return Premisse_T
    is
    begin
-      return Premisse_True_T'(Nom => Nom_P.To_Holder (New_Item => Nom));
+      return Premisse_T'(Nom => Nom_P.To_Holder (New_Item => Nom));
    end Creer;
    ---------------------------------------------------------------------------
 
@@ -17,7 +17,7 @@ is
    overriding
    procedure Accepte
       (
-         This     : in     Premisse_True_T;
+         This     : in     Premisse_T;
          Visiteur : in out Classe_Visiteur_Forme_T
       )
    is

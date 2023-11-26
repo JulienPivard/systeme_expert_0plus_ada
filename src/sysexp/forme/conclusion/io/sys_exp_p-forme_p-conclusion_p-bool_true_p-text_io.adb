@@ -6,7 +6,7 @@ is
 
    ---------------------------------------------------------------------------
    procedure Put_Line
-      (Item : in     Conclusion_True_T)
+      (Item : in     Conclusion_T)
    is
       pragma Unreferenced (Item);
    begin

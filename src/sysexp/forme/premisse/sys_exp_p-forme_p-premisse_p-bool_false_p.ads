@@ -11,13 +11,13 @@ package Sys_Exp_P.Forme_P.Premisse_P.Bool_False_P
       Spark_Mode     => Off
 is
 
-   type Premisse_False_T is new Premisse_Abstraite_T with private;
+   type Premisse_T is new Premisse_Abstraite_T with private;
    --  Une prémisse booléenne dont la valeur est fausse.
 
    not overriding
    function Creer
       (Nom : in     Nom_T)
-      return Premisse_False_T;
+      return Premisse_T;
    --  Crée une prémisse booléenne dont la valeur est fausse.
    --  @param Nom
    --  Le nom de la prémisse.
@@ -26,7 +26,7 @@ is
    overriding
    procedure Accepte
       (
-         This     : in     Premisse_False_T;
+         This     : in     Premisse_T;
          Visiteur : in out Classe_Visiteur_Forme_T
       );
    --  Accepte un visiteur pour étendre les fonctions.
@@ -37,7 +37,7 @@ is
 
 private
 
-   type Premisse_False_T is new Premisse_Abstraite_T with
+   type Premisse_T is new Premisse_Abstraite_T with
       record
          null;
       end record;

@@ -12,6 +12,6 @@ package Sys_Exp_P.Forme_P.Conclusion_P.Symbole_Fait_P.Text_IO
 is
 
    procedure Put_Line
-      (Item : in     Conclusion_Symbolique_T);
+      (Item : in     Conclusion_T);
 
 end Sys_Exp_P.Forme_P.Conclusion_P.Symbole_Fait_P.Text_IO;

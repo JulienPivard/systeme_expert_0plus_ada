@@ -10,10 +10,10 @@ is
          Comparateur : in     Comparateur_Entier_T;
          Nom_Fait    : in     Nom_T
       )
-      return Premisse_Fait_T
+      return Premisse_T
    is
    begin
-      return Premisse_Fait_T'
+      return Premisse_T'
          (
             Nom         => Nom_P.To_Holder (New_Item => Nom),
             Comparateur => Comparateur,
@@ -26,7 +26,7 @@ is
    overriding
    procedure Accepte
       (
-         This     : in     Premisse_Fait_T;
+         This     : in     Premisse_T;
          Visiteur : in out Classe_Visiteur_Forme_T
       )
    is
@@ -39,7 +39,7 @@ is
    not overriding
    function Comparer
       (
-         This   : in     Premisse_Fait_T;
+         This   : in     Premisse_T;
          Gauche : in     Entier_T;
          Droite : in     Entier_T
       )
@@ -57,7 +57,7 @@ is
    ---------------------------------------------------------------------------
    not overriding
    function Lire_Nom_Fait
-      (This : in     Premisse_Fait_T)
+      (This : in     Premisse_T)
       return Nom_T
    is
    begin

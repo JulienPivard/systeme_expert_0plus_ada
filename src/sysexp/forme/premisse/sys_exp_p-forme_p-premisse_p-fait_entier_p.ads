@@ -11,7 +11,7 @@ package Sys_Exp_P.Forme_P.Premisse_P.Fait_Entier_P
       Spark_Mode     => Off
 is
 
-   type Premisse_Fait_T is new Premisse_Abstraite_T with private;
+   type Premisse_T is new Premisse_Abstraite_T with private;
    --  Une prémisse dont la valeur est définie par un fait entier.
 
    not overriding
@@ -21,7 +21,7 @@ is
          Comparateur : in     Comparateur_Entier_T;
          Nom_Fait    : in     Nom_T
       )
-      return Premisse_Fait_T;
+      return Premisse_T;
    --  Crée une prémisse entière dont la valeur est un nom de fait entier.
    --  @param Nom
    --  Le nom de la prémisse.
@@ -34,7 +34,7 @@ is
    overriding
    procedure Accepte
       (
-         This     : in     Premisse_Fait_T;
+         This     : in     Premisse_T;
          Visiteur : in out Classe_Visiteur_Forme_T
       );
    --  Accepte un visiteur pour étendre les fonctions.
@@ -46,7 +46,7 @@ is
    not overriding
    function Comparer
       (
-         This   : in     Premisse_Fait_T;
+         This   : in     Premisse_T;
          Gauche : in     Entier_T;
          Droite : in     Entier_T
       )
@@ -62,7 +62,7 @@ is
 
    not overriding
    function Lire_Nom_Fait
-      (This : in     Premisse_Fait_T)
+      (This : in     Premisse_T)
       return Nom_T;
    --  Lit le nom du fait stocké dans la prémisse.
    --  @param This
@@ -71,7 +71,7 @@ is
 
 private
 
-   type Premisse_Fait_T is new Premisse_Abstraite_T with
+   type Premisse_T is new Premisse_Abstraite_T with
       record
          Comparateur : Comparateur_Entier_T;
          --  Opérateur de comparaison.

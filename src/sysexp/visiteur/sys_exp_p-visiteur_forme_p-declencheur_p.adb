@@ -55,7 +55,7 @@ is
    procedure Visiter
       (
          This  : in out Visiteur_T;
-         Forme : in     Forme_P.Conclusion_P.Bool_False_P.Conclusion_False_T
+         Forme : in     Forme_P.Conclusion_P.Bool_False_P.Conclusion_T
       )
    is
       Fait : constant Booleen_R.Fait_Booleen_T := Booleen_R.Creer
@@ -73,7 +73,7 @@ is
    procedure Visiter
       (
          This  : in out Visiteur_T;
-         Forme : in     Forme_P.Conclusion_P.Bool_True_P.Conclusion_True_T
+         Forme : in     Forme_P.Conclusion_P.Bool_True_P.Conclusion_T
       )
    is
       Fait : constant Booleen_R.Fait_Booleen_T := Booleen_R.Creer

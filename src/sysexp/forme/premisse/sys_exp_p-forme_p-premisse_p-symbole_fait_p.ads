@@ -11,7 +11,7 @@ package Sys_Exp_P.Forme_P.Premisse_P.Symbole_Fait_P
       Spark_Mode     => Off
 is
 
-   type Premisse_Symbolique_T is new Premisse_Abstraite_T with private;
+   type Premisse_T is new Premisse_Abstraite_T with private;
    --  Une prémisse dont la valeur est le nom d'un fait symbolique.
 
    not overriding
@@ -21,7 +21,7 @@ is
          Comparateur : in     Comparateur_Nom_Symbole_T;
          Nom_Fait    : in     Nom_T
       )
-      return Premisse_Symbolique_T;
+      return Premisse_T;
    --  Crée une prémisse symbolique dont la
    --  valeur est un nom de fait symbolique.
    --  @param Nom
@@ -35,7 +35,7 @@ is
    overriding
    procedure Accepte
       (
-         This     : in     Premisse_Symbolique_T;
+         This     : in     Premisse_T;
          Visiteur : in out Classe_Visiteur_Forme_T
       );
    --  Accepte un visiteur pour étendre les fonctions.
@@ -47,7 +47,7 @@ is
    not overriding
    function Comparer
       (
-         This   : in     Premisse_Symbolique_T;
+         This   : in     Premisse_T;
          Gauche : in     Nom_Symbole_T;
          Droite : in     Nom_Symbole_T
       )
@@ -63,7 +63,7 @@ is
 
    not overriding
    function Lire_Nom_Fait
-      (This : in     Premisse_Symbolique_T)
+      (This : in     Premisse_T)
       return Nom_T;
    --  Lit le nom du fait symbolique stocké dans la prémisse.
    --  @param This
@@ -72,7 +72,7 @@ is
 
 private
 
-   type Premisse_Symbolique_T is new Premisse_Abstraite_T with
+   type Premisse_T is new Premisse_Abstraite_T with
       record
          Comparateur : Comparateur_Nom_Symbole_T;
          --  Opérateur de comparaison.

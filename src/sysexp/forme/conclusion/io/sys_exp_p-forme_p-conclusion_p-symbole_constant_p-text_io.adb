@@ -6,7 +6,7 @@ is
 
    ---------------------------------------------------------------------------
    procedure Put_Line
-      (Item : in     Conclusion_Symbolique_T)
+      (Item : in     Conclusion_T)
    is
    begin
       Ada.Text_IO.Put_Line

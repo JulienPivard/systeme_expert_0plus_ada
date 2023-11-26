@@ -11,7 +11,7 @@ package Sys_Exp_P.Forme_P.Conclusion_P.Fait_Entier_P
       Spark_Mode     => Off
 is
 
-   type Conclusion_Fait_T is new Conclusion_Abstraite_T with private;
+   type Conclusion_T is new Conclusion_Abstraite_T with private;
    --  Une conclusion dont la valeur est définie par un fait entier.
 
    not overriding
@@ -20,7 +20,7 @@ is
          Nom      : in     Nom_T;
          Nom_Fait : in     Nom_T
       )
-      return Conclusion_Fait_T;
+      return Conclusion_T;
    --  Crée une conclusion entière dont la valeur est un nom de fait entier.
    --  @param Nom
    --  Le nom de la conclusion.
@@ -31,7 +31,7 @@ is
    overriding
    procedure Accepte
       (
-         This     : in     Conclusion_Fait_T;
+         This     : in     Conclusion_T;
          Visiteur : in out Classe_Visiteur_Forme_T
       );
    --  Accepte un visiteur pour étendre les fonctions.
@@ -42,7 +42,7 @@ is
 
    not overriding
    function Lire_Nom_Fait
-      (This : in     Conclusion_Fait_T)
+      (This : in     Conclusion_T)
       return Nom_T;
    --  Lit le nom du fait stocké dans la conclusion.
    --  @param This
@@ -51,7 +51,7 @@ is
 
 private
 
-   type Conclusion_Fait_T is new Conclusion_Abstraite_T with
+   type Conclusion_T is new Conclusion_Abstraite_T with
       record
          Nom_Fait : Nom_P.Holder;
          --  Le nom du fait entier.

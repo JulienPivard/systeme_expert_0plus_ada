@@ -11,13 +11,13 @@ package Sys_Exp_P.Forme_P.Conclusion_P.Bool_True_P
       Spark_Mode     => Off
 is
 
-   type Conclusion_True_T is new Conclusion_Abstraite_T with private;
+   type Conclusion_T is new Conclusion_Abstraite_T with private;
    --  Une conclusion booléenne dont la valeur est vraie.
 
    not overriding
    function Creer
       (Nom : in     Nom_T)
-      return Conclusion_True_T;
+      return Conclusion_T;
    --  Crée une conclusion booléenne dont la valeur est vraie.
    --  @param Nom
    --  Le nom de la conclusion.
@@ -26,7 +26,7 @@ is
    overriding
    procedure Accepte
       (
-         This     : in     Conclusion_True_T;
+         This     : in     Conclusion_T;
          Visiteur : in out Classe_Visiteur_Forme_T
       );
    --  Accepte un visiteur pour étendre les fonctions.
@@ -37,7 +37,7 @@ is
 
 private
 
-   type Conclusion_True_T is new Conclusion_Abstraite_T with
+   type Conclusion_T is new Conclusion_Abstraite_T with
       record
          null;
       end record;

@@ -28,7 +28,7 @@ is
    procedure Visiter
       (
          This  : in out Visiteur_T;
-         Forme : in     Forme_P.Conclusion_P.Bool_False_P.Conclusion_False_T
+         Forme : in     Forme_P.Conclusion_P.Bool_False_P.Conclusion_T
       );
    --  Porte d'entrée pour visiter une conclusion booléenne fausse.
    --  Ajoute la conclusion de la règle à la base de faits
@@ -42,7 +42,7 @@ is
    procedure Visiter
       (
          This  : in out Visiteur_T;
-         Forme : in     Forme_P.Conclusion_P.Bool_True_P.Conclusion_True_T
+         Forme : in     Forme_P.Conclusion_P.Bool_True_P.Conclusion_T
       );
    --  Porte d'entrée pour visiter une conclusion booléenne vraie.
    --  Ajoute la conclusion de la règle à la base de faits

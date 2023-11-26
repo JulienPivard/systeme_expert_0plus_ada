@@ -12,6 +12,6 @@ package Sys_Exp_P.Forme_P.Conclusion_P.Fait_Entier_P.Text_IO
 is
 
    procedure Put_Line
-      (Item : in     Conclusion_Fait_T);
+      (Item : in     Conclusion_T);
 
 end Sys_Exp_P.Forme_P.Conclusion_P.Fait_Entier_P.Text_IO;

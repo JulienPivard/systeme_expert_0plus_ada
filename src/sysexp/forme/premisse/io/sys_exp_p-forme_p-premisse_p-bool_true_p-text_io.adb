@@ -6,7 +6,7 @@ is
 
    ---------------------------------------------------------------------------
    procedure Put_Line
-      (Item : in     Premisse_True_T)
+      (Item : in     Premisse_T)
    is
       pragma Unreferenced (Item);
    begin

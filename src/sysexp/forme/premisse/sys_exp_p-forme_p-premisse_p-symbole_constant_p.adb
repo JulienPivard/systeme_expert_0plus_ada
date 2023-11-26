@@ -10,10 +10,10 @@ is
          Comparateur : in     Comparateur_Nom_Symbole_T;
          Nom_Symbole : in     Nom_Symbole_T
       )
-      return Premisse_Symbolique_T
+      return Premisse_T
    is
    begin
-      return Premisse_Symbolique_T'
+      return Premisse_T'
          (
             Nom         => Nom_P.To_Holder         (New_Item => Nom),
             Comparateur => Comparateur,
@@ -26,7 +26,7 @@ is
    overriding
    procedure Accepte
       (
-         This     : in     Premisse_Symbolique_T;
+         This     : in     Premisse_T;
          Visiteur : in out Classe_Visiteur_Forme_T
       )
    is
@@ -39,7 +39,7 @@ is
    not overriding
    function Comparer
       (
-         This   : in     Premisse_Symbolique_T;
+         This   : in     Premisse_T;
          Gauche : in     Nom_Symbole_T;
          Droite : in     Nom_Symbole_T
       )
@@ -57,7 +57,7 @@ is
    ---------------------------------------------------------------------------
    not overriding
    function Lire_Nom_Symbole
-      (This : in     Premisse_Symbolique_T)
+      (This : in     Premisse_T)
       return Nom_Symbole_T
    is
    begin
