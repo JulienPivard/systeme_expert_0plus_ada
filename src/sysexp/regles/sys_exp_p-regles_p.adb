@@ -65,17 +65,17 @@ is
       if This.Verifier_Premisse (Base => Base) then
          Bloc_Visiter :
          declare
-            Visiteur : Declencheur_R.Visiteur_T :=
+            Visiteur : Visiteur_R.Visiteur_Forme_Abstrait_T'Class :=
                Declencheur_R.Creer (Base => Base'Unchecked_Access);
          begin
-         This.Conclusion.Element.Accepte (Visiteur => Visiteur);
-         This.Regle_Declenchee :=
-            Visiteur.Au_Moins_Une_Conclusion_Declenchee;
-         Verifier_Flag_Erreur_Visiteur
-            (
-               Regle    => This,
-               Visiteur => Visiteur
-            );
+            This.Conclusion.Element.Accepte (Visiteur => Visiteur);
+            This.Regle_Declenchee :=
+               Visiteur.Au_Moins_Une_Conclusion_Declenchee;
+            Verifier_Flag_Erreur_Visiteur
+               (
+                  Regle    => This,
+                  Visiteur => Visiteur
+               );
          end Bloc_Visiter;
       end if;
 
