@@ -279,10 +279,10 @@ is
             );
 
       E : constant C_Expr_R.Conclusion_T := C_Expr_R.Creer
-            (
-               Nom        => Facilites_P.Creer_Nom,
-               Expression => V
-            );
+         (
+            Nom        => Facilites_P.Creer_Nom,
+            Expression => V
+         );
    begin
       E.Accepte (Visiteur => Visiteur);
       AUnit.Assertions.Assert
@@ -354,10 +354,10 @@ is
       Nom : constant Sys_Exp_P.Nom_T := Facilites_P.Creer_Nom;
 
       E : constant C_Fait_Entier_R.Conclusion_T := C_Fait_Entier_R.Creer
-            (
-               Nom      => Nom,
-               Nom_Fait => Facilites_P.Creer_Nom_Different (Nom => Nom)
-            );
+         (
+            Nom      => Nom,
+            Nom_Fait => Facilites_P.Creer_Nom_Different (Nom => Nom)
+         );
 
       V : constant Sys_Exp_P.Fait_P.Entier_P.Fait_Entier_T :=
          Facilites_P.Fait_P.Creer_Fait_Entier (Nom => E.Lire_Nom_Fait);
@@ -443,10 +443,10 @@ is
       Nom : constant Sys_Exp_P.Nom_T := Facilites_P.Creer_Nom;
 
       S : constant C_Sym_Constant_R.Conclusion_T := C_Sym_Constant_R.Creer
-            (
-               Nom         => Nom,
-               Nom_Symbole => Facilites_P.Creer_Symbole
-            );
+         (
+            Nom         => Nom,
+            Nom_Symbole => Facilites_P.Creer_Symbole
+         );
 
       Visiteur : Visiteur_T := Creer (Base => Base'Access);
    begin
@@ -520,10 +520,10 @@ is
       Nom : constant Sys_Exp_P.Nom_T := Facilites_P.Creer_Nom;
 
       S : constant C_Sym_Fait_R.Conclusion_T := C_Sym_Fait_R.Creer
-            (
-               Nom      => Nom,
-               Nom_Fait => Facilites_P.Creer_Nom_Different (Nom => Nom)
-            );
+         (
+            Nom      => Nom,
+            Nom_Fait => Facilites_P.Creer_Nom_Different (Nom => Nom)
+         );
 
       F : constant Sys_Exp_P.Fait_P.Symbolique_P.Fait_Symbolique_T :=
          Facilites_P.Fait_P.Creer_Fait_Symbolique (Nom => S.Lire_Nom_Fait);
@@ -776,11 +776,11 @@ is
             );
 
       E : constant P_Expr_R.Premisse_T := P_Expr_R.Creer
-            (
-               Nom         => Facilites_P.Creer_Nom,
-               Comparateur => Test_Egale'Access,
-               Expression  => V
-            );
+         (
+            Nom         => Facilites_P.Creer_Nom,
+            Comparateur => Test_Egale'Access,
+            Expression  => V
+         );
       F : constant Sys_Exp_P.Fait_P.Entier_P.Fait_Entier_T :=
          Sys_Exp_P.Fait_P.Entier_P.Creer
             (
@@ -863,11 +863,11 @@ is
       Nom : constant Sys_Exp_P.Nom_T := Facilites_P.Creer_Nom;
 
       E : constant P_Fait_Entier_R.Premisse_T := P_Fait_Entier_R.Creer
-            (
-               Nom         => Nom,
-               Comparateur => Test_Egale'Access,
-               Nom_Fait    => Facilites_P.Creer_Nom_Different (Nom => Nom)
-            );
+         (
+            Nom         => Nom,
+            Comparateur => Test_Egale'Access,
+            Nom_Fait    => Facilites_P.Creer_Nom_Different (Nom => Nom)
+         );
 
       F_1 : constant Sys_Exp_P.Fait_P.Entier_P.Fait_Entier_T :=
          Facilites_P.Fait_P.Creer_Fait_Entier (Nom => E.Lire_Nom);
@@ -971,11 +971,11 @@ is
       pragma Unreferenced (T);
 
       E : constant P_Sym_Constant_R.Premisse_T := P_Sym_Constant_R.Creer
-            (
-               Nom         => Facilites_P.Creer_Nom,
-               Comparateur => Test_Egale'Access,
-               Nom_Symbole => Facilites_P.Creer_Symbole
-            );
+         (
+            Nom         => Facilites_P.Creer_Nom,
+            Comparateur => Test_Egale'Access,
+            Nom_Symbole => Facilites_P.Creer_Symbole
+         );
       F : constant Sys_Exp_P.Fait_P.Symbolique_P.Fait_Symbolique_T :=
          Sys_Exp_P.Fait_P.Symbolique_P.Creer
             (
@@ -1061,11 +1061,11 @@ is
       Nom : constant Sys_Exp_P.Nom_T := Facilites_P.Creer_Nom;
 
       E : constant P_Sym_Fait_R.Premisse_T := P_Sym_Fait_R.Creer
-            (
-               Nom         => Nom,
-               Comparateur => Test_Egale'Access,
-               Nom_Fait    => Facilites_P.Creer_Nom_Different (Nom => Nom)
-            );
+         (
+            Nom         => Nom,
+            Comparateur => Test_Egale'Access,
+            Nom_Fait    => Facilites_P.Creer_Nom_Different (Nom => Nom)
+         );
 
       F_1 : constant Sys_Exp_P.Fait_P.Symbolique_P.Fait_Symbolique_T :=
          Facilites_P.Fait_P.Creer_Fait_Symbolique (Nom => E.Lire_Nom);
@@ -1280,11 +1280,11 @@ is
             );
 
       E : constant P_Expr_R.Premisse_T := P_Expr_R.Creer
-            (
-               Nom         => Facilites_P.Creer_Nom,
-               Comparateur => Test_Egale'Access,
-               Expression  => V
-            );
+         (
+            Nom         => Facilites_P.Creer_Nom,
+            Comparateur => Test_Egale'Access,
+            Expression  => V
+         );
       F : constant Sys_Exp_P.Fait_P.Entier_P.Fait_Entier_T :=
          Sys_Exp_P.Fait_P.Entier_P.Creer
             (
@@ -1334,11 +1334,11 @@ is
       Nom : constant Sys_Exp_P.Nom_T := Facilites_P.Creer_Nom;
 
       E : constant P_Fait_Entier_R.Premisse_T := P_Fait_Entier_R.Creer
-            (
-               Nom         => Nom,
-               Comparateur => Test_Egale'Access,
-               Nom_Fait    => Facilites_P.Creer_Nom_Different (Nom => Nom)
-            );
+         (
+            Nom         => Nom,
+            Comparateur => Test_Egale'Access,
+            Nom_Fait    => Facilites_P.Creer_Nom_Different (Nom => Nom)
+         );
 
       F_1 : constant Sys_Exp_P.Fait_P.Entier_P.Fait_Entier_T :=
          Facilites_P.Fait_P.Creer_Fait_Entier (Nom => E.Lire_Nom);
@@ -1402,11 +1402,11 @@ is
       pragma Unreferenced (T);
 
       E : constant P_Sym_Constant_R.Premisse_T := P_Sym_Constant_R.Creer
-            (
-               Nom         => Facilites_P.Creer_Nom,
-               Comparateur => Test_Egale'Access,
-               Nom_Symbole => Facilites_P.Creer_Symbole
-            );
+         (
+            Nom         => Facilites_P.Creer_Nom,
+            Comparateur => Test_Egale'Access,
+            Nom_Symbole => Facilites_P.Creer_Symbole
+         );
       F : constant Sys_Exp_P.Fait_P.Symbolique_P.Fait_Symbolique_T :=
          Sys_Exp_P.Fait_P.Symbolique_P.Creer
             (
@@ -1458,11 +1458,11 @@ is
       Nom : constant Sys_Exp_P.Nom_T := Facilites_P.Creer_Nom;
 
       E : constant P_Sym_Fait_R.Premisse_T := P_Sym_Fait_R.Creer
-            (
-               Nom         => Nom,
-               Comparateur => Test_Egale'Access,
-               Nom_Fait    => Facilites_P.Creer_Nom_Different (Nom => Nom)
-            );
+         (
+            Nom         => Nom,
+            Comparateur => Test_Egale'Access,
+            Nom_Fait    => Facilites_P.Creer_Nom_Different (Nom => Nom)
+         );
 
       F_1 : constant Sys_Exp_P.Fait_P.Symbolique_P.Fait_Symbolique_T :=
          Facilites_P.Fait_P.Creer_Fait_Symbolique (Nom => E.Lire_Nom);
@@ -1676,10 +1676,10 @@ is
             );
 
       E : constant C_Expr_R.Conclusion_T := C_Expr_R.Creer
-            (
-               Nom        => Facilites_P.Creer_Nom,
-               Expression => V
-            );
+         (
+            Nom        => Facilites_P.Creer_Nom,
+            Expression => V
+         );
 
       Visiteur : Visiteur_T := Creer (Base => Base'Access);
    begin
@@ -1728,10 +1728,10 @@ is
          Sys_Exp_P.Valeur_P.Fait_P.Creer (Nom => Nom);
 
       E : constant C_Expr_R.Conclusion_T := C_Expr_R.Creer
-            (
-               Nom        => Facilites_P.Creer_Nom,
-               Expression => V
-            );
+         (
+            Nom        => Facilites_P.Creer_Nom,
+            Expression => V
+         );
 
       F : constant Sys_Exp_P.Fait_P.Symbolique_P.Fait_Symbolique_T :=
          Facilites_P.Fait_P.Creer_Fait_Symbolique (Nom => Nom);
@@ -1797,10 +1797,10 @@ is
          );
 
       E : constant C_Expr_R.Conclusion_T := C_Expr_R.Creer
-            (
-               Nom        => Facilites_P.Creer_Nom,
-               Expression => V
-            );
+         (
+            Nom        => Facilites_P.Creer_Nom,
+            Expression => V
+         );
    begin
       E.Accepte (Visiteur => Visiteur);
       AUnit.Assertions.Assert
@@ -1844,10 +1844,10 @@ is
       Nom : constant Sys_Exp_P.Nom_T := Facilites_P.Creer_Nom;
 
       E : constant C_Fait_Entier_R.Conclusion_T := C_Fait_Entier_R.Creer
-            (
-               Nom      => Nom,
-               Nom_Fait => Facilites_P.Creer_Nom_Different (Nom => Nom)
-            );
+         (
+            Nom      => Nom,
+            Nom_Fait => Facilites_P.Creer_Nom_Different (Nom => Nom)
+         );
 
       Visiteur : Visiteur_T := Creer (Base => Base'Access);
    begin
@@ -1900,10 +1900,10 @@ is
       Nom : constant Sys_Exp_P.Nom_T := Facilites_P.Creer_Nom;
 
       E : constant C_Fait_Entier_R.Conclusion_T := C_Fait_Entier_R.Creer
-            (
-               Nom      => Nom,
-               Nom_Fait => Nom
-            );
+         (
+            Nom      => Nom,
+            Nom_Fait => Nom
+         );
 
       F : constant Sys_Exp_P.Fait_P.Symbolique_P.Fait_Symbolique_T :=
          Facilites_P.Fait_P.Creer_Fait_Symbolique (Nom => E.Lire_Nom);
@@ -1953,10 +1953,10 @@ is
       Nom : constant Sys_Exp_P.Nom_T := Facilites_P.Creer_Nom;
 
       E : constant C_Sym_Fait_R.Conclusion_T := C_Sym_Fait_R.Creer
-            (
-               Nom      => Nom,
-               Nom_Fait => Facilites_P.Creer_Nom_Different (Nom => Nom)
-            );
+         (
+            Nom      => Nom,
+            Nom_Fait => Facilites_P.Creer_Nom_Different (Nom => Nom)
+         );
 
       Visiteur : Visiteur_T := Creer (Base => Base'Access);
    begin
@@ -2009,10 +2009,10 @@ is
       Nom : constant Sys_Exp_P.Nom_T := Facilites_P.Creer_Nom;
 
       E : constant C_Sym_Fait_R.Conclusion_T := C_Sym_Fait_R.Creer
-            (
-               Nom      => Nom,
-               Nom_Fait => Nom
-            );
+         (
+            Nom      => Nom,
+            Nom_Fait => Nom
+         );
 
       F : constant Sys_Exp_P.Fait_P.Entier_P.Fait_Entier_T :=
          Facilites_P.Fait_P.Creer_Fait_Entier (Nom => E.Lire_Nom);
