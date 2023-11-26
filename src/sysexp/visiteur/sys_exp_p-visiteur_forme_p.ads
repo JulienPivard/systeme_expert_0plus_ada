@@ -119,13 +119,10 @@ is
    --  @param Forme
    --  La conclusion à visiter.
 
-   subtype Conclusion_Expression_T is
-      Forme_P.Conclusion_P.Expression_Entiere_P.Conclusion_T;
-
    procedure Visiter
       (
          This  : in out Visiteur_Forme_Abstrait_T;
-         Forme : in     Conclusion_Expression_T
+         Forme : in     Forme_P.Conclusion_P.Expression_Entiere_P.Conclusion_T
       )
    is abstract;
    --  Porte d'entrée pour visiter une conclusion d'expression entière.
@@ -136,13 +133,10 @@ is
    --  @param Forme
    --  La conclusion à visiter.
 
-   subtype Conclusion_Fait_Entier_T is
-      Forme_P.Conclusion_P.Fait_Entier_P.Conclusion_T;
-
    procedure Visiter
       (
          This  : in out Visiteur_Forme_Abstrait_T;
-         Forme : in     Conclusion_Fait_Entier_T
+         Forme : in     Forme_P.Conclusion_P.Fait_Entier_P.Conclusion_T
       )
    is abstract;
    --  Porte d'entrée pour visiter une conclusion de fait entier.
@@ -153,13 +147,10 @@ is
    --  @param Forme
    --  La conclusion à visiter.
 
-   subtype Conclusion_Symbolique_Constante_T is
-      Forme_P.Conclusion_P.Symbole_Constant_P.Conclusion_T;
-
    procedure Visiter
       (
          This  : in out Visiteur_Forme_Abstrait_T;
-         Forme : in     Conclusion_Symbolique_Constante_T
+         Forme : in     Forme_P.Conclusion_P.Symbole_Constant_P.Conclusion_T
       )
    is abstract;
    --  Porte d'entrée pour visiter une conclusion symbolique.
@@ -170,13 +161,10 @@ is
    --  @param Forme
    --  La conclusion à visiter.
 
-   subtype Conclusion_Symbolique_Fait_T is
-      Forme_P.Conclusion_P.Symbole_Fait_P.Conclusion_T;
-
    procedure Visiter
       (
          This  : in out Visiteur_Forme_Abstrait_T;
-         Forme : in     Conclusion_Symbolique_Fait_T
+         Forme : in     Forme_P.Conclusion_P.Symbole_Fait_P.Conclusion_T
       )
    is abstract;
    --  Porte d'entrée pour visiter une conclusion de fait symbolique.
@@ -187,13 +175,10 @@ is
    --  @param Forme
    --  La conclusion à visiter.
 
-   subtype Premisse_False_T is
-      Sys_Exp_P.Forme_P.Premisse_P.Bool_False_P.Premisse_T;
-
    procedure Visiter
       (
          This  : in out Visiteur_Forme_Abstrait_T;
-         Forme : in     Premisse_False_T
+         Forme : in     Forme_P.Premisse_P.Bool_False_P.Premisse_T
       )
    is abstract;
    --  Porte d'entrée pour visiter une prémisse booléenne fausse.
@@ -204,13 +189,10 @@ is
    --  @param Forme
    --  La prémisse à visiter.
 
-   subtype Premisse_True_T is
-      Sys_Exp_P.Forme_P.Premisse_P.Bool_True_P.Premisse_T;
-
    procedure Visiter
       (
          This  : in out Visiteur_Forme_Abstrait_T;
-         Forme : in     Premisse_True_T
+         Forme : in     Forme_P.Premisse_P.Bool_True_P.Premisse_T
       )
    is abstract;
    --  Porte d'entrée pour visiter une prémisse booléenne vraie.
@@ -221,13 +203,10 @@ is
    --  @param Forme
    --  La prémisse à visiter.
 
-   subtype Premisse_Expression_T is
-      Sys_Exp_P.Forme_P.Premisse_P.Expression_Entiere_P.Premisse_T;
-
    procedure Visiter
       (
          This  : in out Visiteur_Forme_Abstrait_T;
-         Forme : in     Premisse_Expression_T
+         Forme : in     Forme_P.Premisse_P.Expression_Entiere_P.Premisse_T
       )
    is abstract;
    --  Porte d'entrée pour visiter une prémisse d'expression entière.
@@ -238,13 +217,10 @@ is
    --  @param Forme
    --  La prémisse à visiter.
 
-   subtype Premisse_Fait_Entier_T is
-      Sys_Exp_P.Forme_P.Premisse_P.Fait_Entier_P.Premisse_T;
-
    procedure Visiter
       (
          This  : in out Visiteur_Forme_Abstrait_T;
-         Forme : in     Premisse_Fait_Entier_T
+         Forme : in     Forme_P.Premisse_P.Fait_Entier_P.Premisse_T
       )
    is abstract;
    --  Porte d'entrée pour visiter une prémisse de fait entier.
@@ -255,13 +231,10 @@ is
    --  @param Forme
    --  La prémisse à visiter.
 
-   subtype Premisse_Symbolique_Constante_T is
-      Sys_Exp_P.Forme_P.Premisse_P.Symbole_Constant_P.Premisse_T;
-
    procedure Visiter
       (
          This  : in out Visiteur_Forme_Abstrait_T;
-         Forme : in     Premisse_Symbolique_Constante_T
+         Forme : in     Forme_P.Premisse_P.Symbole_Constant_P.Premisse_T
       )
    is abstract;
    --  Porte d'entrée pour visiter une prémisse symbolique.
@@ -272,13 +245,10 @@ is
    --  @param Forme
    --  La prémisse à visiter.
 
-   subtype Premisse_Symbolique_Fait_T is
-      Sys_Exp_P.Forme_P.Premisse_P.Symbole_Fait_P.Premisse_T;
-
    procedure Visiter
       (
          This  : in out Visiteur_Forme_Abstrait_T;
-         Forme : in     Premisse_Symbolique_Fait_T
+         Forme : in     Forme_P.Premisse_P.Symbole_Fait_P.Premisse_T
       )
    is abstract;
    --  Porte d'entrée pour visiter une prémisse de fait symbolique.

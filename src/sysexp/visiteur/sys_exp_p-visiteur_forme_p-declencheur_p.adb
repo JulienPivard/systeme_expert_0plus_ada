@@ -91,7 +91,7 @@ is
    procedure Visiter
       (
          This  : in out Visiteur_T;
-         Forme : in     Conclusion_Expression_T
+         Forme : in     Forme_P.Conclusion_P.Expression_Entiere_P.Conclusion_T
       )
    is
    begin
@@ -140,7 +140,7 @@ is
    procedure Visiter
       (
          This  : in out Visiteur_T;
-         Forme : in     Conclusion_Fait_Entier_T
+         Forme : in     Forme_P.Conclusion_P.Fait_Entier_P.Conclusion_T
       )
    is
    begin
@@ -194,7 +194,7 @@ is
    procedure Visiter
       (
          This  : in out Visiteur_T;
-         Forme : in     Conclusion_Symbolique_Constante_T
+         Forme : in     Forme_P.Conclusion_P.Symbole_Constant_P.Conclusion_T
       )
    is
       Fait : constant Symbolique_R.Fait_Symbolique_T := Symbolique_R.Creer
@@ -212,7 +212,7 @@ is
    procedure Visiter
       (
          This  : in out Visiteur_T;
-         Forme : in     Conclusion_Symbolique_Fait_T
+         Forme : in     Forme_P.Conclusion_P.Symbole_Fait_P.Conclusion_T
       )
    is
    begin
@@ -271,7 +271,7 @@ is
    procedure Visiter
       (
          This  : in out Visiteur_T;
-         Forme : in     Premisse_False_T
+         Forme : in     Forme_P.Premisse_P.Bool_False_P.Premisse_T
       )
    is
    begin
@@ -308,7 +308,7 @@ is
    procedure Visiter
       (
          This  : in out Visiteur_T;
-         Forme : in     Premisse_True_T
+         Forme : in     Forme_P.Premisse_P.Bool_True_P.Premisse_T
       )
    is
    begin
@@ -345,7 +345,7 @@ is
    procedure Visiter
       (
          This  : in out Visiteur_T;
-         Forme : in     Premisse_Expression_T
+         Forme : in     Forme_P.Premisse_P.Expression_Entiere_P.Premisse_T
       )
    is
    begin
@@ -386,7 +386,7 @@ is
    procedure Visiter
       (
          This  : in out Visiteur_T;
-         Forme : in     Premisse_Fait_Entier_T
+         Forme : in     Forme_P.Premisse_P.Fait_Entier_P.Premisse_T
       )
    is
    begin
@@ -436,7 +436,7 @@ is
    procedure Visiter
       (
          This  : in out Visiteur_T;
-         Forme : in     Premisse_Symbolique_Constante_T
+         Forme : in     Forme_P.Premisse_P.Symbole_Constant_P.Premisse_T
       )
    is
    begin
@@ -477,7 +477,7 @@ is
    procedure Visiter
       (
          This  : in out Visiteur_T;
-         Forme : in     Premisse_Symbolique_Fait_T
+         Forme : in     Forme_P.Premisse_P.Symbole_Fait_P.Premisse_T
       )
    is
    begin
