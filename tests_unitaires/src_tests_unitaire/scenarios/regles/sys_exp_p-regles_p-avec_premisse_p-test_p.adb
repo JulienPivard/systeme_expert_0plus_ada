@@ -55,9 +55,9 @@ is
       ID  : constant ID_Regle_T := ID_Alea_P.Random (Gen => Generateur_ID);
       Nom : constant Nom_T      := Facilites_P.Creer_Nom;
 
-      C : constant Conclusion_R.Bool_False_P.Conclusion_False_T :=
+      C : constant Conclusion_R.Bool_False_P.Conclusion_T :=
          Conclusion_R.Bool_False_P.Creer (Nom => Nom);
-      P : constant Premisse_R.Bool_False_P.Premisse_False_T     :=
+      P : constant Premisse_R.Bool_False_P.Premisse_T     :=
          Premisse_R.Bool_False_P.Creer   (Nom => Nom);
    begin
       AUnit.Assertions.Assert
@@ -133,9 +133,9 @@ is
       Nom_1 : constant Nom_T := Facilites_P.Creer_Nom;
       Nom_2 : constant Nom_T := Facilites_P.Creer_Nom_Different (Nom => Nom_1);
 
-      C : constant Conclusion_R.Bool_False_P.Conclusion_False_T :=
+      C : constant Conclusion_R.Bool_False_P.Conclusion_T :=
          Conclusion_R.Bool_False_P.Creer (Nom => Nom_1);
-      P : constant Premisse_R.Bool_True_P.Premisse_True_T       :=
+      P : constant Premisse_R.Bool_True_P.Premisse_T      :=
          Premisse_R.Bool_True_P.Creer    (Nom => Nom_2);
    begin
       T.Regle := Creer
@@ -182,9 +182,9 @@ is
       Nom_1 : constant Nom_T := Facilites_P.Creer_Nom;
       Nom_2 : constant Nom_T := Facilites_P.Creer_Nom_Different (Nom => Nom_1);
 
-      C : constant Conclusion_R.Bool_False_P.Conclusion_False_T :=
+      C : constant Conclusion_R.Bool_False_P.Conclusion_T :=
          Conclusion_R.Bool_False_P.Creer (Nom => Nom_1);
-      P : constant Premisse_R.Bool_True_P.Premisse_True_T       :=
+      P : constant Premisse_R.Bool_True_P.Premisse_T      :=
          Premisse_R.Bool_True_P.Creer    (Nom => Nom_2);
    begin
       T.Regle := Creer
@@ -232,9 +232,9 @@ is
       Nom_2 : constant Nom_T := Facilites_P.Creer_Nom_Different (Nom => Nom_1);
       Nom_3 : constant Nom_T := Facilites_P.Creer_Nom_Different (Nom => Nom_1);
 
-      C : constant Conclusion_R.Bool_False_P.Conclusion_False_T :=
+      C : constant Conclusion_R.Bool_False_P.Conclusion_T :=
          Conclusion_R.Bool_False_P.Creer (Nom => Nom_1);
-      P : constant Premisse_R.Bool_True_P.Premisse_True_T       :=
+      P : constant Premisse_R.Bool_True_P.Premisse_T      :=
          Premisse_R.Bool_True_P.Creer    (Nom => Nom_3);
 
       F_V : constant Sys_Exp_P.Fait_P.Booleen_P.Fait_Booleen_T :=
@@ -260,9 +260,9 @@ is
          ID_Bis : constant ID_Regle_T :=
             ID_Alea_P.Random (Gen => Generateur_ID);
 
-         C_Bis : constant Conclusion_R.Bool_False_P.Conclusion_False_T :=
+         C_Bis : constant Conclusion_R.Bool_False_P.Conclusion_T :=
             Conclusion_R.Bool_False_P.Creer (Nom => Nom_3);
-         P_Bis : constant Premisse_R.Bool_True_P.Premisse_True_T       :=
+         P_Bis : constant Premisse_R.Bool_True_P.Premisse_T      :=
             Premisse_R.Bool_True_P.Creer    (Nom => Nom_2);
 
          R : constant Regle_T := Creer
@@ -319,9 +319,9 @@ is
       Nom_2 : constant Nom_T := Facilites_P.Creer_Nom_Different (Nom => Nom_1);
       Nom_3 : constant Nom_T := Facilites_P.Creer_Nom_Different (Nom => Nom_1);
 
-      C : constant Conclusion_R.Bool_False_P.Conclusion_False_T :=
+      C : constant Conclusion_R.Bool_False_P.Conclusion_T :=
          Conclusion_R.Bool_False_P.Creer (Nom => Nom_1);
-      P : constant Premisse_R.Bool_True_P.Premisse_True_T       :=
+      P : constant Premisse_R.Bool_True_P.Premisse_T      :=
          Premisse_R.Bool_True_P.Creer    (Nom => Nom_2);
 
       F_V : constant Sys_Exp_P.Fait_P.Booleen_P.Fait_Booleen_T :=
@@ -347,9 +347,9 @@ is
          ID_Bis : constant ID_Regle_T :=
             ID_Alea_P.Random (Gen => Generateur_ID);
 
-         C_Bis : constant Conclusion_R.Bool_False_P.Conclusion_False_T :=
+         C_Bis : constant Conclusion_R.Bool_False_P.Conclusion_T :=
             Conclusion_R.Bool_False_P.Creer (Nom => Nom_3);
-         P_Bis : constant Premisse_R.Bool_True_P.Premisse_True_T       :=
+         P_Bis : constant Premisse_R.Bool_True_P.Premisse_T      :=
             Premisse_R.Bool_True_P.Creer    (Nom => Nom_3);
 
          R : constant Regle_T := Creer
@@ -409,9 +409,9 @@ is
       Nom_1 : constant Nom_T := Facilites_P.Creer_Nom;
       Nom_2 : constant Nom_T := Facilites_P.Creer_Nom_Different (Nom => Nom_1);
 
-      C : constant Conclusion_R.Bool_False_P.Conclusion_False_T :=
+      C : constant Conclusion_R.Bool_False_P.Conclusion_T :=
          Conclusion_R.Bool_False_P.Creer (Nom => Nom_1);
-      P : constant Premisse_R.Bool_True_P.Premisse_True_T       :=
+      P : constant Premisse_R.Bool_True_P.Premisse_T      :=
          Premisse_R.Bool_True_P.Creer    (Nom => Nom_2);
    begin
       T.Regle := Creer
@@ -433,7 +433,7 @@ is
          declare
             Nom_3 : constant Nom_T :=
                Facilites_P.Creer_Nom_Different (Nom => Nom_1);
-            Q     : constant Premisse_R.Bool_False_P.Premisse_False_T :=
+            Q     : constant Premisse_R.Bool_False_P.Premisse_T :=
                Premisse_R.Bool_False_P.Creer   (Nom => Nom_3);
          begin
             T.Regle.Ajouter (Premisse => Q);
@@ -462,11 +462,11 @@ is
       Nom_2 : constant Nom_T := Facilites_P.Creer_Nom_Different (Nom => Nom_1);
       Nom_3 : constant Nom_T := Facilites_P.Creer_Nom_Different (Nom => Nom_2);
 
-      C : constant Conclusion_R.Bool_False_P.Conclusion_False_T :=
+      C : constant Conclusion_R.Bool_False_P.Conclusion_T :=
          Conclusion_R.Bool_False_P.Creer (Nom => Nom_1);
-      P : constant Premisse_R.Bool_True_P.Premisse_True_T       :=
+      P : constant Premisse_R.Bool_True_P.Premisse_T      :=
          Premisse_R.Bool_True_P.Creer    (Nom => Nom_2);
-      Q : constant Premisse_R.Bool_False_P.Premisse_False_T     :=
+      Q : constant Premisse_R.Bool_False_P.Premisse_T     :=
          Premisse_R.Bool_False_P.Creer   (Nom => Nom_3);
 
       F_V : constant Sys_Exp_P.Fait_P.Booleen_P.Fait_Booleen_T :=

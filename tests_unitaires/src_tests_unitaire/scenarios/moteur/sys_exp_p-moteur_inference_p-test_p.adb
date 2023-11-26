@@ -52,7 +52,7 @@ is
       ID  : constant Sys_Exp_P.Regles_P.ID_Regle_T :=
          ID_Alea_P.Random (Gen => Generateur_ID);
 
-      C : constant Conclusion_R.Bool_False_P.Conclusion_False_T :=
+      C : constant Conclusion_R.Bool_False_P.Conclusion_T :=
          Conclusion_R.Bool_False_P.Creer (Nom => Nom);
 
       Regle : constant Sys_Exp_P.Regles_P.Sans_Premisse_P.Regle_T :=
@@ -88,7 +88,7 @@ is
       ID  : constant Sys_Exp_P.Regles_P.ID_Regle_T :=
          ID_Alea_P.Random (Gen => Generateur_ID);
 
-      C : constant Conclusion_R.Bool_False_P.Conclusion_False_T :=
+      C : constant Conclusion_R.Bool_False_P.Conclusion_T :=
          Conclusion_R.Bool_False_P.Creer (Nom => Nom);
 
       Regle : constant Sys_Exp_P.Regles_P.Sans_Premisse_P.Regle_T :=

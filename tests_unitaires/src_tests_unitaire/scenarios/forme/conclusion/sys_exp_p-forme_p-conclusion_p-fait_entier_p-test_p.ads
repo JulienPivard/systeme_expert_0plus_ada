@@ -16,7 +16,7 @@ is
 
    type Test_Fixt_T is new AUnit.Test_Fixtures.Test_Fixture with
       record
-         Conclusion : Conclusion_Fait_T;
+         Conclusion : Conclusion_T;
       end record;
 
    overriding

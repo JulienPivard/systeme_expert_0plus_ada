@@ -123,7 +123,7 @@ is
    is
       pragma Unreferenced (T);
 
-      C : constant C_Bool_False_R.Conclusion_False_T :=
+      C : constant C_Bool_False_R.Conclusion_T :=
          C_Bool_False_R.Creer (Nom => Facilites_P.Creer_Nom);
 
       Visiteur : Visiteur_T := Creer (Base => Base'Access);
@@ -195,7 +195,7 @@ is
    is
       pragma Unreferenced (T);
 
-      C : constant C_Bool_True_R.Conclusion_True_T :=
+      C : constant C_Bool_True_R.Conclusion_T :=
          C_Bool_True_R.Creer (Nom => Facilites_P.Creer_Nom);
 
       Visiteur : Visiteur_T := Creer (Base => Base'Access);
@@ -594,7 +594,7 @@ is
    is
       pragma Unreferenced (T);
 
-      P    : constant P_Bool_False_R.Premisse_False_T           :=
+      P    : constant P_Bool_False_R.Premisse_T                 :=
          P_Bool_False_R.Creer (Nom => Facilites_P.Creer_Nom);
       Fait : constant Sys_Exp_P.Fait_P.Booleen_P.Fait_Booleen_T :=
          Sys_Exp_P.Fait_P.Booleen_P.Creer
@@ -677,7 +677,7 @@ is
    is
       pragma Unreferenced (T);
 
-      P    : constant P_Bool_True_R.Premisse_True_T             :=
+      P    : constant P_Bool_True_R.Premisse_T                  :=
          P_Bool_True_R.Creer (Nom => Facilites_P.Creer_Nom);
       Fait : constant Sys_Exp_P.Fait_P.Booleen_P.Fait_Booleen_T :=
          Sys_Exp_P.Fait_P.Booleen_P.Creer
@@ -1160,7 +1160,7 @@ is
    is
       pragma Unreferenced (T);
 
-      P    : constant P_Bool_False_R.Premisse_False_T :=
+      P    : constant P_Bool_False_R.Premisse_T                 :=
          P_Bool_False_R.Creer (Nom => Facilites_P.Creer_Nom);
       Fait : constant Sys_Exp_P.Fait_P.Booleen_P.Fait_Booleen_T :=
          Sys_Exp_P.Fait_P.Booleen_P.Creer
@@ -1210,7 +1210,7 @@ is
    is
       pragma Unreferenced (T);
 
-      P : constant P_Bool_True_R.Premisse_True_T :=
+      P : constant P_Bool_True_R.Premisse_T                     :=
          P_Bool_True_R.Creer (Nom => Facilites_P.Creer_Nom);
       Fait : constant Sys_Exp_P.Fait_P.Booleen_P.Fait_Booleen_T :=
          Sys_Exp_P.Fait_P.Booleen_P.Creer

@@ -49,7 +49,7 @@ is
       ID  : constant ID_Regle_T := ID_Alea_P.Random (Gen => Generateur_ID);
       Nom : constant Nom_T      := Facilites_P.Creer_Nom;
 
-      C : constant Conclusion_R.Bool_False_P.Conclusion_False_T :=
+      C : constant Conclusion_R.Bool_False_P.Conclusion_T :=
          Conclusion_R.Bool_False_P.Creer (Nom => Nom);
    begin
       AUnit.Assertions.Assert
@@ -107,7 +107,7 @@ is
 
       Nom_1 : constant Nom_T := Facilites_P.Creer_Nom;
 
-      C : constant Conclusion_R.Bool_False_P.Conclusion_False_T :=
+      C : constant Conclusion_R.Bool_False_P.Conclusion_T :=
          Conclusion_R.Bool_False_P.Creer (Nom => Nom_1);
    begin
       T.Regle := Creer
@@ -151,7 +151,7 @@ is
 
       Nom_1 : constant Nom_T := Facilites_P.Creer_Nom;
 
-      C : constant Conclusion_R.Bool_False_P.Conclusion_False_T :=
+      C : constant Conclusion_R.Bool_False_P.Conclusion_T :=
          Conclusion_R.Bool_False_P.Creer (Nom => Nom_1);
    begin
       T.Regle := Creer
@@ -196,7 +196,7 @@ is
       Nom_1 : constant Nom_T := Facilites_P.Creer_Nom;
       Nom_2 : constant Nom_T := Facilites_P.Creer_Nom_Different (Nom => Nom_1);
 
-      C : constant Conclusion_R.Bool_False_P.Conclusion_False_T :=
+      C : constant Conclusion_R.Bool_False_P.Conclusion_T :=
          Conclusion_R.Bool_False_P.Creer (Nom => Nom_1);
 
       Reussi : Boolean;
@@ -212,7 +212,7 @@ is
          ID_Bis : constant ID_Regle_T :=
             ID_Alea_P.Random (Gen => Generateur_ID);
 
-         C_Bis : constant Conclusion_R.Bool_False_P.Conclusion_False_T :=
+         C_Bis : constant Conclusion_R.Bool_False_P.Conclusion_T :=
             Conclusion_R.Bool_False_P.Creer (Nom => Nom_2);
 
          R : constant Regle_T := Creer
@@ -253,7 +253,7 @@ is
       Nom_1 : constant Nom_T := Facilites_P.Creer_Nom;
       Nom_2 : constant Nom_T := Facilites_P.Creer_Nom_Different (Nom => Nom_1);
 
-      C : constant Conclusion_R.Bool_False_P.Conclusion_False_T :=
+      C : constant Conclusion_R.Bool_False_P.Conclusion_T :=
          Conclusion_R.Bool_False_P.Creer (Nom => Nom_1);
 
       Reussi : Boolean;
@@ -269,7 +269,7 @@ is
          ID_Bis : constant ID_Regle_T :=
             ID_Alea_P.Random (Gen => Generateur_ID);
 
-         C_Bis : constant Conclusion_R.Bool_False_P.Conclusion_False_T :=
+         C_Bis : constant Conclusion_R.Bool_False_P.Conclusion_T :=
             Conclusion_R.Bool_False_P.Creer (Nom => Nom_2);
 
          R : constant Regle_T := Creer

@@ -16,7 +16,7 @@ is
 
    type Test_Fixt_T is new AUnit.Test_Fixtures.Test_Fixture with
       record
-         Premisse : Premisse_Fait_T;
+         Premisse : Premisse_T;
       end record;
 
    overriding
