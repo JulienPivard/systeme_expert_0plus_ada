@@ -18,16 +18,17 @@ procedure Executer
 is
    package Declencheur_R renames Sys_Exp_P.Visiteur_Forme_P.Declencheur_P;
 
-   Fabrique       : constant Declencheur_R.Fabrique_P.Fabrique_T         :=
-      Declencheur_R.Fabrique_P.Creer;
-   Fabrique_Debug : constant Declencheur_R.Debug_P.Fabrique_P.Fabrique_T :=
-      Declencheur_R.Debug_P.Fabrique_P.Creer;
-
    M : constant Sys_Exp_P.Monteur_P.Lorraine_P.Monteur_T :=
       Sys_Exp_P.Monteur_P.Lorraine_P.Creer
          (
             Nom_Fichier => Nom_Fichier,
-            Fabrique    => (if Mode_Debug then Fabrique_Debug else Fabrique)
+            Fabrique    =>
+               (
+                  if Mode_Debug then
+                     Declencheur_R.Debug_P.Fabrique_P.Creer
+                  else
+                     Declencheur_R.Fabrique_P.Creer
+               )
          );
 
    D : Sys_Exp_P.Monteur_P.Directeur_P.Directeur_T :=
