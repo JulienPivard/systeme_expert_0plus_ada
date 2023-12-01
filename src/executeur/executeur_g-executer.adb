@@ -6,22 +6,28 @@ with Sys_Exp_P.Moteur_Inference_P;
 
 with Sys_Exp_P.Regles_P;
 
+with Sys_Exp_P.Visiteur_Forme_P.Declencheur_P.Debug_P.Fabrique_P;
 with Sys_Exp_P.Visiteur_Forme_P.Declencheur_P.Fabrique_P;
 
 separate (Executeur_G)
 procedure Executer
-   (Nom_Fichier : in     String)
+   (
+      Nom_Fichier : in     String;
+      Mode_Debug  : in     Boolean
+   )
 is
    package Declencheur_R renames Sys_Exp_P.Visiteur_Forme_P.Declencheur_P;
 
-   Fabrique : constant Declencheur_R.Fabrique_P.Fabrique_T :=
+   Fabrique       : constant Declencheur_R.Fabrique_P.Fabrique_T         :=
       Declencheur_R.Fabrique_P.Creer;
+   Fabrique_Debug : constant Declencheur_R.Debug_P.Fabrique_P.Fabrique_T :=
+      Declencheur_R.Debug_P.Fabrique_P.Creer;
 
    M : constant Sys_Exp_P.Monteur_P.Lorraine_P.Monteur_T :=
       Sys_Exp_P.Monteur_P.Lorraine_P.Creer
          (
             Nom_Fichier => Nom_Fichier,
-            Fabrique    => Fabrique
+            Fabrique    => (if Mode_Debug then Fabrique_Debug else Fabrique)
          );
 
    D : Sys_Exp_P.Monteur_P.Directeur_P.Directeur_T :=

@@ -1,7 +1,7 @@
 ------------------------------------------------------------------------------
 --                                                                          --
 --                          Auteur : PIVARD Julien                          --
---           Dernière modification : Samedi 11 novembre[11] 2023
+--           Dernière modification : Vendredi 01 décembre[12] 2023
 --                                                                          --
 ------------------------------------------------------------------------------
 with Ada.Text_IO;
@@ -16,7 +16,7 @@ procedure Client is
    package Executeur_P           is new Executeur_G
       (
          Nombre_D_Arguments_Min => 1,
-         Nombre_D_Arguments_Max => 1
+         Nombre_D_Arguments_Max => 2
       );
 begin
    Ada.Text_IO.Put      (Item => "+---------------------+");
@@ -36,7 +36,10 @@ begin
 
    Executeur_P.Verifier_Nombre_D_Arguments;
    Executeur_P.Executer
-      (Nom_Fichier => Executeur_P.Verifier_Nom_Fichier);
+      (
+         Nom_Fichier => Executeur_P.Verifier_Nom_Fichier,
+         Mode_Debug  => Executeur_P.Verifier_Mode_Debug
+      );
 exception
    when Executeur_P.Trop_D_Arguments_E =>
       null;

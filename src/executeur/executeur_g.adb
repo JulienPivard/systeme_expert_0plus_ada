@@ -5,8 +5,10 @@ package body Executeur_G is
 
    ---------------------------------------------------------------------------
    procedure Executer
-      (Nom_Fichier : in     String)
-      --  (Arguments)
+      (
+         Nom_Fichier : in     String;
+         Mode_Debug  : in     Boolean
+      )
    is separate;
    ---------------------------------------------------------------------------
 
@@ -23,11 +25,38 @@ package body Executeur_G is
                (Name => Ada.Command_Line.Command_Name)
          );
       W_W_IO_R.Put_Line
-         (File => W_W_IO_R.Standard_Error, Item => " [arguments]");
-      W_W_IO_R.Put_Line
+         (File => W_W_IO_R.Standard_Error, Item => " <nom_fichier> [-d]");
+      W_W_IO_R.Put
          (File => W_W_IO_R.Standard_Error, Item => Indentation);
-      --  W_W_IO_R.New_Line
-      --     (File => W_W_IO_R.Standard_Error, Spacing => 1);
+      W_W_IO_R.Put_Line
+         (File => W_W_IO_R.Standard_Error, Item => "<nom_fichier> :");
+      W_W_IO_R.Put
+         (File => W_W_IO_R.Standard_Error, Item => Indentation & Indentation);
+      W_W_IO_R.Put_Line
+         (
+            File => W_W_IO_R.Standard_Error,
+            Item => "Le nom du fichier de règles écrit en "
+         );
+      W_W_IO_R.Put
+         (File => W_W_IO_R.Standard_Error, Item => Indentation & Indentation);
+      W_W_IO_R.Put_Line
+         (
+            File => W_W_IO_R.Standard_Error,
+            Item => "respectant la grammaire lorraine."
+         );
+      W_W_IO_R.Put
+         (File => W_W_IO_R.Standard_Error, Item => Indentation);
+      W_W_IO_R.Put_Line
+         (File => W_W_IO_R.Standard_Error, Item => "-d :");
+      W_W_IO_R.Put
+         (File => W_W_IO_R.Standard_Error, Item => Indentation & Indentation);
+      W_W_IO_R.Put_Line
+         (
+            File => W_W_IO_R.Standard_Error,
+            Item => "Construit les règles avec un visiteur de debug."
+         );
+      W_W_IO_R.New_Line
+         (File => W_W_IO_R.Standard_Error, Spacing => 1);
    end Afficher_Aide;
    ---------------------------------------------------------------------------
 
@@ -88,11 +117,24 @@ package body Executeur_G is
                Item => "Le fichier [" & Nom & "] n'existe pas dans " &
                   "[" & Ada.Directories.Current_Directory & "]"
             );
+         Ada.Command_Line.Set_Exit_Status (Code => Ada.Command_Line.Failure);
          raise Valeur_Option_Incorrect_E;
       end if;
 
       return Nom;
    end Verifier_Nom_Fichier;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   function Verifier_Mode_Debug
+      return Boolean
+   is
+   begin
+      return
+         Nb_Args >= 2
+         and then
+         Ada.Command_Line.Argument (Number => 2) = "-d";
+   end Verifier_Mode_Debug;
    ---------------------------------------------------------------------------
 
 end Executeur_G;
