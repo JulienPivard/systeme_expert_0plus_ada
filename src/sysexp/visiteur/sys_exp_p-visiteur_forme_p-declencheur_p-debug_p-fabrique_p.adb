@@ -1,0 +1,33 @@
+package body Sys_Exp_P.Visiteur_Forme_P.Declencheur_P.Debug_P.Fabrique_P
+   with Spark_Mode => Off
+is
+
+   ---------------------------------------------------------------------------
+   function Creer
+      return Fabrique_T
+   is
+   begin
+      return Fabrique_T'(null record);
+   end Creer;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   overriding
+   function Fabriquer_Visiteur
+      (
+         This : in     Fabrique_T;
+         Base : in     not null Accesseur_Base_T
+      )
+      return Visiteur_Forme_Abstrait_T'Class
+   is
+      pragma Unreferenced (This);
+   begin
+      return Visiteur_Debug_T'(Creer (Base => Base));
+   end Fabriquer_Visiteur;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   --                             Partie privée                             --
+   ---------------------------------------------------------------------------
+
+end Sys_Exp_P.Visiteur_Forme_P.Declencheur_P.Debug_P.Fabrique_P;
