@@ -22,3 +22,6 @@ jobs:
 
     - name: Build
       run: make
+
+    - name: Test
+      run: make -C tests_unitaires run
