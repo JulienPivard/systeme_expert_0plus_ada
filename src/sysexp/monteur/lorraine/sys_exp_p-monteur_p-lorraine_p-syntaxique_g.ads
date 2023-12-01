@@ -1,4 +1,5 @@
 with Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_G;
+with Sys_Exp_P.Visiteur_Forme_P.Fabrique_Interface_P;
 
 private with Ada.Containers.Indefinite_Doubly_Linked_Lists;
 private with Ada.Containers.Indefinite_Hashed_Maps;
@@ -32,12 +33,19 @@ package Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
    type Syntaxique_T (<>) is tagged limited private;
    --  Le parseur syntaxique.
 
+   package Fabrique_R renames Visiteur_Forme_P.Fabrique_Interface_P;
+
    function Creer
-      (Nom_Fichier : in     String)
+      (
+         Nom_Fichier : in     String;
+         Fabrique    : in     Fabrique_R.Fabrique_Interface_T'Class
+      )
       return Syntaxique_T;
    --  Crée un parseur syntaxique.
    --  @param Nom_Fichier
    --  Le nom du fichier à parser.
+   --  @param Fabrique
+   --  La fabrique de visiteurs.
    --  @return Le parseur syntaxique.
 
    function Parser
@@ -60,6 +68,12 @@ private
          Equivalent_Keys => Standard."="
       );
 
+   package Fabrique_Holder_P is new Ada.Containers.Indefinite_Holders
+      (
+         Element_Type => Fabrique_R.Fabrique_Interface_T'Class,
+         "="          => Fabrique_R."="
+      );
+
    type Syntaxique_T is tagged limited
       record
          Parseur_Lexical : Lexical_P.Lexical_T;
@@ -69,6 +83,8 @@ private
          --  Le dernier jeton lu depuis le parseur lexical.
          Noms_Faits      : Map_Fait_P.Map;
          --  Nom des faits associé à leur types.
+         Fabrique        : Fabrique_Holder_P.Holder;
+         --  La fabrique de visiteur de formes à donner aux règles.
       end record;
 
    package Conclusion_R    renames Sys_Exp_P.Forme_P.Conclusion_P;

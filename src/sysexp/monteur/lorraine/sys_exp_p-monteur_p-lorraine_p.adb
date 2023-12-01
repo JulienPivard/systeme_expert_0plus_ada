@@ -7,14 +7,19 @@ is
    ---------------------------------------------------------------------------
    not overriding
    function Creer
-      (Nom_Fichier : in     String)
+      (
+         Nom_Fichier : in     String;
+         Fabrique    : in     Fabrique_R.Fabrique_Interface_T'Class
+      )
       return Monteur_T
    is
    begin
       return Monteur_T'
          (
             Nom_Fichier    =>
-               Nom_Fichier_P.To_Holder (New_Item => Nom_Fichier),
+               Nom_Fichier_P.To_Holder     (New_Item => Nom_Fichier),
+            Fabrique       =>
+               Fabrique_Holder_P.To_Holder (New_Item => Fabrique),
             Base_De_Regles => Base_De_Regles_P.Empty_Holder
          );
    end Creer;
@@ -25,8 +30,11 @@ is
    procedure Construire_Jeu_De_Regles
       (This : in out Monteur_T)
    is
-      Syntaxique : Syntaxique_P.Syntaxique_T :=
-         Syntaxique_P.Creer (Nom_Fichier => This.Nom_Fichier.Element);
+      Syntaxique : Syntaxique_P.Syntaxique_T := Syntaxique_P.Creer
+         (
+            Nom_Fichier => This.Nom_Fichier.Element,
+            Fabrique    => This.Fabrique.Element
+         );
    begin
       This.Base_De_Regles := Base_De_Regles_P.To_Holder
          (New_Item => Syntaxique.Parser);

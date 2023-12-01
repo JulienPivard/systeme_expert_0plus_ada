@@ -25,13 +25,18 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
 
    ---------------------------------------------------------------------------
    function Creer
-      (Nom_Fichier : in     String)
+      (
+         Nom_Fichier : in     String;
+         Fabrique    : in     Fabrique_R.Fabrique_Interface_T'Class
+      )
       return Syntaxique_T
    is
    begin
       return S : Syntaxique_T := Syntaxique_T'
          (
             Parseur_Lexical => Lexical_P.Creer (Nom_Fichier => Nom_Fichier),
+            Fabrique        =>
+               Fabrique_Holder_P.To_Holder (New_Item => Fabrique),
             Jeton_Precharge => <>,
             Noms_Faits      => <>
          )
@@ -277,7 +282,8 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
       return Sans_Premisse_R.Creer
          (
             ID_Regle   => ID,
-            Conclusion => This.Faire_Conclusion
+            Conclusion => This.Faire_Conclusion,
+            Fabrique   => This.Fabrique.Element
          );
    end Faire_Regle_Sans_Premisse;
    ---------------------------------------------------------------------------
@@ -437,7 +443,8 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
          (
             ID_Regle   => ID,
             Premisse   => Premisses.First_Element,
-            Conclusion => This.Faire_Conclusion
+            Conclusion => This.Faire_Conclusion,
+            Fabrique   => This.Fabrique.Element
          );
       Premisses.Delete_First;
 

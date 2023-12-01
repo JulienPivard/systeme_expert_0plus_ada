@@ -6,12 +6,23 @@ with Sys_Exp_P.Moteur_Inference_P;
 
 with Sys_Exp_P.Regles_P;
 
+with Sys_Exp_P.Visiteur_Forme_P.Declencheur_P.Fabrique_P;
+
 separate (Executeur_G)
 procedure Executer
    (Nom_Fichier : in     String)
 is
+   package Declencheur_R renames Sys_Exp_P.Visiteur_Forme_P.Declencheur_P;
+
+   Fabrique : constant Declencheur_R.Fabrique_P.Fabrique_T :=
+      Declencheur_R.Fabrique_P.Creer;
+
    M : constant Sys_Exp_P.Monteur_P.Lorraine_P.Monteur_T :=
-      Sys_Exp_P.Monteur_P.Lorraine_P.Creer (Nom_Fichier => Nom_Fichier);
+      Sys_Exp_P.Monteur_P.Lorraine_P.Creer
+         (
+            Nom_Fichier => Nom_Fichier,
+            Fabrique    => Fabrique
+         );
 
    D : Sys_Exp_P.Monteur_P.Directeur_P.Directeur_T :=
       Sys_Exp_P.Monteur_P.Directeur_P.Creer (Monteur => M);

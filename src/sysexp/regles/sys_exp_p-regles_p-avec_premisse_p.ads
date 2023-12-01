@@ -1,4 +1,6 @@
 with Sys_Exp_P.Forme_P.Premisse_P;
+with Sys_Exp_P.Visiteur_Forme_P;
+with Sys_Exp_P.Visiteur_Forme_P.Fabrique_Interface_P;
 
 private with Ada.Containers.Indefinite_Doubly_Linked_Lists;
 
@@ -17,6 +19,7 @@ package Sys_Exp_P.Regles_P.Avec_Premisse_P
 is
 
    package Premisse_R renames Sys_Exp_P.Forme_P.Premisse_P;
+   package Fabrique_R renames Visiteur_Forme_P.Fabrique_Interface_P;
 
    type Regle_T is new Regle_Abstraite_T with private;
    --  Une règle avec prémisses.
@@ -26,7 +29,8 @@ is
       (
          ID_Regle   : in     ID_Regle_T;
          Premisse   : in     Premisse_R.Premisse_Abstraite_T'Class;
-         Conclusion : in     Conclusion_R.Conclusion_Abstraite_T'Class
+         Conclusion : in     Conclusion_R.Conclusion_Abstraite_T'Class;
+         Fabrique   : in     Fabrique_R.Fabrique_Interface_T'Class
       )
       return Regle_T;
    --  Crée une règle avec au moins une prémisse et une conclusion.
@@ -36,6 +40,8 @@ is
    --  La prémisse associée.
    --  @param Conclusion
    --  La conclusion associer à la règle.
+   --  @param Fabrique
+   --  La fabrique de visiteurs.
    --  @return La règle construite.
 
    overriding
@@ -89,9 +95,19 @@ private
 
    subtype Liste_Premisses_T is Liste_P.List;
 
+   package Fabrique_Holder_P is new Ada.Containers.Indefinite_Holders
+      (
+         Element_Type => Fabrique_R.Fabrique_Interface_T'Class,
+         "="          => Fabrique_R."="
+      );
+
    type Regle_T is new Regle_Abstraite_T with
       record
          Premisses : Liste_Premisses_T;
+         --  La liste des prémisses à satisfaire pour
+         --  pouvoir déclencher la conclusion.
+         Fabrique  : Fabrique_Holder_P.Holder;
+         --  La fabrique de visiteur de formes à utiliser.
       end record;
 
 end Sys_Exp_P.Regles_P.Avec_Premisse_P;

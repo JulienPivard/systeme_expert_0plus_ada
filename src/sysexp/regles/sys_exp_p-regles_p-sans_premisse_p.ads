@@ -1,3 +1,5 @@
+with Sys_Exp_P.Visiteur_Forme_P.Fabrique_Interface_P;
+
 --  @summary
 --  Une règle sans prémisse.
 --  @description
@@ -12,6 +14,8 @@ package Sys_Exp_P.Regles_P.Sans_Premisse_P
       Spark_Mode     => Off
 is
 
+   package Fabrique_R renames Visiteur_Forme_P.Fabrique_Interface_P;
+
    type Regle_T is new Regle_Abstraite_T with private;
    --  Une règle sans prémisses.
 
@@ -19,7 +23,8 @@ is
    function Creer
       (
          ID_Regle   : in     ID_Regle_T;
-         Conclusion : in     Conclusion_R.Conclusion_Abstraite_T'Class
+         Conclusion : in     Conclusion_R.Conclusion_Abstraite_T'Class;
+         Fabrique   : in     Fabrique_R.Fabrique_Interface_T'Class
       )
       return Regle_T;
    --  Crée une règle sans prémisse avec une conclusion.
@@ -55,13 +60,22 @@ is
    --  La règle actuelle.
    --  @param Base
    --  Le base de faits.
+   --  @param Fabrique
+   --  La fabrique de visiteurs.
    --  @return Un visiteur de forme.
 
 private
 
+   package Fabrique_Holder_P is new Ada.Containers.Indefinite_Holders
+      (
+         Element_Type => Fabrique_R.Fabrique_Interface_T'Class,
+         "="          => Fabrique_R."="
+      );
+
    type Regle_T is new Regle_Abstraite_T with
       record
-         null;
+         Fabrique  : Fabrique_Holder_P.Holder;
+         --  La fabrique de visiteur de formes.
       end record;
 
 end Sys_Exp_P.Regles_P.Sans_Premisse_P;
