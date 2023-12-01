@@ -8,6 +8,8 @@ with Sys_Exp_P.Forme_P.Conclusion_P.Bool_False_P;
 with Sys_Exp_P.Forme_P.Premisse_P.Bool_False_P;
 with Sys_Exp_P.Forme_P.Premisse_P.Bool_True_P;
 
+with Sys_Exp_P.Visiteur_Forme_P.Declencheur_P.Fabrique_P;
+
 with Sys_Exp_P.Base_Faits_P;
 
 with Facilites_P;
@@ -15,6 +17,8 @@ with Facilites_P;
 package body Sys_Exp_P.Regles_P.Avec_Premisse_P.Test_P
    with Spark_Mode => Off
 is
+
+   package Declencheur_R renames Sys_Exp_P.Visiteur_Forme_P.Declencheur_P;
 
    package ID_Alea_P is new Ada.Numerics.Discrete_Random
       (Result_Subtype => ID_Regle_T);
@@ -52,6 +56,9 @@ is
    is
       use type Ada.Containers.Count_Type;
 
+      Fabrique : constant Declencheur_R.Fabrique_P.Fabrique_T :=
+         Declencheur_R.Fabrique_P.Creer;
+
       ID  : constant ID_Regle_T := ID_Alea_P.Random (Gen => Generateur_ID);
       Nom : constant Nom_T      := Facilites_P.Creer_Nom;
 
@@ -84,7 +91,8 @@ is
          (
             ID_Regle   => ID,
             Conclusion => C,
-            Premisse   => P
+            Premisse   => P,
+            Fabrique   => Fabrique
          );
       AUnit.Assertions.Assert
          (
@@ -128,6 +136,9 @@ is
    procedure Test_Ajouter_Successeur
       (T : in out Test_Fixt_T)
    is
+      Fabrique : constant Declencheur_R.Fabrique_P.Fabrique_T :=
+         Declencheur_R.Fabrique_P.Creer;
+
       ID : constant ID_Regle_T := ID_Alea_P.Random (Gen => Generateur_ID);
 
       Nom_1 : constant Nom_T := Facilites_P.Creer_Nom;
@@ -142,7 +153,8 @@ is
          (
             ID_Regle   => ID,
             Conclusion => C,
-            Premisse   => P
+            Premisse   => P,
+            Fabrique   => Fabrique
          );
       AUnit.Assertions.Assert
          (
@@ -159,7 +171,8 @@ is
             (
                ID_Regle   => ID_Bis,
                Conclusion => C,
-               Premisse   => P
+               Premisse   => P,
+               Fabrique   => Fabrique
             );
       begin
          T.Regle.Ajouter (Successeur => R);
@@ -177,6 +190,9 @@ is
    procedure Test_Possede_Successeur
       (T : in out Test_Fixt_T)
    is
+      Fabrique : constant Declencheur_R.Fabrique_P.Fabrique_T :=
+         Declencheur_R.Fabrique_P.Creer;
+
       ID : constant ID_Regle_T := ID_Alea_P.Random (Gen => Generateur_ID);
 
       Nom_1 : constant Nom_T := Facilites_P.Creer_Nom;
@@ -191,7 +207,8 @@ is
          (
             ID_Regle   => ID,
             Conclusion => C,
-            Premisse   => P
+            Premisse   => P,
+            Fabrique   => Fabrique
          );
       AUnit.Assertions.Assert
          (
@@ -208,7 +225,8 @@ is
             (
                ID_Regle   => ID_Bis,
                Conclusion => C,
-               Premisse   => P
+               Premisse   => P,
+               Fabrique   => Fabrique
             );
       begin
          T.Regle.Ajouter (Successeur => R);
@@ -226,6 +244,9 @@ is
    procedure Test_Iterer
       (T : in out Test_Fixt_T)
    is
+      Fabrique : constant Declencheur_R.Fabrique_P.Fabrique_T :=
+         Declencheur_R.Fabrique_P.Creer;
+
       ID : constant ID_Regle_T := ID_Alea_P.Random (Gen => Generateur_ID);
 
       Nom_1 : constant Nom_T := Facilites_P.Creer_Nom;
@@ -252,7 +273,8 @@ is
          (
             ID_Regle   => ID,
             Conclusion => C,
-            Premisse   => P
+            Premisse   => P,
+            Fabrique   => Fabrique
          );
 
       Bloc_Autre_Regle :
@@ -269,7 +291,8 @@ is
             (
                ID_Regle   => ID_Bis,
                Conclusion => C_Bis,
-               Premisse   => P_Bis
+               Premisse   => P_Bis,
+               Fabrique   => Fabrique
             );
       begin
          T.Regle.Ajouter (Successeur => R);
@@ -313,6 +336,9 @@ is
    procedure Test_Est_Declenchee
       (T : in out Test_Fixt_T)
    is
+      Fabrique : constant Declencheur_R.Fabrique_P.Fabrique_T :=
+         Declencheur_R.Fabrique_P.Creer;
+
       ID : constant ID_Regle_T := ID_Alea_P.Random (Gen => Generateur_ID);
 
       Nom_1 : constant Nom_T := Facilites_P.Creer_Nom;
@@ -339,7 +365,8 @@ is
          (
             ID_Regle   => ID,
             Conclusion => C,
-            Premisse   => P
+            Premisse   => P,
+            Fabrique   => Fabrique
          );
 
       Bloc_Autre_Regle :
@@ -356,7 +383,8 @@ is
             (
                ID_Regle   => ID_Bis,
                Conclusion => C_Bis,
-               Premisse   => P_Bis
+               Premisse   => P_Bis,
+               Fabrique   => Fabrique
             );
       begin
          T.Regle.Ajouter (Successeur => R);
@@ -404,6 +432,9 @@ is
 
       subtype NB_Item_T is Ada.Containers.Count_Type;
 
+      Fabrique : constant Declencheur_R.Fabrique_P.Fabrique_T :=
+         Declencheur_R.Fabrique_P.Creer;
+
       ID : constant ID_Regle_T := ID_Alea_P.Random (Gen => Generateur_ID);
 
       Nom_1 : constant Nom_T := Facilites_P.Creer_Nom;
@@ -418,7 +449,8 @@ is
          (
             ID_Regle   => ID,
             Conclusion => C,
-            Premisse   => P
+            Premisse   => P,
+            Fabrique   => Fabrique
          );
       AUnit.Assertions.Assert
          (
@@ -456,6 +488,9 @@ is
    is
       use type Ada.Containers.Count_Type;
 
+      Fabrique : constant Declencheur_R.Fabrique_P.Fabrique_T :=
+         Declencheur_R.Fabrique_P.Creer;
+
       ID : constant ID_Regle_T := ID_Alea_P.Random (Gen => Generateur_ID);
 
       Nom_1 : constant Nom_T := Facilites_P.Creer_Nom;
@@ -491,7 +526,8 @@ is
          (
             ID_Regle   => ID,
             Conclusion => C,
-            Premisse   => P
+            Premisse   => P,
+            Fabrique   => Fabrique
          );
       Premisse_Verifiee := T.Regle.Verifier_Premisse (Base => Base);
       AUnit.Assertions.Assert

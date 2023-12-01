@@ -4,6 +4,7 @@ with AUnit.Assertions;
 
 with Sys_Exp_P.Forme_P.Conclusion_P.Bool_False_P;
 with Sys_Exp_P.Regles_P.Sans_Premisse_P;
+with Sys_Exp_P.Visiteur_Forme_P.Declencheur_P.Fabrique_P;
 
 with Facilites_P;
 
@@ -11,7 +12,8 @@ package body Sys_Exp_P.Moteur_Inference_P.Test_P
    with Spark_Mode => Off
 is
 
-   package Conclusion_R renames Sys_Exp_P.Forme_P.Conclusion_P;
+   package Conclusion_R  renames Sys_Exp_P.Forme_P.Conclusion_P;
+   package Declencheur_R renames Sys_Exp_P.Visiteur_Forme_P.Declencheur_P;
 
    package ID_Alea_P is new Ada.Numerics.Discrete_Random
       (Result_Subtype => Sys_Exp_P.Regles_P.ID_Regle_T);
@@ -48,6 +50,9 @@ is
    is
       pragma Unreferenced (T);
 
+      Fabrique : constant Declencheur_R.Fabrique_P.Fabrique_T :=
+         Declencheur_R.Fabrique_P.Creer;
+
       Nom : constant Nom_T                         := Facilites_P.Creer_Nom;
       ID  : constant Sys_Exp_P.Regles_P.ID_Regle_T :=
          ID_Alea_P.Random (Gen => Generateur_ID);
@@ -59,7 +64,8 @@ is
          Sys_Exp_P.Regles_P.Sans_Premisse_P.Creer
             (
                ID_Regle   => ID,
-               Conclusion => C
+               Conclusion => C,
+               Fabrique   => Fabrique
             );
 
       M : constant Moteur_Inference_T := Creer (Base_De_Regles => Regle);
@@ -84,6 +90,9 @@ is
    is
       pragma Unreferenced (T);
 
+      Fabrique : constant Declencheur_R.Fabrique_P.Fabrique_T :=
+         Declencheur_R.Fabrique_P.Creer;
+
       Nom : constant Nom_T                         := Facilites_P.Creer_Nom;
       ID  : constant Sys_Exp_P.Regles_P.ID_Regle_T :=
          ID_Alea_P.Random (Gen => Generateur_ID);
@@ -95,7 +104,8 @@ is
          Sys_Exp_P.Regles_P.Sans_Premisse_P.Creer
             (
                ID_Regle   => ID,
-               Conclusion => C
+               Conclusion => C,
+               Fabrique   => Fabrique
             );
 
       M : Moteur_Inference_T := Creer (Base_De_Regles => Regle);

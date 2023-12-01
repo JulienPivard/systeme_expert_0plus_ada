@@ -4,6 +4,7 @@ with AUnit.Assertions;
 
 with Sys_Exp_P.Base_Faits_P;
 with Sys_Exp_P.Forme_P.Conclusion_P.Bool_False_P;
+with Sys_Exp_P.Visiteur_Forme_P.Declencheur_P.Fabrique_P;
 
 with Facilites_P;
 
@@ -12,6 +13,8 @@ package body Sys_Exp_P.Regles_P.Sans_Premisse_P.Test_P
 is
 
    Base : aliased Sys_Exp_P.Base_Faits_P.Base_De_Faits_T;
+
+   package Declencheur_R renames Sys_Exp_P.Visiteur_Forme_P.Declencheur_P;
 
    package ID_Alea_P is new Ada.Numerics.Discrete_Random
       (Result_Subtype => ID_Regle_T);
@@ -46,6 +49,9 @@ is
    procedure Test_Creer
       (T : in out Test_Fixt_T)
    is
+      Fabrique : constant Declencheur_R.Fabrique_P.Fabrique_T :=
+         Declencheur_R.Fabrique_P.Creer;
+
       ID  : constant ID_Regle_T := ID_Alea_P.Random (Gen => Generateur_ID);
       Nom : constant Nom_T      := Facilites_P.Creer_Nom;
 
@@ -67,7 +73,12 @@ is
             Condition => T.Regle.Successeur.Is_Empty,
             Message   => "La regle ne doit avoir aucun successeur"
          );
-      T.Regle := Creer (ID_Regle => ID, Conclusion => C);
+      T.Regle := Creer
+         (
+            ID_Regle   => ID,
+            Conclusion => C,
+            Fabrique   => Fabrique
+         );
       AUnit.Assertions.Assert
          (
             Condition => T.Regle.ID_Regle = ID,
@@ -103,6 +114,9 @@ is
    procedure Test_Ajouter_Successeur
       (T : in out Test_Fixt_T)
    is
+      Fabrique : constant Declencheur_R.Fabrique_P.Fabrique_T :=
+         Declencheur_R.Fabrique_P.Creer;
+
       ID : constant ID_Regle_T := ID_Alea_P.Random (Gen => Generateur_ID);
 
       Nom_1 : constant Nom_T := Facilites_P.Creer_Nom;
@@ -113,7 +127,8 @@ is
       T.Regle := Creer
          (
             ID_Regle   => ID,
-            Conclusion => C
+            Conclusion => C,
+            Fabrique   => Fabrique
          );
       AUnit.Assertions.Assert
          (
@@ -129,7 +144,8 @@ is
          R : constant Regle_T := Creer
             (
                ID_Regle   => ID_Bis,
-               Conclusion => C
+               Conclusion => C,
+               Fabrique   => Fabrique
             );
       begin
          T.Regle.Ajouter (Successeur => R);
@@ -147,6 +163,9 @@ is
    procedure Test_Possede_Successeur
       (T : in out Test_Fixt_T)
    is
+      Fabrique : constant Declencheur_R.Fabrique_P.Fabrique_T :=
+         Declencheur_R.Fabrique_P.Creer;
+
       ID : constant ID_Regle_T := ID_Alea_P.Random (Gen => Generateur_ID);
 
       Nom_1 : constant Nom_T := Facilites_P.Creer_Nom;
@@ -157,7 +176,8 @@ is
       T.Regle := Creer
          (
             ID_Regle   => ID,
-            Conclusion => C
+            Conclusion => C,
+            Fabrique   => Fabrique
          );
       AUnit.Assertions.Assert
          (
@@ -173,7 +193,8 @@ is
          R : constant Regle_T := Creer
             (
                ID_Regle   => ID_Bis,
-               Conclusion => C
+               Conclusion => C,
+               Fabrique   => Fabrique
             );
       begin
          T.Regle.Ajouter (Successeur => R);
@@ -191,6 +212,9 @@ is
    procedure Test_Iterer
       (T : in out Test_Fixt_T)
    is
+      Fabrique : constant Declencheur_R.Fabrique_P.Fabrique_T :=
+         Declencheur_R.Fabrique_P.Creer;
+
       ID : constant ID_Regle_T := ID_Alea_P.Random (Gen => Generateur_ID);
 
       Nom_1 : constant Nom_T := Facilites_P.Creer_Nom;
@@ -204,7 +228,8 @@ is
       T.Regle := Creer
          (
             ID_Regle   => ID,
-            Conclusion => C
+            Conclusion => C,
+            Fabrique   => Fabrique
          );
 
       Bloc_Autre_Regle :
@@ -218,7 +243,8 @@ is
          R : constant Regle_T := Creer
             (
                ID_Regle   => ID_Bis,
-               Conclusion => C_Bis
+               Conclusion => C_Bis,
+               Fabrique   => Fabrique
             );
       begin
          T.Regle.Ajouter (Successeur => R);
@@ -248,6 +274,9 @@ is
    procedure Test_Est_Declenchee
       (T : in out Test_Fixt_T)
    is
+      Fabrique : constant Declencheur_R.Fabrique_P.Fabrique_T :=
+         Declencheur_R.Fabrique_P.Creer;
+
       ID : constant ID_Regle_T := ID_Alea_P.Random (Gen => Generateur_ID);
 
       Nom_1 : constant Nom_T := Facilites_P.Creer_Nom;
@@ -261,7 +290,8 @@ is
       T.Regle := Creer
          (
             ID_Regle   => ID,
-            Conclusion => C
+            Conclusion => C,
+            Fabrique   => Fabrique
          );
 
       Bloc_Autre_Regle :
@@ -275,7 +305,8 @@ is
          R : constant Regle_T := Creer
             (
                ID_Regle   => ID_Bis,
-               Conclusion => C_Bis
+               Conclusion => C_Bis,
+               Fabrique   => Fabrique
             );
       begin
          T.Regle.Ajouter (Successeur => R);
