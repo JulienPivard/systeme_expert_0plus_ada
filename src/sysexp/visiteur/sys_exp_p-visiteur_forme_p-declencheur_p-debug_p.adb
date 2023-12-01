@@ -1,4 +1,5 @@
 with Ada.Text_IO;
+with Ada.Strings.Fixed;
 
 with Sys_Exp_P.Forme_P.Conclusion_P.Bool_False_P;
 with Sys_Exp_P.Forme_P.Conclusion_P.Bool_True_P;
@@ -53,6 +54,8 @@ is
       Forme_P.Text_IO.Put_Line (Item => Forme);
 
       Parent.Visiter (Forme => Forme);
+
+      This.Afficher;
    end Visiter;
    ---------------------------------------------------------------------------
 
@@ -70,6 +73,8 @@ is
       Forme_P.Text_IO.Put_Line (Item => Forme);
 
       Parent.Visiter (Forme => Forme);
+
+      This.Afficher;
    end Visiter;
    ---------------------------------------------------------------------------
 
@@ -87,6 +92,8 @@ is
       Forme_P.Text_IO.Put_Line (Item => Forme);
 
       Parent.Visiter (Forme => Forme);
+
+      This.Afficher;
    end Visiter;
    ---------------------------------------------------------------------------
 
@@ -104,6 +111,8 @@ is
       Forme_P.Text_IO.Put_Line (Item => Forme);
 
       Parent.Visiter (Forme => Forme);
+
+      This.Afficher;
    end Visiter;
    ---------------------------------------------------------------------------
 
@@ -121,6 +130,8 @@ is
       Forme_P.Text_IO.Put_Line (Item => Forme);
 
       Parent.Visiter (Forme => Forme);
+
+      This.Afficher;
    end Visiter;
    ---------------------------------------------------------------------------
 
@@ -138,6 +149,8 @@ is
       Forme_P.Text_IO.Put_Line (Item => Forme);
 
       Parent.Visiter (Forme => Forme);
+
+      This.Afficher;
    end Visiter;
    ---------------------------------------------------------------------------
 
@@ -155,10 +168,12 @@ is
    is
       Parent : Parent_T renames Parent_T (This);
    begin
-      Ada.Text_IO.Put          (Item => "Ajout de ");
+      Ada.Text_IO.Put          (Item => "Test de ");
       Forme_P.Text_IO.Put_Line (Item => Forme);
 
       Parent.Visiter (Forme => Forme);
+
+      This.Afficher;
    end Visiter;
    ---------------------------------------------------------------------------
 
@@ -172,10 +187,12 @@ is
    is
       Parent : Parent_T renames Parent_T (This);
    begin
-      Ada.Text_IO.Put          (Item => "Ajout de ");
+      Ada.Text_IO.Put          (Item => "Test de ");
       Forme_P.Text_IO.Put_Line (Item => Forme);
 
       Parent.Visiter (Forme => Forme);
+
+      This.Afficher;
    end Visiter;
    ---------------------------------------------------------------------------
 
@@ -189,10 +206,12 @@ is
    is
       Parent : Parent_T renames Parent_T (This);
    begin
-      Ada.Text_IO.Put          (Item => "Ajout de ");
+      Ada.Text_IO.Put          (Item => "Test de ");
       Forme_P.Text_IO.Put_Line (Item => Forme);
 
       Parent.Visiter (Forme => Forme);
+
+      This.Afficher;
    end Visiter;
    ---------------------------------------------------------------------------
 
@@ -206,10 +225,12 @@ is
    is
       Parent : Parent_T renames Parent_T (This);
    begin
-      Ada.Text_IO.Put          (Item => "Ajout de ");
+      Ada.Text_IO.Put          (Item => "Test de ");
       Forme_P.Text_IO.Put_Line (Item => Forme);
 
       Parent.Visiter (Forme => Forme);
+
+      This.Afficher;
    end Visiter;
    ---------------------------------------------------------------------------
 
@@ -223,10 +244,12 @@ is
    is
       Parent : Parent_T renames Parent_T (This);
    begin
-      Ada.Text_IO.Put          (Item => "Ajout de ");
+      Ada.Text_IO.Put          (Item => "Test de ");
       Forme_P.Text_IO.Put_Line (Item => Forme);
 
       Parent.Visiter (Forme => Forme);
+
+      This.Afficher;
    end Visiter;
    ---------------------------------------------------------------------------
 
@@ -240,15 +263,52 @@ is
    is
       Parent : Parent_T renames Parent_T (This);
    begin
-      Ada.Text_IO.Put          (Item => "Ajout de ");
+      Ada.Text_IO.Put          (Item => "Test de ");
       Forme_P.Text_IO.Put_Line (Item => Forme);
 
       Parent.Visiter (Forme => Forme);
+
+      This.Afficher;
    end Visiter;
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
    --                             Partie privée                             --
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Afficher
+      (This : in     Visiteur_Debug_T)
+   is
+   begin
+      Ada.Text_IO.Put_Line
+         (
+            Item => "Conclusion Déclenchée " &
+               "[" & This.Conclusion_A_Ete_Declenchee'Image & "]"
+         );
+      Ada.Text_IO.Put_Line
+         (
+            Item => "Prémisse Vérifié      " &
+               "[" & This.Premisse_A_Ete_Verifiee'Image & "]"
+         );
+      Ada.Text_IO.Put_Line
+         (
+            Item => "Code erreur           " &
+               "[" & This.Code_Erreur'Image & "]"
+         );
+      Ada.Text_IO.Put_Line
+         (
+            Item => "Message erreur        " &
+               "[" &
+               Ada.Strings.Fixed.Trim
+                  (
+                     Source => This.Message_D_Erreur,
+                     Side   => Ada.Strings.Both
+                  ) &
+               "]"
+         );
+      Ada.Text_IO.New_Line     (Spacing => 1);
+   end Afficher;
    ---------------------------------------------------------------------------
 
 end Sys_Exp_P.Visiteur_Forme_P.Declencheur_P.Debug_P;

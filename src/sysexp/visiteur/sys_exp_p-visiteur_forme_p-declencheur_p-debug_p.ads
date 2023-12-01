@@ -207,4 +207,10 @@ private
          null;
       end record;
 
+   procedure Afficher
+      (This : in     Visiteur_Debug_T);
+   --  Affiche les paramètre internes du visiteur.
+   --  @param This
+   --  Le visiteur de forme.
+
 end Sys_Exp_P.Visiteur_Forme_P.Declencheur_P.Debug_P;
