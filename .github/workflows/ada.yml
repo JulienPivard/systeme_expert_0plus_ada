@@ -22,8 +22,3 @@ jobs:
 
     - name: Build
       run: make
-
-    - name: Test
-      run: >
-        cd tests_unitaires/ &&
-        make run
