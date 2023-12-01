@@ -180,6 +180,8 @@ private
    --  Construit une règle avec ou sans prémisses.
    --  @param This
    --  Le parseur syntaxique.
+   --  @param ID
+   --  L'identifiant à donner à la règle en cours.
    --  @return Une règle avec ou sans prémisses.
 
    function Faire_Regle_Sans_Premisse
@@ -191,6 +193,8 @@ private
    --  Construit une règle sans prémisses.
    --  @param This
    --  Le parseur syntaxique.
+   --  @param ID
+   --  L'identifiant à donner à la règle en cours.
    --  @return Une règle sans prémisses.
 
    function Faire_Conclusion
@@ -234,6 +238,8 @@ private
    --  Construit une règle avec prémisses.
    --  @param This
    --  Le parseur syntaxique.
+   --  @param ID
+   --  L'identifiant à donner à la règle en cours.
    --  @return Une règle avec prémisses.
 
    package Liste_P is new Ada.Containers.Indefinite_Doubly_Linked_Lists

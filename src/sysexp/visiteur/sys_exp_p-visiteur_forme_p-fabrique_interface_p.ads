@@ -22,6 +22,8 @@ is
       return Visiteur_Forme_Abstrait_T'Class
    is abstract;
    --  Fabrique un visiteur.
+   --  @param This
+   --  La fabrique de visiteur de formes.
    --  @param Base
    --  La base de faits que le visiteur utilisera.
    --  @return Le visiteur construit.

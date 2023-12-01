@@ -13,5 +13,8 @@ is
 
    procedure Put_Line
       (Item : in     Premisse_T);
+   --  Affiche les parties spécifiques d'une prémisse expression entière.
+   --  @param Item
+   --  Une forme prémisse.
 
 end Sys_Exp_P.Forme_P.Premisse_P.Expression_Entiere_P.Text_IO;

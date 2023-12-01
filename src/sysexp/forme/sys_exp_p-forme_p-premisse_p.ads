@@ -31,6 +31,11 @@ is
       )
       return Boolean;
    --  Une opération de comparaison entre deux valeurs entières.
+   --  @param Gauche
+   --  L'entier de gauche.
+   --  @param Droite
+   --  L'entier de droite.
+   --  @return Le tests sur des entiers a réussi.
 
    type Comparateur_Nom_Symbole_T is access function
       (
@@ -39,6 +44,11 @@ is
       )
       return Boolean;
    --  Une opération de comparaison entre deux noms symboliques.
+   --  @param Gauche
+   --  Le nom symbolique de gauche.
+   --  @param Droite
+   --  Le nom symbolique de droite.
+   --  @return Le tests sur les noms symbolique a réussi.
 
 private
 

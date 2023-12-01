@@ -13,6 +13,10 @@ is
 
    procedure Put_Line
       (Item : in     Premisse_Abstraite_T'Class);
+   --  Affiche les parties commune d'une forme prémisse,
+   --  et les parties spécifiques des classes enfant.
+   --  @param Item
+   --  Une forme prémisse.
 
 private
 

@@ -40,6 +40,13 @@ is
          Droite : in     Fait_Abstrait_T'Class
       )
       return Boolean;
+   --  Test d'égalité entre deux faits. Deux faits sont les même
+   --  si ils ont le même nom, quelque soit leur type.
+   --  @param Gauche
+   --  Le fait de gauche.
+   --  @param Droite
+   --  Le fait de droite.
+   --  @return Les faits sont égaux.
 
 private
 

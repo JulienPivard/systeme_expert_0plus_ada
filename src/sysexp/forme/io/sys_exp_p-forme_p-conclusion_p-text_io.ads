@@ -13,6 +13,10 @@ is
 
    procedure Put_Line
       (Item : in     Conclusion_Abstraite_T'Class);
+   --  Affiche les parties commune d'une forme conclusion,
+   --  et les parties spécifiques des classes enfant.
+   --  @param Item
+   --  Une forme conclusion.
 
 private
 

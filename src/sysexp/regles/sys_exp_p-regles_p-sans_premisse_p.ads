@@ -32,6 +32,8 @@ is
    --  Le numéro de la règle.
    --  @param Conclusion
    --  La conclusion associer à la règle.
+   --  @param Fabrique
+   --  La fabrique de visiteurs de formes.
    --  @return La règle construite.
 
    overriding
@@ -60,8 +62,6 @@ is
    --  La règle actuelle.
    --  @param Base
    --  Le base de faits.
-   --  @param Fabrique
-   --  La fabrique de visiteurs.
    --  @return Un visiteur de forme.
 
 private

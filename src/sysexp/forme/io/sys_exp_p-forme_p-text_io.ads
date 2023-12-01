@@ -13,5 +13,9 @@ is
 
    procedure Put_Line
       (Item : in     Forme_Abstraite_T'Class);
+   --  Affiche le contenu commun d'une forme, et les parties
+   --  spécifique des différents types.
+   --  @param Item
+   --  Une forme.
 
 end Sys_Exp_P.Forme_P.Text_IO;

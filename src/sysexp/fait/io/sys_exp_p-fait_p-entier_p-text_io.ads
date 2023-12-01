@@ -13,8 +13,15 @@ is
 
    procedure Put
       (Item : in     Fait_Entier_T);
+   --  Affiche les parties spécifique d'un fait entier.
+   --  @param Item
+   --  Le fait entier.
 
    procedure Put_Line
       (Item : in     Fait_Entier_T);
+   --  Affiche les parties spécifique d'un fait entier.
+   --  Saute une ligne.
+   --  @param Item
+   --  Le fait entier.
 
 end Sys_Exp_P.Fait_P.Entier_P.Text_IO;

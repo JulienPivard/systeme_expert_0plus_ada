@@ -13,8 +13,15 @@ is
 
    procedure Put_Line
       (Item : in     Base_De_Faits_T);
+   --  Affiche la base de faits. L'affichage est fait pour du
+   --  debug et n'est donc pas du tout esthétique.
+   --  @param Item
+   --  La base de faits.
 
    procedure Afficher
       (Item : in     Base_De_Faits_T);
+   --  Affiche la base de faits pour un affichage esthétique.
+   --  @param Item
+   --  La base de faits.
 
 end Sys_Exp_P.Base_Faits_P.Text_IO;

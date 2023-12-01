@@ -27,7 +27,7 @@ is
       return Valeur_Fait_T;
    --  Crée une référence à une valeur d'un fait qui peut être utilisée,
    --  ou dans une expression en partie gauche ou droite.
-   --  @param Valeur
+   --  @param Nom
    --  Le nom faisant référence au fait.
    --  @return Une feuille associé à un fait.
 

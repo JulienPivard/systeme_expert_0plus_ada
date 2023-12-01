@@ -17,9 +17,18 @@ is
 
    procedure Put
       (Item : in     Fait_Abstrait_T'Class);
+   --  Affiche les parties communes d'un fait,
+   --  puis les parties spécifique du fait.
+   --  @param Item
+   --  Le fait.
 
    procedure Put_Line
       (Item : in     Fait_Abstrait_T'Class);
+   --  Affiche les parties communes d'un fait,
+   --  puis les parties spécifique du fait.
+   --  Saute une ligne.
+   --  @param Item
+   --  Le fait.
 
 private
 

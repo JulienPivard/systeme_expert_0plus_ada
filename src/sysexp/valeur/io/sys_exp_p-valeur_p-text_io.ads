@@ -17,9 +17,20 @@ is
 
    procedure Put
       (Item : in     Valeur_Abstraite_T'Class);
+   --  Affiche le contenu d'une valeur abstraite. On test
+   --  le type réel de l'objet pour afficher les parties
+   --  spécifique.
+   --  @param Item
+   --  La valeur abstraite.
 
    procedure Put_Line
       (Item : in     Valeur_Abstraite_T'Class);
+   --  Affiche le contenu d'une valeur abstraite. On test
+   --  le type réel de l'objet pour afficher les parties
+   --  spécifique.
+   --  On saute à la ligne à la fin.
+   --  @param Item
+   --  La valeur abstraite.
 
 private
 

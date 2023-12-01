@@ -41,7 +41,7 @@ is
    --  @param Conclusion
    --  La conclusion associer à la règle.
    --  @param Fabrique
-   --  La fabrique de visiteurs.
+   --  La fabrique de visiteurs de formes.
    --  @return La règle construite.
 
    overriding

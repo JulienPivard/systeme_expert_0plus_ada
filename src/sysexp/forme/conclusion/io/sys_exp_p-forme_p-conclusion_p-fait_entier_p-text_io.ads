@@ -13,5 +13,8 @@ is
 
    procedure Put_Line
       (Item : in     Conclusion_T);
+   --  Affiche les parties spécifiques d'une conclusion fait entier.
+   --  @param Item
+   --  Une forme conclusion.
 
 end Sys_Exp_P.Forme_P.Conclusion_P.Fait_Entier_P.Text_IO;
