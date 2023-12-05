@@ -6,7 +6,7 @@ with Sys_Exp_P.Fait_P.Symbolique_P;
 --  Affiche un fait.
 --  @description
 --  Affiche un fait.
---  @group Fait
+--  @group Fait Affichage
 package Sys_Exp_P.Fait_P.Text_IO
    with
       Pure           => False,

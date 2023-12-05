@@ -2,7 +2,7 @@
 --  Affiche un fait entier.
 --  @description
 --  Affiche un fait entier.
---  @group Fait
+--  @group Fait Affichage
 package Sys_Exp_P.Fait_P.Entier_P.Text_IO
    with
       Pure           => False,

@@ -2,7 +2,7 @@
 --  Affiche un visiteur.
 --  @description
 --  Affiche un visiteur.
---  @group Fait
+--  @group Visiteur Affichage
 package Sys_Exp_P.Visiteur_Forme_P.Text_IO
    with
       Pure           => False,

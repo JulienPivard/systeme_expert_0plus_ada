@@ -2,7 +2,7 @@
 --  Affiche une valeur fait.
 --  @description
 --  Affiche une valeur fait.
---  @group Valeur
+--  @group Valeur Affichage
 package Sys_Exp_P.Valeur_P.Fait_P.Text_IO
    with
       Pure           => False,

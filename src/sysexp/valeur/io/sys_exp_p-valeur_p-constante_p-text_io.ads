@@ -2,7 +2,7 @@
 --  Affiche une valeur constante.
 --  @description
 --  Affiche une valeur constante.
---  @group Valeur
+--  @group Valeur Affichage
 package Sys_Exp_P.Valeur_P.Constante_P.Text_IO
    with
       Pure           => False,

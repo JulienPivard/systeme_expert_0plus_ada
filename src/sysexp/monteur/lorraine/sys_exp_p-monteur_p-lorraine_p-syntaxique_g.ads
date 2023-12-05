@@ -34,6 +34,7 @@ package Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
    --  Le parseur syntaxique.
 
    package Fabrique_R renames Visiteur_Forme_P.Fabrique_Interface_P;
+   --  @private Package interne.
 
    function Creer
       (
@@ -67,12 +68,14 @@ private
          Hash            => Ada.Strings.Hash,
          Equivalent_Keys => Standard."="
       );
+   --  @private Package interne.
 
    package Fabrique_Holder_P is new Ada.Containers.Indefinite_Holders
       (
          Element_Type => Fabrique_R.Fabrique_Interface_T'Class,
          "="          => Fabrique_R."="
       );
+   --  @private Package interne.
 
    type Syntaxique_T is tagged limited
       record
@@ -88,10 +91,15 @@ private
       end record;
 
    package Conclusion_R    renames Sys_Exp_P.Forme_P.Conclusion_P;
+   --  @private Package interne.
    package Premisse_R      renames Sys_Exp_P.Forme_P.Premisse_P;
+   --  @private Package interne.
    package Valeur_R        renames Sys_Exp_P.Valeur_P;
+   --  @private Package interne.
    package Avec_Premisse_R renames Sys_Exp_P.Regles_P.Avec_Premisse_P;
+   --  @private Package interne.
    package Sans_Premisse_R renames Sys_Exp_P.Regles_P.Sans_Premisse_P;
+   --  @private Package interne.
 
    procedure Creer_Exception
       (
@@ -247,6 +255,7 @@ private
          Element_Type => Premisse_R.Premisse_Abstraite_T'Class,
          "="          => Premisse_R."="
       );
+   --  @private Package interne.
 
    subtype Liste_Premisses_T is Liste_P.List;
 
@@ -323,5 +332,6 @@ private
          Element_Type => Valeur_R.Valeur_Abstraite_T'Class,
          "="          => Valeur_R."="
       );
+   --  @private Package interne.
 
 end Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G;

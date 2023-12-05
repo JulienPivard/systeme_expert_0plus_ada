@@ -15,6 +15,7 @@ package Sys_Exp_P.Regles_P.Sans_Premisse_P
 is
 
    package Fabrique_R renames Visiteur_Forme_P.Fabrique_Interface_P;
+   --  @private Package interne.
 
    type Regle_T is new Regle_Abstraite_T with private;
    --  Une règle sans prémisses.
@@ -71,6 +72,7 @@ private
          Element_Type => Fabrique_R.Fabrique_Interface_T'Class,
          "="          => Fabrique_R."="
       );
+   --  @private Package interne.
 
    type Regle_T is new Regle_Abstraite_T with
       record

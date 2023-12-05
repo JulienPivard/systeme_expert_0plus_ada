@@ -19,7 +19,9 @@ package Sys_Exp_P.Regles_P.Avec_Premisse_P
 is
 
    package Premisse_R renames Sys_Exp_P.Forme_P.Premisse_P;
+   --  @private Package interne.
    package Fabrique_R renames Visiteur_Forme_P.Fabrique_Interface_P;
+   --  @private Package interne.
 
    type Regle_T is new Regle_Abstraite_T with private;
    --  Une règle avec prémisses.
@@ -92,6 +94,7 @@ private
          Element_Type => Premisse_R.Premisse_Abstraite_T'Class,
          "="          => Premisse_R."="
       );
+   --  @private Package interne.
 
    subtype Liste_Premisses_T is Liste_P.List;
 
@@ -100,6 +103,7 @@ private
          Element_Type => Fabrique_R.Fabrique_Interface_T'Class,
          "="          => Fabrique_R."="
       );
+   --  @private Package interne.
 
    type Regle_T is new Regle_Abstraite_T with
       record

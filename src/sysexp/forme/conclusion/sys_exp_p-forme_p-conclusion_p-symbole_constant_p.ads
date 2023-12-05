@@ -53,6 +53,7 @@ private
 
    package Nom_Symbole_P is new Ada.Containers.Indefinite_Holders
       (Element_Type => Nom_Symbole_T);
+   --  @private Package interne.
 
    type Conclusion_T is new Conclusion_Abstraite_T with
       record

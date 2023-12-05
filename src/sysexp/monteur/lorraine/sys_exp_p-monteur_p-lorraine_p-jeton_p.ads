@@ -327,6 +327,7 @@ private
 
    package String_Holder_P is new Ada.Containers.Indefinite_Holders
       (Element_Type => String);
+   --  @private Package interne.
 
    subtype String_T is String_Holder_P.Holder;
 

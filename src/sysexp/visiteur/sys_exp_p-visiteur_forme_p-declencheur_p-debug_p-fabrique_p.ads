@@ -14,6 +14,7 @@ package Sys_Exp_P.Visiteur_Forme_P.Declencheur_P.Debug_P.Fabrique_P
 is
 
    package Parent_R renames Sys_Exp_P.Visiteur_Forme_P.Fabrique_Interface_P;
+   --  @private Package interne.
 
    type Fabrique_T is new Parent_R.Fabrique_Interface_T with private;
    --  Une fabrique concrète de visiteur de forme.

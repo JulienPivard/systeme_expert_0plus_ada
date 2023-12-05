@@ -8,7 +8,7 @@ with Sys_Exp_P.Monteur_P.Lorraine_P.Fichier_P;
 --  @description
 --  Ce parseur lexical acquiert son contenu au travers d'un
 --  fichier dont le nom est donné en entré.
---  @group Monteur
+--  @group Monteur Concret
 package Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_P is new Lexical_G
    (
       Numero_Ligne_G_T    => Ada.Text_IO.Positive_Count,

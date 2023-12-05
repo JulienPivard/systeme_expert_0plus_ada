@@ -80,6 +80,7 @@ private
          Equivalent_Keys => Sys_Exp_P."=",
          "="             => Sys_Exp_P.Fait_P."="
       );
+   --  @private Package interne.
 
    subtype Map_Faits_T is Map_Fait_P.Map;
 

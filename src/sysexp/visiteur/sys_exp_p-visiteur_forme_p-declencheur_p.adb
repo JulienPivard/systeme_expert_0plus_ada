@@ -24,9 +24,12 @@ package body Sys_Exp_P.Visiteur_Forme_P.Declencheur_P
 is
 
    package Booleen_R renames Sys_Exp_P.Fait_P.Booleen_P;
+   --  @private Package interne.
    package Entier_R  renames Sys_Exp_P.Fait_P.Entier_P;
+   --  @private Package interne.
 
    package Symbolique_R renames Sys_Exp_P.Fait_P.Symbolique_P;
+   --  @private Package interne.
 
    ---------------------------------------------------------------------------
    not overriding

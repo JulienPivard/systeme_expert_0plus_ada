@@ -87,6 +87,7 @@ private
          Element_Type => Sys_Exp_P.Valeur_P.Valeur_Abstraite_T'Class,
          "="          => Sys_Exp_P.Valeur_P."="
       );
+   --  @private Package interne.
 
    type Premisse_T is new Premisse_Abstraite_T with
       record

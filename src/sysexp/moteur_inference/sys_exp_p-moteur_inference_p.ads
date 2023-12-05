@@ -42,6 +42,7 @@ private
          Element_Type => Regles_P.Regle_Abstraite_T'Class,
          "="          => Regles_P."="
       );
+   --  @private Package interne.
 
    subtype Base_De_Regles_T is Regle_Holder_P.Holder;
 

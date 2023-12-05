@@ -49,6 +49,7 @@ private
 
    package Nom_P is new Ada.Containers.Indefinite_Holders
       (Element_Type => Nom_T);
+   --  @private Package interne.
 
    type Valeur_Fait_T is new Valeur_Abstraite_T with
       record

@@ -22,6 +22,7 @@ with Sys_Exp_P.Comparateurs_P.Instance_P;
 package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
 
    package Operateur_R renames Sys_Exp_P.Valeur_P.Operateur_P;
+   --  @private Package interne.
 
    ---------------------------------------------------------------------------
    function Creer

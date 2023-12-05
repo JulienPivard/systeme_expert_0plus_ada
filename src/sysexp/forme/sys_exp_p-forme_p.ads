@@ -48,6 +48,7 @@ private
 
    package Nom_P is new Ada.Containers.Indefinite_Holders
       (Element_Type => Nom_T);
+   --  @private Package interne.
 
    type Forme_Abstraite_T is abstract tagged
       record

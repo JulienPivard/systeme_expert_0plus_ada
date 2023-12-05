@@ -10,11 +10,11 @@
 --  pas ajoutée à la base de fait.
 --
 --  Exemple :
---   chercheur ;
---   non thesard ;
---   profession = medecin ;
---   poids = (−46 + 95);
---   fortune parents = (1000/10 ∗ (25 + 80) / 3 +
+--     chercheur ;
+--     non thesard ;
+--     profession = medecin ;
+--     poids = (−46 + 95);
+--     fortune parents = (1000/10 ∗ (25 + 80) / 3 +
 --       50 ∗ (12 − 5) + 14000 / 2) − 1000 ;
 --  @group Forme Conclusion
 package Sys_Exp_P.Forme_P.Conclusion_P

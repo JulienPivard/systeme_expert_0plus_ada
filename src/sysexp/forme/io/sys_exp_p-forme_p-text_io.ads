@@ -2,7 +2,7 @@
 --  Affiche une forme conclusion ou prémisse.
 --  @description
 --  Affiche une forme conclusion ou prémisse.
---  @group Forme
+--  @group Forme Affichage
 package Sys_Exp_P.Forme_P.Text_IO
    with
       Pure           => False,

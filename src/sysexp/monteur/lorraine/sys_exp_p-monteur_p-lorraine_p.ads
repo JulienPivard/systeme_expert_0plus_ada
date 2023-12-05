@@ -18,6 +18,7 @@ is
    type Monteur_T is new Monteur_Abstrait_T with private;
 
    package Fabrique_R renames Visiteur_Forme_P.Fabrique_Interface_P;
+   --  @private Package interne.
 
    not overriding
    function Creer
@@ -53,6 +54,7 @@ private
 
    package Nom_Fichier_P is new Ada.Containers.Indefinite_Holders
       (Element_Type => String);
+   --  @private Package interne.
 
    subtype Nom_Fichier_T is Nom_Fichier_P.Holder;
 
@@ -61,12 +63,14 @@ private
          Element_Type => Base_De_Regles_T,
          "="          => Sys_Exp_P.Regles_P."="
       );
+   --  @private Package interne.
 
    package Fabrique_Holder_P is new Ada.Containers.Indefinite_Holders
       (
          Element_Type => Fabrique_R.Fabrique_Interface_T'Class,
          "="          => Fabrique_R."="
       );
+   --  @private Package interne.
 
    type Monteur_T is new Monteur_Abstrait_T with
       record

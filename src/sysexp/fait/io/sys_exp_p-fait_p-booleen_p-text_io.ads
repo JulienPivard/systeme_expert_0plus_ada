@@ -2,7 +2,7 @@
 --  Affiche un fait booléen.
 --  @description
 --  Affiche un fait booléen.
---  @group Fait
+--  @group Fait Affichage
 package Sys_Exp_P.Fait_P.Booleen_P.Text_IO
    with
       Pure           => False,

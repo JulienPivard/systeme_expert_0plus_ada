@@ -2,7 +2,7 @@
 --  Affiche un opérateur.
 --  @description
 --  Affiche un opérateur.
---  @group Valeur
+--  @group Valeur Affichage
 package Sys_Exp_P.Valeur_P.Operateur_P.Text_IO
    with
       Pure           => False,

@@ -44,6 +44,7 @@ private
 
    package Monteur_Holder_P is new Ada.Containers.Indefinite_Holders
       (Element_Type => Monteur_Abstrait_T'Class);
+   --  @private Package interne.
 
    subtype Monteur_Holder_T is Monteur_Holder_P.Holder;
    --  Conteneur de monteur.

@@ -37,6 +37,7 @@ package Executeur_G is
    --  La valeur donnée avec l'option n'est pas valide.
 
    package W_W_IO_R renames Ada.Wide_Wide_Text_IO;
+   --  @private Package interne.
 
    Nb_Args     : constant Natural := Ada.Command_Line.Argument_Count;
    --  Le nombre d'arguments sur la ligne de commande.

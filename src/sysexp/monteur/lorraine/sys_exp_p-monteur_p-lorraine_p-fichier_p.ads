@@ -4,7 +4,7 @@ with Ada.Text_IO;
 --  Adaptateur pour la lecture de fichier.
 --  @description
 --  Adaptateur pour la lecture de fichier.
---  @group Monteur
+--  @group Lorraine
 package Sys_Exp_P.Monteur_P.Lorraine_P.Fichier_P
    with
       Pure           => False,

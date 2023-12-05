@@ -2,7 +2,7 @@
 --  Affiche une forme prémisse.
 --  @description
 --  Affiche une forme prémisse.
---  @group Forme
+--  @group Forme Premisse Affichage
 package Sys_Exp_P.Forme_P.Premisse_P.Bool_False_P.Text_IO
    with
       Pure           => False,

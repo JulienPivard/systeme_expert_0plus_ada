@@ -115,6 +115,7 @@ private
 
    package Ligne_P is new Ada.Containers.Indefinite_Holders
       (Element_Type => String);
+   --  @private Package interne.
 
    type Lexical_T is tagged limited
       record

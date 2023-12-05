@@ -52,6 +52,7 @@ private
 
    package Symbole_P is new Ada.Containers.Indefinite_Holders
       (Element_Type => Nom_Symbole_T);
+   --  @private Package interne.
 
    type Fait_Symbolique_T is new Fait_Abstrait_T with
       record

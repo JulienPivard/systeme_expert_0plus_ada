@@ -2,7 +2,7 @@
 --  Formate l'affichage du contenu de la base de règles.
 --  @description
 --  Formate l'affichage du contenu de la base de règles.
---  @group Regle
+--  @group Regle Affichage
 package Sys_Exp_P.Regles_P.Text_IO
    with
       Pure           => False,

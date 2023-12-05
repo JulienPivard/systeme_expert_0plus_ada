@@ -2,7 +2,7 @@
 --  Affiche un fait symbolique.
 --  @description
 --  Affiche un fait symbolique.
---  @group Fait
+--  @group Fait Affichage
 package Sys_Exp_P.Fait_P.Symbolique_P.Text_IO
    with
       Pure           => False,

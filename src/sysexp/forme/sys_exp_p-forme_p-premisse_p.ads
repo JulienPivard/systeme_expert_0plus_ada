@@ -8,11 +8,11 @@
 --  modifier.
 --
 --  Exemple
---   si malhonnete et fort alors            ...conclusion ;
---   si parents riches et intelligent alors ...conclusion ;
---   si travailleur et intelligent alors    ...conclusion ;
---   si fortune > 10000 alors               ...conclusion ;
---  @group Forme
+--      si malhonnete et fort alors            ...conclusion ;
+--      si parents riches et intelligent alors ...conclusion ;
+--      si travailleur et intelligent alors    ...conclusion ;
+--      si fortune > 10000 alors               ...conclusion ;
+--  @group Forme Premisse
 package Sys_Exp_P.Forme_P.Premisse_P
    with
       Pure           => False,
@@ -24,12 +24,13 @@ is
    type Premisse_Abstraite_T is abstract new Forme_Abstraite_T with private;
    --  Une forme qui est une prémisse.
 
-   type Comparateur_Entier_T is access function
-      (
-         Gauche : in     Entier_T;
-         Droite : in     Entier_T
-      )
-      return Boolean;
+   type Comparateur_Entier_T is access
+      function
+         (
+            Gauche : in     Entier_T;
+            Droite : in     Entier_T
+         )
+         return Boolean;
    --  Une opération de comparaison entre deux valeurs entières.
    --  @param Gauche
    --  L'entier de gauche.
@@ -37,12 +38,13 @@ is
    --  L'entier de droite.
    --  @return Le tests sur des entiers a réussi.
 
-   type Comparateur_Nom_Symbole_T is access function
-      (
-         Gauche : in     Nom_Symbole_T;
-         Droite : in     Nom_Symbole_T
-      )
-      return Boolean;
+   type Comparateur_Nom_Symbole_T is access
+      function
+         (
+            Gauche : in     Nom_Symbole_T;
+            Droite : in     Nom_Symbole_T
+         )
+         return Boolean;
    --  Une opération de comparaison entre deux noms symboliques.
    --  @param Gauche
    --  Le nom symbolique de gauche.

@@ -19,7 +19,9 @@ package Sys_Exp_P.Regles_P
 is
 
    package Conclusion_R renames Sys_Exp_P.Forme_P.Conclusion_P;
+   --  @private Package interne.
    package Visiteur_R   renames Sys_Exp_P.Visiteur_Forme_P;
+   --  @private Package interne.
 
    type Regle_Interface_T is interface;
    --  Une règle abstraite qui représentera tous les type de
@@ -145,9 +147,11 @@ private
          Element_Type => Conclusion_R.Conclusion_Abstraite_T'Class,
          "="          => Conclusion_R."="
       );
+   --  @private Package interne.
 
    package Regle_Holder_P is new Ada.Containers.Indefinite_Holders
       (Element_Type => Regle_Interface_T'Class);
+   --  @private Package interne.
 
    subtype Conclusion_T is Conclusion_Holder_P.Holder;
    subtype Successeur_T is Regle_Holder_P.Holder;
