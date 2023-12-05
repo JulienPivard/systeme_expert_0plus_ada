@@ -4,7 +4,7 @@ with Sys_Exp_P.Visiteur_Forme_P.Fabrique_Interface_P;
 --  Une fabrique de visiteur de forme.
 --  @description
 --  Une fabrique de visiteur de forme.
---  @group Fabrique Visiteur
+--  @group Visiteur Fabrique
 package Sys_Exp_P.Visiteur_Forme_P.Declencheur_P.Fabrique_P
    with
       Pure           => False,

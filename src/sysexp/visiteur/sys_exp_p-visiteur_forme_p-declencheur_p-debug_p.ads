@@ -1,9 +1,9 @@
 --  @summary
---  Un du visiteur de règles avec ou sans prémisse de debug.
+--  Un visiteur de règles avec ou sans prémisse de debug.
 --  @description
 --  Ce visiteur a pour but d'évaluer chaque forme pour en
---  tirer des conclusions et d'afficher toutes les opérations
---  sur la sortie standard.
+--  tirer des conclusions (Comme le visiteur standard) et
+--  d'afficher toutes les opérations sur la sortie standard.
 --  @group Visiteur Forme
 package Sys_Exp_P.Visiteur_Forme_P.Declencheur_P.Debug_P
    with

@@ -1,8 +1,10 @@
 --  @summary
---  Le du visiteur de règles avec ou sans prémisse.
+--  Le visiteur de règles avec ou sans prémisse.
 --  @description
 --  Ce visiteur a pour but d'évaluer chaque forme pour en
---  tirer des conclusions.
+--  tirer des conclusions. Les prémisses seront d'abord
+--  évaluées pour décider si on essaye de déclencher la
+--  conclusion.
 --  @group Visiteur Forme
 package Sys_Exp_P.Visiteur_Forme_P.Declencheur_P
    with

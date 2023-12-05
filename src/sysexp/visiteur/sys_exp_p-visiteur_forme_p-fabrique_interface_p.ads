@@ -2,7 +2,7 @@
 --  Une fabrique abstraite de visiteur.
 --  @description
 --  Une fabrique abstraite de visiteur.
---  @group Fabrique Visiteur
+--  @group Visiteur Fabrique
 package Sys_Exp_P.Visiteur_Forme_P.Fabrique_Interface_P
    with
       Pure           => False,
