@@ -1,8 +1,8 @@
 faits_booleens = avoir_fait_prison, habite_chateau, intelligent, fort,
 riche, grand, lourd, malhonnete, parents_riches, pauvre, travailleur,
-chercheur, thesard, leger ;
+chercheur, thesard, leger;
 
-faits_symboliques = profession ;
+faits_symboliques = profession;
 
 faits_entiers = fortune, fortune_parents, poids, taille, travail_par_jour,
 combien ;
