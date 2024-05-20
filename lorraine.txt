@@ -19,17 +19,23 @@ si malhonnete     et fort        alors riche;
 si parents_riches et intelligent alors riche;
 si travailleur    et intelligent alors riche;
 si fortune > palier_richesse     alors riche;
+
 si profession = medecin       alors riche;
 si profession = informaticien alors riche;
 si profession = fonctionnaire alors pauvre;
+
 si non habite_chateau alors pauvre ;
-si riche  alors non pauvre ;
-si pauvre alors non riche ;
+
+si riche             alors non pauvre ;
+si pauvre            alors non riche ;
 si avoir_fait_prison alors malhonnete ;
-si grand et lourd    alors fort ;
+
+si grand et lourd alors fort ;
+
 si taille > 185 alors grand;
 si poids > 95 alors lourd ;
 si poids < 50 alors leger ;
 si poids < 50 alors fortune = (2 * fortune_parents) - 1;
+
 si fortune_parents  > palier_richesse alors parents_riches;
 si travail_par_jour > 8               alors travailleur;
