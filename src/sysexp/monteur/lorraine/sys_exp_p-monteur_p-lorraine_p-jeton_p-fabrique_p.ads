@@ -7,7 +7,7 @@ package Sys_Exp_P.Monteur_P.Lorraine_P.Jeton_P.Fabrique_P
    with
       Pure           => False,
       Preelaborate   => False,
-      Elaborate_Body => False,
+      Elaborate_Body => True,
       Spark_Mode     => Off
 is
 
@@ -147,23 +147,17 @@ is
 
 private
 
-   --------------------------------------
    function Creer
       (
          Sorte          : in     Sorte_T;
          Representation : in     String
       )
-      return Jeton_T
-   is
-      (
-         Jeton_T'
-            (
-               Sorte          => Sorte,
-               Representation => String_Holder_P.To_Holder
-                  (New_Item => Representation)
-            )
-      );
-   --------------------------------------
+      return Jeton_T;
+   --  Crée un jeton
+   --  @param Sorte
+   --  La sorte de jeton à créer.
+   --  @param Representation
+   --  La représentation associée.
 
    Parenthese_O   : constant String := "(";
    Parenthese_F   : constant String := ")";
@@ -470,48 +464,6 @@ private
             (
                Sorte          => Fait_Entier_E,
                Representation => Fait_Entier
-            )
-      );
-   --------------------------------------
-
-   --------------------------------------
-   function Faire_Entier
-      (Representation : in     String)
-      return Jeton_T
-   is
-      (
-         Creer
-            (
-               Sorte          => Entier_E,
-               Representation => Representation
-            )
-      );
-   --------------------------------------
-
-   --------------------------------------
-   function Faire_Identificateur
-      (Representation : in     String)
-      return Jeton_T
-   is
-      (
-         Creer
-            (
-               Sorte          => Identificateur_E,
-               Representation => Representation
-            )
-      );
-   --------------------------------------
-
-   --------------------------------------
-   function Faire_Inconnu
-      (Representation : in     String)
-      return Jeton_T
-   is
-      (
-         Creer
-            (
-               Sorte          => Inconnu_E,
-               Representation => Representation
             )
       );
    --------------------------------------
