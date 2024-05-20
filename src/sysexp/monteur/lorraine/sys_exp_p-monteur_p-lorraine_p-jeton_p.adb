@@ -17,8 +17,22 @@ is
       (This : in     Jeton_T)
       return String
    is
+      L : constant Integer := This.Representation.Element'Length;
+      D : constant Integer := This.Representation.Element'First;
+
+      --  Fin de la chaine.
+      F_C : constant Integer :=
+         (if L > Taille_Max_Nom then Taille_Max_Nom else L);
+      --  Fin de la représentation.
+      F_R : constant Integer :=
+         D + (if L > Taille_Max_Nom then Taille_Max_Nom else L) - 1;
+
+      --  On copie le contenu dans une autre chaine dont les
+      --  intervalles sont compatible avec la taille max des noms.
+      C : constant String (1 .. F_C) :=
+         This.Representation.Element (D .. F_R);
    begin
-      return This.Representation.Element;
+      return C;
    end Lire_Representation;
    ---------------------------------------------------------------------------
 
@@ -28,7 +42,7 @@ is
       return Nom_T
    is
    begin
-      return Nom_T (This.Representation.Element);
+      return Nom_T (String'(This.Lire_Representation));
    end Lire_Representation;
    ---------------------------------------------------------------------------
 
@@ -38,7 +52,7 @@ is
       return Nom_Symbole_T
    is
    begin
-      return Nom_Symbole_T (This.Representation.Element);
+      return Nom_Symbole_T (String'(This.Lire_Representation));
    end Lire_Representation;
    ---------------------------------------------------------------------------
 
