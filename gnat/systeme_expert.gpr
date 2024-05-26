@@ -39,7 +39,7 @@ project Systeme_Expert is
    for Main                      use ("client.adb");
 
    --  Pour ignorer des fichiers sources de la compilation
-   for Ignore_Source_Sub_Dirs    use (".git", "src_tests_unitaire");
+   for Ignore_Source_Sub_Dirs    use (".git");
    --  Le ** permet d'inclure tous les sous répertoire.
    for Source_Dirs               use ("../src/**");
 

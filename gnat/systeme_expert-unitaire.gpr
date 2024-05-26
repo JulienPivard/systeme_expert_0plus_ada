@@ -13,7 +13,7 @@ project Systeme_Expert.Unitaire is
    --  Pour ignorer des fichiers sources de la compilation
    for Ignore_Source_Sub_Dirs    use (".git");
    --  Le ** permet d'inclure tous les sous répertoire.
-   for Source_Dirs               use ("../src/src_tests_unitaire/**");
+   for Source_Dirs               use ("../src_tests_unitaire/**");
 
    for Object_Dir                use "../obj/" & Nom_Sous_Dossier_Compil;
    for Exec_Dir                  use "../bin/" & Nom_Sous_Dossier_Compil;
