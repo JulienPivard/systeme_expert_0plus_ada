@@ -2,6 +2,8 @@ with Ada.Command_Line;
 with Ada.Exceptions;
 with Ada.Text_IO;
 
+with GNAT.Source_Info;
+
 with AUnit.Options;
 with AUnit.Reporter.Text;
 with AUnit.Reporter.XML;
@@ -158,5 +160,9 @@ begin
       );
 exception
    when E : others =>
-      Ada.Text_IO.Put_Line (Item => Ada.Exceptions.Exception_Name (X => E));
+      Ada.Text_IO.Put_Line
+         (
+            Item => Ada.Exceptions.Exception_Information (X => E) &
+                  ASCII.LF & GNAT.Source_Info.Source_Location
+         );
 end Executeur_De_Tests;
