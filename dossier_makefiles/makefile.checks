@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Dimanche 16 janvier[01] 2022
+# Dernière modification : Dimanche 26 mai[05] 2024
 
 # Les options sont désactivée si vide
 ifeq ($(MODE_COMPILE), )
@@ -26,13 +26,13 @@ ifeq ($(ACTIVER_AFFICHER_ORDRE_ELABORATION), )
 endif
 
 # On notifie si le nom de l'app n'est pas changé
-ifeq ($(NOMAPP), nomapplication)
-    $(info makefile.conf:24: ***    Le nom du programme [NOMAPP] doit être changé)
+ifeq ($(NOM_APP), nomapplication)
+    $(info makefile.conf:24: ***    Le nom du programme [NOM_APP] doit être changé)
 endif
 
 # On notifie si le nom de l'app est vide.
-ifeq ($(NOMAPP), )
-    $(info makefile.conf:24: ***    Le nom du programme [NOMAPP] est vide)
+ifeq ($(NOM_APP), )
+    $(info makefile.conf:24: ***    Le nom du programme [NOM_APP] est vide)
 endif
 
 # On vérifie que MODE_COMPILE vaut bien [dev|deb|rel]

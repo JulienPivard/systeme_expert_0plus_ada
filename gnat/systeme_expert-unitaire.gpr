@@ -1,4 +1,4 @@
---  Dernière modification : Samedi 25 mai[05] 2024
+--  Dernière modification : Dimanche 26 mai[05] 2024
 --  auteur : PIVARD Julien
 with "aunit";
 with "systeme_expert.gpr";
@@ -34,8 +34,8 @@ project Systeme_Expert.Unitaire is
    ----------------------------------------------------------------------------
    package Builder extends Systeme_Expert.Builder is
       --  Pour changer le nom du binaire de main_test_harnais à
-      --  test_unitaire_executable après le use.
-      for Executable ("executeur_de_tests.adb") use "test_unitaire_executable";
+      --  tests_unitaire_exe après le use.
+      for Executable ("executeur_de_tests.adb") use "tests_unitaire_exe";
    end Builder;
    ----------------------------------------------------------------------------
 

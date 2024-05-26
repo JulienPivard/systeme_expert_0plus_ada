@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Samedi 25 mai[05] 2024
+# Dernière modification : Dimanche 26 mai[05] 2024
 
 SHELL		:= /bin/sh
 .DEFAULT_GOAL	:= all
@@ -19,6 +19,9 @@ else
 endif
 include ./$(DOSSIER_MAKE)/makefile.checks
 include ./dossier_makefiles/makefile.template
+ifneq  ($(wildcard ./$(DOSSIER_MAKE)/makefile_tests_unitaires), )
+    include ./$(DOSSIER_MAKE)/makefile_tests_unitaires
+endif
 
 # Vérifie si le binaire existe. Sinon il ajoute la cible de compilation
 # en dépendance.
@@ -26,12 +29,6 @@ ifeq ($(wildcard $(RESLT_COMPIL)), )
     DEPEND	= compiler
 else
     DEPEND	=
-endif
-
-ifeq ($(wildcard $(RESLT_COMPIL_TESTS)), )
-    DEPEND_TESTS	= compiler_tests_unitaires
-else
-    DEPEND_TESTS	=
 endif
 
 ###################
@@ -46,40 +43,14 @@ makefile.conf: $(DOSSIER_MAKE)/makefile.conf.tmpl
 ###################
 .PHONY: run
 run: $(DEPEND)
-	$(RESLT_COMPIL) $(ARGUMENTSAPPLI)
+	$(RESLT_COMPIL) $(ARGUMENTS_APPLI)
 
 ###################
 .PHONY: compiler
 compiler: makefile.conf build
 	@echo " ───────────────────────────────"
-	@echo " [OK] Compilation du programme : [ $(NOMAPP) ] terminé"
+	@echo " [OK] Compilation du programme : [ $(NOM_APP) ] terminé"
 	@echo "  "
-
-.PHONY: tests_unitaires
-tests_unitaires: compiler_tests_unitaires
-	@echo " ────────────────────────────────────────────"
-	@echo " [OK] Compilation des tests unitaires terminé"
-	@echo "  "
-
-###################
-.PHONY: run_tests_unitaires
-run_tests_unitaires: $(DEPEND_TESTS)
-	$(RESLT_COMPIL_TESTS)
-
-###################
-.PHONY: compiler_tests_unitaires
-compiler_tests_unitaires:
-	which $(COMPILATEUR)
-	which $(GNATLS)
-	@echo " "
-	$(GNATLS) -v
-	@echo " ┌───────────────────────────────────────────────────────────────┐"
-	@echo " │                  Lancement de la compilation                  │"
-	@echo " └───────────────────────────────────────────────────────────────┘"
-	$(CC) -P$(GPR_TESTS) $(OPTGPR)
-	@echo " ─────────────────────────────────────────────────────────────────"
-	@echo " Résultat écrit dans [$(RESLT_COMPIL_TESTS)] en mode [$(shell echo $(MODE) | tr '[:lower:]' '[:upper:]')]"
-	@echo " ─────────────────────────────────────────────────────────────────"
 
 ###################
 .PHONY: prod
@@ -94,19 +65,19 @@ prod: makefile.conf $(FAIRE_INITIALISATION)
 .PHONY: doc
 doc: makefile.conf $(FAIRE_INITIALISATION)
 	which $(GNAT_DOC)
-	$(GNAT_DOC) -P$(GPR) $(OPTGPR) $(OPTDOCUMENT)
+	$(GNAT_DOC) -P$(GPR) $(OPT_GPR) $(OPT_DOCUMENT)
 
 ###################
 .PHONY: prove
 prove: makefile.conf $(FAIRE_INITIALISATION)
 	which $(GNATPROVE)
-	$(GNATPROVE) -P$(GPR) $(OPTGPR) $(NIVEAU) $(RAPPORT) $(MODE_EXE)
+	$(GNATPROVE) -P$(GPR) $(OPT_GPR) $(NIVEAU) $(RAPPORT) $(MODE_EXE)
 
 ###################
 .PHONY: check
 check: makefile.conf $(FAIRE_INITIALISATION)
 	which $(GNATCHECK)
-	$(GNATCHECK) -P$(GPR) $(OPTGPR) $(OPT_CHECK)
+	$(GNATCHECK) -P$(GPR) $(OPT_GPR) $(OPT_CHECK)
 
 ###################
 .PHONY: pretty
@@ -117,7 +88,7 @@ pretty: makefile.conf $(FAIRE_INITIALISATION)
 ###################
 .PHONY: cleandoc
 cleandoc: makefile.conf
-	$(RM) $(OPTRM) doc
+	$(RM) $(OPT_RM) doc
 
 ###################
 .PHONY: help
@@ -148,3 +119,8 @@ help: makefile.conf
 	@echo " - maj_sous_modules	: Met à jour les sous modules"
 	@echo " "
 	@echo " - version_makefile	: La version des makefiles."
+ifneq  ($(wildcard ./$(DOSSIER_MAKE)/makefile_tests_unitaires), )
+	@echo " - tests_unitaires	: Compile les tests unitaire."
+	@echo "    - compiler_tests_unitaires"
+	@echo " - run_tests_unitaires	: Execute les tests unitaires."
+endif
