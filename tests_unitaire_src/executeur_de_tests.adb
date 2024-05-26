@@ -93,7 +93,7 @@ procedure Executeur_De_Tests is
       (Suite => Suite_De_Tests_Jeton);
 
    --  Options d'affichage du reporter
-   Options : constant AUnit.Options.AUnit_Options :=
+   Options  : constant AUnit.Options.AUnit_Options :=
       AUnit.Options.AUnit_Options'
          (
             Global_Timer     => True,
@@ -101,7 +101,6 @@ procedure Executeur_De_Tests is
             Report_Successes => True,
             Filter           => null
          );
-
    Reporter : constant AUnit.Reporter.Reporter'Class := Creer_Reporter;
 begin
    --  Lancement des suites de tests.
