@@ -102,7 +102,7 @@ procedure Executeur_De_Tests is
             Filter           => null
          );
 
-   Reporter : AUnit.Reporter.Reporter'Class := Creer_Reporter;
+   Reporter : constant AUnit.Reporter.Reporter'Class := Creer_Reporter;
 begin
    --  Lancement des suites de tests.
    Runner_Suite_Base
