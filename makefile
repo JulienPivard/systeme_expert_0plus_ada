@@ -120,6 +120,7 @@ help: makefile.conf
 	@echo " "
 	@echo " - version_makefile	: La version des makefiles."
 ifneq  ($(wildcard ./$(DOSSIER_MAKE)/makefile_tests_unitaires), )
+	@echo " "
 	@echo " - tests_unitaires	: Compile les tests unitaire."
 	@echo "    - compiler_tests_unitaires"
 	@echo " - run_tests_unitaires	: Execute les tests unitaires."
