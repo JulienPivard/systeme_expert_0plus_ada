@@ -1,17 +1,22 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Samedi 30 septembre[09] 2023
+# Dernière modification : Samedi 25 mai[05] 2024
 
 ###############
 # Partie Fixe #
 ###############
 
 GPR		= gnat/systeme_expert.gpr
+GPR_TESTS	= gnat/systeme_expert-unitaire.gpr
 
 CHEMIN_OBJET	= obj
 CHEMIN_RESLT	= bin
 CHEMIN_ALI	= ali
-RESLT_COMPIL	= ./$(CHEMIN_RESLT)/$(MODE)/executable
+
+NOM_DOSSIER_TESTS	= tests_unitaire
+
+RESLT_COMPIL		= ./$(CHEMIN_RESLT)/$(MODE)/executable
+RESLT_COMPIL_TESTS	= ./$(CHEMIN_RESLT)/$(NOM_DOSSIER_TESTS)/test_unitaire_executable
 
 #############################################
 # Les modifications sont à faire en dessous #

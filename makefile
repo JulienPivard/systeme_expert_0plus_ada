@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Lundi 13 juin[06] 2022
+# Dernière modification : Samedi 25 mai[05] 2024
 
 SHELL		:= /bin/sh
 .DEFAULT_GOAL	:= all
@@ -28,6 +28,12 @@ else
     DEPEND	=
 endif
 
+ifeq ($(wildcard $(RESLT_COMPIL_TESTS)), )
+    DEPEND_TESTS	= compiler_tests_unitaires
+else
+    DEPEND_TESTS	=
+endif
+
 ###################
 $(DOSSIER_MAKE)/makefile.conf.tmpl:
 
@@ -48,6 +54,32 @@ compiler: makefile.conf build
 	@echo " ───────────────────────────────"
 	@echo " [OK] Compilation du programme : [ $(NOMAPP) ] terminé"
 	@echo "  "
+
+.PHONY: tests_unitaires
+tests_unitaires: compiler_tests_unitaires
+	@echo " ────────────────────────────────────────────"
+	@echo " [OK] Compilation des tests unitaires terminé"
+	@echo "  "
+
+###################
+.PHONY: run_tests_unitaires
+run_tests_unitaires: $(DEPEND_TESTS)
+	$(RESLT_COMPIL_TESTS)
+
+###################
+.PHONY: compiler_tests_unitaires
+compiler_tests_unitaires:
+	which $(COMPILATEUR)
+	which $(GNATLS)
+	@echo " "
+	$(GNATLS) -v
+	@echo " ┌───────────────────────────────────────────────────────────────┐"
+	@echo " │                  Lancement de la compilation                  │"
+	@echo " └───────────────────────────────────────────────────────────────┘"
+	$(CC) -P$(GPR_TESTS) $(OPTGPR)
+	@echo " ─────────────────────────────────────────────────────────────────"
+	@echo " Résultat écrit dans [$(RESLT_COMPIL_TESTS)] en mode [$(shell echo $(MODE) | tr '[:lower:]' '[:upper:]')]"
+	@echo " ─────────────────────────────────────────────────────────────────"
 
 ###################
 .PHONY: prod
