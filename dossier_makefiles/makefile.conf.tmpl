@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Dimanche 26 mai[05] 2024
+# Dernière modification : Dimanche 08 septembre[09] 2024
 
 ###############
 # Partie Fixe #
@@ -9,10 +9,11 @@
 NOM_DU_GPR	= systeme_expert
 GPR		= gnat/$(NOM_DU_GPR).gpr
 
+NOM_EXECUTABLE	= executable
 CHEMIN_OBJET	= obj
 CHEMIN_RESLT	= bin
 CHEMIN_ALI	= ali
-RESLT_COMPIL	= ./$(CHEMIN_RESLT)/$(MODE)/executable
+RESLT_COMPIL	= ./$(CHEMIN_RESLT)/$(MODE)/$(NOM_EXECUTABLE)
 
 #############################################
 # Les modifications sont à faire en dessous #
