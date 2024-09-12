@@ -1,9 +1,12 @@
---  Dernière modification : Dimanche 26 mai[05] 2024
+--  Dernière modification : Jeudi 12 septembre[09] 2024
 --  auteur : PIVARD Julien
 with "aunit";
 with "systeme_expert.gpr";
 
 project Systeme_Expert.Unitaire is
+
+   --  Pour la couverture de tests, utiliser
+   --  gcov --branch-probabilities --function-summaries --use-colors --object-directory=obj/tests_unitaire obj/tests_unitaire/*.gcno
 
    Nom_Sous_Dossier_Compil := "tests_unitaire";
 
@@ -40,35 +43,10 @@ project Systeme_Expert.Unitaire is
    ----------------------------------------------------------------------------
 
    ----------------------------------------------------------------------------
-   package Compiler extends Systeme_Expert.Compiler is
-      Options_Compiler := Systeme_Expert.Options_Compiler &
-         (
-            "-gnata",
-            --  -gnata active les assertions. Pragma assert, debug, Check,
-            --  Precondition, et Postcondition
-            "-gnateL",
-            --  Désactive l'affichage des messages indiquant l'ajout
-            --  implicite de pragma d'élaboration lors de la compilation.
-            "-fprofile-arcs",
-            --  Pour la couverture de tests.
-            "-ftest-coverage",
-            --  Pour la couverture de tests.
-            "-gnateS"
-            --  Génère les fichiers SCO (Source Coverage Obligation)
-         );
-      for Default_Switches ("Ada") use Options_Compiler;
-   end Compiler;
-   ----------------------------------------------------------------------------
-
-   ----------------------------------------------------------------------------
-   package Linker extends Systeme_Expert.Linker is
-      for Default_Switches ("Ada") use ("-fprofile-arcs");
-   end Linker;
-   ----------------------------------------------------------------------------
-
-   ----------------------------------------------------------------------------
-   package Binder renames Systeme_Expert.Binder;
-   package Ide    renames Systeme_Expert.Ide;
+   package Binder   renames Systeme_Expert.Binder;
+   package Compiler renames Systeme_Expert.Compiler;
+   package Ide      renames Systeme_Expert.Ide;
+   package Linker   renames Systeme_Expert.Linker;
    ----------------------------------------------------------------------------
 
 end Systeme_Expert.Unitaire;
