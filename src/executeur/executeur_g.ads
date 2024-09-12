@@ -1,12 +1,14 @@
 with Ada.Command_Line;
 with Ada.Wide_Wide_Text_IO;
 
+with NB_Args_P;
+
 generic
 
-   Nombre_D_Arguments_Min : Natural := 1;
+   Nombre_D_Arguments_Min : NB_Args_P.NB_Args_T := 1;
    --  Si le nombre d'arguments minimum vaut 0 alors l'aide ne
    --  s'affichera pas si le programme est appelé sans arguments.
-   Nombre_D_Arguments_Max : Natural := 1;
+   Nombre_D_Arguments_Max : NB_Args_P.NB_Args_T := 1;
    --  Le nombre maximum d'arguments autorisé sur la ligne de commandes.
 
 --  @summary
@@ -19,6 +21,8 @@ generic
 package Executeur_G is
 
    pragma Elaborate_Body;
+
+   use type NB_Args_P.NB_Args_T;
 
    pragma Compile_Time_Error
       (
@@ -37,14 +41,17 @@ package Executeur_G is
    --  La valeur donnée avec l'option n'est pas valide.
 
    package W_W_IO_R renames Ada.Wide_Wide_Text_IO;
-   --  @private Package interne.
+   --  Affichage de chaines avec des long caractères.
 
-   Nb_Args     : constant Natural := Ada.Command_Line.Argument_Count;
+   subtype NB_Args_T is NB_Args_P.NB_Args_T;
+
+   NB_Args     : constant NB_Args_T :=
+      NB_Args_T (Ada.Command_Line.Argument_Count);
    --  Le nombre d'arguments sur la ligne de commande.
-   Nb_Args_Max : constant Natural := Nombre_D_Arguments_Max;
+   NB_Args_Max : constant NB_Args_T := Nombre_D_Arguments_Max;
    --  Le nombre maximum d'arguments autorisé sur la ligne de commande.
 
-   subtype Arguments_En_Trop_T is Natural range Nb_Args_Max + 1 .. Nb_Args;
+   subtype Arguments_En_Trop_T is NB_Args_T range NB_Args_Max + 1 .. NB_Args;
    --  L'intervalle des arguments en trop.
 
    procedure Afficher_Aide;

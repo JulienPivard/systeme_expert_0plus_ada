@@ -1,24 +1,19 @@
 ------------------------------------------------------------------------------
 --                                                                          --
 --                          Auteur : PIVARD Julien                          --
---           Dernière modification : Vendredi 01 décembre[12] 2023
+--           Dernière modification : Jeudi 12 septembre[09] 2024
 --                                                                          --
 ------------------------------------------------------------------------------
 with Ada.Text_IO;
 
-with GNAT.Compiler_Version;
 with GNAT.Source_Info;
 
-with Executeur_G;
+with Executeur_P;
+with Version_Compilateur_P;
 
 procedure Client is
-   package Version_Compilateur_P is new GNAT.Compiler_Version;
-   package Executeur_P           is new Executeur_G
-      (
-         Nombre_D_Arguments_Min => 1,
-         Nombre_D_Arguments_Max => 2
-      );
 begin
+
    Ada.Text_IO.Put      (Item => "+---------------------+");
    Ada.Text_IO.Put_Line (Item => " - - - - - - - - - - - ");
    Ada.Text_IO.Put      (Item => "| Date de compilation :");
@@ -40,6 +35,7 @@ begin
          Nom_Fichier => Executeur_P.Verifier_Nom_Fichier,
          Mode_Debug  => Executeur_P.Verifier_Mode_Debug
       );
+
 exception
    when Executeur_P.Trop_D_Arguments_E =>
       null;
@@ -49,4 +45,5 @@ exception
       null;
    when Executeur_P.Valeur_Option_Incorrect_E =>
       null;
+
 end Client;

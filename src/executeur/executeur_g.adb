@@ -1,5 +1,5 @@
-with Ada.Text_IO;
 with Ada.Directories;
+with Ada.Text_IO;
 
 package body Executeur_G is
 
@@ -65,11 +65,11 @@ package body Executeur_G is
    begin
       Ada.Command_Line.Set_Exit_Status (Code => Ada.Command_Line.Success);
 
-      if Nb_Args = 0 and then Nombre_D_Arguments_Min > 0 then
+      if NB_Args = 0 and then Nombre_D_Arguments_Min > 0 then
          Afficher_Aide;
          raise Pas_Assez_D_Arguments_E;
 
-      elsif Nb_Args > Nombre_D_Arguments_Max then
+      elsif NB_Args > Nombre_D_Arguments_Max then
          Afficher_Aide;
          W_W_IO_R.Put
             (File => W_W_IO_R.Standard_Error, Item => "Trop d'arguments. ");
@@ -81,16 +81,29 @@ package body Executeur_G is
          for I in Arguments_En_Trop_T loop
             Ada.Text_IO.Put
                (File => Ada.Text_IO.Standard_Error, Item => "  - ");
+            pragma Annotate
+               (
+                  gnatcheck,
+                  Exempt_On,
+                  "Predefined_Numeric_Types",
+                  "impossible de ne pas convertir I en Natural"
+               );
             Ada.Text_IO.Put_Line
                (
                   File => Ada.Text_IO.Standard_Error,
-                  Item => Ada.Command_Line.Argument (Number => I)
+                  Item => Ada.Command_Line.Argument (Number => Natural (I))
+               );
+            pragma Annotate
+               (
+                  gnatcheck,
+                  Exempt_Off,
+                  "Predefined_Numeric_Types"
                );
          end loop;
          Ada.Command_Line.Set_Exit_Status (Code => Ada.Command_Line.Failure);
          raise Trop_D_Arguments_E;
 
-      elsif Nb_Args < Nombre_D_Arguments_Min then
+      elsif NB_Args < Nombre_D_Arguments_Min then
          Afficher_Aide;
          W_W_IO_R.Put_Line
             (
@@ -131,7 +144,7 @@ package body Executeur_G is
    is
    begin
       return
-         Nb_Args >= 2
+         NB_Args >= 2
          and then
          Ada.Command_Line.Argument (Number => 2) = "-d";
    end Verifier_Mode_Debug;
