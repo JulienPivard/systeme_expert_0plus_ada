@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Dimanche 26 mai[05] 2024
+# Dernière modification : Dimanche 08 septembre[09] 2024
 
 include ./$(DOSSIER_MAKE)/makefile_tests_unitaires.conf
 ifeq ($(wildcard $(RESLT_COMPIL_TESTS)), )
@@ -31,7 +31,7 @@ compiler_tests_unitaire:
 	@echo " ┌───────────────────────────────────────────────────────────────┐"
 	@echo " │                  Lancement de la compilation                  │"
 	@echo " └───────────────────────────────────────────────────────────────┘"
-	$(CC) -P$(GPR_TESTS) $(OPT_GPR)
+	$(CC) -P$(GPR_TESTS) $(OPT_GPR_TESTS)
 	@echo " ─────────────────────────────────────────────────────────────────"
-	@echo " Résultat écrit dans [$(RESLT_COMPIL_TESTS)] en mode [$(shell echo $(MODE) | tr '[:lower:]' '[:upper:]')]"
+	@echo " Résultat écrit dans [$(RESLT_COMPIL_TESTS)] en mode [TESTS_UNITAIRE]"
 	@echo " ─────────────────────────────────────────────────────────────────"
