@@ -10,7 +10,7 @@ is
    is
    begin
       Ada.Text_IO.Put_Line
-         ("Fait [" & String (Item.Nom_Fait.Element) & "]");
+         (Item => "Fait [" & String (Item.Nom_Fait.Element) & "]");
    end Put_Line;
    ---------------------------------------------------------------------------
 

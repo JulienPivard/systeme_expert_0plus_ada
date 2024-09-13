@@ -53,6 +53,7 @@ is
                Key      => Nouvel_Item.Lire_Nom,
                New_Item => Nouvel_Item
             );
+
       else
          Bloc_Detail_Erreur :
          declare
@@ -79,6 +80,7 @@ is
                               "[" & Fait_B.Lire_Valeur'Image & "]";
                         end if;
                      end Bloc_Err_Bool;
+
                   when Entier_E     =>
                      Bloc_Err_Entier :
                      declare
@@ -97,6 +99,7 @@ is
                               "[" & Fait_E.Lire_Valeur'Image & "]";
                         end if;
                      end Bloc_Err_Entier;
+
                   when Symbolique_E =>
                      Bloc_Err_Symbole :
                      declare
@@ -116,6 +119,7 @@ is
                         end if;
                      end Bloc_Err_Symbole;
                end case;
+
             else
                raise E_Fait_Deja_Present with
                   "Le fait [" & String (Nouvel_Item.Lire_Nom) & "] " &

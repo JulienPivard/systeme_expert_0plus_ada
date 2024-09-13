@@ -45,8 +45,10 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_G is
          case Lettre is
             when '(' =>
                return Jeton_P.Fabrique_P.Faire_Parenthese_Ouvrante;
+
             when ')' =>
                return Jeton_P.Fabrique_P.Faire_Parenthese_Fermante;
+
             when '<' =>
                if This.Ligne_En_Cours.Element (This.Position) = '=' then
                   This.Position := This.Position + 1;
@@ -54,6 +56,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_G is
                else
                   return Jeton_P.Fabrique_P.Faire_Inferieur;
                end if;
+
             when '>' =>
                if This.Ligne_En_Cours.Element (This.Position) = '=' then
                   This.Position := This.Position + 1;
@@ -61,12 +64,16 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_G is
                else
                   return Jeton_P.Fabrique_P.Faire_Superieur;
                end if;
+
             when '+' =>
                return Jeton_P.Fabrique_P.Faire_Operateur_Plus;
+
             when '-' =>
                return Jeton_P.Fabrique_P.Faire_Operateur_Moins;
+
             when '*' =>
                return Jeton_P.Fabrique_P.Faire_Operateur_Multiplier;
+
             when '/' =>
                if This.Ligne_En_Cours.Element (This.Position) = '=' then
                   This.Position := This.Position + 1;
@@ -74,18 +81,24 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_G is
                else
                   return Jeton_P.Fabrique_P.Faire_Operateur_Diviser;
                end if;
+
             when '=' =>
                return Jeton_P.Fabrique_P.Faire_Egal;
+
             when ';' =>
                return Jeton_P.Fabrique_P.Faire_Fin_Expression;
+
             when ',' =>
                return Jeton_P.Fabrique_P.Faire_Separateur;
+
             when Chiffre_T =>
                This.Position := This.Position - 1;
                return This.Extraire_Entier;
+
             when Lettre_T =>
                This.Position := This.Position - 1;
                return This.Extraire_Chaine;
+
             when others =>
                This.Position := This.Position - 1;
                return Jeton_P.Fabrique_P.Faire_Inconnu
