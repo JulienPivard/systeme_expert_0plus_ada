@@ -20,7 +20,7 @@ is
    type Base_De_Faits_T is tagged limited private;
    --  La base de faits.
 
-   type Accesseur_Base_T is access all Base_De_Faits_T
+   type Accesseur_Base_A is access all Base_De_Faits_T
       with Storage_Size => 0;
 
    function Contient

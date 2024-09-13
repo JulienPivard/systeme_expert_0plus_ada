@@ -24,7 +24,7 @@ is
    ---------------------------------------------------------------------------
    overriding
    function Creer
-      (Base : in     not null Accesseur_Base_T)
+      (Base : in     not null Accesseur_Base_A)
       return Visiteur_Debug_T
    is
    begin

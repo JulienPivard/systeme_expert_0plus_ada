@@ -53,7 +53,7 @@ is
 
    Message_Vide : constant Message_Erreur_T;
 
-   subtype Accesseur_Base_T is Sys_Exp_P.Base_Faits_P.Accesseur_Base_T;
+   subtype Accesseur_Base_A is Sys_Exp_P.Base_Faits_P.Accesseur_Base_A;
 
    type Visiteur_Forme_Abstrait_T (<>) is abstract tagged limited private;
    --  Un visiteur de Formes abstrait. Le squelette de base de tout
@@ -266,7 +266,7 @@ private
 
    type Visiteur_Forme_Abstrait_T is abstract tagged limited
       record
-         Base                        : Accesseur_Base_T := null;
+         Base                        : Accesseur_Base_A := null;
          --  La base de faits où on va ajouter les conclusions déclenchées.
          Premisse_A_Ete_Verifiee     : Boolean          := False;
          --  Permet de savoir si la prémisse est vérifiée.

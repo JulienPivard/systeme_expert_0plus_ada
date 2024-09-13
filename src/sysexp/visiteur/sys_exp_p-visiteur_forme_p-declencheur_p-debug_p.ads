@@ -18,7 +18,7 @@ is
 
    overriding
    function Creer
-      (Base : in     not null Accesseur_Base_T)
+      (Base : in     not null Accesseur_Base_A)
       return Visiteur_Debug_T;
    --  Crée un visiteur de Formes.
    --  @param Base
@@ -198,7 +198,7 @@ private
    subtype Parent_T is Visiteur_T;
 
    function Creer_Parent
-      (Base : in     not null Accesseur_Base_T)
+      (Base : in     not null Accesseur_Base_A)
       return Parent_T
    renames Creer;
 
