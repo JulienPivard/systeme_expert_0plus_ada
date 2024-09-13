@@ -54,7 +54,7 @@ is
    subtype ID_Msg_Err_T is Integer range 1 .. Taille_Message_Erreur;
    --  Taille de messages d'erreur.
 
-   subtype Message_Erreur_T is String (1 .. 100);
+   subtype Message_Erreur_T is String (ID_Msg_Err_T);
    --  Le message de l'erreur rencontrée.
 
    Message_Vide : constant Message_Erreur_T;

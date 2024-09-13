@@ -85,7 +85,7 @@ package Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_G is
 
    function Lire_Position
       (This : in     Lexical_T)
-      return Integer;
+      return Position_T;
    --  Lit la position dans la ligne en cours.
    --  @param This
    --  L'analyseur lexical.
@@ -93,7 +93,7 @@ package Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_G is
 
    function Lire_Ancienne_Position
       (This : in     Lexical_T)
-      return Integer;
+      return Position_T;
    --  Lit l'ancienne position dans la ligne en cours.
    --  @param This
    --  L'analyseur lexical.
@@ -125,9 +125,9 @@ private
       record
          Fichier           : Contenu_G_T;
          --  Le fichier à analyser.
-         Position          : Integer := Integer'Last;
+         Position          : Position_T := Position_T'Last;
          --  La position actuelle du jeton.
-         Ancienne_Position : Integer := Integer'Last;
+         Ancienne_Position : Position_T := Position_T'Last;
          --  Position du jeton précédent dans le fichier
          --  (pour l'affichage des erreurs).
          Num_Ligne         : Numero_Ligne_G_T := Numero_Ligne_G_T'First;
@@ -178,14 +178,14 @@ private
    --------------------------------------
    function Lire_Position
       (This : in     Lexical_T)
-      return Integer
+      return Position_T
    is (This.Position);
    --------------------------------------
 
    --------------------------------------
    function Lire_Ancienne_Position
       (This : in     Lexical_T)
-      return Integer
+      return Position_T
    is (This.Ancienne_Position);
    --------------------------------------
 

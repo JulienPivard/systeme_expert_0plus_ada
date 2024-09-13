@@ -9,7 +9,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_G is
       with Static_Predicate => Chiffre_T in
          '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9';
    subtype Lettre_T  is Character
-      with Static_Predicate => Lettre_T  in 'a' .. 'z' | 'A' .. 'Z';
+      with Static_Predicate => Lettre_T  in Minuscules_T | Majuscules_T;
 
    ---------------------------------------------------------------------------
    function Creer
@@ -180,8 +180,8 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_G is
       subtype Nombre_T is Character
          with Static_Predicate => Nombre_T in Chiffre_T | '_';
 
-      Chaine : constant String  := This.Ligne_En_Cours.Element;
-      Debut  : constant Integer := This.Position;
+      Chaine : constant String     := This.Ligne_En_Cours.Element;
+      Debut  : constant Position_T := This.Position;
 
       Est_Un_Chiffre : Boolean;
    begin
@@ -209,7 +209,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_G is
       subtype Chaine_T is Character
          with Static_Predicate => Chaine_T in Lettre_T | Chiffre_T | '_';
 
-      Debut : constant Integer := This.Position;
+      Debut : constant Position_T := This.Position;
 
       Est_Une_Chaine : Boolean;
    begin
@@ -229,10 +229,10 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_G is
 
       Bloc_Analyser_Chaine :
       declare
-         Fin            : constant Integer := This.Position - 1;
+         Fin            : constant Position_T := This.Position - 1;
          --  Il fait revenir de 1 en arrière, car la position est
          --  sur un caractère invalide.
-         Chaine_Trouvee : constant String  :=
+         Chaine_Trouvee : constant String     :=
             This.Ligne_En_Cours.Element (Debut .. Fin);
       begin
          return
