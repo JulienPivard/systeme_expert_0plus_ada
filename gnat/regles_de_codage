@@ -33,11 +33,11 @@
 --  Les constructeurs d'objets contrôlé sans paramètre contrôlé
 +R Deep_Inheritance_Hierarchies:5
 --  Profondeur maximum d'héritage.
-+R Direct_Calls_To_Primitives
+--  +R Direct_Calls_To_Primitives
 --  Appels direct aux primitives
-+R Downward_View_Conversions
+--  +R Downward_View_Conversions
 --  Les conversions d'une classe en une de ses filles.
-+R No_Inherited_Classwide_Pre
+--  +R No_Inherited_Classwide_Pre
 --  Procedure qui override des procédure sans Pre'Class
 +R Specific_Pre_Post
 --  Les procédure qui utilisent Pre et Post mais pas Pre'Class et Post'Class
@@ -47,7 +47,7 @@
 --  Les classes qui définissent Type_Invariant mais pas Type_Invariant'Class
 +R Too_Many_Parents:2
 --  Défini le nombre de parents maximum
-+R Too_Many_Primitives:10
++R Too_Many_Primitives:64
 --  Les classes qui définissent trop de méthodes.
 +R Visible_Components
 --  Composant dont les composants sont accessible publiquement
@@ -286,7 +286,7 @@
 --  Pour les objets le premier paramètre est This
 --  +R Name_Clashes:dico_de_noms.txt
 --  Dictionnaire de noms interdit d'utilisation.
-+R Numeric_Format
+--  +R Numeric_Format
 --  Les nombres qui ne suivent pas le bon format numérique.
 --  Base 2, 8, 10, 16
 --  Base 10 ou 8 un _ tout les 3 chiffres.
@@ -363,7 +363,7 @@
 --  Les littéraux numérique doivent être écrit dans des constantes
 --  +R Numeric_Literals:ALL
 --  +R Numeric_Literals:Statements_Only
-+R Parameters_Out_Of_Order
+--  +R Parameters_Out_Of_Order
 --  Ordre des paramètres des fonctions et procédures : in, access, in out, out
 +R Predicate_Testing:Except_Assertions
 --  Sous type défini avec un prédicat
