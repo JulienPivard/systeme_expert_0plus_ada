@@ -9,7 +9,8 @@ is
       (Item : in     Conclusion_T)
    is
    begin
-      Ada.Text_IO.Put_Line ("Fait [" & String (Item.Nom_Fait.Element) & "]");
+      Ada.Text_IO.Put_Line
+         (Item => "Fait [" & String (Item.Nom_Fait.Element) & "]");
    end Put_Line;
    ---------------------------------------------------------------------------
 

@@ -1,5 +1,3 @@
-with Ada.Strings.Hash;
-
 with Sys_Exp_P.Fait_P.Booleen_P;
 with Sys_Exp_P.Fait_P.Entier_P;
 with Sys_Exp_P.Fait_P.Symbolique_P;
@@ -132,16 +130,6 @@ is
 
    ---------------------------------------------------------------------------
    --                             Partie privée                             --
-   ---------------------------------------------------------------------------
-
-   ---------------------------------------------------------------------------
-   function Hash
-      (Nom : in     Nom_T)
-      return Ada.Containers.Hash_Type
-   is
-   begin
-      return Ada.Strings.Hash (Key => String (Nom));
-   end Hash;
    ---------------------------------------------------------------------------
 
 end Sys_Exp_P.Base_Faits_P;

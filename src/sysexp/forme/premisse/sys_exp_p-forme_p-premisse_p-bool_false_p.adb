@@ -9,7 +9,7 @@ is
       return Premisse_T
    is
    begin
-      return Premisse_T'(Nom => Nom_P.To_Holder (New_Item => Nom));
+      return Premisse_T'(Nom => Nom_Holder_P.To_Holder (New_Item => Nom));
    end Creer;
    ---------------------------------------------------------------------------
 

@@ -12,7 +12,7 @@ is
       return Valeur_Fait_T
    is
    begin
-      return Valeur_Fait_T'(Nom => Nom_P.To_Holder (New_Item => Nom));
+      return Valeur_Fait_T'(Nom => Nom_Holder_P.To_Holder (New_Item => Nom));
    end Creer;
    ---------------------------------------------------------------------------
 

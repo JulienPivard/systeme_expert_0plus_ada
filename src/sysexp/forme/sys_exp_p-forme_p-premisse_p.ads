@@ -24,7 +24,7 @@ is
    type Premisse_Abstraite_T is abstract new Forme_Abstraite_T with private;
    --  Une forme qui est une prémisse.
 
-   type Comparateur_Entier_T is access
+   type Comparateur_Entier_A is access
       function
          (
             Gauche : in     Entier_T;
@@ -38,7 +38,7 @@ is
    --  L'entier de droite.
    --  @return Le tests sur des entiers a réussi.
 
-   type Comparateur_Nom_Symbole_T is access
+   type Comparateur_Nom_Symbole_A is access
       function
          (
             Gauche : in     Nom_Symbole_T;

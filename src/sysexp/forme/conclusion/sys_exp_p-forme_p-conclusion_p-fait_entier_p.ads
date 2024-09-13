@@ -53,7 +53,7 @@ private
 
    type Conclusion_T is new Conclusion_Abstraite_T with
       record
-         Nom_Fait : Nom_P.Holder;
+         Nom_Fait : Nom_Holder_P.Holder;
          --  Le nom du fait entier.
       end record;
 

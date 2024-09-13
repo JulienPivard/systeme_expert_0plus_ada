@@ -1,3 +1,5 @@
+with Nom_Symbole_Holder_P;
+
 --  @summary
 --  Une prémisse qui contient une valeur symbolique.
 --  @description
@@ -18,7 +20,7 @@ is
    function Creer
       (
          Nom         : in     Nom_T;
-         Comparateur : in     Comparateur_Nom_Symbole_T;
+         Comparateur : in     Comparateur_Nom_Symbole_A;
          Nom_Symbole : in     Nom_Symbole_T
       )
       return Premisse_T;
@@ -71,15 +73,13 @@ is
 
 private
 
-   package Nom_Symbole_P is new Ada.Containers.Indefinite_Holders
-      (Element_Type => Nom_Symbole_T);
-   --  @private Package interne.
+   package Nom_Symbole_R renames Nom_Symbole_Holder_P;
 
    type Premisse_T is new Premisse_Abstraite_T with
       record
-         Comparateur : Comparateur_Nom_Symbole_T;
+         Comparateur : Comparateur_Nom_Symbole_A;
          --  Opérateur de comparaison.
-         Nom_Symbole : Nom_Symbole_P.Holder;
+         Nom_Symbole : Nom_Symbole_Holder_P.Holder;
          --  Le nom du symbole.
       end record;
 

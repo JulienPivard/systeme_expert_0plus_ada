@@ -1,3 +1,5 @@
+with Nom_Symbole_Holder_P;
+
 --  @summary
 --  Une conclusion qui contient une valeur symbolique.
 --  @description
@@ -51,13 +53,11 @@ is
 
 private
 
-   package Nom_Symbole_P is new Ada.Containers.Indefinite_Holders
-      (Element_Type => Nom_Symbole_T);
-   --  @private Package interne.
+   package Nom_Symbole_R renames Nom_Symbole_Holder_P;
 
    type Conclusion_T is new Conclusion_Abstraite_T with
       record
-         Nom_Symbole : Nom_Symbole_P.Holder;
+         Nom_Symbole : Nom_Symbole_Holder_P.Holder;
          --  Le nom du symbole.
       end record;
 

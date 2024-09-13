@@ -1,6 +1,8 @@
 with Sys_Exp_P.Base_Faits_P;
 with Sys_Exp_P.Valeur_P;
 
+with Valeur_Abstraite_Holder_P;
+
 --  @summary
 --  Une prémisse entière basé sur une expression.
 --  @description
@@ -22,7 +24,7 @@ is
    function Creer
       (
          Nom         : in     Nom_T;
-         Comparateur : in     Comparateur_Entier_T;
+         Comparateur : in     Comparateur_Entier_A;
          Expression  : in     Sys_Exp_P.Valeur_P.Valeur_Abstraite_T'Class
       )
       return Premisse_T;
@@ -82,18 +84,13 @@ is
 
 private
 
-   package Valeur_Abstraite_P is new Ada.Containers.Indefinite_Holders
-      (
-         Element_Type => Sys_Exp_P.Valeur_P.Valeur_Abstraite_T'Class,
-         "="          => Sys_Exp_P.Valeur_P."="
-      );
-   --  @private Package interne.
+   package Valeur_R renames Valeur_Abstraite_Holder_P;
 
    type Premisse_T is new Premisse_Abstraite_T with
       record
-         Comparateur : Comparateur_Entier_T;
+         Comparateur : Comparateur_Entier_A;
          --  Opérateur de comparaison.
-         Expression  : Valeur_Abstraite_P.Holder;
+         Expression  : Valeur_Abstraite_Holder_P.Holder;
          --  L'expression entière.
       end record;
 

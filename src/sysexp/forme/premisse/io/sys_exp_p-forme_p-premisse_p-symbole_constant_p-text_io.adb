@@ -10,7 +10,7 @@ is
    is
    begin
       Ada.Text_IO.Put_Line
-         ("Symbole [" & String (Item.Nom_Symbole.Element) & "]");
+         (Item => "Symbole [" & String (Item.Nom_Symbole.Element) & "]");
    end Put_Line;
    ---------------------------------------------------------------------------
 

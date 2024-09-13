@@ -18,7 +18,7 @@ is
    function Creer
       (
          Nom         : in     Nom_T;
-         Comparateur : in     Comparateur_Entier_T;
+         Comparateur : in     Comparateur_Entier_A;
          Nom_Fait    : in     Nom_T
       )
       return Premisse_T;
@@ -73,9 +73,9 @@ private
 
    type Premisse_T is new Premisse_Abstraite_T with
       record
-         Comparateur : Comparateur_Entier_T;
+         Comparateur : Comparateur_Entier_A;
          --  Opérateur de comparaison.
-         Nom_Fait    : Nom_P.Holder;
+         Nom_Fait    : Nom_Holder_P.Holder;
          --  Le nom du fait entier.
       end record;
 

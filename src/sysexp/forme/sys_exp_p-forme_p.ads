@@ -1,5 +1,4 @@
-private with Ada.Containers.Indefinite_Holders;
-
+with Nom_Holder_P;
 with Sys_Exp_P.Visiteur_Forme_P;
 
 --  @summary
@@ -46,13 +45,9 @@ is
 
 private
 
-   package Nom_P is new Ada.Containers.Indefinite_Holders
-      (Element_Type => Nom_T);
-   --  @private Package interne.
-
    type Forme_Abstraite_T is abstract tagged
       record
-         Nom : Nom_P.Holder;
+         Nom : Nom_Holder_P.Holder;
          --  Le nom de la prémisse ou de la conclusion.
       end record;
 

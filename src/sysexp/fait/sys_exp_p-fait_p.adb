@@ -20,7 +20,7 @@ is
       )
    is
    begin
-      This.Nom := Nom_P.To_Holder (New_Item => Nom);
+      This.Nom := Nom_Holder_P.To_Holder (New_Item => Nom);
    end Modifier_Nom;
    ---------------------------------------------------------------------------
 

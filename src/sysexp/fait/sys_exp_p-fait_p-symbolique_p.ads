@@ -1,3 +1,5 @@
+with Symbole_Holder_P;
+
 --  @summary
 --  Représentation concrète d'un fait symbolique.
 --  @description
@@ -50,13 +52,11 @@ is
 
 private
 
-   package Symbole_P is new Ada.Containers.Indefinite_Holders
-      (Element_Type => Nom_Symbole_T);
-   --  @private Package interne.
+   package Symbole_R renames Symbole_Holder_P;
 
    type Fait_Symbolique_T is new Fait_Abstrait_T with
       record
-         Symbole : Symbole_P.Holder;
+         Symbole : Symbole_Holder_P.Holder;
          --  Le nom symbolique du fait.
       end record;
 

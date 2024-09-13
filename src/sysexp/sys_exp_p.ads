@@ -1,3 +1,5 @@
+with Ada.Containers;
+
 --  @summary
 --  Systeme expert 0+ en Ada.
 --  @description
@@ -41,5 +43,13 @@ is
    --  Exception déclenchée quand un fait est déjà présent dans la base.
    E_Fait_Inconnu      : exception;
    --  Exception déclenchée quand le fait est inconnu de la base.
+
+   function Hash
+      (Nom : in     Nom_T)
+      return Ada.Containers.Hash_Type;
+   --  Fonction de hash du nom d'un fait.
+   --  @param Nom
+   --  Le nom à hacher.
+   --  @return Le hash.
 
 end Sys_Exp_P;

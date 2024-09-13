@@ -1,4 +1,4 @@
-private with Ada.Containers.Indefinite_Holders;
+with Nom_Holder_P;
 
 --  @summary
 --  Un fait abstrait.
@@ -61,13 +61,9 @@ private
    --  @param Nom
    --  Le nouveau nom à mémoriser.
 
-   package Nom_P is new Ada.Containers.Indefinite_Holders
-      (Element_Type => Nom_T);
-   --  @private Package interne.
-
    type Fait_Abstrait_T is abstract tagged
       record
-         Nom : Nom_P.Holder;
+         Nom : Nom_Holder_P.Holder;
          --  Le nom du fait.
       end record;
 

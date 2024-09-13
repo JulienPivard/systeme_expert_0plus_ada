@@ -7,7 +7,7 @@ is
    function Creer
       (
          Nom         : in     Nom_T;
-         Comparateur : in     Comparateur_Nom_Symbole_T;
+         Comparateur : in     Comparateur_Nom_Symbole_A;
          Nom_Symbole : in     Nom_Symbole_T
       )
       return Premisse_T
@@ -15,9 +15,9 @@ is
    begin
       return Premisse_T'
          (
-            Nom         => Nom_P.To_Holder         (New_Item => Nom),
+            Nom         => Nom_Holder_P.To_Holder  (New_Item => Nom),
             Comparateur => Comparateur,
-            Nom_Symbole => Nom_Symbole_P.To_Holder (New_Item => Nom_Symbole)
+            Nom_Symbole => Nom_Symbole_R.To_Holder (New_Item => Nom_Symbole)
          );
    end Creer;
    ---------------------------------------------------------------------------

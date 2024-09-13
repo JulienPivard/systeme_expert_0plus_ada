@@ -1,21 +1,21 @@
-with Ada.Text_IO;
+with Ada.Strings.Hash;
 
-package body Sys_Exp_P.Forme_P.Premisse_P.Symbole_Fait_P.Text_IO
+package body Sys_Exp_P
    with Spark_Mode => Off
 is
 
    ---------------------------------------------------------------------------
-   procedure Put_Line
-      (Item : in     Premisse_T)
+   function Hash
+      (Nom : in     Nom_T)
+      return Ada.Containers.Hash_Type
    is
    begin
-      Ada.Text_IO.Put_Line
-         (Item => "Fait [" & String (Item.Nom_Fait.Element) & "]");
-   end Put_Line;
+      return Ada.Strings.Hash (Key => String (Nom));
+   end Hash;
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
    --                             Partie privée                             --
    ---------------------------------------------------------------------------
 
-end Sys_Exp_P.Forme_P.Premisse_P.Symbole_Fait_P.Text_IO;
+end Sys_Exp_P;

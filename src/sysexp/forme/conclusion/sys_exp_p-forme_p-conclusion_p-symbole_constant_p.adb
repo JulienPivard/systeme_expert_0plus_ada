@@ -14,8 +14,8 @@ is
    begin
       return Conclusion_T'
          (
-            Nom         => Nom_P.To_Holder         (New_Item => Nom),
-            Nom_Symbole => Nom_Symbole_P.To_Holder (New_Item => Nom_Symbole)
+            Nom         => Nom_Holder_P.To_Holder  (New_Item => Nom),
+            Nom_Symbole => Nom_Symbole_R.To_Holder (New_Item => Nom_Symbole)
          );
    end Creer;
    ---------------------------------------------------------------------------

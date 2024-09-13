@@ -1,4 +1,4 @@
-private with Ada.Containers.Indefinite_Holders;
+with Nom_Holder_P;
 
 --  @summary
 --  Représentation concrète d'une valeur avec un nom.
@@ -47,13 +47,9 @@ is
 
 private
 
-   package Nom_P is new Ada.Containers.Indefinite_Holders
-      (Element_Type => Nom_T);
-   --  @private Package interne.
-
    type Valeur_Fait_T is new Valeur_Abstraite_T with
       record
-         Nom : Nom_P.Holder;
+         Nom : Nom_Holder_P.Holder;
          --  La valeur constante à stocker.
       end record;
 

@@ -14,7 +14,7 @@ is
       Fait : Fait_Symbolique_T;
    begin
       Fait.Modifier_Nom (Nom => Nom);
-      Fait.Symbole := Symbole_P.To_Holder (New_Item => Valeur);
+      Fait.Symbole := Symbole_R.To_Holder (New_Item => Valeur);
 
       return Fait;
    end Creer;

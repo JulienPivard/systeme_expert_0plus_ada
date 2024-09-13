@@ -1,5 +1,6 @@
 with Sys_Exp_P.Base_Faits_P;
 with Sys_Exp_P.Valeur_P;
+with Valeur_Abstraite_Holder_P;
 
 --  @summary
 --  Une conclusion entière basé sur une expression.
@@ -62,16 +63,11 @@ is
 
 private
 
-   package Valeur_Abstraite_P is new Ada.Containers.Indefinite_Holders
-      (
-         Element_Type => Sys_Exp_P.Valeur_P.Valeur_Abstraite_T'Class,
-         "="          => Sys_Exp_P.Valeur_P."="
-      );
-   --  @private Package interne.
+   package Valeur_Abstraite_R renames Valeur_Abstraite_Holder_P;
 
    type Conclusion_T is new Conclusion_Abstraite_T with
       record
-         Expression : Valeur_Abstraite_P.Holder;
+         Expression : Valeur_Abstraite_Holder_P.Holder;
          --  L'expression entière.
       end record;
 

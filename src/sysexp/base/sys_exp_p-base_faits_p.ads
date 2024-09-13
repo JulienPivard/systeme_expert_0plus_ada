@@ -1,5 +1,4 @@
-private with Ada.Containers.Indefinite_Hashed_Maps;
-
+with Map_Fait_P;
 with Sys_Exp_P.Fait_P;
 
 --  @summary
@@ -63,24 +62,6 @@ is
    --  Le fait à ajouter à la base.
 
 private
-
-   function Hash
-      (Nom : in     Nom_T)
-      return Ada.Containers.Hash_Type;
-   --  Fonction de hash du nom d'un fait.
-   --  @param Nom
-   --  Le nom à hacher.
-   --  @return Le hash.
-
-   package Map_Fait_P is new Ada.Containers.Indefinite_Hashed_Maps
-      (
-         Key_Type        => Nom_T,
-         Element_Type    => Fait_Abstrait_T'Class,
-         Hash            => Hash,
-         Equivalent_Keys => Sys_Exp_P."=",
-         "="             => Sys_Exp_P.Fait_P."="
-      );
-   --  @private Package interne.
 
    subtype Map_Faits_T is Map_Fait_P.Map;
 

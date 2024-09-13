@@ -7,7 +7,7 @@ is
    function Creer
       (
          Nom         : in     Nom_T;
-         Comparateur : in     Comparateur_Entier_T;
+         Comparateur : in     Comparateur_Entier_A;
          Expression  : in     Sys_Exp_P.Valeur_P.Valeur_Abstraite_T'Class
       )
       return Premisse_T
@@ -15,10 +15,9 @@ is
    begin
       return Premisse_T'
          (
-            Nom         => Nom_P.To_Holder (New_Item => Nom),
+            Nom         => Nom_Holder_P.To_Holder (New_Item => Nom),
             Comparateur => Comparateur,
-            Expression  =>
-               Valeur_Abstraite_P.To_Holder (New_Item => Expression)
+            Expression  => Valeur_R.To_Holder (New_Item => Expression)
          );
    end Creer;
    ---------------------------------------------------------------------------
