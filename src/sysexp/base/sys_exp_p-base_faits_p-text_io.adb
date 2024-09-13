@@ -63,9 +63,13 @@ is
          Bloc_Afficher_Type :
          declare
             Nom : constant String := E.Lire_Type'Image;
+
+            subtype IT_Nom_Sans_E_T is Integer range Nom'First .. Nom'Last - 2;
+            --  On retire le _E à la fin des noms des types
+            --  de variables.
          begin
             Ada.Text_IO.Put_Line
-               (Item => "[" & Nom (Nom'First .. Nom'Last - 2) & "]");
+               (Item => "[" & Nom (IT_Nom_Sans_E_T) & "]");
          end Bloc_Afficher_Type;
          W_W_IO_R.Put (Item => "└────────────  ");
 
