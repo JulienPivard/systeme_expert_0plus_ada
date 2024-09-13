@@ -286,7 +286,7 @@
 --  Pour les objets le premier paramètre est This
 --  +R Name_Clashes:dico_de_noms.txt
 --  Dictionnaire de noms interdit d'utilisation.
---  +R Numeric_Format
++R Numeric_Format
 --  Les nombres qui ne suivent pas le bon format numérique.
 --  Base 2, 8, 10, 16
 --  Base 10 ou 8 un _ tout les 3 chiffres.
