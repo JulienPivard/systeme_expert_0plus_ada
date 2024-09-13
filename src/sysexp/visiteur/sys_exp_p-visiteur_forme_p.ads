@@ -48,12 +48,20 @@ is
       );
    --  Pour stocker l'état de l'erreur rencontré.
 
+   Taille_Message_Erreur : constant := 100;
+   --  Taille max d'un message d'erreur.
+
+   subtype ID_Msg_Err_T is Integer range 1 .. Taille_Message_Erreur;
+   --  Taille de messages d'erreur.
+
    subtype Message_Erreur_T is String (1 .. 100);
    --  Le message de l'erreur rencontrée.
 
    Message_Vide : constant Message_Erreur_T;
+   --  Un message d'erreur vide.
 
    subtype Accesseur_Base_A is Sys_Exp_P.Base_Faits_P.Accesseur_Base_A;
+   --  Accesseur sur la base de faits.
 
    type Visiteur_Forme_Abstrait_T (<>) is abstract tagged limited private;
    --  Un visiteur de Formes abstrait. Le squelette de base de tout

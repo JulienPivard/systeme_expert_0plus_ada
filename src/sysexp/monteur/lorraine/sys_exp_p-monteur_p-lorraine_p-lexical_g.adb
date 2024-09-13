@@ -2,6 +2,9 @@ with Sys_Exp_P.Monteur_P.Lorraine_P.Jeton_P.Fabrique_P;
 
 package body Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_G is
 
+   subtype Minuscules_T is Character range 'a' .. 'z';
+   subtype Majuscules_T is Character range 'A' .. 'Z';
+
    subtype Chiffre_T is Character
       with Static_Predicate => Chiffre_T in
          '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9';

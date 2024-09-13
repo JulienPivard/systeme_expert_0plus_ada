@@ -58,7 +58,11 @@ package Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_G is
 
    pragma Elaborate_Body;
 
+   subtype Position_T is Integer;
+   --  La position dans le texte.
+
    subtype Jeton_T is Sys_Exp_P.Monteur_P.Lorraine_P.Jeton_P.Jeton_T;
+   --  Les jetons généré pendant le parcours du fichier.
 
    type Lexical_T is tagged limited private;
    --  Analyseur lexical.
