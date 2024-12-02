@@ -1,7 +1,5 @@
 with Sys_Exp_P.Monteur_P.Lorraine_P.Jeton_P;
 
-private with Ada.Containers.Indefinite_Holders;
-
 generic
 
    type Numero_Ligne_G_T is (<>);
@@ -117,9 +115,25 @@ package Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_G is
 
 private
 
-   package Ligne_P is new Ada.Containers.Indefinite_Holders
-      (Element_Type => String);
-   --  @private Package interne.
+   subtype NB_Char_T is Integer range 0 .. 255;
+   --  Intervalle de nombre de caractères autorisé.
+
+   type Ligne_T (Taille : NB_Char_T := 0) is
+      record
+         Chaine : String (1 .. Taille);
+         --  Les caractères de la ligne.
+      end record;
+   --  La ligne.
+
+   Ligne_Vide : constant Ligne_T := Ligne_T'
+      (
+         Taille => 0,
+         Chaine => (others => ' ')
+      );
+
+   function Creer
+      (Contenu : in     String)
+      return Ligne_T;
 
    type Lexical_T is tagged limited
       record
@@ -132,8 +146,7 @@ private
          --  (pour l'affichage des erreurs).
          Num_Ligne         : Numero_Ligne_G_T := Numero_Ligne_G_T'First;
          --  Le numéro de la ligne en cours.
-         Ligne_En_Cours    : Ligne_P.Holder :=
-            Ligne_P.To_Holder (New_Item => "");
+         Ligne_En_Cours    : Ligne_T := Ligne_Vide;
          --  La ligne en cours d'analyse.
       end record;
 
@@ -172,7 +185,7 @@ private
    function Lire_Ligne
       (This : in     Lexical_T)
       return String
-   is (This.Ligne_En_Cours.Element);
+   is (This.Ligne_En_Cours.Chaine);
    --------------------------------------
 
    --------------------------------------

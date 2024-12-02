@@ -47,6 +47,7 @@ is
                   "est de type [" & F.Lire_Type'Image & "] et pas entier";
             end if;
          end Bloc_Lecture_Fait;
+
       else
          raise E_Fait_Inconnu with "Le fait [" &
             String (This.Nom.Element) & "] " & "est inconnu";

@@ -42,7 +42,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_G is
       Bloc_Jeton :
       declare
          Lettre : constant Character :=
-            This.Ligne_En_Cours.Element (This.Position);
+            This.Ligne_En_Cours.Chaine (This.Position);
       begin
          This.Position := This.Position + 1;
          case Lettre is
@@ -53,7 +53,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_G is
                return Jeton_P.Fabrique_P.Faire_Parenthese_Fermante;
 
             when '<' =>
-               if This.Ligne_En_Cours.Element (This.Position) = '=' then
+               if This.Ligne_En_Cours.Chaine (This.Position) = '=' then
                   This.Position := This.Position + 1;
                   return Jeton_P.Fabrique_P.Faire_Inferieur_Egal;
                else
@@ -61,7 +61,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_G is
                end if;
 
             when '>' =>
-               if This.Ligne_En_Cours.Element (This.Position) = '=' then
+               if This.Ligne_En_Cours.Chaine (This.Position) = '=' then
                   This.Position := This.Position + 1;
                   return Jeton_P.Fabrique_P.Faire_Superieur_Egal;
                else
@@ -78,7 +78,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_G is
                return Jeton_P.Fabrique_P.Faire_Operateur_Multiplier;
 
             when '/' =>
-               if This.Ligne_En_Cours.Element (This.Position) = '=' then
+               if This.Ligne_En_Cours.Chaine (This.Position) = '=' then
                   This.Position := This.Position + 1;
                   return Jeton_P.Fabrique_P.Faire_Different;
                else
@@ -116,13 +116,27 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_G is
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
+   function Creer
+      (Contenu : in     String)
+      return Ligne_T
+   is
+   begin
+      return Ligne_T'
+         (
+            Taille => Contenu'Length,
+            Chaine => Contenu
+         );
+   end Creer;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
    procedure Aller_Au_Prochain_Char_Non_Blanc
       (This : in out Lexical_T)
    is
       subtype Espace_T is Character
          with Static_Predicate => Espace_T in ' ' | ASCII.HT | ASCII.VT;
 
-      Chaine : constant String  := This.Ligne_En_Cours.Element;
+      Chaine : constant String  := This.Ligne_En_Cours.Chaine;
 
       Est_Une_Espace : Boolean;
    begin
@@ -143,7 +157,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_G is
       return Boolean
    is
       Fin_Fichier : Boolean := False;
-      OK          : Boolean := False;
+      Fin_Ligne   : Boolean := False;
    begin
       Boucle_Lire_Ligne :
       loop
@@ -151,8 +165,8 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_G is
 
          --  Si on atteint un caractère non blanc avant la fin
          --  de la ligne, on quitte.
-         OK := This.Position <= This.Ligne_En_Cours.Element'Last;
-         exit Boucle_Lire_Ligne when OK;
+         Fin_Ligne := This.Position <= This.Ligne_En_Cours.Chaine'Last;
+         exit Boucle_Lire_Ligne when Fin_Ligne;
 
          --  On quitte si on a atteint la fin du fichier.
          Fin_Fichier := Fin_Est_Atteinte_G (Contenu => This.Fichier);
@@ -160,15 +174,15 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_G is
 
          --  Si on est pas a la fin du fichier on prend la ligne suivante.
          This.Num_Ligne      := Lire_Numero_Ligne_G (Contenu => This.Fichier);
-         This.Ligne_En_Cours := Ligne_P.To_Holder
-            (New_Item => Lire_Ligne_G (Contenu => This.Fichier));
-         This.Position       := This.Ligne_En_Cours.Element'First;
+         This.Ligne_En_Cours := Creer
+            (Contenu => Lire_Ligne_G (Contenu => This.Fichier));
+         This.Position       := This.Ligne_En_Cours.Chaine'First;
       end loop Boucle_Lire_Ligne;
 
       --  Si le caractère sous la tète de lecture est
-      --  non blanc alors OK = VRAIS
-      --  Si la fin de fichier est atteinte alors OK = FAUX
-      return OK;
+      --  non blanc alors Fin_Ligne = VRAIS
+      --  Si la fin de fichier est atteinte alors Fin_Ligne = FAUX
+      return Fin_Ligne;
    end Avancer;
    ---------------------------------------------------------------------------
 
@@ -180,7 +194,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_G is
       subtype Nombre_T is Character
          with Static_Predicate => Nombre_T in Chiffre_T | '_';
 
-      Chaine : constant String     := This.Ligne_En_Cours.Element;
+      Chaine : constant String     := This.Ligne_En_Cours.Chaine;
       Debut  : constant Position_T := This.Position;
 
       Est_Un_Chiffre : Boolean;
@@ -213,19 +227,19 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_G is
 
       Est_Une_Chaine : Boolean;
    begin
-      Bloc_Sauter_Chaine :
+      Bloc_Trouver_Fin_Chaine :
       declare
-         Chaine : constant String  := This.Ligne_En_Cours.Element;
+         Chaine : constant String  := This.Ligne_En_Cours.Chaine;
       begin
-         Boucle_Sauter_Chaine :
+         B_Trouver_Fin_Chaine :
          loop
-            exit Boucle_Sauter_Chaine when This.Position > Chaine'Last;
+            exit B_Trouver_Fin_Chaine when This.Position > Chaine'Last;
             Est_Une_Chaine := Chaine (This.Position) in Chaine_T;
-            exit Boucle_Sauter_Chaine when not Est_Une_Chaine;
+            exit B_Trouver_Fin_Chaine when not Est_Une_Chaine;
 
             This.Position := This.Position + 1;
-         end loop Boucle_Sauter_Chaine;
-      end Bloc_Sauter_Chaine;
+         end loop B_Trouver_Fin_Chaine;
+      end Bloc_Trouver_Fin_Chaine;
 
       Bloc_Analyser_Chaine :
       declare
@@ -233,7 +247,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_G is
          --  Il fait revenir de 1 en arrière, car la position est
          --  sur un caractère invalide.
          Chaine_Trouvee : constant String     :=
-            This.Ligne_En_Cours.Element (Debut .. Fin);
+            This.Ligne_En_Cours.Chaine (Debut .. Fin);
       begin
          return
             (
