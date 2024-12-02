@@ -236,17 +236,20 @@ is
       AUnit.Assertions.Assert
          (
             Condition => T.Base.Map_Faits.Length = 1,
-            Message   => "La base de faits doit contenir 1 fait"
+            Message   => "La base de fait doit contenir 1 et pas " &
+               "[" & T.Base.Map_Faits.Length'Image & "]"
          );
       AUnit.Assertions.Assert
          (
             Condition => not T.Base.Contient (Nom_Fait => Nom_2),
-            Message   => "La base de faits doit etre vide"
+            Message   => "La base de faits ne doit pas contenir " &
+               "[" & String (Nom_2) & "]"
          );
       AUnit.Assertions.Assert_Exception
          (
             Proc    => Trouver_Fait_Inconnu'Access,
-            Message => "La base de faits doit etre vide"
+            Message => "La base de faits doit générer une erreur " &
+               "sur un fait inconnu"
          );
    end Test_Trouver_Inconnu;
    ---------------------------------------------------------------------------
@@ -267,12 +270,14 @@ is
       AUnit.Assertions.Assert
          (
             Condition => T.Base.Map_Faits.Length = 1,
-            Message   => "La base de faits doit contenir 1 fait"
+            Message   => "La base de fait doit contenir 1 et pas " &
+               "[" & T.Base.Map_Faits.Length'Image & "]"
          );
       AUnit.Assertions.Assert
          (
             Condition => T.Base.Contient (Nom_Fait => Nom),
-            Message   => "La base de faits doit etre vide"
+            Message   => "La base de faits doit contenir " &
+               "[" & String (Nom) & "]"
          );
    end Test_Ajouter_Deux_Fois_Le_Meme;
    ---------------------------------------------------------------------------
@@ -326,8 +331,8 @@ is
       AUnit.Assertions.Assert
          (
             Condition => T.Base.Contient (Nom_Fait => Nom),
-            Message   => "La base de fait doit contenir 1 et pas " &
-               "[" & T.Base.Map_Faits.Length'Image & "]"
+            Message   => "La base de fait doit contenir " &
+               "[" & String (Nom) & "]"
          );
       Bloc_Verification_Contenu :
       declare
