@@ -105,7 +105,7 @@
 --  +R One_Tagged_Type_Per_Package
 --  Tous les packages qui définissent plus d'un type
 --  tagged dans la partie visible.
-+R Raising_External_Exceptions
+--  +R Raising_External_Exceptions
 --  Visibilité des exception déclenché par des routines.
 --  +R Same_Instantiations
 --  Les instances de génériques instancié avec les même paramètres.
@@ -224,7 +224,7 @@
 --  Les opérandes d'une opération mathématique qui sont identique.
 --  +R Same_Tests
 --  Les tests dans un if qui sont équivalents.
---  +R Silent_Exception_Handlers
++R Silent_Exception_Handlers
 --  Les attrapes exception qui ne font rien.
 +R Single_Value_Enumeration_Types
 --  Les types énumération qui ne contiennent qu'une seule valeur.
