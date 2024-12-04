@@ -86,6 +86,9 @@ package body Executeur_G is
             );
          Bloc_Afficher_Arguments_En_Trop :
          declare
+            subtype Arguments_En_Trop_T is NB_Args_T range
+               NB_Args_Max + 1 .. NB_Args;
+            --  L'intervalle des arguments en trop.
          begin
             for I in Arguments_En_Trop_T loop
                Ada.Text_IO.Put

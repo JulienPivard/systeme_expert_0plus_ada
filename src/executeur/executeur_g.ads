@@ -45,9 +45,6 @@ package Executeur_G is
    NB_Args_Max : constant NB_Args_T := Nombre_D_Arguments_Max;
    --  Le nombre maximum d'arguments autorisé sur la ligne de commande.
 
-   subtype Arguments_En_Trop_T is NB_Args_T range NB_Args_Max + 1 .. NB_Args;
-   --  L'intervalle des arguments en trop.
-
    procedure Afficher_Aide;
    --  Affiche l'aide du programme.
 
