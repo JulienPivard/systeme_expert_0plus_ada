@@ -31,12 +31,6 @@ package Executeur_G is
          "au nombre d'arguments minimum."
       );
 
-   Trop_D_Arguments_E         : exception;
-   --  Trop d'arguments ont été donné.
-   Pas_Assez_D_Arguments_E    : exception;
-   --  Pas assez d'arguments ont été donné.
-   Option_Incorrect_E         : exception;
-   --  Si une option ne correspond pas exactement à ce qui est attendu.
    Valeur_Option_Incorrect_E  : exception;
    --  La valeur donnée avec l'option n'est pas valide.
 
@@ -57,9 +51,11 @@ package Executeur_G is
    procedure Afficher_Aide;
    --  Affiche l'aide du programme.
 
-   procedure Verifier_Nombre_D_Arguments;
+   function Verifier_Nombre_D_Arguments_Est_Valide
+      return Boolean;
    --  Vérifie combien d'arguments ont été donné sur la ligne de
    --  commande.
+   --  @return Le nombre d'arguments est valide.
 
    procedure Executer
       (

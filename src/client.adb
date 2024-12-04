@@ -29,21 +29,15 @@ begin
 
    Ada.Text_IO.New_Line (Spacing => 1);
 
-   Executeur_P.Verifier_Nombre_D_Arguments;
+   if Executeur_P.Verifier_Nombre_D_Arguments_Est_Valide then
    Executeur_P.Executer
       (
          Nom_Fichier => Executeur_P.Verifier_Nom_Fichier,
          Mode_Debug  => Executeur_P.Verifier_Mode_Debug
       );
+   end if;
 
 exception
-   when Executeur_P.Trop_D_Arguments_E =>
-      null;
-   when Executeur_P.Pas_Assez_D_Arguments_E =>
-      null;
-   when Executeur_P.Option_Incorrect_E =>
-      null;
    when Executeur_P.Valeur_Option_Incorrect_E =>
       null;
-
 end Client;

@@ -5,11 +5,11 @@
 --  @group Exécuteur
 package NB_Args_P
    with
-      Pure           => True,
-      Preelaborate   => False,
-      Elaborate_Body => False,
+      Pure                    => True,
+      Preelaborate            => False,
+      Elaborate_Body          => False,
       No_Elaboration_Code_All => True,
-      Spark_Mode     => Off
+      Spark_Mode              => Off
 is
 
    NB_Args_Max : constant := 1_000;

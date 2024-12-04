@@ -61,13 +61,19 @@ package body Executeur_G is
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
-   procedure Verifier_Nombre_D_Arguments is
+   function Verifier_Nombre_D_Arguments_Est_Valide
+      return Boolean
+   is
+      subtype Intervale_Valide_T is NB_Args_T range
+         Nombre_D_Arguments_Min .. Nombre_D_Arguments_Max;
+
+      Resultat : Boolean := NB_Args in Intervale_Valide_T;
    begin
       Ada.Command_Line.Set_Exit_Status (Code => Ada.Command_Line.Success);
 
       if NB_Args = 0 and then Nombre_D_Arguments_Min > 0 then
          Afficher_Aide;
-         raise Pas_Assez_D_Arguments_E;
+         Resultat := False;
 
       elsif NB_Args > Nombre_D_Arguments_Max then
          Afficher_Aide;
@@ -78,6 +84,9 @@ package body Executeur_G is
                File => W_W_IO_R.Standard_Error,
                Item => "Les arguments suivants sont invalide : "
             );
+         Bloc_Afficher_Arguments_En_Trop :
+         declare
+         begin
          for I in Arguments_En_Trop_T loop
             Ada.Text_IO.Put
                (File => Ada.Text_IO.Standard_Error, Item => "  - ");
@@ -100,8 +109,10 @@ package body Executeur_G is
                   "Predefined_Numeric_Types"
                );
          end loop;
+         end Bloc_Afficher_Arguments_En_Trop;
+
          Ada.Command_Line.Set_Exit_Status (Code => Ada.Command_Line.Failure);
-         raise Trop_D_Arguments_E;
+         Resultat := False;
 
       elsif NB_Args < Nombre_D_Arguments_Min then
          Afficher_Aide;
@@ -111,10 +122,14 @@ package body Executeur_G is
                Item => "Vous devez donner au moins le [argument]."
             );
          Ada.Command_Line.Set_Exit_Status (Code => Ada.Command_Line.Failure);
-         raise Pas_Assez_D_Arguments_E;
+         Resultat := False;
 
+      else
+         Resultat := True;
       end if;
-   end Verifier_Nombre_D_Arguments;
+
+      return Resultat;
+   end Verifier_Nombre_D_Arguments_Est_Valide;
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
