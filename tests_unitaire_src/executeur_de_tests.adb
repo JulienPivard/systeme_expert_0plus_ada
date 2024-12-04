@@ -1,3 +1,4 @@
+with Ada.Characters.Latin_1;
 with Ada.Command_Line;
 with Ada.Exceptions;
 with Ada.Text_IO;
@@ -163,6 +164,6 @@ exception
       Ada.Text_IO.Put_Line
          (
             Item => Ada.Exceptions.Exception_Information (X => E) &
-                  ASCII.LF & GNAT.Source_Info.Source_Location
+                  Ada.Characters.Latin_1.LF & GNAT.Source_Info.Source_Location
          );
 end Executeur_De_Tests;
