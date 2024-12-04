@@ -8,6 +8,7 @@ package NB_Args_P
       Pure           => True,
       Preelaborate   => False,
       Elaborate_Body => False,
+      No_Elaboration_Code_All => True,
       Spark_Mode     => Off
 is
 

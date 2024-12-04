@@ -61,16 +61,6 @@ package Executeur_G is
    --  Vérifie combien d'arguments ont été donné sur la ligne de
    --  commande.
 
-   function Verifier_Nom_Fichier
-      return String;
-   --  Vérifie que le fichier existe.
-   --  @return Le nom du fichier.
-
-   function Verifier_Mode_Debug
-      return Boolean;
-   --  Test si l'option debug est active.
-   --  @return Mode debug activé.
-
    procedure Executer
       (
          Nom_Fichier : in     String;
@@ -81,5 +71,15 @@ package Executeur_G is
    --  Le nom du fichier de règles lorraine.
    --  @param Mode_Debug
    --  Active le mode debug du visiteur de forme.
+
+   function Verifier_Nom_Fichier
+      return String;
+   --  Vérifie que le fichier existe.
+   --  @return Le nom du fichier.
+
+   function Verifier_Mode_Debug
+      return Boolean;
+   --  Test si l'option debug est active.
+   --  @return Mode debug activé.
 
 end Executeur_G;
