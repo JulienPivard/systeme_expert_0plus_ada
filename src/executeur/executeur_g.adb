@@ -87,28 +87,28 @@ package body Executeur_G is
          Bloc_Afficher_Arguments_En_Trop :
          declare
          begin
-         for I in Arguments_En_Trop_T loop
-            Ada.Text_IO.Put
-               (File => Ada.Text_IO.Standard_Error, Item => "  - ");
-            pragma Annotate
-               (
-                  gnatcheck,
-                  Exempt_On,
-                  "Predefined_Numeric_Types",
-                  "impossible de ne pas convertir I en Natural"
-               );
-            Ada.Text_IO.Put_Line
-               (
-                  File => Ada.Text_IO.Standard_Error,
-                  Item => Ada.Command_Line.Argument (Number => Natural (I))
-               );
-            pragma Annotate
-               (
-                  gnatcheck,
-                  Exempt_Off,
-                  "Predefined_Numeric_Types"
-               );
-         end loop;
+            for I in Arguments_En_Trop_T loop
+               Ada.Text_IO.Put
+                  (File => Ada.Text_IO.Standard_Error, Item => "  - ");
+               pragma Annotate
+                  (
+                     gnatcheck,
+                     Exempt_On,
+                     "Predefined_Numeric_Types",
+                     "impossible de ne pas convertir I en Natural"
+                  );
+               Ada.Text_IO.Put_Line
+                  (
+                     File => Ada.Text_IO.Standard_Error,
+                     Item => Ada.Command_Line.Argument (Number => Natural (I))
+                  );
+               pragma Annotate
+                  (
+                     gnatcheck,
+                     Exempt_Off,
+                     "Predefined_Numeric_Types"
+                  );
+            end loop;
          end Bloc_Afficher_Arguments_En_Trop;
 
          Ada.Command_Line.Set_Exit_Status (Code => Ada.Command_Line.Failure);

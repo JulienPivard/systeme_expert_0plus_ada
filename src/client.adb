@@ -1,7 +1,7 @@
 ------------------------------------------------------------------------------
 --                                                                          --
 --                          Auteur : PIVARD Julien                          --
---           Dernière modification : Jeudi 12 septembre[09] 2024
+--           Dernière modification : Mercredi 04 décembre[12] 2024
 --                                                                          --
 ------------------------------------------------------------------------------
 with Ada.Text_IO;
@@ -30,11 +30,11 @@ begin
    Ada.Text_IO.New_Line (Spacing => 1);
 
    if Executeur_P.Verifier_Nombre_D_Arguments_Est_Valide then
-   Executeur_P.Executer
-      (
-         Nom_Fichier => Executeur_P.Verifier_Nom_Fichier,
-         Mode_Debug  => Executeur_P.Verifier_Mode_Debug
-      );
+      Executeur_P.Executer
+         (
+            Nom_Fichier => Executeur_P.Verifier_Nom_Fichier,
+            Mode_Debug  => Executeur_P.Verifier_Mode_Debug
+         );
    end if;
 
 exception
