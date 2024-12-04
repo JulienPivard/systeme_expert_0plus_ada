@@ -67,7 +67,20 @@ package body Executeur_G is
       subtype Intervale_Valide_T is NB_Args_T range
          Nombre_D_Arguments_Min .. Nombre_D_Arguments_Max;
 
+      pragma Annotate
+         (
+            gnatcheck,
+            Exempt_On,
+            "Membership_Tests",
+            "Test d'un intervalle, plus lisible."
+         );
       Resultat : Boolean := NB_Args in Intervale_Valide_T;
+      pragma Annotate
+         (
+            gnatcheck,
+            Exempt_Off,
+            "Membership_Tests"
+         );
    begin
       Ada.Command_Line.Set_Exit_Status (Code => Ada.Command_Line.Success);
 
