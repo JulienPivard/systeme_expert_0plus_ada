@@ -7,7 +7,6 @@ is
       (Base_De_Regles : in     Regles_P.Regle_Abstraite_T'Class)
       return Moteur_Inference_T
    is
-
    begin
       return Moteur_Inference_T'
          (
