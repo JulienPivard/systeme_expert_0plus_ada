@@ -22,7 +22,7 @@ is
    function Iterer
       (
          This : in out Regle_Abstraite_T;
-         Base : aliased in out Base_Faits_P.Base_De_Faits_T
+         Base : in     Base_Faits_P.Base_De_Faits_A
       )
       return Boolean
    is
@@ -53,7 +53,7 @@ is
    function Declencher
       (
          This : in out Regle_Abstraite_T'Class;
-         Base : aliased in out Base_Faits_P.Base_De_Faits_T
+         Base : in     Base_Faits_P.Base_De_Faits_A
       )
       return Boolean
    is

@@ -46,10 +46,12 @@ private
 
    subtype Base_De_Regles_T is Regle_Holder_P.Holder;
 
+   Base : aliased Base_Faits_P.Base_De_Faits_T;
+
    type Moteur_Inference_T is tagged limited
       record
          Regles : Base_De_Regles_T;
-         Base   : aliased Base_Faits_P.Base_De_Faits_T;
+         Base   : Base_Faits_P.Base_De_Faits_A;
       end record;
 
 end Sys_Exp_P.Moteur_Inference_P;

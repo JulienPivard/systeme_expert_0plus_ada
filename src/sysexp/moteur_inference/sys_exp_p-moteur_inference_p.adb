@@ -8,10 +8,11 @@ is
       return Moteur_Inference_T
    is
    begin
+      Base.Vider;
       return Moteur_Inference_T'
          (
             Regles => Regle_Holder_P.To_Holder (New_Item => Base_De_Regles),
-            Base   => <>
+            Base   => Base'Access
          );
    end Creer;
    ---------------------------------------------------------------------------

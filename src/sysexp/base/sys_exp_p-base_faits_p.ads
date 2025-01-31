@@ -63,6 +63,12 @@ is
    --  @param Nouvel_Item
    --  Le fait à ajouter à la base.
 
+   procedure Vider
+      (This : in out Base_De_Faits_T);
+   --  Vide la base de faits.
+   --  @param This
+   --  La base de faits.
+
 private
 
    subtype Map_Faits_T is Map_Fait_P.Map;

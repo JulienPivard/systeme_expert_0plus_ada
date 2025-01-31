@@ -9,7 +9,7 @@ is
       (Item : in     Moteur_Inference_T)
    is
    begin
-      Sys_Exp_P.Base_Faits_P.Text_IO.Afficher (Item => Item.Base);
+      Sys_Exp_P.Base_Faits_P.Text_IO.Afficher (Item => Item.Base.all);
    end Put_Line;
    ---------------------------------------------------------------------------
 
