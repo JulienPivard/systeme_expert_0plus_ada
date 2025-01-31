@@ -34,7 +34,7 @@ is
    ---------------------------------------------------------------------------
    not overriding
    function Creer
-      (Base : in     not null Accesseur_Base_A)
+      (Base : in     Base_Faits_P.Base_De_Faits_A)
       return Visiteur_T
    is
    begin

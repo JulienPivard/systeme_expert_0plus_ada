@@ -17,7 +17,7 @@ is
    function Fabriquer_Visiteur
       (
          This : in     Fabrique_Interface_T;
-         Base : in     not null Accesseur_Base_A
+         Base : in     Base_Faits_P.Base_De_Faits_A
       )
       return Visiteur_Forme_Abstrait_T'Class
    is abstract;
