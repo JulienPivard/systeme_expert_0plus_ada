@@ -41,7 +41,7 @@ is
    function Verifier_Premisse
       (
          This : in     Regle_T;
-         Base : in out Base_Faits_P.Base_De_Faits_T
+         Base : aliased in out Base_Faits_P.Base_De_Faits_T
       )
       return Boolean;
    --  La prémisse a été vérifiée.
@@ -55,7 +55,7 @@ is
    function Creer_Visiteur
       (
          This : in     Regle_T;
-         Base : in out Base_Faits_P.Base_De_Faits_T
+         Base : aliased in out Base_Faits_P.Base_De_Faits_T
       )
       return Visiteur_Forme_P.Visiteur_Forme_Abstrait_T'Class;
    --  Crée un nouveau visiteur de forme.
