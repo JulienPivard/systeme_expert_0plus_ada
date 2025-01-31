@@ -25,6 +25,8 @@ is
 
    Generateur_ID : ID_Alea_P.Generator;
 
+   Base : aliased Sys_Exp_P.Base_Faits_P.Base_De_Faits_T;
+
    ---------------------------------------------------------------------------
    overriding
    procedure Set_Up
@@ -32,7 +34,7 @@ is
    is
       pragma Unreferenced (T);
    begin
-      null;
+      Base.Vider;
    end Set_Up;
    ---------------------------------------------------------------------------
 
@@ -265,8 +267,6 @@ is
                Valeur => True
             );
 
-      Base : Sys_Exp_P.Base_Faits_P.Base_De_Faits_T;
-
       Reussi : Boolean;
    begin
       T.Regle := Creer
@@ -304,7 +304,7 @@ is
             Message   => "La regle doit avoir un successeur"
          );
 
-      Reussi := T.Regle.Iterer (Base => Base);
+      Reussi := T.Regle.Iterer (Base => Base'Access);
       AUnit.Assertions.Assert
          (
             Condition => not Reussi,
@@ -316,7 +316,7 @@ is
             Message   => "La regle ne doit pas avoir ete declenchee"
          );
       Base.Ajouter (Nouvel_Item => F_V);
-      Reussi := T.Regle.Iterer (Base => Base);
+      Reussi := T.Regle.Iterer (Base => Base'Access);
       AUnit.Assertions.Assert
          (
             Condition => Reussi,
@@ -327,8 +327,6 @@ is
             Condition => not T.Regle.Est_Declenchee,
             Message   => "La regle ne doit pas avoir ete declenchee"
          );
-
-      pragma Unreferenced (Base);
    end Test_Iterer;
    ---------------------------------------------------------------------------
 
@@ -356,8 +354,6 @@ is
                Nom    => Nom_2,
                Valeur => True
             );
-
-      Base : Sys_Exp_P.Base_Faits_P.Base_De_Faits_T;
 
       Reussi : Boolean;
    begin
@@ -396,7 +392,7 @@ is
             Message   => "La regle doit avoir un successeur"
          );
 
-      Reussi := T.Regle.Iterer (Base => Base);
+      Reussi := T.Regle.Iterer (Base => Base'Access);
       AUnit.Assertions.Assert
          (
             Condition => not Reussi,
@@ -408,7 +404,7 @@ is
             Message   => "La regle ne doit pas avoir ete declenchee"
          );
       Base.Ajouter (Nouvel_Item => F_V);
-      Reussi := T.Regle.Iterer (Base => Base);
+      Reussi := T.Regle.Iterer (Base => Base'Access);
       AUnit.Assertions.Assert
          (
             Condition => Reussi,
@@ -419,8 +415,6 @@ is
             Condition => T.Regle.Est_Declenchee,
             Message   => "La regle doit avoir ete declenchee"
          );
-
-      pragma Unreferenced (Base);
    end Test_Est_Declenchee;
    ---------------------------------------------------------------------------
 
@@ -517,8 +511,6 @@ is
                Valeur => False
             );
 
-      Base : Sys_Exp_P.Base_Faits_P.Base_De_Faits_T;
-
       Premisse_Verifiee : Boolean;
    begin
       Base.Ajouter (Nouvel_Item => F_V);
@@ -529,7 +521,7 @@ is
             Premisse   => P,
             Fabrique   => Fabrique
          );
-      Premisse_Verifiee := T.Regle.Verifier_Premisse (Base => Base);
+      Premisse_Verifiee := T.Regle.Verifier_Premisse (Base => Base'Access);
       AUnit.Assertions.Assert
          (
             Condition => Premisse_Verifiee,
@@ -540,7 +532,7 @@ is
       T.Regle.Ajouter (Premisse => Q);
 
       Base.Ajouter (Nouvel_Item => F_F);
-      Premisse_Verifiee := T.Regle.Verifier_Premisse (Base => Base);
+      Premisse_Verifiee := T.Regle.Verifier_Premisse (Base => Base'Access);
       AUnit.Assertions.Assert
          (
             Condition => T.Regle.Premisses.Length = 2,
@@ -554,8 +546,6 @@ is
             Message   => "La premisse [" & String (Nom_3) & "] " &
                "doit etre verifiee"
          );
-
-      pragma Unreferenced (Base);
    end Test_Verifier_Premisse;
    ---------------------------------------------------------------------------
 

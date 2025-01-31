@@ -1,4 +1,4 @@
---  Dernière modification : Lundi 02 décembre[12] 2024
+--  Dernière modification : Samedi 01 février[02] 2025
 --  Auteur : PIVARD Julien
 
 --  https://gcc.gnu.org/releases.html
@@ -287,7 +287,12 @@ project Systeme_Expert is
       end case;
 
       for Default_Switches ("Ada")    use Options_Compiler;
-      for Local_Configuration_Pragmas use "./gnat.adc";
+      case Mode_Compilation is
+         when "tests_unitaire"            =>
+            for Local_Configuration_Pragmas use "./gnat_test.adc";
+         when "dev" | "debug" | "release" =>
+            for Local_Configuration_Pragmas use "./gnat.adc";
+      end case;
    end Compiler;
    ----------------------------------------------------------------------------
 

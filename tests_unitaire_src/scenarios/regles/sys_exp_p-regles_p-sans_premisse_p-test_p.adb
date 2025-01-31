@@ -12,14 +12,14 @@ package body Sys_Exp_P.Regles_P.Sans_Premisse_P.Test_P
    with Spark_Mode => Off
 is
 
-   Base : aliased Sys_Exp_P.Base_Faits_P.Base_De_Faits_T;
-
    package Declencheur_R renames Sys_Exp_P.Visiteur_Forme_P.Declencheur_P;
 
    package ID_Alea_P is new Ada.Numerics.Discrete_Random
       (Result_Subtype => ID_Regle_T);
 
    Generateur_ID : ID_Alea_P.Generator;
+
+   Base : aliased Sys_Exp_P.Base_Faits_P.Base_De_Faits_T;
 
    ---------------------------------------------------------------------------
    overriding
@@ -256,7 +256,7 @@ is
             Message   => "La regle doit avoir un successeur"
          );
 
-      Reussi := T.Regle.Iterer (Base => Base);
+      Reussi := T.Regle.Iterer (Base => Base'Access);
       AUnit.Assertions.Assert
          (
             Condition => Reussi,
@@ -318,7 +318,7 @@ is
             Message   => "La regle doit avoir un successeur"
          );
 
-      Reussi := T.Regle.Iterer (Base => Base);
+      Reussi := T.Regle.Iterer (Base => Base'Access);
       AUnit.Assertions.Assert
          (
             Condition => Reussi,
