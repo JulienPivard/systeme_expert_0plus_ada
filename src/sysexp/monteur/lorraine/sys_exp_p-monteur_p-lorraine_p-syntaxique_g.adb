@@ -1,5 +1,6 @@
 with Sys_Exp_P.Valeur_P.Constante_P;
 with Sys_Exp_P.Valeur_P.Fait_P;
+
 with Sys_Exp_P.Valeur_P.Operateur_P.Addition_P;
 with Sys_Exp_P.Valeur_P.Operateur_P.Division_P;
 with Sys_Exp_P.Valeur_P.Operateur_P.Multiplication_P;
@@ -116,7 +117,6 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
    procedure Faire_Declaration
       (This : in out Syntaxique_T)
    is
-
    begin
       This.Faire_Declaration_Booleen;
       This.Faire_Declaration_Symbolique;
@@ -201,11 +201,13 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
          This.Suivant;
 
          exit B_Parcours_Faits when This.Jeton_Precharge.Est_Fin_Expression;
+
          if not This.Jeton_Precharge.Est_Separateur then
             This.Creer_Exception (Message => "attendu : ','");
          end if;
          This.Suivant;
       end loop B_Parcours_Faits;
+
       This.Suivant;
    end Faire_Liste_Faits;
    ---------------------------------------------------------------------------
@@ -261,6 +263,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
       if Jeton.Est_Si then
          This.Suivant;
       end if;
+
       return
          (
             if Jeton.Est_Si then
@@ -306,11 +309,14 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
                when Booleen_E    =>
                   return This.Faire_Conclusion_Booleenne;
             end case;
+
          else
             This.Creer_Exception (Message => "le fait n'a pas été déclare");
          end if;
+
       elsif Jeton.Est_Non then
          return This.Faire_Conclusion_Booleenne;
+
       else
          This.Creer_Exception (Message => "attendu : identificateur ou 'non'");
       end if;
@@ -334,6 +340,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
             if    not This.Jeton_Precharge.Est_Identificateur then
                This.Creer_Exception
                   (Message => "attendu : un fait booleen");
+
             elsif This.Jeton_Est_Un_Nom_De_Fait then
                if This.Lire_Type_Jeton_Fait = Booleen_E then
                   This.Suivant;
@@ -343,11 +350,13 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
                   This.Creer_Exception
                      (Message => "le fait n'est pas booleen");
                end if;
+
             else
                This.Creer_Exception
                   (Message => "le fait n'a pas été declare");
             end if;
          end Bloc_Lire_Nom_Bool;
+
       else
          return Conclusion_R.Bool_True_P.Creer
             (Nom => Jeton.Lire_Representation);
@@ -387,6 +396,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
                   This.Creer_Exception
                      (Message => "le fait n'est pas symbolique");
                end if;
+
             else
                This.Suivant;
                return Conclusion_R.Symbole_Constant_P.Creer
@@ -396,6 +406,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
                   );
             end if;
          end Bloc_Lire_Nom_Symb;
+
       else
          This.Creer_Exception (Message => "attendu : '='");
       end if;
@@ -410,6 +421,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
       Jeton : constant Jeton_P.Jeton_T := This.Jeton_Precharge;
    begin
       This.Suivant;
+
       if This.Jeton_Precharge.Est_Egal then
          This.Suivant;
          return Conclusion_R.Expression_Entiere_P.Creer
@@ -469,6 +481,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
       loop
          Liste.Append (New_Item => This.Faire_Premisse);
          exit Boucle_Ajouter_Premisse when This.Jeton_Precharge.Est_Alors;
+
          This.Suivant;
          exit Boucle_Ajouter_Premisse when This.Jeton_Precharge.Est_Alors;
       end loop Boucle_Ajouter_Premisse;
@@ -494,11 +507,14 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
                when Booleen_E    =>
                   return This.Faire_Premisse_Booleenne;
             end case;
+
          else
             This.Creer_Exception (Message => "le fait n'a pas été déclare");
          end if;
+
       elsif Jeton.Est_Non then
          return This.Faire_Premisse_Booleenne;
+
       else
          This.Creer_Exception (Message => "attendu : identificateur ou 'non'");
       end if;
@@ -517,6 +533,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
       if Jeton.Est_Non then
          if    not This.Jeton_Precharge.Est_Identificateur then
             This.Creer_Exception (Message => "attendu : un fait booleen");
+
          elsif This.Jeton_Est_Un_Nom_De_Fait then
             if This.Lire_Type_Jeton_Fait = Booleen_E then
                return Premisse_R.Bool_False_P.Creer
@@ -524,9 +541,11 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
             else
                This.Creer_Exception (Message => "le fait n'est pas booleen");
             end if;
+
          else
             This.Creer_Exception (Message => "le fait n'a pas été declare");
          end if;
+
       else
          return Premisse_R.Bool_True_P.Creer
             (Nom => Jeton.Lire_Representation);
@@ -573,20 +592,22 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
                            Nom         => Jeton_Sym.Lire_Representation,
                            Comparateur =>
                               (
-                                 if    Jeton_Signe.Est_Egal           then
+                                 if    Jeton_Signe.Est_Egal      then
                                     Comparateurs_P.Instance_P.Egale'Access
-                                 elsif Jeton_Signe.Est_Different      then
+                                 elsif Jeton_Signe.Est_Different then
                                     Comparateurs_P.Instance_P.Different'Access
                                  else
                                     null
                               ),
                            Nom_Fait    => Jeton_ID.Lire_Representation
                         );
+
                   else
                      This.Creer_Exception
                         (Message => "le fait n'est pas symbolique");
                   end if;
                end Bloc_Faire_Fait_Symbolique;
+
             else
                return Premisse_R.Symbole_Constant_P.Creer
                   (

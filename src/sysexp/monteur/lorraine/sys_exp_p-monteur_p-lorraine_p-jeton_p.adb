@@ -311,7 +311,7 @@ is
       (This : in     Jeton_T)
       return Boolean
    is
-      subtype Signe_De_Comparaison_T is  Sorte_T
+      subtype Signe_De_Comparaison_T is Sorte_T
          with Static_Predicate =>
             Signe_De_Comparaison_T in Egal_E | Different_E;
    begin
@@ -324,7 +324,7 @@ is
       (This : in     Jeton_T)
       return Boolean
    is
-      subtype Signe_De_Comparaison_T is  Sorte_T
+      subtype Signe_De_Comparaison_T is Sorte_T
          with Static_Predicate => Signe_De_Comparaison_T in
             Egal_E           | Different_E |
             Inferieur_E      | Superieur_E |
