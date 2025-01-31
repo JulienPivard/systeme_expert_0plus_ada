@@ -73,7 +73,7 @@ pragma Restrictions (No_Implicit_Heap_Allocations);
 --  pragma Restrictions (No_Standard_Allocators_After_Elaboration);
 --  Les allocations mémoire ne sont autorisé que pendant l'élaboration.
 
---  pragma Restrictions (No_Recursion);
+pragma Restrictions (No_Recursion);
 --  mis en commentaire à cause de
 --  "ada_containers-aunit_lists.adb"
 --  "aunit-test_suites.adb"

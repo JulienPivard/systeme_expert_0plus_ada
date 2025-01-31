@@ -45,14 +45,7 @@ is
       )
    is
    begin
-      if not This.Contient (Nom_Fait => Nouvel_Item.Lire_Nom) then
-         This.Map_Faits.Insert
-            (
-               Key      => Nouvel_Item.Lire_Nom,
-               New_Item => Nouvel_Item
-            );
-
-      else
+      if This.Contient (Nom_Fait => Nouvel_Item.Lire_Nom) then
          Bloc_Detail_Erreur :
          declare
             Fait : constant Fait_P.Fait_Abstrait_T'Class :=
@@ -124,6 +117,13 @@ is
                   "est déjà présent de type [" & Fait.Lire_Type'Image & "]";
             end if;
          end Bloc_Detail_Erreur;
+
+      else
+         This.Map_Faits.Insert
+            (
+               Key      => Nouvel_Item.Lire_Nom,
+               New_Item => Nouvel_Item
+            );
       end if;
    end Ajouter;
    ---------------------------------------------------------------------------
