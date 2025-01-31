@@ -1,5 +1,5 @@
 --  vim:filetype=ada
---  Dernière modification : Mercredi 04 décembre[12] 2024
+--  Dernière modification : Vendredi 31 janvier[01] 2025
 --  Auteur : PIVARD Julien
 
 pragma Initialize_Scalars;
@@ -84,5 +84,5 @@ pragma Restrictions (No_Reentrancy);
 pragma Restrictions (No_Relative_Delay);
 --  Interdit l'utilisation de delais relatif. (delay 1.23)
 
---  pragma Restrictions (No_Unchecked_Access);
+pragma Restrictions (No_Unchecked_Access);
 pragma Restrictions (No_Obsolescent_Features);
