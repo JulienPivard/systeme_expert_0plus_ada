@@ -46,10 +46,10 @@ is
       Sorte : constant Sorte_T :=
          Sorte_Alea_P.Random (Gen => Generateur_Sorte);
    begin
-      T.Jeton := Jeton_T'
+      T.Jeton := Creer
          (
             Sorte          => Sorte,
-            Representation => String_Holder_P.To_Holder (New_Item => Repr)
+            Representation => Repr
          );
       AUnit.Assertions.Assert
          (
@@ -71,10 +71,10 @@ is
       Sorte  : constant Sorte_T :=
          Sorte_Alea_P.Random (Gen => Generateur_Sorte);
    begin
-      T.Jeton := Jeton_T'
+      T.Jeton := Creer
          (
             Sorte          => Sorte,
-            Representation => String_Holder_P.To_Holder (New_Item => Repr_S)
+            Representation => Repr_S
          );
       AUnit.Assertions.Assert
          (
@@ -107,10 +107,10 @@ is
       Repr  : constant String  := Facilites_P.Creer_Chaine;
       Sorte : constant Sorte_T := Parenthese_Ouvrante_E;
    begin
-      T.Jeton := Jeton_T'
+      T.Jeton := Creer
          (
             Sorte          => Sorte,
-            Representation => String_Holder_P.To_Holder (New_Item => Repr)
+            Representation => Repr
          );
       AUnit.Assertions.Assert
          (
@@ -123,11 +123,10 @@ is
       Boucle_Tester_Les_Autres_Types :
       for S in Sorte_T loop
          if S /= Sorte then
-            T.Jeton := Jeton_T'
+            T.Jeton := Creer
                (
                   Sorte          => S,
-                  Representation =>
-                     String_Holder_P.To_Holder (New_Item => Repr)
+                  Representation => Repr
                );
             AUnit.Assertions.Assert
                (
@@ -148,10 +147,10 @@ is
       Repr  : constant String  := Facilites_P.Creer_Chaine;
       Sorte : constant Sorte_T := Parenthese_Fermante_E;
    begin
-      T.Jeton := Jeton_T'
+      T.Jeton := Creer
          (
             Sorte          => Sorte,
-            Representation => String_Holder_P.To_Holder (New_Item => Repr)
+            Representation => Repr
          );
       AUnit.Assertions.Assert
          (
@@ -164,11 +163,10 @@ is
       Boucle_Tester_Les_Autres_Types :
       for S in Sorte_T loop
          if S /= Sorte then
-            T.Jeton := Jeton_T'
+            T.Jeton := Creer
                (
                   Sorte          => S,
-                  Representation =>
-                     String_Holder_P.To_Holder (New_Item => Repr)
+                  Representation => Repr
                );
             AUnit.Assertions.Assert
                (
@@ -189,10 +187,10 @@ is
       Repr  : constant String  := Facilites_P.Creer_Chaine;
       Sorte : constant Sorte_T := Operateur_Plus_E;
    begin
-      T.Jeton := Jeton_T'
+      T.Jeton := Creer
          (
             Sorte          => Sorte,
-            Representation => String_Holder_P.To_Holder (New_Item => Repr)
+            Representation => Repr
          );
       AUnit.Assertions.Assert
          (
@@ -205,11 +203,10 @@ is
       Boucle_Tester_Les_Autres_Types :
       for S in Sorte_T loop
          if S /= Sorte then
-            T.Jeton := Jeton_T'
+            T.Jeton := Creer
                (
                   Sorte          => S,
-                  Representation =>
-                     String_Holder_P.To_Holder (New_Item => Repr)
+                  Representation => Repr
                );
             AUnit.Assertions.Assert
                (
@@ -230,10 +227,10 @@ is
       Repr  : constant String  := Facilites_P.Creer_Chaine;
       Sorte : constant Sorte_T := Operateur_Moins_E;
    begin
-      T.Jeton := Jeton_T'
+      T.Jeton := Creer
          (
             Sorte          => Sorte,
-            Representation => String_Holder_P.To_Holder (New_Item => Repr)
+            Representation => Repr
          );
       AUnit.Assertions.Assert
          (
@@ -246,11 +243,10 @@ is
       Boucle_Tester_Les_Autres_Types :
       for S in Sorte_T loop
          if S /= Sorte then
-            T.Jeton := Jeton_T'
+            T.Jeton := Creer
                (
                   Sorte          => S,
-                  Representation =>
-                     String_Holder_P.To_Holder (New_Item => Repr)
+                  Representation => Repr
                );
             AUnit.Assertions.Assert
                (
@@ -271,10 +267,10 @@ is
       Repr  : constant String  := Facilites_P.Creer_Chaine;
       Sorte : constant Sorte_T := Operateur_Mul_E;
    begin
-      T.Jeton := Jeton_T'
+      T.Jeton := Creer
          (
             Sorte          => Sorte,
-            Representation => String_Holder_P.To_Holder (New_Item => Repr)
+            Representation => Repr
          );
       AUnit.Assertions.Assert
          (
@@ -287,11 +283,10 @@ is
       Boucle_Tester_Les_Autres_Types :
       for S in Sorte_T loop
          if S /= Sorte then
-            T.Jeton := Jeton_T'
+            T.Jeton := Creer
                (
                   Sorte          => S,
-                  Representation =>
-                     String_Holder_P.To_Holder (New_Item => Repr)
+                  Representation => Repr
                );
             AUnit.Assertions.Assert
                (
@@ -312,10 +307,10 @@ is
       Repr  : constant String  := Facilites_P.Creer_Chaine;
       Sorte : constant Sorte_T := Operateur_Div_E;
    begin
-      T.Jeton := Jeton_T'
+      T.Jeton := Creer
          (
             Sorte          => Sorte,
-            Representation => String_Holder_P.To_Holder (New_Item => Repr)
+            Representation => Repr
          );
       AUnit.Assertions.Assert
          (
@@ -328,11 +323,10 @@ is
       Boucle_Tester_Les_Autres_Types :
       for S in Sorte_T loop
          if S /= Sorte then
-            T.Jeton := Jeton_T'
+            T.Jeton := Creer
                (
                   Sorte          => S,
-                  Representation =>
-                     String_Holder_P.To_Holder (New_Item => Repr)
+                  Representation => Repr
                );
             AUnit.Assertions.Assert
                (
@@ -353,10 +347,10 @@ is
       Repr  : constant String  := Facilites_P.Creer_Chaine;
       Sorte : constant Sorte_T := Separateur_E;
    begin
-      T.Jeton := Jeton_T'
+      T.Jeton := Creer
          (
             Sorte          => Sorte,
-            Representation => String_Holder_P.To_Holder (New_Item => Repr)
+            Representation => Repr
          );
       AUnit.Assertions.Assert
          (
@@ -369,11 +363,10 @@ is
       Boucle_Tester_Les_Autres_Types :
       for S in Sorte_T loop
          if S /= Sorte then
-            T.Jeton := Jeton_T'
+            T.Jeton := Creer
                (
                   Sorte          => S,
-                  Representation =>
-                     String_Holder_P.To_Holder (New_Item => Repr)
+                  Representation => Repr
                );
             AUnit.Assertions.Assert
                (
@@ -394,10 +387,10 @@ is
       Repr  : constant String  := Facilites_P.Creer_Chaine;
       Sorte : constant Sorte_T := Fin_Expression_E;
    begin
-      T.Jeton := Jeton_T'
+      T.Jeton := Creer
          (
             Sorte          => Sorte,
-            Representation => String_Holder_P.To_Holder (New_Item => Repr)
+            Representation => Repr
          );
       AUnit.Assertions.Assert
          (
@@ -410,11 +403,10 @@ is
       Boucle_Tester_Les_Autres_Types :
       for S in Sorte_T loop
          if S /= Sorte then
-            T.Jeton := Jeton_T'
+            T.Jeton := Creer
                (
                   Sorte          => S,
-                  Representation =>
-                     String_Holder_P.To_Holder (New_Item => Repr)
+                  Representation => Repr
                );
             AUnit.Assertions.Assert
                (
@@ -435,10 +427,10 @@ is
       Repr  : constant String  := Facilites_P.Creer_Chaine;
       Sorte : constant Sorte_T := Fin_Fichier_E;
    begin
-      T.Jeton := Jeton_T'
+      T.Jeton := Creer
          (
             Sorte          => Sorte,
-            Representation => String_Holder_P.To_Holder (New_Item => Repr)
+            Representation => Repr
          );
       AUnit.Assertions.Assert
          (
@@ -451,11 +443,10 @@ is
       Boucle_Tester_Les_Autres_Types :
       for S in Sorte_T loop
          if S /= Sorte then
-            T.Jeton := Jeton_T'
+            T.Jeton := Creer
                (
                   Sorte          => S,
-                  Representation =>
-                     String_Holder_P.To_Holder (New_Item => Repr)
+                  Representation => Repr
                );
             AUnit.Assertions.Assert
                (
@@ -476,10 +467,10 @@ is
       Repr  : constant String  := Facilites_P.Creer_Chaine;
       Sorte : constant Sorte_T := Identificateur_E;
    begin
-      T.Jeton := Jeton_T'
+      T.Jeton := Creer
          (
             Sorte          => Sorte,
-            Representation => String_Holder_P.To_Holder (New_Item => Repr)
+            Representation => Repr
          );
       AUnit.Assertions.Assert
          (
@@ -492,11 +483,10 @@ is
       Boucle_Tester_Les_Autres_Types :
       for S in Sorte_T loop
          if S /= Sorte then
-            T.Jeton := Jeton_T'
+            T.Jeton := Creer
                (
                   Sorte          => S,
-                  Representation =>
-                     String_Holder_P.To_Holder (New_Item => Repr)
+                  Representation => Repr
                );
             AUnit.Assertions.Assert
                (
@@ -517,10 +507,10 @@ is
       Repr  : constant String  := Facilites_P.Creer_Chaine;
       Sorte : constant Sorte_T := Entier_E;
    begin
-      T.Jeton := Jeton_T'
+      T.Jeton := Creer
          (
             Sorte          => Sorte,
-            Representation => String_Holder_P.To_Holder (New_Item => Repr)
+            Representation => Repr
          );
       AUnit.Assertions.Assert
          (
@@ -533,11 +523,10 @@ is
       Boucle_Tester_Les_Autres_Types :
       for S in Sorte_T loop
          if S /= Sorte then
-            T.Jeton := Jeton_T'
+            T.Jeton := Creer
                (
                   Sorte          => S,
-                  Representation =>
-                     String_Holder_P.To_Holder (New_Item => Repr)
+                  Representation => Repr
                );
             AUnit.Assertions.Assert
                (
@@ -558,10 +547,10 @@ is
       Repr  : constant String  := Facilites_P.Creer_Chaine;
       Sorte : constant Sorte_T := Si_E;
    begin
-      T.Jeton := Jeton_T'
+      T.Jeton := Creer
          (
             Sorte          => Sorte,
-            Representation => String_Holder_P.To_Holder (New_Item => Repr)
+            Representation => Repr
          );
       AUnit.Assertions.Assert
          (
@@ -574,11 +563,10 @@ is
       Boucle_Tester_Les_Autres_Types :
       for S in Sorte_T loop
          if S /= Sorte then
-            T.Jeton := Jeton_T'
+            T.Jeton := Creer
                (
                   Sorte          => S,
-                  Representation =>
-                     String_Holder_P.To_Holder (New_Item => Repr)
+                  Representation => Repr
                );
             AUnit.Assertions.Assert
                (
@@ -599,10 +587,10 @@ is
       Repr  : constant String  := Facilites_P.Creer_Chaine;
       Sorte : constant Sorte_T := Non_E;
    begin
-      T.Jeton := Jeton_T'
+      T.Jeton := Creer
          (
             Sorte          => Sorte,
-            Representation => String_Holder_P.To_Holder (New_Item => Repr)
+            Representation => Repr
          );
       AUnit.Assertions.Assert
          (
@@ -615,11 +603,10 @@ is
       Boucle_Tester_Les_Autres_Types :
       for S in Sorte_T loop
          if S /= Sorte then
-            T.Jeton := Jeton_T'
+            T.Jeton := Creer
                (
                   Sorte          => S,
-                  Representation =>
-                     String_Holder_P.To_Holder (New_Item => Repr)
+                  Representation => Repr
                );
             AUnit.Assertions.Assert
                (
@@ -640,10 +627,10 @@ is
       Repr  : constant String  := Facilites_P.Creer_Chaine;
       Sorte : constant Sorte_T := Et_E;
    begin
-      T.Jeton := Jeton_T'
+      T.Jeton := Creer
          (
             Sorte          => Sorte,
-            Representation => String_Holder_P.To_Holder (New_Item => Repr)
+            Representation => Repr
          );
       AUnit.Assertions.Assert
          (
@@ -656,11 +643,10 @@ is
       Boucle_Tester_Les_Autres_Types :
       for S in Sorte_T loop
          if S /= Sorte then
-            T.Jeton := Jeton_T'
+            T.Jeton := Creer
                (
                   Sorte          => S,
-                  Representation =>
-                     String_Holder_P.To_Holder (New_Item => Repr)
+                  Representation => Repr
                );
             AUnit.Assertions.Assert
                (
@@ -681,10 +667,10 @@ is
       Repr  : constant String  := Facilites_P.Creer_Chaine;
       Sorte : constant Sorte_T := Alors_E;
    begin
-      T.Jeton := Jeton_T'
+      T.Jeton := Creer
          (
             Sorte          => Sorte,
-            Representation => String_Holder_P.To_Holder (New_Item => Repr)
+            Representation => Repr
          );
       AUnit.Assertions.Assert
          (
@@ -697,11 +683,10 @@ is
       Boucle_Tester_Les_Autres_Types :
       for S in Sorte_T loop
          if S /= Sorte then
-            T.Jeton := Jeton_T'
+            T.Jeton := Creer
                (
                   Sorte          => S,
-                  Representation =>
-                     String_Holder_P.To_Holder (New_Item => Repr)
+                  Representation => Repr
                );
             AUnit.Assertions.Assert
                (
@@ -722,10 +707,10 @@ is
       Repr  : constant String  := Facilites_P.Creer_Chaine;
       Sorte : constant Sorte_T := Egal_E;
    begin
-      T.Jeton := Jeton_T'
+      T.Jeton := Creer
          (
             Sorte          => Sorte,
-            Representation => String_Holder_P.To_Holder (New_Item => Repr)
+            Representation => Repr
          );
       AUnit.Assertions.Assert
          (
@@ -738,11 +723,10 @@ is
       Boucle_Tester_Les_Autres_Types :
       for S in Sorte_T loop
          if S /= Sorte then
-            T.Jeton := Jeton_T'
+            T.Jeton := Creer
                (
                   Sorte          => S,
-                  Representation =>
-                     String_Holder_P.To_Holder (New_Item => Repr)
+                  Representation => Repr
                );
             AUnit.Assertions.Assert
                (
@@ -763,10 +747,10 @@ is
       Repr  : constant String  := Facilites_P.Creer_Chaine;
       Sorte : constant Sorte_T := Superieur_E;
    begin
-      T.Jeton := Jeton_T'
+      T.Jeton := Creer
          (
             Sorte          => Sorte,
-            Representation => String_Holder_P.To_Holder (New_Item => Repr)
+            Representation => Repr
          );
       AUnit.Assertions.Assert
          (
@@ -779,11 +763,10 @@ is
       Boucle_Tester_Les_Autres_Types :
       for S in Sorte_T loop
          if S /= Sorte then
-            T.Jeton := Jeton_T'
+            T.Jeton := Creer
                (
                   Sorte          => S,
-                  Representation =>
-                     String_Holder_P.To_Holder (New_Item => Repr)
+                  Representation => Repr
                );
             AUnit.Assertions.Assert
                (
@@ -804,10 +787,10 @@ is
       Repr  : constant String  := Facilites_P.Creer_Chaine;
       Sorte : constant Sorte_T := Inferieur_E;
    begin
-      T.Jeton := Jeton_T'
+      T.Jeton := Creer
          (
             Sorte          => Sorte,
-            Representation => String_Holder_P.To_Holder (New_Item => Repr)
+            Representation => Repr
          );
       AUnit.Assertions.Assert
          (
@@ -820,11 +803,10 @@ is
       Boucle_Tester_Les_Autres_Types :
       for S in Sorte_T loop
          if S /= Sorte then
-            T.Jeton := Jeton_T'
+            T.Jeton := Creer
                (
                   Sorte          => S,
-                  Representation =>
-                     String_Holder_P.To_Holder (New_Item => Repr)
+                  Representation => Repr
                );
             AUnit.Assertions.Assert
                (
@@ -845,10 +827,10 @@ is
       Repr  : constant String  := Facilites_P.Creer_Chaine;
       Sorte : constant Sorte_T := Superieur_Egal_E;
    begin
-      T.Jeton := Jeton_T'
+      T.Jeton := Creer
          (
             Sorte          => Sorte,
-            Representation => String_Holder_P.To_Holder (New_Item => Repr)
+            Representation => Repr
          );
       AUnit.Assertions.Assert
          (
@@ -861,11 +843,10 @@ is
       Boucle_Tester_Les_Autres_Types :
       for S in Sorte_T loop
          if S /= Sorte then
-            T.Jeton := Jeton_T'
+            T.Jeton := Creer
                (
                   Sorte          => S,
-                  Representation =>
-                     String_Holder_P.To_Holder (New_Item => Repr)
+                  Representation => Repr
                );
             AUnit.Assertions.Assert
                (
@@ -886,10 +867,10 @@ is
       Repr  : constant String  := Facilites_P.Creer_Chaine;
       Sorte : constant Sorte_T := Inferieur_Egal_E;
    begin
-      T.Jeton := Jeton_T'
+      T.Jeton := Creer
          (
             Sorte          => Sorte,
-            Representation => String_Holder_P.To_Holder (New_Item => Repr)
+            Representation => Repr
          );
       AUnit.Assertions.Assert
          (
@@ -902,11 +883,10 @@ is
       Boucle_Tester_Les_Autres_Types :
       for S in Sorte_T loop
          if S /= Sorte then
-            T.Jeton := Jeton_T'
+            T.Jeton := Creer
                (
                   Sorte          => S,
-                  Representation =>
-                     String_Holder_P.To_Holder (New_Item => Repr)
+                  Representation => Repr
                );
             AUnit.Assertions.Assert
                (
@@ -927,10 +907,10 @@ is
       Repr  : constant String  := Facilites_P.Creer_Chaine;
       Sorte : constant Sorte_T := Different_E;
    begin
-      T.Jeton := Jeton_T'
+      T.Jeton := Creer
          (
             Sorte          => Sorte,
-            Representation => String_Holder_P.To_Holder (New_Item => Repr)
+            Representation => Repr
          );
       AUnit.Assertions.Assert
          (
@@ -943,11 +923,10 @@ is
       Boucle_Tester_Les_Autres_Types :
       for S in Sorte_T loop
          if S /= Sorte then
-            T.Jeton := Jeton_T'
+            T.Jeton := Creer
                (
                   Sorte          => S,
-                  Representation =>
-                     String_Holder_P.To_Holder (New_Item => Repr)
+                  Representation => Repr
                );
             AUnit.Assertions.Assert
                (
@@ -968,10 +947,10 @@ is
       Repr  : constant String  := Facilites_P.Creer_Chaine;
       Sorte : constant Sorte_T := Fait_Booleen_E;
    begin
-      T.Jeton := Jeton_T'
+      T.Jeton := Creer
          (
             Sorte          => Sorte,
-            Representation => String_Holder_P.To_Holder (New_Item => Repr)
+            Representation => Repr
          );
       AUnit.Assertions.Assert
          (
@@ -984,11 +963,10 @@ is
       Boucle_Tester_Les_Autres_Types :
       for S in Sorte_T loop
          if S /= Sorte then
-            T.Jeton := Jeton_T'
+            T.Jeton := Creer
                (
                   Sorte          => S,
-                  Representation =>
-                     String_Holder_P.To_Holder (New_Item => Repr)
+                  Representation => Repr
                );
             AUnit.Assertions.Assert
                (
@@ -1009,10 +987,10 @@ is
       Repr  : constant String  := Facilites_P.Creer_Chaine;
       Sorte : constant Sorte_T := Fait_Symbolique_E;
    begin
-      T.Jeton := Jeton_T'
+      T.Jeton := Creer
          (
             Sorte          => Sorte,
-            Representation => String_Holder_P.To_Holder (New_Item => Repr)
+            Representation => Repr
          );
       AUnit.Assertions.Assert
          (
@@ -1025,11 +1003,10 @@ is
       Boucle_Tester_Les_Autres_Types :
       for S in Sorte_T loop
          if S /= Sorte then
-            T.Jeton := Jeton_T'
+            T.Jeton := Creer
                (
                   Sorte          => S,
-                  Representation =>
-                     String_Holder_P.To_Holder (New_Item => Repr)
+                  Representation => Repr
                );
             AUnit.Assertions.Assert
                (
@@ -1050,10 +1027,10 @@ is
       Repr  : constant String  := Facilites_P.Creer_Chaine;
       Sorte : constant Sorte_T := Fait_Entier_E;
    begin
-      T.Jeton := Jeton_T'
+      T.Jeton := Creer
          (
             Sorte          => Sorte,
-            Representation => String_Holder_P.To_Holder (New_Item => Repr)
+            Representation => Repr
          );
       AUnit.Assertions.Assert
          (
@@ -1066,11 +1043,10 @@ is
       Boucle_Tester_Les_Autres_Types :
       for S in Sorte_T loop
          if S /= Sorte then
-            T.Jeton := Jeton_T'
+            T.Jeton := Creer
                (
                   Sorte          => S,
-                  Representation =>
-                     String_Holder_P.To_Holder (New_Item => Repr)
+                  Representation => Repr
                );
             AUnit.Assertions.Assert
                (
@@ -1091,10 +1067,10 @@ is
       Repr  : constant String  := Facilites_P.Creer_Chaine;
       Sorte : constant Sorte_T := Inconnu_E;
    begin
-      T.Jeton := Jeton_T'
+      T.Jeton := Creer
          (
             Sorte          => Sorte,
-            Representation => String_Holder_P.To_Holder (New_Item => Repr)
+            Representation => Repr
          );
       AUnit.Assertions.Assert
          (
@@ -1107,11 +1083,10 @@ is
       Boucle_Tester_Les_Autres_Types :
       for S in Sorte_T loop
          if S /= Sorte then
-            T.Jeton := Jeton_T'
+            T.Jeton := Creer
                (
                   Sorte          => S,
-                  Representation =>
-                     String_Holder_P.To_Holder (New_Item => Repr)
+                  Representation => Repr
                );
             AUnit.Assertions.Assert
                (
@@ -1127,6 +1102,24 @@ is
 
    ---------------------------------------------------------------------------
    --                             Partie privée                             --
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   function Creer
+      (
+         Sorte          : in     Sorte_T;
+         Representation : in     String
+      )
+      return Jeton_T
+   is
+   begin
+      return Jeton_T'
+         (
+            Sorte          => Sorte,
+            Representation => String_Holder_P.To_Holder
+               (New_Item => Representation)
+         );
+   end Creer;
    ---------------------------------------------------------------------------
 
 begin

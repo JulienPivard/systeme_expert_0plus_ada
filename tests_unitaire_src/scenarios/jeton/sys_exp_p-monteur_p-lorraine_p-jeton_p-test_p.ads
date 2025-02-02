@@ -108,4 +108,13 @@ is
    procedure Test_Est_Inconnu
       (T : in out Test_Fixt_T);
 
+private
+
+   function Creer
+      (
+         Sorte          : in     Sorte_T;
+         Representation : in     String
+      )
+      return Jeton_T;
+
 end Sys_Exp_P.Monteur_P.Lorraine_P.Jeton_P.Test_P;
