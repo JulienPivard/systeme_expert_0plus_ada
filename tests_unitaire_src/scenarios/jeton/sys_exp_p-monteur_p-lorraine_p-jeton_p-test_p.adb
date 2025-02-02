@@ -1112,12 +1112,24 @@ is
       )
       return Jeton_T
    is
+      D : constant Integer := Representation'First;
+      L : constant Integer := Representation'Length;
+
+      Taille : constant Integer :=
+         (if L > Taille_Max_Nom then Taille_Max_Nom else L);
+
+      --  Fin de la chaine.
+      F_C : constant NB_T := NB_T (Taille);
+      --  Fin de la représentation.
+      F_R : constant Integer := D + Taille - 1;
+
+      R : constant String_T (1 .. F_C) :=
+         String_T (Representation (D .. F_R));
    begin
       return Jeton_T'
          (
             Sorte          => Sorte,
-            Representation => String_Holder_P.To_Holder
-               (New_Item => Representation)
+            Representation => String_Holder_P.To_Holder (New_Item => R)
          );
    end Creer;
    ---------------------------------------------------------------------------

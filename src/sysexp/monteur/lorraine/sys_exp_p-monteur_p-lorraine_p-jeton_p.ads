@@ -325,17 +325,23 @@ is
 
 private
 
+   type NB_T is range 0 .. 255;
+
+   subtype ID_Str_T is NB_T range 1 .. NB_T'Last;
+
+   type String_T is array (ID_Str_T range <>) of Character;
+
    package String_Holder_P is new Ada.Containers.Indefinite_Holders
-      (Element_Type => String);
+      (Element_Type => String_T);
    --  @private Package interne.
 
-   subtype String_T is String_Holder_P.Holder;
+   subtype String_Holder_T is String_Holder_P.Holder;
 
    type Jeton_T is tagged
       record
          Sorte          : Sorte_T;
          --  La sorte de jeton.
-         Representation : String_T := String_Holder_P.Empty_Holder;
+         Representation : String_Holder_T := String_Holder_P.Empty_Holder;
          --  La chaine de caractères associé au jeton.
       end record;
 
