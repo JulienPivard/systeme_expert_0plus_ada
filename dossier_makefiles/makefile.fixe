@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Lundi 02 décembre[12] 2024
+# Dernière modification : Dimanche 02 février[02] 2025
 
 ###############
 # Partie Fixe #
@@ -28,7 +28,7 @@ NOM_OPT_ELAB	= -Xafficher_ordre_elaboration
 NOM_NIV_OPTI	= -Xniv_opti
 
 OPT_GPR_PROD	= $(NOM_OPT_MODE)=release \
-		  $(NOM_OPT_VERB)=non $(NOM_OPT_STRI)=non \
+		  $(NOM_OPT_VERB)=non $(NOM_OPT_WARN)=non \
 		  $(NOM_OPT_STAK)=non $(NOM_OPT_ELAB)=non \
 		  $(NOM_NIV_OPTI)=defaut
 
