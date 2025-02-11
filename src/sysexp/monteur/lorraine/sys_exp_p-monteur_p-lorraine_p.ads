@@ -1,4 +1,4 @@
-with Ada.Containers.Indefinite_Holders;
+private with Ada.Containers.Indefinite_Holders;
 
 with Sys_Exp_P.Visiteur_Forme_P.Fabrique_Interface_P;
 
@@ -56,7 +56,7 @@ private
       (Element_Type => String);
    --  @private Package interne.
 
-   subtype Nom_Fichier_T is Nom_Fichier_P.Holder;
+   subtype Nom_Fichier_Memorise_T is Nom_Fichier_P.Holder;
 
    package Base_De_Regles_P is new Ada.Containers.Indefinite_Holders
       (
@@ -72,13 +72,15 @@ private
       );
    --  @private Package interne.
 
+   subtype Fabrique_Interface_T is Fabrique_Holder_P.Holder;
+
    type Monteur_T is new Monteur_Abstrait_T with
       record
-         Nom_Fichier    : Nom_Fichier_T;
+         Nom_Fichier    : Nom_Fichier_Memorise_T;
          --  Le nom du fichier à parser.
          Base_De_Regles : Base_De_Regles_P.Holder;
          --  La base de règles à construire.
-         Fabrique       : Fabrique_Holder_P.Holder;
+         Fabrique       : Fabrique_Interface_T;
          --  La fabrique de visiteur de formes à utiliser dans la
          --  construction de la base de règles.
       end record;
