@@ -1,6 +1,6 @@
-private with Ada.Containers.Indefinite_Holders;
-
 with Sys_Exp_P.Visiteur_Forme_P.Fabrique_Interface_P;
+
+private with Ada.Containers.Indefinite_Holders;
 
 --  @summary
 --  Pour le format des fichiers on utilise la grammaire Lorraine.
@@ -52,11 +52,10 @@ is
 
 private
 
-   package Nom_Fichier_P is new Ada.Containers.Indefinite_Holders
-      (Element_Type => Nom_Fichier_T);
-   --  @private Package interne.
-
-   subtype Nom_Fichier_Memorise_T is Nom_Fichier_P.Holder;
+   type Nom_Fichier_Memorise_T (Taille : NB_Caractres_T := 0) is
+      record
+         Nom : Nom_Fichier_T (1 .. Taille);
+      end record;
 
    package Base_De_Regles_P is new Ada.Containers.Indefinite_Holders
       (
@@ -76,13 +75,13 @@ private
 
    type Monteur_T is new Monteur_Abstrait_T with
       record
-         Nom_Fichier    : Nom_Fichier_Memorise_T;
-         --  Le nom du fichier à parser.
          Base_De_Regles : Base_De_Regles_P.Holder;
          --  La base de règles à construire.
          Fabrique       : Fabrique_Interface_T;
          --  La fabrique de visiteur de formes à utiliser dans la
          --  construction de la base de règles.
+         Nom_Fichier    : Nom_Fichier_Memorise_T;
+         --  Le nom du fichier à parser.
       end record;
 
 end Sys_Exp_P.Monteur_P.Lorraine_P;
