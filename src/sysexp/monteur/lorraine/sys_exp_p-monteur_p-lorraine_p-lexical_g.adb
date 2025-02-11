@@ -15,7 +15,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_G is
 
    ---------------------------------------------------------------------------
    function Creer
-      (Nom_Fichier : in     String)
+      (Nom_Fichier : in     Nom_Fichier_T)
       return Lexical_T
    is
    begin

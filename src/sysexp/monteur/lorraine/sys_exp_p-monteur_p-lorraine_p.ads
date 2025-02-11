@@ -23,7 +23,7 @@ is
    not overriding
    function Creer
       (
-         Nom_Fichier : in     String;
+         Nom_Fichier : in     Nom_Fichier_T;
          Fabrique    : in     Fabrique_R.Fabrique_Interface_T'Class
       )
       return Monteur_T;
@@ -53,7 +53,7 @@ is
 private
 
    package Nom_Fichier_P is new Ada.Containers.Indefinite_Holders
-      (Element_Type => String);
+      (Element_Type => Nom_Fichier_T);
    --  @private Package interne.
 
    subtype Nom_Fichier_Memorise_T is Nom_Fichier_P.Holder;

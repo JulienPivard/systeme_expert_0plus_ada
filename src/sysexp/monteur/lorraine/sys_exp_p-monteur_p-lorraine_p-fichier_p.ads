@@ -16,7 +16,7 @@ is
    procedure Ouvrir
       (
          Fichier     : in out Ada.Text_IO.File_Type;
-         Nom_Fichier : in     String
+         Nom_Fichier : in     Nom_Fichier_T
       );
    --  Ouvre un fichier pour le parseur lexical.
    --  @param Fichier

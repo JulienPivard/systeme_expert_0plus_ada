@@ -12,7 +12,7 @@ with Sys_Exp_P.Visiteur_Forme_P.Declencheur_P.Fabrique_P;
 separate (Executeur_G)
 procedure Executer
    (
-      Nom_Fichier : in     String;
+      Nom_Fichier : in     Sys_Exp_P.Nom_Fichier_T;
       Mode_Debug  : in     Boolean
    )
 is

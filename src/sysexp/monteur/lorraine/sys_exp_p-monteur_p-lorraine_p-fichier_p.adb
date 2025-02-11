@@ -6,14 +6,14 @@ is
    procedure Ouvrir
       (
          Fichier     : in out Ada.Text_IO.File_Type;
-         Nom_Fichier : in     String
+         Nom_Fichier : in     Nom_Fichier_T
       )
    is
    begin
       Ada.Text_IO.Open
          (
             File => Fichier,
-            Name => Nom_Fichier,
+            Name => String (Nom_Fichier),
             Mode => Ada.Text_IO.In_File
          );
    end Ouvrir;

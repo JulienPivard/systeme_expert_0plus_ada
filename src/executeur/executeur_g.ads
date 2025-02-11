@@ -3,6 +3,8 @@ with Ada.Wide_Wide_Text_IO;
 
 with NB_Args_P;
 
+with Sys_Exp_P;
+
 generic
 
    Nombre_D_Arguments_Min : NB_Args_P.NB_Args_T := 1;
@@ -56,7 +58,7 @@ package Executeur_G is
 
    procedure Executer
       (
-         Nom_Fichier : in     String;
+         Nom_Fichier : in     Sys_Exp_P.Nom_Fichier_T;
          Mode_Debug  : in     Boolean
       );
    --  Exécute le programme.
@@ -66,7 +68,7 @@ package Executeur_G is
    --  Active le mode debug du visiteur de forme.
 
    function Verifier_Nom_Fichier
-      return String;
+      return Sys_Exp_P.Nom_Fichier_T;
    --  Vérifie que le fichier existe.
    --  @return Le nom du fichier.
 

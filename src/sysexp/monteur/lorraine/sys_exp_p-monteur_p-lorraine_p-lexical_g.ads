@@ -11,7 +11,7 @@ generic
    with procedure Ouvrir_G
       (
          Contenu : in out Contenu_G_T;
-         Nom     : in     String
+         Nom     : in     Nom_Fichier_T
       );
    --  Initialise le contenu à lire. Pour l'application
    --  on veux passer par un fichier, mais il peux être
@@ -66,7 +66,7 @@ package Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_G is
    --  Analyseur lexical.
 
    function Creer
-      (Nom_Fichier : in     String)
+      (Nom_Fichier : in     Nom_Fichier_T)
       return Lexical_T;
    --  Crée un parseur lexical.
    --  @param Nom_Fichier

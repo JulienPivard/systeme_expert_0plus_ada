@@ -38,7 +38,7 @@ package Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
 
    function Creer
       (
-         Nom_Fichier : in     String;
+         Nom_Fichier : in     Nom_Fichier_T;
          Fabrique    : in     Fabrique_R.Fabrique_Interface_T'Class
       )
       return Syntaxique_T;

@@ -52,4 +52,12 @@ is
    --  Le nom à hacher.
    --  @return Le hash.
 
+   NB_Caractres : constant := 255;
+
+   type NB_Caractres_T is range 0 .. NB_Caractres;
+
+   subtype ID_Nom_T is NB_Caractres_T range 1 .. NB_Caractres_T'Last;
+
+   type Nom_Fichier_T is array (ID_Nom_T range <>) of Character;
+
 end Sys_Exp_P;

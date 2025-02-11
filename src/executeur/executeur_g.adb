@@ -6,7 +6,7 @@ package body Executeur_G is
    ---------------------------------------------------------------------------
    procedure Executer
       (
-         Nom_Fichier : in     String;
+         Nom_Fichier : in     Sys_Exp_P.Nom_Fichier_T;
          Mode_Debug  : in     Boolean
       )
    is separate;
@@ -150,7 +150,7 @@ package body Executeur_G is
 
    ---------------------------------------------------------------------------
    function Verifier_Nom_Fichier
-      return String
+      return Sys_Exp_P.Nom_Fichier_T
    is
       Nom : constant String := Ada.Command_Line.Argument (Number => 1);
    begin
@@ -165,7 +165,18 @@ package body Executeur_G is
          raise Valeur_Option_Incorrect_E;
       end if;
 
-      return Nom;
+      if Nom'Length > Sys_Exp_P.NB_Caractres then
+         Ada.Text_IO.Put_Line
+            (
+               Item => "Le fichier [" & Nom & "] est trop long, il fait " &
+                  "[" & Nom'Length'Image & "]" &
+                  " Il doit faire moins de " &
+                  "[" & Sys_Exp_P.NB_Caractres'Image & "] caractères."
+            );
+         raise Valeur_Option_Incorrect_E;
+      end if;
+
+      return Sys_Exp_P.Nom_Fichier_T (Nom);
    end Verifier_Nom_Fichier;
    ---------------------------------------------------------------------------
 

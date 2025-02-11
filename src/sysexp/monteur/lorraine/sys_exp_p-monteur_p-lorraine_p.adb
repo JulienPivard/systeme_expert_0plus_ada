@@ -8,7 +8,7 @@ is
    not overriding
    function Creer
       (
-         Nom_Fichier : in     String;
+         Nom_Fichier : in     Nom_Fichier_T;
          Fabrique    : in     Fabrique_R.Fabrique_Interface_T'Class
       )
       return Monteur_T
