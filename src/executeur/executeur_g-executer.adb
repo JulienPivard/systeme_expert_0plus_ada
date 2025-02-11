@@ -21,16 +21,16 @@ is
    --  @private Package interne.
 
    M : constant Monteur_R.Monteur_T := Monteur_R.Creer
-         (
-            Nom_Fichier => Nom_Fichier,
-            Fabrique    =>
-               (
-                  if Mode_Debug then
-                     Declencheur_R.Debug_P.Fabrique_P.Creer
-                  else
-                     Declencheur_R.Fabrique_P.Creer
-               )
-         );
+      (
+         Nom_Fichier => Nom_Fichier,
+         Fabrique    =>
+            (
+               if Mode_Debug then
+                  Declencheur_R.Debug_P.Fabrique_P.Creer
+               else
+                  Declencheur_R.Fabrique_P.Creer
+            )
+      );
 
    D : Sys_Exp_P.Monteur_P.Directeur_P.Directeur_T :=
       Sys_Exp_P.Monteur_P.Directeur_P.Creer (Monteur => M);
