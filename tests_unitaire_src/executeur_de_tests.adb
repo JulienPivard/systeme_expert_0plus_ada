@@ -19,6 +19,7 @@ with Suite_De_Tests_Regles;
 with Suite_De_Tests_Valeur;
 with Suite_De_Tests_Visiteur_Forme;
 with Suite_De_Tests_Moteur_Inference;
+with Suite_De_Tests_Monteur_Lorraine;
 
 with Suite_De_Tests_Jeton;
 
@@ -95,6 +96,9 @@ procedure Executeur_De_Tests is
    procedure Runner_Suite_Jeton is new AUnit.Run.Test_Runner
       (Suite => Suite_De_Tests_Jeton);
 
+   procedure Runner_Suite_Monteur_Lorraine is new AUnit.Run.Test_Runner
+      (Suite => Suite_De_Tests_Monteur_Lorraine);
+
    --  Options d'affichage du reporter
    Options  : constant AUnit.Options.AUnit_Options :=
       AUnit.Options.AUnit_Options'
@@ -155,6 +159,12 @@ begin
       );
 
    Runner_Suite_Jeton
+      (
+         Reporter => Reporter,
+         Options  => Options
+      );
+
+   Runner_Suite_Monteur_Lorraine
       (
          Reporter => Reporter,
          Options  => Options
