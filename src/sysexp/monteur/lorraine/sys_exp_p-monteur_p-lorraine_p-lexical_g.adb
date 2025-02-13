@@ -257,18 +257,25 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_G is
             (
                if    Chaine_Trouvee = "si" then
                   Jeton_P.Fabrique_P.Faire_Si
+
                elsif Chaine_Trouvee = "et" then
                   Jeton_P.Fabrique_P.Faire_Et
+
                elsif Chaine_Trouvee = "non" then
                   Jeton_P.Fabrique_P.Faire_Non
+
                elsif Chaine_Trouvee = "alors" then
                   Jeton_P.Fabrique_P.Faire_Alors
+
                elsif Chaine_Trouvee = "faits_booleens" then
                   Jeton_P.Fabrique_P.Faire_Fait_Booleen
+
                elsif Chaine_Trouvee = "faits_symboliques" then
                   Jeton_P.Fabrique_P.Faire_Fait_Symbolique
+
                elsif Chaine_Trouvee = "faits_entiers" then
                   Jeton_P.Fabrique_P.Faire_Fait_Entier
+
                else
                   Jeton_P.Fabrique_P.Faire_Identificateur
                      (Representation => Chaine_Trouvee)
