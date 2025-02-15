@@ -255,7 +255,7 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "lecture des jetons",
+                  Name => Nom_Test & "lecture de multiples jetons",
                   Test => Scenario_R.Test_Lire_Jetons'Access
                )
          );
