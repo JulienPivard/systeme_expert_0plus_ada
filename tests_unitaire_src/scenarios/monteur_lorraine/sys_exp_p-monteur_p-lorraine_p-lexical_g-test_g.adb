@@ -71,7 +71,15 @@ is
 
       use type Jeton_P.Sorte_T;
 
-      C : constant Faux_Fichier_P.Contenu_T := Faux_Fichier_P.Remplir
+      Ligne_Attendue : constant String :=
+         "faits_booleens = avoir_fait_prison, " &
+         "habite_chateau, intelligent, fort, ";
+
+      Sorte_Attendue : constant Jeton_P.Sorte_T := Jeton_P.Fait_Booleen_E;
+
+      Lexical : Lexical_T := Creer (Nom_Fichier => "inutile");
+   begin
+      Faux_Fichier_P.Remplir
          (
             Contenu =>
                "faits_booleens = avoir_fait_prison, " &
@@ -82,17 +90,6 @@ is
                Fin_Ligne
          );
 
-      pragma Unreferenced (C);
-      --  Utile uniquement pour initialiser le contenu du fichier.
-
-      Ligne_Attendue : constant String :=
-         "faits_booleens = avoir_fait_prison, " &
-         "habite_chateau, intelligent, fort, ";
-
-      Sorte_Attendue : constant Jeton_P.Sorte_T := Jeton_P.Fait_Booleen_E;
-
-      Lexical : Lexical_T := Creer (Nom_Fichier => "inutile");
-   begin
       Bloc_Tests :
       declare
          Jeton_Lu : constant Jeton_T := Lexical.Suivant;
@@ -150,17 +147,13 @@ is
 
       use type Jeton_P.Sorte_T;
 
-      C : constant Faux_Fichier_P.Contenu_T := Faux_Fichier_P.Remplir
-         (Contenu => "( test" & Fin_Ligne);
-
-      pragma Unreferenced (C);
-      --  Utile uniquement pour initialiser le contenu du fichier.
-
       Sorte_Attendue : constant Jeton_P.Sorte_T :=
          Jeton_P.Parenthese_Ouvrante_E;
 
       Lexical : Lexical_T := Creer (Nom_Fichier => "inutile");
    begin
+      Faux_Fichier_P.Remplir (Contenu => "( test" & Fin_Ligne);
+
       Bloc_Tests :
       declare
          Jeton_Lu : constant Jeton_T := Lexical.Suivant;
@@ -210,17 +203,13 @@ is
 
       use type Jeton_P.Sorte_T;
 
-      C : constant Faux_Fichier_P.Contenu_T := Faux_Fichier_P.Remplir
-         (Contenu => ") test" & Fin_Ligne);
-
-      pragma Unreferenced (C);
-      --  Utile uniquement pour initialiser le contenu du fichier.
-
       Sorte_Attendue : constant Jeton_P.Sorte_T :=
          Jeton_P.Parenthese_Fermante_E;
 
       Lexical : Lexical_T := Creer (Nom_Fichier => "inutile");
    begin
+      Faux_Fichier_P.Remplir (Contenu => ") test" & Fin_Ligne);
+
       Bloc_Tests :
       declare
          Jeton_Lu : constant Jeton_T := Lexical.Suivant;
@@ -270,16 +259,12 @@ is
 
       use type Jeton_P.Sorte_T;
 
-      C : constant Faux_Fichier_P.Contenu_T := Faux_Fichier_P.Remplir
-         (Contenu => "+ test" & Fin_Ligne);
-
-      pragma Unreferenced (C);
-      --  Utile uniquement pour initialiser le contenu du fichier.
-
       Sorte_Attendue : constant Jeton_P.Sorte_T := Jeton_P.Operateur_Plus_E;
 
       Lexical : Lexical_T := Creer (Nom_Fichier => "inutile");
    begin
+      Faux_Fichier_P.Remplir (Contenu => "+ test" & Fin_Ligne);
+
       Bloc_Tests :
       declare
          Jeton_Lu : constant Jeton_T := Lexical.Suivant;
@@ -329,16 +314,12 @@ is
 
       use type Jeton_P.Sorte_T;
 
-      C : constant Faux_Fichier_P.Contenu_T := Faux_Fichier_P.Remplir
-         (Contenu => "- test" & Fin_Ligne);
-
-      pragma Unreferenced (C);
-      --  Utile uniquement pour initialiser le contenu du fichier.
-
       Sorte_Attendue : constant Jeton_P.Sorte_T := Jeton_P.Operateur_Moins_E;
 
       Lexical : Lexical_T := Creer (Nom_Fichier => "inutile");
    begin
+      Faux_Fichier_P.Remplir (Contenu => "- test" & Fin_Ligne);
+
       Bloc_Tests :
       declare
          Jeton_Lu : constant Jeton_T := Lexical.Suivant;
@@ -388,16 +369,12 @@ is
 
       use type Jeton_P.Sorte_T;
 
-      C : constant Faux_Fichier_P.Contenu_T := Faux_Fichier_P.Remplir
-         (Contenu => "* test" & Fin_Ligne);
-
-      pragma Unreferenced (C);
-      --  Utile uniquement pour initialiser le contenu du fichier.
-
       Sorte_Attendue : constant Jeton_P.Sorte_T := Jeton_P.Operateur_Mul_E;
 
       Lexical : Lexical_T := Creer (Nom_Fichier => "inutile");
    begin
+      Faux_Fichier_P.Remplir (Contenu => "* test" & Fin_Ligne);
+
       Bloc_Tests :
       declare
          Jeton_Lu : constant Jeton_T := Lexical.Suivant;
@@ -447,16 +424,12 @@ is
 
       use type Jeton_P.Sorte_T;
 
-      C : constant Faux_Fichier_P.Contenu_T := Faux_Fichier_P.Remplir
-         (Contenu => "/ test" & Fin_Ligne);
-
-      pragma Unreferenced (C);
-      --  Utile uniquement pour initialiser le contenu du fichier.
-
       Sorte_Attendue : constant Jeton_P.Sorte_T := Jeton_P.Operateur_Div_E;
 
       Lexical : Lexical_T := Creer (Nom_Fichier => "inutile");
    begin
+      Faux_Fichier_P.Remplir (Contenu => "/ test" & Fin_Ligne);
+
       Bloc_Tests :
       declare
          Jeton_Lu : constant Jeton_T := Lexical.Suivant;
@@ -506,16 +479,12 @@ is
 
       use type Jeton_P.Sorte_T;
 
-      C : constant Faux_Fichier_P.Contenu_T := Faux_Fichier_P.Remplir
-         (Contenu => ", test" & Fin_Ligne);
-
-      pragma Unreferenced (C);
-      --  Utile uniquement pour initialiser le contenu du fichier.
-
       Sorte_Attendue : constant Jeton_P.Sorte_T := Jeton_P.Separateur_E;
 
       Lexical : Lexical_T := Creer (Nom_Fichier => "inutile");
    begin
+      Faux_Fichier_P.Remplir (Contenu => ", test" & Fin_Ligne);
+
       Bloc_Tests :
       declare
          Jeton_Lu : constant Jeton_T := Lexical.Suivant;
@@ -565,16 +534,12 @@ is
 
       use type Jeton_P.Sorte_T;
 
-      C : constant Faux_Fichier_P.Contenu_T := Faux_Fichier_P.Remplir
-         (Contenu => "; test" & Fin_Ligne);
-
-      pragma Unreferenced (C);
-      --  Utile uniquement pour initialiser le contenu du fichier.
-
       Sorte_Attendue : constant Jeton_P.Sorte_T := Jeton_P.Fin_Expression_E;
 
       Lexical : Lexical_T := Creer (Nom_Fichier => "inutile");
    begin
+      Faux_Fichier_P.Remplir (Contenu => "; test" & Fin_Ligne);
+
       Bloc_Tests :
       declare
          Jeton_Lu : constant Jeton_T := Lexical.Suivant;
@@ -624,16 +589,12 @@ is
 
       use type Jeton_P.Sorte_T;
 
-      C : constant Faux_Fichier_P.Contenu_T := Faux_Fichier_P.Remplir
-         (Contenu => "");
-
-      pragma Unreferenced (C);
-      --  Utile uniquement pour initialiser le contenu du fichier.
-
       Sorte_Attendue : constant Jeton_P.Sorte_T := Jeton_P.Fin_Fichier_E;
 
       Lexical : Lexical_T := Creer (Nom_Fichier => "inutile");
    begin
+      Faux_Fichier_P.Remplir (Contenu => "");
+
       Bloc_Tests :
       declare
          Jeton_Lu : constant Jeton_T := Lexical.Suivant;
@@ -685,16 +646,12 @@ is
 
       Contenu : constant String := Facilites_P.Creer_Chaine;
 
-      C : constant Faux_Fichier_P.Contenu_T := Faux_Fichier_P.Remplir
-         (Contenu => Contenu & " test" & Fin_Ligne);
-
-      pragma Unreferenced (C);
-      --  Utile uniquement pour initialiser le contenu du fichier.
-
       Sorte_Attendue : constant Jeton_P.Sorte_T := Jeton_P.Identificateur_E;
 
       Lexical : Lexical_T := Creer (Nom_Fichier => "inutile");
    begin
+      Faux_Fichier_P.Remplir (Contenu => Contenu & " test" & Fin_Ligne);
+
       Bloc_Tests :
       declare
          Jeton_Lu : constant Jeton_T := Lexical.Suivant;
@@ -757,16 +714,12 @@ is
       Contenu         : constant String := Entier'Image;
       Contenu_Attendu : constant String := Trim (Source => Contenu);
 
-      C : constant Faux_Fichier_P.Contenu_T := Faux_Fichier_P.Remplir
-         (Contenu => Contenu & " test" & Fin_Ligne);
-
-      pragma Unreferenced (C);
-      --  Utile uniquement pour initialiser le contenu du fichier.
-
       Sorte_Attendue : constant Jeton_P.Sorte_T := Jeton_P.Entier_E;
 
       Lexical : Lexical_T := Creer (Nom_Fichier => "inutile");
    begin
+      Faux_Fichier_P.Remplir (Contenu => Contenu & " test" & Fin_Ligne);
+
       Bloc_Tests :
       declare
          Jeton_Lu : constant Jeton_T := Lexical.Suivant;
@@ -823,16 +776,12 @@ is
 
       use type Jeton_P.Sorte_T;
 
-      C : constant Faux_Fichier_P.Contenu_T := Faux_Fichier_P.Remplir
-         (Contenu => "si test" & Fin_Ligne);
-
-      pragma Unreferenced (C);
-      --  Utile uniquement pour initialiser le contenu du fichier.
-
       Sorte_Attendue : constant Jeton_P.Sorte_T := Jeton_P.Si_E;
 
       Lexical : Lexical_T := Creer (Nom_Fichier => "inutile");
    begin
+      Faux_Fichier_P.Remplir (Contenu => "si test" & Fin_Ligne);
+
       Bloc_Tests :
       declare
          Jeton_Lu : constant Jeton_T := Lexical.Suivant;
@@ -882,16 +831,12 @@ is
 
       use type Jeton_P.Sorte_T;
 
-      C : constant Faux_Fichier_P.Contenu_T := Faux_Fichier_P.Remplir
-         (Contenu => "non test" & Fin_Ligne);
-
-      pragma Unreferenced (C);
-      --  Utile uniquement pour initialiser le contenu du fichier.
-
       Sorte_Attendue : constant Jeton_P.Sorte_T := Jeton_P.Non_E;
 
       Lexical : Lexical_T := Creer (Nom_Fichier => "inutile");
    begin
+      Faux_Fichier_P.Remplir (Contenu => "non test" & Fin_Ligne);
+
       Bloc_Tests :
       declare
          Jeton_Lu : constant Jeton_T := Lexical.Suivant;
@@ -941,16 +886,12 @@ is
 
       use type Jeton_P.Sorte_T;
 
-      C : constant Faux_Fichier_P.Contenu_T := Faux_Fichier_P.Remplir
-         (Contenu => "et test" & Fin_Ligne);
-
-      pragma Unreferenced (C);
-      --  Utile uniquement pour initialiser le contenu du fichier.
-
       Sorte_Attendue : constant Jeton_P.Sorte_T := Jeton_P.Et_E;
 
       Lexical : Lexical_T := Creer (Nom_Fichier => "inutile");
    begin
+      Faux_Fichier_P.Remplir (Contenu => "et test" & Fin_Ligne);
+
       Bloc_Tests :
       declare
          Jeton_Lu : constant Jeton_T := Lexical.Suivant;
@@ -1000,16 +941,12 @@ is
 
       use type Jeton_P.Sorte_T;
 
-      C : constant Faux_Fichier_P.Contenu_T := Faux_Fichier_P.Remplir
-         (Contenu => "alors test" & Fin_Ligne);
-
-      pragma Unreferenced (C);
-      --  Utile uniquement pour initialiser le contenu du fichier.
-
       Sorte_Attendue : constant Jeton_P.Sorte_T := Jeton_P.Alors_E;
 
       Lexical : Lexical_T := Creer (Nom_Fichier => "inutile");
    begin
+      Faux_Fichier_P.Remplir (Contenu => "alors test" & Fin_Ligne);
+
       Bloc_Tests :
       declare
          Jeton_Lu : constant Jeton_T := Lexical.Suivant;
@@ -1059,16 +996,12 @@ is
 
       use type Jeton_P.Sorte_T;
 
-      C : constant Faux_Fichier_P.Contenu_T := Faux_Fichier_P.Remplir
-         (Contenu => "= test" & Fin_Ligne);
-
-      pragma Unreferenced (C);
-      --  Utile uniquement pour initialiser le contenu du fichier.
-
       Sorte_Attendue : constant Jeton_P.Sorte_T := Jeton_P.Egal_E;
 
       Lexical : Lexical_T := Creer (Nom_Fichier => "inutile");
    begin
+      Faux_Fichier_P.Remplir (Contenu => "= test" & Fin_Ligne);
+
       Bloc_Tests :
       declare
          Jeton_Lu : constant Jeton_T := Lexical.Suivant;
@@ -1118,16 +1051,12 @@ is
 
       use type Jeton_P.Sorte_T;
 
-      C : constant Faux_Fichier_P.Contenu_T := Faux_Fichier_P.Remplir
-         (Contenu => "> test" & Fin_Ligne);
-
-      pragma Unreferenced (C);
-      --  Utile uniquement pour initialiser le contenu du fichier.
-
       Sorte_Attendue : constant Jeton_P.Sorte_T := Jeton_P.Superieur_E;
 
       Lexical : Lexical_T := Creer (Nom_Fichier => "inutile");
    begin
+      Faux_Fichier_P.Remplir (Contenu => "> test" & Fin_Ligne);
+
       Bloc_Tests :
       declare
          Jeton_Lu : constant Jeton_T := Lexical.Suivant;
@@ -1177,16 +1106,12 @@ is
 
       use type Jeton_P.Sorte_T;
 
-      C : constant Faux_Fichier_P.Contenu_T := Faux_Fichier_P.Remplir
-         (Contenu => "< test" & Fin_Ligne);
-
-      pragma Unreferenced (C);
-      --  Utile uniquement pour initialiser le contenu du fichier.
-
       Sorte_Attendue : constant Jeton_P.Sorte_T := Jeton_P.Inferieur_E;
 
       Lexical : Lexical_T := Creer (Nom_Fichier => "inutile");
    begin
+      Faux_Fichier_P.Remplir (Contenu => "< test" & Fin_Ligne);
+
       Bloc_Tests :
       declare
          Jeton_Lu : constant Jeton_T := Lexical.Suivant;
@@ -1236,16 +1161,12 @@ is
 
       use type Jeton_P.Sorte_T;
 
-      C : constant Faux_Fichier_P.Contenu_T := Faux_Fichier_P.Remplir
-         (Contenu => ">= test" & Fin_Ligne);
-
-      pragma Unreferenced (C);
-      --  Utile uniquement pour initialiser le contenu du fichier.
-
       Sorte_Attendue : constant Jeton_P.Sorte_T := Jeton_P.Superieur_Egal_E;
 
       Lexical : Lexical_T := Creer (Nom_Fichier => "inutile");
    begin
+      Faux_Fichier_P.Remplir (Contenu => ">= test" & Fin_Ligne);
+
       Bloc_Tests :
       declare
          Jeton_Lu : constant Jeton_T := Lexical.Suivant;
@@ -1295,16 +1216,12 @@ is
 
       use type Jeton_P.Sorte_T;
 
-      C : constant Faux_Fichier_P.Contenu_T := Faux_Fichier_P.Remplir
-         (Contenu => "<= test" & Fin_Ligne);
-
-      pragma Unreferenced (C);
-      --  Utile uniquement pour initialiser le contenu du fichier.
-
       Sorte_Attendue : constant Jeton_P.Sorte_T := Jeton_P.Inferieur_Egal_E;
 
       Lexical : Lexical_T := Creer (Nom_Fichier => "inutile");
    begin
+      Faux_Fichier_P.Remplir (Contenu => "<= test" & Fin_Ligne);
+
       Bloc_Tests :
       declare
          Jeton_Lu : constant Jeton_T := Lexical.Suivant;
@@ -1354,16 +1271,12 @@ is
 
       use type Jeton_P.Sorte_T;
 
-      C : constant Faux_Fichier_P.Contenu_T := Faux_Fichier_P.Remplir
-         (Contenu => "/= test" & Fin_Ligne);
-
-      pragma Unreferenced (C);
-      --  Utile uniquement pour initialiser le contenu du fichier.
-
       Sorte_Attendue : constant Jeton_P.Sorte_T := Jeton_P.Different_E;
 
       Lexical : Lexical_T := Creer (Nom_Fichier => "inutile");
    begin
+      Faux_Fichier_P.Remplir (Contenu => "/= test" & Fin_Ligne);
+
       Bloc_Tests :
       declare
          Jeton_Lu : constant Jeton_T := Lexical.Suivant;
@@ -1413,16 +1326,12 @@ is
 
       use type Jeton_P.Sorte_T;
 
-      C : constant Faux_Fichier_P.Contenu_T := Faux_Fichier_P.Remplir
-         (Contenu => "faits_booleens test" & Fin_Ligne);
-
-      pragma Unreferenced (C);
-      --  Utile uniquement pour initialiser le contenu du fichier.
-
       Sorte_Attendue : constant Jeton_P.Sorte_T := Jeton_P.Fait_Booleen_E;
 
       Lexical : Lexical_T := Creer (Nom_Fichier => "inutile");
    begin
+      Faux_Fichier_P.Remplir (Contenu => "faits_booleens test" & Fin_Ligne);
+
       Bloc_Tests :
       declare
          Jeton_Lu : constant Jeton_T := Lexical.Suivant;
@@ -1472,16 +1381,13 @@ is
 
       use type Jeton_P.Sorte_T;
 
-      C : constant Faux_Fichier_P.Contenu_T := Faux_Fichier_P.Remplir
-         (Contenu => "faits_symboliques test" & Fin_Ligne);
-
-      pragma Unreferenced (C);
-      --  Utile uniquement pour initialiser le contenu du fichier.
-
       Sorte_Attendue : constant Jeton_P.Sorte_T := Jeton_P.Fait_Symbolique_E;
 
       Lexical : Lexical_T := Creer (Nom_Fichier => "inutile");
    begin
+      Faux_Fichier_P.Remplir
+         (Contenu => "faits_symboliques test" & Fin_Ligne);
+
       Bloc_Tests :
       declare
          Jeton_Lu : constant Jeton_T := Lexical.Suivant;
@@ -1531,16 +1437,12 @@ is
 
       use type Jeton_P.Sorte_T;
 
-      C : constant Faux_Fichier_P.Contenu_T := Faux_Fichier_P.Remplir
-         (Contenu => "faits_entiers test" & Fin_Ligne);
-
-      pragma Unreferenced (C);
-      --  Utile uniquement pour initialiser le contenu du fichier.
-
       Sorte_Attendue : constant Jeton_P.Sorte_T := Jeton_P.Fait_Entier_E;
 
       Lexical : Lexical_T := Creer (Nom_Fichier => "inutile");
    begin
+      Faux_Fichier_P.Remplir (Contenu => "faits_entiers test" & Fin_Ligne);
+
       Bloc_Tests :
       declare
          Jeton_Lu : constant Jeton_T := Lexical.Suivant;
@@ -1592,16 +1494,12 @@ is
 
       Contenu : constant String := "@";
 
-      C : constant Faux_Fichier_P.Contenu_T := Faux_Fichier_P.Remplir
-         (Contenu => Contenu & " test" & Fin_Ligne);
-
-      pragma Unreferenced (C);
-      --  Utile uniquement pour initialiser le contenu du fichier.
-
       Sorte_Attendue : constant Jeton_P.Sorte_T := Jeton_P.Inconnu_E;
 
       Lexical : Lexical_T := Creer (Nom_Fichier => "inutile");
    begin
+      Faux_Fichier_P.Remplir (Contenu => Contenu & " test" & Fin_Ligne);
+
       Bloc_Tests :
       declare
          Jeton_Lu : constant Jeton_T := Lexical.Suivant;
@@ -1896,7 +1794,11 @@ is
             232 => Jeton_P.Fin_Fichier_E
          );
 
-      C : constant Faux_Fichier_P.Contenu_T := Faux_Fichier_P.Remplir
+      Lexical : Lexical_T := Creer (Nom_Fichier => "inutile");
+
+      I : Integer := 1;
+   begin
+      Faux_Fichier_P.Remplir
          (
             Contenu =>
                "faits_booleens = avoir_fait_prison, " &
@@ -1980,13 +1882,6 @@ is
                Fin_Ligne
          );
 
-      pragma Unreferenced (C);
-      --  Utile uniquement pour initialiser le contenu du fichier.
-
-      Lexical : Lexical_T := Creer (Nom_Fichier => "inutile");
-
-      I : Integer := 1;
-   begin
       B_Verifier_Jetons :
       for Sorte_Attendu of Sortes_Attendue loop
          Bloc_Verifier_Jeton :

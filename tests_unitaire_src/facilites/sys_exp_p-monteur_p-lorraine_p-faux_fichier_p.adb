@@ -65,16 +65,9 @@ is
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
-   function Remplir
+   procedure Remplir
       (Contenu : in     String)
-      return Contenu_T
    is
-      Resultat : constant Contenu_T := Contenu_T'
-         (
-            Num_Ligne    => Numero_Ligne_T'Last,
-            Fin_Atteinte => True,
-            Position     => Faux_Contenu'Last
-         );
    begin
       Ada.Strings.Fixed.Move
          (
@@ -83,8 +76,6 @@ is
             Drop   => Ada.Strings.Right
          );
       Fin_Faux_Contenu := Contenu'Length;
-
-      return Resultat;
    end Remplir;
    ---------------------------------------------------------------------------
 

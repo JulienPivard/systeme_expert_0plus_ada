@@ -35,9 +35,8 @@ is
       (Contenu : in     Contenu_T)
       return Boolean;
 
-   function Remplir
-      (Contenu : in     String)
-      return Contenu_T;
+   procedure Remplir
+      (Contenu : in     String);
 
 private
 
