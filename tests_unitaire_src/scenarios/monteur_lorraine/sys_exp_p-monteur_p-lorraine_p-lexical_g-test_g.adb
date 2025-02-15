@@ -1,4 +1,5 @@
 with Ada.Characters.Latin_1;
+with Ada.Strings.Fixed;
 
 with AUnit.Assertions;
 
@@ -7,6 +8,14 @@ with Sys_Exp_P.Monteur_P.Lorraine_P.Faux_Fichier_P;
 package body Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_G.Test_G
    with Spark_Mode => Off
 is
+
+   function Trim
+      (
+         Source : in     String;
+         Side   : in     Ada.Strings.Trim_End := Ada.Strings.Both
+      )
+      return String
+      renames Ada.Strings.Fixed.Trim;
 
    Fin_Ligne : constant Character := Ada.Characters.Latin_1.LF;
 
@@ -68,7 +77,7 @@ is
                Fin_Ligne &
                "riche, grand, lourd, malhonnete, " &
                "parents_riches, pauvre, travailleur, " &
-               Fin_Ligne &
+               Fin_Ligne
          );
 
       pragma Unreferenced (C);
