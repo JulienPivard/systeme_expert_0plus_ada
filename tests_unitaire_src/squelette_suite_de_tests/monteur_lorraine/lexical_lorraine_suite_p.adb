@@ -113,26 +113,26 @@ is
          );
 
       for I in 1 .. 10 loop
-      Ptr_Test_Suite.all.Add_Test
-         (
-            T => Caller_P.Create
-               (
-                  Name => Nom_Test & "lecture jeton identificateur " &
+         Ptr_Test_Suite.all.Add_Test
+            (
+               T => Caller_P.Create
+                  (
+                     Name => Nom_Test & "lecture jeton identificateur " &
                         "[" & I'Image & "]",
-                  Test => Scenario_R.Test_Lire_Jeton_Identificateur'Access
-               )
-         );
+                     Test => Scenario_R.Test_Lire_Jeton_Identificateur'Access
+                  )
+            );
       end loop;
       for I in 1 .. 10 loop
-      Ptr_Test_Suite.all.Add_Test
-         (
-            T => Caller_P.Create
-               (
-                  Name => Nom_Test & "lecture jeton entier " &
+         Ptr_Test_Suite.all.Add_Test
+            (
+               T => Caller_P.Create
+                  (
+                     Name => Nom_Test & "lecture jeton entier " &
                         "[" & I'Image & "]",
-                  Test => Scenario_R.Test_Lire_Jeton_Entier'Access
-               )
-         );
+                     Test => Scenario_R.Test_Lire_Jeton_Entier'Access
+                  )
+            );
       end loop;
 
       Ptr_Test_Suite.all.Add_Test
