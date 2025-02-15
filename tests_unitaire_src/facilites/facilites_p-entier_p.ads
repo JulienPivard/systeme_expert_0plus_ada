@@ -8,6 +8,13 @@ package Facilites_P.Entier_P is
    pragma Elaborate_Body;
    pragma Spark_Mode (Off);
 
+   subtype Positif_T is Sys_Exp_P.Entier_T range 0 .. Sys_Exp_P.Entier_T'Last;
+
+   function Creer_Entier_Positif
+      return Positif_T;
+   --  Crée un entier positif avec une valeur aléatoire.
+   --  @return Un entier positif.
+
    function Creer_Entier
       return Sys_Exp_P.Entier_T;
    --  Crée un entier avec une valeur aléatoires.

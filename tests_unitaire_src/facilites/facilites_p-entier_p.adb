@@ -6,8 +6,20 @@ package body Facilites_P.Entier_P is
 
    package Entier_Alea_P is new Ada.Numerics.Discrete_Random
       (Result_Subtype => Sys_Exp_P.Entier_T);
+   package Entier_Positif_Alea_P is new Ada.Numerics.Discrete_Random
+      (Result_Subtype => Positif_T);
 
-   Generateur_Entier : Entier_Alea_P.Generator;
+   Generateur_Entier         : Entier_Alea_P.Generator;
+   Generateur_Entier_Positif : Entier_Positif_Alea_P.Generator;
+
+   ---------------------------------------------------------------------------
+   function Creer_Entier_Positif
+      return Positif_T
+   is
+   begin
+      return Entier_Positif_Alea_P.Random (Gen => Generateur_Entier_Positif);
+   end Creer_Entier_Positif;
+   ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
    function Creer_Entier
@@ -47,6 +59,7 @@ package body Facilites_P.Entier_P is
 
 begin
 
-   Entier_Alea_P.Reset (Gen => Generateur_Entier);
+   Entier_Alea_P.Reset         (Gen => Generateur_Entier);
+   Entier_Positif_Alea_P.Reset (Gen => Generateur_Entier_Positif);
 
 end Facilites_P.Entier_P;
