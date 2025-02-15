@@ -2,6 +2,8 @@ with Ada.Characters.Latin_1;
 
 with AUnit.Assertions;
 
+with Sys_Exp_P.Monteur_P.Lorraine_P.Faux_Fichier_P;
+
 package body Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_G.Test_G
    with Spark_Mode => Off
 is
@@ -15,89 +17,7 @@ is
    is
       pragma Unreferenced (T);
    begin
-      T.C := Sys_Exp_P.Monteur_P.Lorraine_P.Faux_Fichier_P.Remplir
-         (
-            Contenu =>
-               "faits_booleens = avoir_fait_prison, " &
-               "habite_chateau, intelligent, fort, " &
-               Fin_Ligne &
-               "riche, grand, lourd, malhonnete, " &
-               "parents_riches, pauvre, travailleur, " &
-               Fin_Ligne &
-               "chercheur, thesard, leger;" &
-               Fin_Ligne &
-               Fin_Ligne &
-               "faits_symboliques = profession; " &
-               Fin_Ligne &
-               Fin_Ligne &
-               "faits_entiers = fortune, fortune_parents, " &
-               "poids, taille, travail_par_jour, " &
-               Fin_Ligne &
-               "combien, palier_richesse; " &
-               Fin_Ligne &
-               Fin_Ligne &
-               "chercheur ; " &
-               Fin_Ligne &
-               "non thesard ; " &
-               Fin_Ligne &
-               "profession = medecin; " &
-               Fin_Ligne &
-               "poids = (-46 + 95) ; " &
-               Fin_Ligne &
-               "palier_richesse = 10000; " &
-               Fin_Ligne &
-               "fortune_parents = " &
-               Fin_Ligne & Ada.Characters.Latin_1.HT &
-               "(1000/10 * (25 + 80) / 3 + 50 * " &
-               "(12 - 5) + 14000 /2) - 1000; " &
-               Fin_Ligne &
-               Fin_Ligne &
-               "si malhonnete     et fort        alors riche; " &
-               Fin_Ligne &
-               "si parents_riches et intelligent alors riche; " &
-               Fin_Ligne &
-               "si travailleur    et intelligent alors riche; " &
-               Fin_Ligne &
-               "si fortune > palier_richesse     alors riche; " &
-               Fin_Ligne &
-               Fin_Ligne &
-               "si profession = medecin       alors riche; " &
-               Fin_Ligne &
-               "si profession = informaticien alors riche; " &
-               Fin_Ligne &
-               "si profession = fonctionnaire alors pauvre;" &
-               Fin_Ligne &
-               Fin_Ligne &
-               "si non habite_chateau alors pauvre ;" &
-               Fin_Ligne &
-               Fin_Ligne &
-               "si riche             alors non pauvre ;" &
-               Fin_Ligne &
-               "si pauvre            alors non riche ; " &
-               Fin_Ligne &
-               "si avoir_fait_prison alors malhonnete ; " &
-               Fin_Ligne &
-               Fin_Ligne &
-               "si grand et lourd alors fort ;" &
-               Fin_Ligne &
-               Fin_Ligne &
-               "si taille > 185 alors grand;" &
-               Fin_Ligne &
-               "si poids > 95 alors lourd ;" &
-               Fin_Ligne &
-               "si poids < 50 alors leger ;" &
-               Fin_Ligne &
-               "si poids < 50 alors fortune = " &
-               "(2 * fortune_parents) - 1;" &
-               Fin_Ligne &
-               Fin_Ligne &
-               "si fortune_parents  > palier_richesse " &
-               "alors parents_riches;" &
-               Fin_Ligne &
-               "si travail_par_jour > 8               " &
-               "alors travailleur;" &
-               Fin_Ligne
-         );
+      null;
    end Set_Up;
    ---------------------------------------------------------------------------
 
@@ -140,56 +60,74 @@ is
 
       use type Jeton_P.Sorte_T;
 
-      Lexical : Lexical_T := Creer (Nom_Fichier => "inutile");
+      C : constant Faux_Fichier_P.Contenu_T := Faux_Fichier_P.Remplir
+         (
+            Contenu =>
+               "faits_booleens = avoir_fait_prison, " &
+               "habite_chateau, intelligent, fort, " &
+               Fin_Ligne &
+               "riche, grand, lourd, malhonnete, " &
+               "parents_riches, pauvre, travailleur, " &
+               Fin_Ligne &
+         );
+
+      pragma Unreferenced (C);
+      --  Utile uniquement pour initialiser le contenu du fichier.
 
       Ligne_Attendue : constant String :=
          "faits_booleens = avoir_fait_prison, " &
          "habite_chateau, intelligent, fort, ";
 
-      Jeton_Lu : constant Jeton_T := Lexical.Suivant;
-
-      Ligne_Lue : constant String := Lexical.Lire_Ligne;
-
       Sorte_Attendue : constant Jeton_P.Sorte_T := Jeton_P.Fait_Booleen_E;
+
+      Lexical : Lexical_T := Creer (Nom_Fichier => "inutile");
    begin
-      AUnit.Assertions.Assert
-         (
-            Condition => Jeton_Lu.Lire_Sorte = Sorte_Attendue,
-            Message   => "Jeton lu " &
-               "[" & Jeton_Lu.Lire_Representation & "] n'est pas " &
-               "[" & Sorte_Attendue'Image & "]"
-         );
-      AUnit.Assertions.Assert
-         (
-            Condition => Jeton_Lu.Est_Fait_Booleen,
-            Message   => "Jeton lu " &
-               "[" & Jeton_Lu.Lire_Representation & "] n'est pas " &
-               "[" & Sorte_Attendue'Image & "]"
-         );
-      AUnit.Assertions.Assert
-         (
-            Condition => Lexical.Lire_Position = 15,
-            Message   => "Position lue " &
-               "[" & Lexical.Lire_Position'Image & "] /= [15] attendu"
-         );
-      AUnit.Assertions.Assert
-         (
-            Condition => Lexical.Lire_Ancienne_Position = 1,
-            Message   => "Ancienne position lue " &
-               "[" & Lexical.Lire_Ancienne_Position'Image & "] /= [1] attendu"
-         );
-      AUnit.Assertions.Assert
-         (
-            Condition => Lexical.Lire_Numero_Ligne = Numero_Ligne_G_T'First,
-            Message   => "Numero ligne lue " &
-               "[" & Lexical.Lire_Numero_Ligne'Image & "] /= [1] attendu"
-         );
-      AUnit.Assertions.Assert
-         (
-            Condition => Ligne_Lue = Ligne_Attendue,
-            Message   => "Ligne lue " &
-               "[" & Ligne_Lue & "] /= [" & Ligne_Attendue & "] attendu"
-         );
+      Bloc_Tests :
+      declare
+         Jeton_Lu : constant Jeton_T := Lexical.Suivant;
+
+         Ligne_Lue : constant String := Lexical.Lire_Ligne;
+      begin
+         AUnit.Assertions.Assert
+            (
+               Condition => Jeton_Lu.Lire_Sorte = Sorte_Attendue,
+               Message   => "Jeton lu " &
+                  "[" & Jeton_Lu.Lire_Representation & "] n'est pas " &
+                  "[" & Sorte_Attendue'Image & "]"
+            );
+         AUnit.Assertions.Assert
+            (
+               Condition => Jeton_Lu.Est_Fait_Booleen,
+               Message   => "Jeton lu " &
+                  "[" & Jeton_Lu.Lire_Representation & "] n'est pas " &
+                  "[" & Sorte_Attendue'Image & "]"
+            );
+         AUnit.Assertions.Assert
+            (
+               Condition => Lexical.Lire_Position = 15,
+               Message   => "Position lue " &
+                  "[" & Lexical.Lire_Position'Image & "] /= [15] attendu"
+            );
+         AUnit.Assertions.Assert
+            (
+               Condition => Lexical.Lire_Ancienne_Position = 1,
+               Message   => "Ancienne position lue " &
+                  "[" & Lexical.Lire_Ancienne_Position'Image & "] /= " &
+                  "[1] attendu"
+            );
+         AUnit.Assertions.Assert
+            (
+               Condition => Lexical.Lire_Numero_Ligne = Numero_Ligne_G_T'First,
+               Message   => "Numero ligne lue " &
+                  "[" & Lexical.Lire_Numero_Ligne'Image & "] /= [1] attendu"
+            );
+         AUnit.Assertions.Assert
+            (
+               Condition => Ligne_Lue = Ligne_Attendue,
+               Message   => "Ligne lue " &
+                  "[" & Ligne_Lue & "] /= [" & Ligne_Attendue & "] attendu"
+            );
+      end Bloc_Tests;
    end Test_Lire_1_Ligne;
    ---------------------------------------------------------------------------
 
@@ -202,8 +140,6 @@ is
       pragma Unreferenced (T);
 
       use type Jeton_P.Sorte_T;
-
-      Lexical : Lexical_T := Creer (Nom_Fichier => "inutile");
 
       Sortes_Attendue : constant Sortes_Attendu_T := Sortes_Attendu_T'
          (
@@ -440,6 +376,96 @@ is
             231 => Jeton_P.Fin_Expression_E,
             232 => Jeton_P.Fin_Fichier_E
          );
+
+      C : constant Faux_Fichier_P.Contenu_T := Faux_Fichier_P.Remplir
+         (
+            Contenu =>
+               "faits_booleens = avoir_fait_prison, " &
+               "habite_chateau, intelligent, fort, " &
+               Fin_Ligne &
+               "riche, grand, lourd, malhonnete, " &
+               "parents_riches, pauvre, travailleur, " &
+               Fin_Ligne &
+               "chercheur, thesard, leger;" &
+               Fin_Ligne &
+               Fin_Ligne &
+               "faits_symboliques = profession; " &
+               Fin_Ligne &
+               Fin_Ligne &
+               "faits_entiers = fortune, fortune_parents, " &
+               "poids, taille, travail_par_jour, " &
+               Fin_Ligne &
+               "combien, palier_richesse; " &
+               Fin_Ligne &
+               Fin_Ligne &
+               "chercheur ; " &
+               Fin_Ligne &
+               "non thesard ; " &
+               Fin_Ligne &
+               "profession = medecin; " &
+               Fin_Ligne &
+               "poids = (-46 + 95) ; " &
+               Fin_Ligne &
+               "palier_richesse = 10000; " &
+               Fin_Ligne &
+               "fortune_parents = " &
+               Fin_Ligne & Ada.Characters.Latin_1.HT &
+               "(1000/10 * (25 + 80) / 3 + 50 * " &
+               "(12 - 5) + 14000 /2) - 1000; " &
+               Fin_Ligne &
+               Fin_Ligne &
+               "si malhonnete     et fort        alors riche; " &
+               Fin_Ligne &
+               "si parents_riches et intelligent alors riche; " &
+               Fin_Ligne &
+               "si travailleur    et intelligent alors riche; " &
+               Fin_Ligne &
+               "si fortune > palier_richesse     alors riche; " &
+               Fin_Ligne &
+               Fin_Ligne &
+               "si profession = medecin       alors riche; " &
+               Fin_Ligne &
+               "si profession = informaticien alors riche; " &
+               Fin_Ligne &
+               "si profession = fonctionnaire alors pauvre;" &
+               Fin_Ligne &
+               Fin_Ligne &
+               "si non habite_chateau alors pauvre ;" &
+               Fin_Ligne &
+               Fin_Ligne &
+               "si riche             alors non pauvre ;" &
+               Fin_Ligne &
+               "si pauvre            alors non riche ; " &
+               Fin_Ligne &
+               "si avoir_fait_prison alors malhonnete ; " &
+               Fin_Ligne &
+               Fin_Ligne &
+               "si grand et lourd alors fort ;" &
+               Fin_Ligne &
+               Fin_Ligne &
+               "si taille > 185 alors grand;" &
+               Fin_Ligne &
+               "si poids > 95 alors lourd ;" &
+               Fin_Ligne &
+               "si poids < 50 alors leger ;" &
+               Fin_Ligne &
+               "si poids < 50 alors fortune = " &
+               "(2 * fortune_parents) - 1;" &
+               Fin_Ligne &
+               Fin_Ligne &
+               "si fortune_parents  > palier_richesse " &
+               "alors parents_riches;" &
+               Fin_Ligne &
+               "si travail_par_jour > 8               " &
+               "alors travailleur;" &
+               Fin_Ligne
+         );
+
+      pragma Unreferenced (C);
+      --  Utile uniquement pour initialiser le contenu du fichier.
+
+      Lexical : Lexical_T := Creer (Nom_Fichier => "inutile");
+
       I : Integer := 1;
    begin
       B_Verifier_Jetons :

@@ -1,8 +1,6 @@
 with AUnit;
 with AUnit.Test_Fixtures;
 
-with Sys_Exp_P.Monteur_P.Lorraine_P.Faux_Fichier_P;
-
 generic
 
 --  @summary
@@ -20,7 +18,7 @@ is
 
    type Test_Fixt_T is new AUnit.Test_Fixtures.Test_Fixture with
       record
-         C : Sys_Exp_P.Monteur_P.Lorraine_P.Faux_Fichier_P.Contenu_T;
+         null;
       end record;
 
    overriding
