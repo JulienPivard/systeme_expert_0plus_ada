@@ -37,6 +37,214 @@ is
                   Test => Scenario_R.Test_Lire_1_Ligne'Access
                )
          );
+
+      Ptr_Test_Suite.all.Add_Test
+         (
+            T => Caller_P.Create
+               (
+                  Name => Nom_Test & "lecture jeton parenthese ouvrante",
+                  Test => Scenario_R.Test_Lire_Jeton_Parenthese_Ouvrante'Access
+               )
+         );
+      Ptr_Test_Suite.all.Add_Test
+         (
+            T => Caller_P.Create
+               (
+                  Name => Nom_Test & "lecture jeton parenthese fermante",
+                  Test => Scenario_R.Test_Lire_Jeton_Parenthese_Fermante'Access
+               )
+         );
+      Ptr_Test_Suite.all.Add_Test
+         (
+            T => Caller_P.Create
+               (
+                  Name => Nom_Test & "lecture jeton operateur plus",
+                  Test => Scenario_R.Test_Lire_Jeton_Operateur_Plus'Access
+               )
+         );
+      Ptr_Test_Suite.all.Add_Test
+         (
+            T => Caller_P.Create
+               (
+                  Name => Nom_Test & "lecture jeton operateur moins",
+                  Test => Scenario_R.Test_Lire_Jeton_Operateur_Moins'Access
+               )
+         );
+      Ptr_Test_Suite.all.Add_Test
+         (
+            T => Caller_P.Create
+               (
+                  Name => Nom_Test & "lecture jeton operateur multiplier",
+                  Test => Scenario_R.Test_Lire_Jeton_Operateur_Mul'Access
+               )
+         );
+      Ptr_Test_Suite.all.Add_Test
+         (
+            T => Caller_P.Create
+               (
+                  Name => Nom_Test & "lecture jeton operateur diviser",
+                  Test => Scenario_R.Test_Lire_Jeton_Operateur_Div'Access
+               )
+         );
+
+      Ptr_Test_Suite.all.Add_Test
+         (
+            T => Caller_P.Create
+               (
+                  Name => Nom_Test & "lecture jeton separateur",
+                  Test => Scenario_R.Test_Lire_Jeton_Separateur'Access
+               )
+         );
+      Ptr_Test_Suite.all.Add_Test
+         (
+            T => Caller_P.Create
+               (
+                  Name => Nom_Test & "lecture jeton fin expression",
+                  Test => Scenario_R.Test_Lire_Jeton_Fin_Expression'Access
+               )
+         );
+      Ptr_Test_Suite.all.Add_Test
+         (
+            T => Caller_P.Create
+               (
+                  Name => Nom_Test & "lecture jeton fin fichier",
+                  Test => Scenario_R.Test_Lire_Jeton_Fin_Fichier'Access
+               )
+         );
+
+      Ptr_Test_Suite.all.Add_Test
+         (
+            T => Caller_P.Create
+               (
+                  Name => Nom_Test & "lecture jeton identificateur",
+                  Test => Scenario_R.Test_Lire_Jeton_Identificateur'Access
+               )
+         );
+      Ptr_Test_Suite.all.Add_Test
+         (
+            T => Caller_P.Create
+               (
+                  Name => Nom_Test & "lecture jeton entier",
+                  Test => Scenario_R.Test_Lire_Jeton_Entier'Access
+               )
+         );
+
+      Ptr_Test_Suite.all.Add_Test
+         (
+            T => Caller_P.Create
+               (
+                  Name => Nom_Test & "lecture jeton si",
+                  Test => Scenario_R.Test_Lire_Jeton_Si'Access
+               )
+         );
+      Ptr_Test_Suite.all.Add_Test
+         (
+            T => Caller_P.Create
+               (
+                  Name => Nom_Test & "lecture jeton non",
+                  Test => Scenario_R.Test_Lire_Jeton_Non'Access
+               )
+         );
+      Ptr_Test_Suite.all.Add_Test
+         (
+            T => Caller_P.Create
+               (
+                  Name => Nom_Test & "lecture jeton et",
+                  Test => Scenario_R.Test_Lire_Jeton_Et'Access
+               )
+         );
+      Ptr_Test_Suite.all.Add_Test
+         (
+            T => Caller_P.Create
+               (
+                  Name => Nom_Test & "lecture jeton alors",
+                  Test => Scenario_R.Test_Lire_Jeton_Alors'Access
+               )
+         );
+
+      Ptr_Test_Suite.all.Add_Test
+         (
+            T => Caller_P.Create
+               (
+                  Name => Nom_Test & "lecture jeton egal",
+                  Test => Scenario_R.Test_Lire_Jeton_Egal'Access
+               )
+         );
+      Ptr_Test_Suite.all.Add_Test
+         (
+            T => Caller_P.Create
+               (
+                  Name => Nom_Test & "lecture jeton superieur",
+                  Test => Scenario_R.Test_Lire_Jeton_Superieur'Access
+               )
+         );
+      Ptr_Test_Suite.all.Add_Test
+         (
+            T => Caller_P.Create
+               (
+                  Name => Nom_Test & "lecture jeton inferieur",
+                  Test => Scenario_R.Test_Lire_Jeton_Inferieur'Access
+               )
+         );
+      Ptr_Test_Suite.all.Add_Test
+         (
+            T => Caller_P.Create
+               (
+                  Name => Nom_Test & "lecture jeton superieur egal",
+                  Test => Scenario_R.Test_Lire_Jeton_Superieur_Egal'Access
+               )
+         );
+      Ptr_Test_Suite.all.Add_Test
+         (
+            T => Caller_P.Create
+               (
+                  Name => Nom_Test & "lecture jeton inferieur egal",
+                  Test => Scenario_R.Test_Lire_Jeton_Inferieur_Egal'Access
+               )
+         );
+      Ptr_Test_Suite.all.Add_Test
+         (
+            T => Caller_P.Create
+               (
+                  Name => Nom_Test & "lecture jeton different",
+                  Test => Scenario_R.Test_Lire_Jeton_Different'Access
+               )
+         );
+
+      Ptr_Test_Suite.all.Add_Test
+         (
+            T => Caller_P.Create
+               (
+                  Name => Nom_Test & "lecture jeton faits_booleens",
+                  Test => Scenario_R.Test_Lire_Jeton_Fait_Booleen'Access
+               )
+         );
+      Ptr_Test_Suite.all.Add_Test
+         (
+            T => Caller_P.Create
+               (
+                  Name => Nom_Test & "lecture jeton faits_symboliques",
+                  Test => Scenario_R.Test_Lire_Jeton_Fait_Symbolique'Access
+               )
+         );
+      Ptr_Test_Suite.all.Add_Test
+         (
+            T => Caller_P.Create
+               (
+                  Name => Nom_Test & "lecture jeton faits_entiers",
+                  Test => Scenario_R.Test_Lire_Jeton_Fait_Entier'Access
+               )
+         );
+
+      Ptr_Test_Suite.all.Add_Test
+         (
+            T => Caller_P.Create
+               (
+                  Name => Nom_Test & "lecture jeton inconnu",
+                  Test => Scenario_R.Test_Lire_Jeton_Inconnu'Access
+               )
+         );
+
       Ptr_Test_Suite.all.Add_Test
          (
             T => Caller_P.Create

@@ -5,6 +5,8 @@ with AUnit.Assertions;
 
 with Sys_Exp_P.Monteur_P.Lorraine_P.Faux_Fichier_P;
 
+with Facilites_P.Entier_P;
+
 package body Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_G.Test_G
    with Spark_Mode => Off
 is
@@ -138,6 +140,1514 @@ is
             );
       end Bloc_Tests;
    end Test_Lire_1_Ligne;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Test_Lire_Jeton_Parenthese_Ouvrante
+      (T : in out Test_Fixt_T)
+   is
+      pragma Unreferenced (T);
+
+      use type Jeton_P.Sorte_T;
+
+      C : constant Faux_Fichier_P.Contenu_T := Faux_Fichier_P.Remplir
+         (Contenu => "( test" & Fin_Ligne);
+
+      pragma Unreferenced (C);
+      --  Utile uniquement pour initialiser le contenu du fichier.
+
+      Sorte_Attendue : constant Jeton_P.Sorte_T :=
+         Jeton_P.Parenthese_Ouvrante_E;
+
+      Lexical : Lexical_T := Creer (Nom_Fichier => "inutile");
+   begin
+      Bloc_Tests :
+      declare
+         Jeton_Lu : constant Jeton_T := Lexical.Suivant;
+      begin
+         AUnit.Assertions.Assert
+            (
+               Condition => Jeton_Lu.Lire_Sorte = Sorte_Attendue,
+               Message   => "Jeton lu " &
+                  "[" & Jeton_Lu.Lire_Representation & "] n'est pas " &
+                  "[" & Sorte_Attendue'Image & "]"
+            );
+         AUnit.Assertions.Assert
+            (
+               Condition => Jeton_Lu.Est_Parenthese_Ouvrante,
+               Message   => "Jeton lu " &
+                  "[" & Jeton_Lu.Lire_Representation & "] n'est pas " &
+                  "[(]"
+            );
+
+         Bloc_Tests_Non_Jeton :
+         declare
+            subtype Sorte_Jeton_Non_OK_T is Jeton_P.Sorte_T
+               with Static_Predicate =>
+                  Sorte_Jeton_Non_OK_T not in Sorte_Attendue;
+         begin
+            for S in Sorte_Jeton_Non_OK_T loop
+               AUnit.Assertions.Assert
+                  (
+                     Condition => Jeton_Lu.Lire_Sorte /= S,
+                     Message   => "Jeton lu " &
+                        "[" & Jeton_Lu.Lire_Representation & "] " &
+                        "n'est pas [" & S'Image & "]"
+                  );
+            end loop;
+         end Bloc_Tests_Non_Jeton;
+      end Bloc_Tests;
+
+      pragma Unreferenced (Lexical);
+   end Test_Lire_Jeton_Parenthese_Ouvrante;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Test_Lire_Jeton_Parenthese_Fermante
+      (T : in out Test_Fixt_T)
+   is
+      pragma Unreferenced (T);
+
+      use type Jeton_P.Sorte_T;
+
+      C : constant Faux_Fichier_P.Contenu_T := Faux_Fichier_P.Remplir
+         (Contenu => ") test" & Fin_Ligne);
+
+      pragma Unreferenced (C);
+      --  Utile uniquement pour initialiser le contenu du fichier.
+
+      Sorte_Attendue : constant Jeton_P.Sorte_T :=
+         Jeton_P.Parenthese_Fermante_E;
+
+      Lexical : Lexical_T := Creer (Nom_Fichier => "inutile");
+   begin
+      Bloc_Tests :
+      declare
+         Jeton_Lu : constant Jeton_T := Lexical.Suivant;
+      begin
+         AUnit.Assertions.Assert
+            (
+               Condition => Jeton_Lu.Lire_Sorte = Sorte_Attendue,
+               Message   => "Jeton lu " &
+                  "[" & Jeton_Lu.Lire_Representation & "] n'est pas " &
+                  "[" & Sorte_Attendue'Image & "]"
+            );
+         AUnit.Assertions.Assert
+            (
+               Condition => Jeton_Lu.Est_Parenthese_Fermante,
+               Message   => "Jeton lu " &
+                  "[" & Jeton_Lu.Lire_Representation & "] n'est pas " &
+                  "[)]"
+            );
+
+         Bloc_Tests_Non_Jeton :
+         declare
+            subtype Sorte_Jeton_Non_OK_T is Jeton_P.Sorte_T
+               with Static_Predicate =>
+                  Sorte_Jeton_Non_OK_T not in Sorte_Attendue;
+         begin
+            for S in Sorte_Jeton_Non_OK_T loop
+               AUnit.Assertions.Assert
+                  (
+                     Condition => Jeton_Lu.Lire_Sorte /= S,
+                     Message   => "Jeton lu " &
+                        "[" & Jeton_Lu.Lire_Representation & "] " &
+                        "n'est pas [" & S'Image & "]"
+                  );
+            end loop;
+         end Bloc_Tests_Non_Jeton;
+      end Bloc_Tests;
+
+      pragma Unreferenced (Lexical);
+   end Test_Lire_Jeton_Parenthese_Fermante;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Test_Lire_Jeton_Operateur_Plus
+      (T : in out Test_Fixt_T)
+   is
+      pragma Unreferenced (T);
+
+      use type Jeton_P.Sorte_T;
+
+      C : constant Faux_Fichier_P.Contenu_T := Faux_Fichier_P.Remplir
+         (Contenu => "+ test" & Fin_Ligne);
+
+      pragma Unreferenced (C);
+      --  Utile uniquement pour initialiser le contenu du fichier.
+
+      Sorte_Attendue : constant Jeton_P.Sorte_T := Jeton_P.Operateur_Plus_E;
+
+      Lexical : Lexical_T := Creer (Nom_Fichier => "inutile");
+   begin
+      Bloc_Tests :
+      declare
+         Jeton_Lu : constant Jeton_T := Lexical.Suivant;
+      begin
+         AUnit.Assertions.Assert
+            (
+               Condition => Jeton_Lu.Lire_Sorte = Sorte_Attendue,
+               Message   => "Jeton lu " &
+                  "[" & Jeton_Lu.Lire_Representation & "] n'est pas " &
+                  "[" & Sorte_Attendue'Image & "]"
+            );
+         AUnit.Assertions.Assert
+            (
+               Condition => Jeton_Lu.Est_Operateur_Plus,
+               Message   => "Jeton lu " &
+                  "[" & Jeton_Lu.Lire_Representation & "] n'est pas " &
+                  "[+]"
+            );
+
+         Bloc_Tests_Non_Jeton :
+         declare
+            subtype Sorte_Jeton_Non_OK_T is Jeton_P.Sorte_T
+               with Static_Predicate =>
+                  Sorte_Jeton_Non_OK_T not in Sorte_Attendue;
+         begin
+            for S in Sorte_Jeton_Non_OK_T loop
+               AUnit.Assertions.Assert
+                  (
+                     Condition => Jeton_Lu.Lire_Sorte /= S,
+                     Message   => "Jeton lu " &
+                        "[" & Jeton_Lu.Lire_Representation & "] " &
+                        "n'est pas [" & S'Image & "]"
+                  );
+            end loop;
+         end Bloc_Tests_Non_Jeton;
+      end Bloc_Tests;
+
+      pragma Unreferenced (Lexical);
+   end Test_Lire_Jeton_Operateur_Plus;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Test_Lire_Jeton_Operateur_Moins
+      (T : in out Test_Fixt_T)
+   is
+      pragma Unreferenced (T);
+
+      use type Jeton_P.Sorte_T;
+
+      C : constant Faux_Fichier_P.Contenu_T := Faux_Fichier_P.Remplir
+         (Contenu => "- test" & Fin_Ligne);
+
+      pragma Unreferenced (C);
+      --  Utile uniquement pour initialiser le contenu du fichier.
+
+      Sorte_Attendue : constant Jeton_P.Sorte_T := Jeton_P.Operateur_Moins_E;
+
+      Lexical : Lexical_T := Creer (Nom_Fichier => "inutile");
+   begin
+      Bloc_Tests :
+      declare
+         Jeton_Lu : constant Jeton_T := Lexical.Suivant;
+      begin
+         AUnit.Assertions.Assert
+            (
+               Condition => Jeton_Lu.Lire_Sorte = Sorte_Attendue,
+               Message   => "Jeton lu " &
+                  "[" & Jeton_Lu.Lire_Representation & "] n'est pas " &
+                  "[" & Sorte_Attendue'Image & "]"
+            );
+         AUnit.Assertions.Assert
+            (
+               Condition => Jeton_Lu.Est_Operateur_Moins,
+               Message   => "Jeton lu " &
+                  "[" & Jeton_Lu.Lire_Representation & "] n'est pas " &
+                  "[-]"
+            );
+
+         Bloc_Tests_Non_Jeton :
+         declare
+            subtype Sorte_Jeton_Non_OK_T is Jeton_P.Sorte_T
+               with Static_Predicate =>
+                  Sorte_Jeton_Non_OK_T not in Sorte_Attendue;
+         begin
+            for S in Sorte_Jeton_Non_OK_T loop
+               AUnit.Assertions.Assert
+                  (
+                     Condition => Jeton_Lu.Lire_Sorte /= S,
+                     Message   => "Jeton lu " &
+                        "[" & Jeton_Lu.Lire_Representation & "] " &
+                        "n'est pas [" & S'Image & "]"
+                  );
+            end loop;
+         end Bloc_Tests_Non_Jeton;
+      end Bloc_Tests;
+
+      pragma Unreferenced (Lexical);
+   end Test_Lire_Jeton_Operateur_Moins;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Test_Lire_Jeton_Operateur_Mul
+      (T : in out Test_Fixt_T)
+   is
+      pragma Unreferenced (T);
+
+      use type Jeton_P.Sorte_T;
+
+      C : constant Faux_Fichier_P.Contenu_T := Faux_Fichier_P.Remplir
+         (Contenu => "* test" & Fin_Ligne);
+
+      pragma Unreferenced (C);
+      --  Utile uniquement pour initialiser le contenu du fichier.
+
+      Sorte_Attendue : constant Jeton_P.Sorte_T := Jeton_P.Operateur_Mul_E;
+
+      Lexical : Lexical_T := Creer (Nom_Fichier => "inutile");
+   begin
+      Bloc_Tests :
+      declare
+         Jeton_Lu : constant Jeton_T := Lexical.Suivant;
+      begin
+         AUnit.Assertions.Assert
+            (
+               Condition => Jeton_Lu.Lire_Sorte = Sorte_Attendue,
+               Message   => "Jeton lu " &
+                  "[" & Jeton_Lu.Lire_Representation & "] n'est pas " &
+                  "[" & Sorte_Attendue'Image & "]"
+            );
+         AUnit.Assertions.Assert
+            (
+               Condition => Jeton_Lu.Est_Operateur_Multiplier,
+               Message   => "Jeton lu " &
+                  "[" & Jeton_Lu.Lire_Representation & "] n'est pas " &
+                  "[*]"
+            );
+
+         Bloc_Tests_Non_Jeton :
+         declare
+            subtype Sorte_Jeton_Non_OK_T is Jeton_P.Sorte_T
+               with Static_Predicate =>
+                  Sorte_Jeton_Non_OK_T not in Sorte_Attendue;
+         begin
+            for S in Sorte_Jeton_Non_OK_T loop
+               AUnit.Assertions.Assert
+                  (
+                     Condition => Jeton_Lu.Lire_Sorte /= S,
+                     Message   => "Jeton lu " &
+                        "[" & Jeton_Lu.Lire_Representation & "] " &
+                        "n'est pas [" & S'Image & "]"
+                  );
+            end loop;
+         end Bloc_Tests_Non_Jeton;
+      end Bloc_Tests;
+
+      pragma Unreferenced (Lexical);
+   end Test_Lire_Jeton_Operateur_Mul;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Test_Lire_Jeton_Operateur_Div
+      (T : in out Test_Fixt_T)
+   is
+      pragma Unreferenced (T);
+
+      use type Jeton_P.Sorte_T;
+
+      C : constant Faux_Fichier_P.Contenu_T := Faux_Fichier_P.Remplir
+         (Contenu => "/ test" & Fin_Ligne);
+
+      pragma Unreferenced (C);
+      --  Utile uniquement pour initialiser le contenu du fichier.
+
+      Sorte_Attendue : constant Jeton_P.Sorte_T := Jeton_P.Operateur_Div_E;
+
+      Lexical : Lexical_T := Creer (Nom_Fichier => "inutile");
+   begin
+      Bloc_Tests :
+      declare
+         Jeton_Lu : constant Jeton_T := Lexical.Suivant;
+      begin
+         AUnit.Assertions.Assert
+            (
+               Condition => Jeton_Lu.Lire_Sorte = Sorte_Attendue,
+               Message   => "Jeton lu " &
+                  "[" & Jeton_Lu.Lire_Representation & "] n'est pas " &
+                  "[" & Sorte_Attendue'Image & "]"
+            );
+         AUnit.Assertions.Assert
+            (
+               Condition => Jeton_Lu.Est_Operateur_Diviser,
+               Message   => "Jeton lu " &
+                  "[" & Jeton_Lu.Lire_Representation & "] n'est pas " &
+                  "[/]"
+            );
+
+         Bloc_Tests_Non_Jeton :
+         declare
+            subtype Sorte_Jeton_Non_OK_T is Jeton_P.Sorte_T
+               with Static_Predicate =>
+                  Sorte_Jeton_Non_OK_T not in Sorte_Attendue;
+         begin
+            for S in Sorte_Jeton_Non_OK_T loop
+               AUnit.Assertions.Assert
+                  (
+                     Condition => Jeton_Lu.Lire_Sorte /= S,
+                     Message   => "Jeton lu " &
+                        "[" & Jeton_Lu.Lire_Representation & "] " &
+                        "n'est pas [" & S'Image & "]"
+                  );
+            end loop;
+         end Bloc_Tests_Non_Jeton;
+      end Bloc_Tests;
+
+      pragma Unreferenced (Lexical);
+   end Test_Lire_Jeton_Operateur_Div;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Test_Lire_Jeton_Separateur
+      (T : in out Test_Fixt_T)
+   is
+      pragma Unreferenced (T);
+
+      use type Jeton_P.Sorte_T;
+
+      C : constant Faux_Fichier_P.Contenu_T := Faux_Fichier_P.Remplir
+         (Contenu => ", test" & Fin_Ligne);
+
+      pragma Unreferenced (C);
+      --  Utile uniquement pour initialiser le contenu du fichier.
+
+      Sorte_Attendue : constant Jeton_P.Sorte_T := Jeton_P.Separateur_E;
+
+      Lexical : Lexical_T := Creer (Nom_Fichier => "inutile");
+   begin
+      Bloc_Tests :
+      declare
+         Jeton_Lu : constant Jeton_T := Lexical.Suivant;
+      begin
+         AUnit.Assertions.Assert
+            (
+               Condition => Jeton_Lu.Lire_Sorte = Sorte_Attendue,
+               Message   => "Jeton lu " &
+                  "[" & Jeton_Lu.Lire_Representation & "] n'est pas " &
+                  "[" & Sorte_Attendue'Image & "]"
+            );
+         AUnit.Assertions.Assert
+            (
+               Condition => Jeton_Lu.Est_Separateur,
+               Message   => "Jeton lu " &
+                  "[" & Jeton_Lu.Lire_Representation & "] n'est pas " &
+                  "[,]"
+            );
+
+         Bloc_Tests_Non_Jeton :
+         declare
+            subtype Sorte_Jeton_Non_OK_T is Jeton_P.Sorte_T
+               with Static_Predicate =>
+                  Sorte_Jeton_Non_OK_T not in Sorte_Attendue;
+         begin
+            for S in Sorte_Jeton_Non_OK_T loop
+               AUnit.Assertions.Assert
+                  (
+                     Condition => Jeton_Lu.Lire_Sorte /= S,
+                     Message   => "Jeton lu " &
+                        "[" & Jeton_Lu.Lire_Representation & "] " &
+                        "n'est pas [" & S'Image & "]"
+                  );
+            end loop;
+         end Bloc_Tests_Non_Jeton;
+      end Bloc_Tests;
+
+      pragma Unreferenced (Lexical);
+   end Test_Lire_Jeton_Separateur;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Test_Lire_Jeton_Fin_Expression
+      (T : in out Test_Fixt_T)
+   is
+      pragma Unreferenced (T);
+
+      use type Jeton_P.Sorte_T;
+
+      C : constant Faux_Fichier_P.Contenu_T := Faux_Fichier_P.Remplir
+         (Contenu => "; test" & Fin_Ligne);
+
+      pragma Unreferenced (C);
+      --  Utile uniquement pour initialiser le contenu du fichier.
+
+      Sorte_Attendue : constant Jeton_P.Sorte_T := Jeton_P.Fin_Expression_E;
+
+      Lexical : Lexical_T := Creer (Nom_Fichier => "inutile");
+   begin
+      Bloc_Tests :
+      declare
+         Jeton_Lu : constant Jeton_T := Lexical.Suivant;
+      begin
+         AUnit.Assertions.Assert
+            (
+               Condition => Jeton_Lu.Lire_Sorte = Sorte_Attendue,
+               Message   => "Jeton lu " &
+                  "[" & Jeton_Lu.Lire_Representation & "] n'est pas " &
+                  "[" & Sorte_Attendue'Image & "]"
+            );
+         AUnit.Assertions.Assert
+            (
+               Condition => Jeton_Lu.Est_Fin_Expression,
+               Message   => "Jeton lu " &
+                  "[" & Jeton_Lu.Lire_Representation & "] n'est pas " &
+                  "[;]"
+            );
+
+         Bloc_Tests_Non_Jeton :
+         declare
+            subtype Sorte_Jeton_Non_OK_T is Jeton_P.Sorte_T
+               with Static_Predicate =>
+                  Sorte_Jeton_Non_OK_T not in Sorte_Attendue;
+         begin
+            for S in Sorte_Jeton_Non_OK_T loop
+               AUnit.Assertions.Assert
+                  (
+                     Condition => Jeton_Lu.Lire_Sorte /= S,
+                     Message   => "Jeton lu " &
+                        "[" & Jeton_Lu.Lire_Representation & "] " &
+                        "n'est pas [" & S'Image & "]"
+                  );
+            end loop;
+         end Bloc_Tests_Non_Jeton;
+      end Bloc_Tests;
+
+      pragma Unreferenced (Lexical);
+   end Test_Lire_Jeton_Fin_Expression;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Test_Lire_Jeton_Fin_Fichier
+      (T : in out Test_Fixt_T)
+   is
+      pragma Unreferenced (T);
+
+      use type Jeton_P.Sorte_T;
+
+      C : constant Faux_Fichier_P.Contenu_T := Faux_Fichier_P.Remplir
+         (Contenu => "");
+
+      pragma Unreferenced (C);
+      --  Utile uniquement pour initialiser le contenu du fichier.
+
+      Sorte_Attendue : constant Jeton_P.Sorte_T := Jeton_P.Fin_Fichier_E;
+
+      Lexical : Lexical_T := Creer (Nom_Fichier => "inutile");
+   begin
+      Bloc_Tests :
+      declare
+         Jeton_Lu : constant Jeton_T := Lexical.Suivant;
+      begin
+         AUnit.Assertions.Assert
+            (
+               Condition => Jeton_Lu.Lire_Sorte = Sorte_Attendue,
+               Message   => "Jeton lu " &
+                  "[" & Jeton_Lu.Lire_Representation & "] n'est pas " &
+                  "[" & Sorte_Attendue'Image & "]"
+            );
+         AUnit.Assertions.Assert
+            (
+               Condition => Jeton_Lu.Est_Fin_Fichier,
+               Message   => "Jeton lu " &
+                  "[" & Jeton_Lu.Lire_Representation & "] n'est pas " &
+                  "[Fin de fichier]"
+            );
+
+         Bloc_Tests_Non_Jeton :
+         declare
+            subtype Sorte_Jeton_Non_OK_T is Jeton_P.Sorte_T
+               with Static_Predicate =>
+                  Sorte_Jeton_Non_OK_T not in Sorte_Attendue;
+         begin
+            for S in Sorte_Jeton_Non_OK_T loop
+               AUnit.Assertions.Assert
+                  (
+                     Condition => Jeton_Lu.Lire_Sorte /= S,
+                     Message   => "Jeton lu " &
+                        "[" & Jeton_Lu.Lire_Representation & "] " &
+                        "n'est pas [" & S'Image & "]"
+                  );
+            end loop;
+         end Bloc_Tests_Non_Jeton;
+      end Bloc_Tests;
+
+      pragma Unreferenced (Lexical);
+   end Test_Lire_Jeton_Fin_Fichier;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Test_Lire_Jeton_Identificateur
+      (T : in out Test_Fixt_T)
+   is
+      pragma Unreferenced (T);
+
+      use type Jeton_P.Sorte_T;
+
+      Contenu : constant String := Facilites_P.Creer_Chaine;
+
+      C : constant Faux_Fichier_P.Contenu_T := Faux_Fichier_P.Remplir
+         (Contenu => Contenu & " test" & Fin_Ligne);
+
+      pragma Unreferenced (C);
+      --  Utile uniquement pour initialiser le contenu du fichier.
+
+      Sorte_Attendue : constant Jeton_P.Sorte_T := Jeton_P.Identificateur_E;
+
+      Lexical : Lexical_T := Creer (Nom_Fichier => "inutile");
+   begin
+      Bloc_Tests :
+      declare
+         Jeton_Lu : constant Jeton_T := Lexical.Suivant;
+      begin
+         AUnit.Assertions.Assert
+            (
+               Condition => Jeton_Lu.Lire_Sorte = Sorte_Attendue,
+               Message   => "Jeton lu " &
+                  "[" & Jeton_Lu.Lire_Representation & "] n'est pas " &
+                  "[" & Sorte_Attendue'Image & "]"
+            );
+         AUnit.Assertions.Assert
+            (
+               Condition => Jeton_Lu.Est_Identificateur,
+               Message   => "Jeton lu " &
+                  "[" & Jeton_Lu.Lire_Representation & "] n'est pas " &
+                  "[identificateur]"
+            );
+         AUnit.Assertions.Assert
+            (
+               Condition => Jeton_Lu.Lire_Representation = Contenu,
+               Message   => "Representation du Jeton lu " &
+                  "[" & Jeton_Lu.Lire_Representation & "] n'est pas " &
+                  "[" & Contenu & "]"
+            );
+
+         Bloc_Tests_Non_Jeton :
+         declare
+            subtype Sorte_Jeton_Non_OK_T is Jeton_P.Sorte_T
+               with Static_Predicate =>
+                  Sorte_Jeton_Non_OK_T not in Sorte_Attendue;
+         begin
+            for S in Sorte_Jeton_Non_OK_T loop
+               AUnit.Assertions.Assert
+                  (
+                     Condition => Jeton_Lu.Lire_Sorte /= S,
+                     Message   => "Jeton lu " &
+                        "[" & Jeton_Lu.Lire_Representation & "] " &
+                        "n'est pas [" & S'Image & "]"
+                  );
+            end loop;
+         end Bloc_Tests_Non_Jeton;
+      end Bloc_Tests;
+
+      pragma Unreferenced (Lexical);
+   end Test_Lire_Jeton_Identificateur;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Test_Lire_Jeton_Entier
+      (T : in out Test_Fixt_T)
+   is
+      pragma Unreferenced (T);
+
+      use type Jeton_P.Sorte_T;
+
+      Entier : constant Sys_Exp_P.Entier_T :=
+         Facilites_P.Entier_P.Creer_Entier_Positif;
+
+      Contenu         : constant String := Entier'Image;
+      Contenu_Attendu : constant String := Trim (Source => Contenu);
+
+      C : constant Faux_Fichier_P.Contenu_T := Faux_Fichier_P.Remplir
+         (Contenu => Contenu & " test" & Fin_Ligne);
+
+      pragma Unreferenced (C);
+      --  Utile uniquement pour initialiser le contenu du fichier.
+
+      Sorte_Attendue : constant Jeton_P.Sorte_T := Jeton_P.Entier_E;
+
+      Lexical : Lexical_T := Creer (Nom_Fichier => "inutile");
+   begin
+      Bloc_Tests :
+      declare
+         Jeton_Lu : constant Jeton_T := Lexical.Suivant;
+      begin
+         AUnit.Assertions.Assert
+            (
+               Condition => Jeton_Lu.Lire_Sorte = Sorte_Attendue,
+               Message   => "Jeton lu " &
+                  "[" & Jeton_Lu.Lire_Representation & "] n'est pas " &
+                  "[" & Sorte_Attendue'Image & "]"
+            );
+         AUnit.Assertions.Assert
+            (
+               Condition => Jeton_Lu.Est_Entier,
+               Message   => "Jeton lu " &
+                  "[" & Jeton_Lu.Lire_Representation & "] n'est pas " &
+                  "[entier]"
+            );
+         AUnit.Assertions.Assert
+            (
+               Condition => Jeton_Lu.Lire_Representation = Contenu_Attendu,
+               Message   => "Representation du Jeton lu " &
+                  "[" & Jeton_Lu.Lire_Representation & "] n'est pas " &
+                  "[" & Contenu & "]"
+            );
+
+         Bloc_Tests_Non_Jeton :
+         declare
+            subtype Sorte_Jeton_Non_OK_T is Jeton_P.Sorte_T
+               with Static_Predicate =>
+                  Sorte_Jeton_Non_OK_T not in Sorte_Attendue;
+         begin
+            for S in Sorte_Jeton_Non_OK_T loop
+               AUnit.Assertions.Assert
+                  (
+                     Condition => Jeton_Lu.Lire_Sorte /= S,
+                     Message   => "Jeton lu " &
+                        "[" & Jeton_Lu.Lire_Representation & "] " &
+                        "n'est pas [" & S'Image & "]"
+                  );
+            end loop;
+         end Bloc_Tests_Non_Jeton;
+      end Bloc_Tests;
+
+      pragma Unreferenced (Lexical);
+   end Test_Lire_Jeton_Entier;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Test_Lire_Jeton_Si
+      (T : in out Test_Fixt_T)
+   is
+      pragma Unreferenced (T);
+
+      use type Jeton_P.Sorte_T;
+
+      C : constant Faux_Fichier_P.Contenu_T := Faux_Fichier_P.Remplir
+         (Contenu => "si test" & Fin_Ligne);
+
+      pragma Unreferenced (C);
+      --  Utile uniquement pour initialiser le contenu du fichier.
+
+      Sorte_Attendue : constant Jeton_P.Sorte_T := Jeton_P.Si_E;
+
+      Lexical : Lexical_T := Creer (Nom_Fichier => "inutile");
+   begin
+      Bloc_Tests :
+      declare
+         Jeton_Lu : constant Jeton_T := Lexical.Suivant;
+      begin
+         AUnit.Assertions.Assert
+            (
+               Condition => Jeton_Lu.Lire_Sorte = Sorte_Attendue,
+               Message   => "Jeton lu " &
+                  "[" & Jeton_Lu.Lire_Representation & "] n'est pas " &
+                  "[" & Sorte_Attendue'Image & "]"
+            );
+         AUnit.Assertions.Assert
+            (
+               Condition => Jeton_Lu.Est_Si,
+               Message   => "Jeton lu " &
+                  "[" & Jeton_Lu.Lire_Representation & "] n'est pas " &
+                  "[si]"
+            );
+
+         Bloc_Tests_Non_Jeton :
+         declare
+            subtype Sorte_Jeton_Non_OK_T is Jeton_P.Sorte_T
+               with Static_Predicate =>
+                  Sorte_Jeton_Non_OK_T not in Sorte_Attendue;
+         begin
+            for S in Sorte_Jeton_Non_OK_T loop
+               AUnit.Assertions.Assert
+                  (
+                     Condition => Jeton_Lu.Lire_Sorte /= S,
+                     Message   => "Jeton lu " &
+                        "[" & Jeton_Lu.Lire_Representation & "] " &
+                        "n'est pas [" & S'Image & "]"
+                  );
+            end loop;
+         end Bloc_Tests_Non_Jeton;
+      end Bloc_Tests;
+
+      pragma Unreferenced (Lexical);
+   end Test_Lire_Jeton_Si;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Test_Lire_Jeton_Non
+      (T : in out Test_Fixt_T)
+   is
+      pragma Unreferenced (T);
+
+      use type Jeton_P.Sorte_T;
+
+      C : constant Faux_Fichier_P.Contenu_T := Faux_Fichier_P.Remplir
+         (Contenu => "non test" & Fin_Ligne);
+
+      pragma Unreferenced (C);
+      --  Utile uniquement pour initialiser le contenu du fichier.
+
+      Sorte_Attendue : constant Jeton_P.Sorte_T := Jeton_P.Non_E;
+
+      Lexical : Lexical_T := Creer (Nom_Fichier => "inutile");
+   begin
+      Bloc_Tests :
+      declare
+         Jeton_Lu : constant Jeton_T := Lexical.Suivant;
+      begin
+         AUnit.Assertions.Assert
+            (
+               Condition => Jeton_Lu.Lire_Sorte = Sorte_Attendue,
+               Message   => "Jeton lu " &
+                  "[" & Jeton_Lu.Lire_Representation & "] n'est pas " &
+                  "[" & Sorte_Attendue'Image & "]"
+            );
+         AUnit.Assertions.Assert
+            (
+               Condition => Jeton_Lu.Est_Non,
+               Message   => "Jeton lu " &
+                  "[" & Jeton_Lu.Lire_Representation & "] n'est pas " &
+                  "[non]"
+            );
+
+         Bloc_Tests_Non_Jeton :
+         declare
+            subtype Sorte_Jeton_Non_OK_T is Jeton_P.Sorte_T
+               with Static_Predicate =>
+                  Sorte_Jeton_Non_OK_T not in Sorte_Attendue;
+         begin
+            for S in Sorte_Jeton_Non_OK_T loop
+               AUnit.Assertions.Assert
+                  (
+                     Condition => Jeton_Lu.Lire_Sorte /= S,
+                     Message   => "Jeton lu " &
+                        "[" & Jeton_Lu.Lire_Representation & "] " &
+                        "n'est pas [" & S'Image & "]"
+                  );
+            end loop;
+         end Bloc_Tests_Non_Jeton;
+      end Bloc_Tests;
+
+      pragma Unreferenced (Lexical);
+   end Test_Lire_Jeton_Non;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Test_Lire_Jeton_Et
+      (T : in out Test_Fixt_T)
+   is
+      pragma Unreferenced (T);
+
+      use type Jeton_P.Sorte_T;
+
+      C : constant Faux_Fichier_P.Contenu_T := Faux_Fichier_P.Remplir
+         (Contenu => "et test" & Fin_Ligne);
+
+      pragma Unreferenced (C);
+      --  Utile uniquement pour initialiser le contenu du fichier.
+
+      Sorte_Attendue : constant Jeton_P.Sorte_T := Jeton_P.Et_E;
+
+      Lexical : Lexical_T := Creer (Nom_Fichier => "inutile");
+   begin
+      Bloc_Tests :
+      declare
+         Jeton_Lu : constant Jeton_T := Lexical.Suivant;
+      begin
+         AUnit.Assertions.Assert
+            (
+               Condition => Jeton_Lu.Lire_Sorte = Sorte_Attendue,
+               Message   => "Jeton lu " &
+                  "[" & Jeton_Lu.Lire_Representation & "] n'est pas " &
+                  "[" & Sorte_Attendue'Image & "]"
+            );
+         AUnit.Assertions.Assert
+            (
+               Condition => Jeton_Lu.Est_Et,
+               Message   => "Jeton lu " &
+                  "[" & Jeton_Lu.Lire_Representation & "] n'est pas " &
+                  "[et]"
+            );
+
+         Bloc_Tests_Non_Jeton :
+         declare
+            subtype Sorte_Jeton_Non_OK_T is Jeton_P.Sorte_T
+               with Static_Predicate =>
+                  Sorte_Jeton_Non_OK_T not in Sorte_Attendue;
+         begin
+            for S in Sorte_Jeton_Non_OK_T loop
+               AUnit.Assertions.Assert
+                  (
+                     Condition => Jeton_Lu.Lire_Sorte /= S,
+                     Message   => "Jeton lu " &
+                        "[" & Jeton_Lu.Lire_Representation & "] " &
+                        "n'est pas [" & S'Image & "]"
+                  );
+            end loop;
+         end Bloc_Tests_Non_Jeton;
+      end Bloc_Tests;
+
+      pragma Unreferenced (Lexical);
+   end Test_Lire_Jeton_Et;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Test_Lire_Jeton_Alors
+      (T : in out Test_Fixt_T)
+   is
+      pragma Unreferenced (T);
+
+      use type Jeton_P.Sorte_T;
+
+      C : constant Faux_Fichier_P.Contenu_T := Faux_Fichier_P.Remplir
+         (Contenu => "alors test" & Fin_Ligne);
+
+      pragma Unreferenced (C);
+      --  Utile uniquement pour initialiser le contenu du fichier.
+
+      Sorte_Attendue : constant Jeton_P.Sorte_T := Jeton_P.Alors_E;
+
+      Lexical : Lexical_T := Creer (Nom_Fichier => "inutile");
+   begin
+      Bloc_Tests :
+      declare
+         Jeton_Lu : constant Jeton_T := Lexical.Suivant;
+      begin
+         AUnit.Assertions.Assert
+            (
+               Condition => Jeton_Lu.Lire_Sorte = Sorte_Attendue,
+               Message   => "Jeton lu " &
+                  "[" & Jeton_Lu.Lire_Representation & "] n'est pas " &
+                  "[" & Sorte_Attendue'Image & "]"
+            );
+         AUnit.Assertions.Assert
+            (
+               Condition => Jeton_Lu.Est_Alors,
+               Message   => "Jeton lu " &
+                  "[" & Jeton_Lu.Lire_Representation & "] n'est pas " &
+                  "[alors]"
+            );
+
+         Bloc_Tests_Non_Jeton :
+         declare
+            subtype Sorte_Jeton_Non_OK_T is Jeton_P.Sorte_T
+               with Static_Predicate =>
+                  Sorte_Jeton_Non_OK_T not in Sorte_Attendue;
+         begin
+            for S in Sorte_Jeton_Non_OK_T loop
+               AUnit.Assertions.Assert
+                  (
+                     Condition => Jeton_Lu.Lire_Sorte /= S,
+                     Message   => "Jeton lu " &
+                        "[" & Jeton_Lu.Lire_Representation & "] " &
+                        "n'est pas [" & S'Image & "]"
+                  );
+            end loop;
+         end Bloc_Tests_Non_Jeton;
+      end Bloc_Tests;
+
+      pragma Unreferenced (Lexical);
+   end Test_Lire_Jeton_Alors;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Test_Lire_Jeton_Egal
+      (T : in out Test_Fixt_T)
+   is
+      pragma Unreferenced (T);
+
+      use type Jeton_P.Sorte_T;
+
+      C : constant Faux_Fichier_P.Contenu_T := Faux_Fichier_P.Remplir
+         (Contenu => "= test" & Fin_Ligne);
+
+      pragma Unreferenced (C);
+      --  Utile uniquement pour initialiser le contenu du fichier.
+
+      Sorte_Attendue : constant Jeton_P.Sorte_T := Jeton_P.Egal_E;
+
+      Lexical : Lexical_T := Creer (Nom_Fichier => "inutile");
+   begin
+      Bloc_Tests :
+      declare
+         Jeton_Lu : constant Jeton_T := Lexical.Suivant;
+      begin
+         AUnit.Assertions.Assert
+            (
+               Condition => Jeton_Lu.Lire_Sorte = Sorte_Attendue,
+               Message   => "Jeton lu " &
+                  "[" & Jeton_Lu.Lire_Representation & "] n'est pas " &
+                  "[" & Sorte_Attendue'Image & "]"
+            );
+         AUnit.Assertions.Assert
+            (
+               Condition => Jeton_Lu.Est_Egal,
+               Message   => "Jeton lu " &
+                  "[" & Jeton_Lu.Lire_Representation & "] n'est pas " &
+                  "[=]"
+            );
+
+         Bloc_Tests_Non_Jeton :
+         declare
+            subtype Sorte_Jeton_Non_OK_T is Jeton_P.Sorte_T
+               with Static_Predicate =>
+                  Sorte_Jeton_Non_OK_T not in Sorte_Attendue;
+         begin
+            for S in Sorte_Jeton_Non_OK_T loop
+               AUnit.Assertions.Assert
+                  (
+                     Condition => Jeton_Lu.Lire_Sorte /= S,
+                     Message   => "Jeton lu " &
+                        "[" & Jeton_Lu.Lire_Representation & "] " &
+                        "n'est pas [" & S'Image & "]"
+                  );
+            end loop;
+         end Bloc_Tests_Non_Jeton;
+      end Bloc_Tests;
+
+      pragma Unreferenced (Lexical);
+   end Test_Lire_Jeton_Egal;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Test_Lire_Jeton_Superieur
+      (T : in out Test_Fixt_T)
+   is
+      pragma Unreferenced (T);
+
+      use type Jeton_P.Sorte_T;
+
+      C : constant Faux_Fichier_P.Contenu_T := Faux_Fichier_P.Remplir
+         (Contenu => "> test" & Fin_Ligne);
+
+      pragma Unreferenced (C);
+      --  Utile uniquement pour initialiser le contenu du fichier.
+
+      Sorte_Attendue : constant Jeton_P.Sorte_T := Jeton_P.Superieur_E;
+
+      Lexical : Lexical_T := Creer (Nom_Fichier => "inutile");
+   begin
+      Bloc_Tests :
+      declare
+         Jeton_Lu : constant Jeton_T := Lexical.Suivant;
+      begin
+         AUnit.Assertions.Assert
+            (
+               Condition => Jeton_Lu.Lire_Sorte = Sorte_Attendue,
+               Message   => "Jeton lu " &
+                  "[" & Jeton_Lu.Lire_Representation & "] n'est pas " &
+                  "[" & Sorte_Attendue'Image & "]"
+            );
+         AUnit.Assertions.Assert
+            (
+               Condition => Jeton_Lu.Est_Superieur,
+               Message   => "Jeton lu " &
+                  "[" & Jeton_Lu.Lire_Representation & "] n'est pas " &
+                  "[>]"
+            );
+
+         Bloc_Tests_Non_Jeton :
+         declare
+            subtype Sorte_Jeton_Non_OK_T is Jeton_P.Sorte_T
+               with Static_Predicate =>
+                  Sorte_Jeton_Non_OK_T not in Sorte_Attendue;
+         begin
+            for S in Sorte_Jeton_Non_OK_T loop
+               AUnit.Assertions.Assert
+                  (
+                     Condition => Jeton_Lu.Lire_Sorte /= S,
+                     Message   => "Jeton lu " &
+                        "[" & Jeton_Lu.Lire_Representation & "] " &
+                        "n'est pas [" & S'Image & "]"
+                  );
+            end loop;
+         end Bloc_Tests_Non_Jeton;
+      end Bloc_Tests;
+
+      pragma Unreferenced (Lexical);
+   end Test_Lire_Jeton_Superieur;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Test_Lire_Jeton_Inferieur
+      (T : in out Test_Fixt_T)
+   is
+      pragma Unreferenced (T);
+
+      use type Jeton_P.Sorte_T;
+
+      C : constant Faux_Fichier_P.Contenu_T := Faux_Fichier_P.Remplir
+         (Contenu => "< test" & Fin_Ligne);
+
+      pragma Unreferenced (C);
+      --  Utile uniquement pour initialiser le contenu du fichier.
+
+      Sorte_Attendue : constant Jeton_P.Sorte_T := Jeton_P.Inferieur_E;
+
+      Lexical : Lexical_T := Creer (Nom_Fichier => "inutile");
+   begin
+      Bloc_Tests :
+      declare
+         Jeton_Lu : constant Jeton_T := Lexical.Suivant;
+      begin
+         AUnit.Assertions.Assert
+            (
+               Condition => Jeton_Lu.Lire_Sorte = Sorte_Attendue,
+               Message   => "Jeton lu " &
+                  "[" & Jeton_Lu.Lire_Representation & "] n'est pas " &
+                  "[" & Sorte_Attendue'Image & "]"
+            );
+         AUnit.Assertions.Assert
+            (
+               Condition => Jeton_Lu.Est_Inferieur,
+               Message   => "Jeton lu " &
+                  "[" & Jeton_Lu.Lire_Representation & "] n'est pas " &
+                  "[<]"
+            );
+
+         Bloc_Tests_Non_Jeton :
+         declare
+            subtype Sorte_Jeton_Non_OK_T is Jeton_P.Sorte_T
+               with Static_Predicate =>
+                  Sorte_Jeton_Non_OK_T not in Sorte_Attendue;
+         begin
+            for S in Sorte_Jeton_Non_OK_T loop
+               AUnit.Assertions.Assert
+                  (
+                     Condition => Jeton_Lu.Lire_Sorte /= S,
+                     Message   => "Jeton lu " &
+                        "[" & Jeton_Lu.Lire_Representation & "] " &
+                        "n'est pas [" & S'Image & "]"
+                  );
+            end loop;
+         end Bloc_Tests_Non_Jeton;
+      end Bloc_Tests;
+
+      pragma Unreferenced (Lexical);
+   end Test_Lire_Jeton_Inferieur;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Test_Lire_Jeton_Superieur_Egal
+      (T : in out Test_Fixt_T)
+   is
+      pragma Unreferenced (T);
+
+      use type Jeton_P.Sorte_T;
+
+      C : constant Faux_Fichier_P.Contenu_T := Faux_Fichier_P.Remplir
+         (Contenu => ">= test" & Fin_Ligne);
+
+      pragma Unreferenced (C);
+      --  Utile uniquement pour initialiser le contenu du fichier.
+
+      Sorte_Attendue : constant Jeton_P.Sorte_T := Jeton_P.Superieur_Egal_E;
+
+      Lexical : Lexical_T := Creer (Nom_Fichier => "inutile");
+   begin
+      Bloc_Tests :
+      declare
+         Jeton_Lu : constant Jeton_T := Lexical.Suivant;
+      begin
+         AUnit.Assertions.Assert
+            (
+               Condition => Jeton_Lu.Lire_Sorte = Sorte_Attendue,
+               Message   => "Jeton lu " &
+                  "[" & Jeton_Lu.Lire_Representation & "] n'est pas " &
+                  "[" & Sorte_Attendue'Image & "]"
+            );
+         AUnit.Assertions.Assert
+            (
+               Condition => Jeton_Lu.Est_Superieur_Egal,
+               Message   => "Jeton lu " &
+                  "[" & Jeton_Lu.Lire_Representation & "] n'est pas " &
+                  "[>=]"
+            );
+
+         Bloc_Tests_Non_Jeton :
+         declare
+            subtype Sorte_Jeton_Non_OK_T is Jeton_P.Sorte_T
+               with Static_Predicate =>
+                  Sorte_Jeton_Non_OK_T not in Sorte_Attendue;
+         begin
+            for S in Sorte_Jeton_Non_OK_T loop
+               AUnit.Assertions.Assert
+                  (
+                     Condition => Jeton_Lu.Lire_Sorte /= S,
+                     Message   => "Jeton lu " &
+                        "[" & Jeton_Lu.Lire_Representation & "] " &
+                        "n'est pas [" & S'Image & "]"
+                  );
+            end loop;
+         end Bloc_Tests_Non_Jeton;
+      end Bloc_Tests;
+
+      pragma Unreferenced (Lexical);
+   end Test_Lire_Jeton_Superieur_Egal;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Test_Lire_Jeton_Inferieur_Egal
+      (T : in out Test_Fixt_T)
+   is
+      pragma Unreferenced (T);
+
+      use type Jeton_P.Sorte_T;
+
+      C : constant Faux_Fichier_P.Contenu_T := Faux_Fichier_P.Remplir
+         (Contenu => "<= test" & Fin_Ligne);
+
+      pragma Unreferenced (C);
+      --  Utile uniquement pour initialiser le contenu du fichier.
+
+      Sorte_Attendue : constant Jeton_P.Sorte_T := Jeton_P.Inferieur_Egal_E;
+
+      Lexical : Lexical_T := Creer (Nom_Fichier => "inutile");
+   begin
+      Bloc_Tests :
+      declare
+         Jeton_Lu : constant Jeton_T := Lexical.Suivant;
+      begin
+         AUnit.Assertions.Assert
+            (
+               Condition => Jeton_Lu.Lire_Sorte = Sorte_Attendue,
+               Message   => "Jeton lu " &
+                  "[" & Jeton_Lu.Lire_Representation & "] n'est pas " &
+                  "[" & Sorte_Attendue'Image & "]"
+            );
+         AUnit.Assertions.Assert
+            (
+               Condition => Jeton_Lu.Est_Inferieur_Egal,
+               Message   => "Jeton lu " &
+                  "[" & Jeton_Lu.Lire_Representation & "] n'est pas " &
+                  "[<=]"
+            );
+
+         Bloc_Tests_Non_Jeton :
+         declare
+            subtype Sorte_Jeton_Non_OK_T is Jeton_P.Sorte_T
+               with Static_Predicate =>
+                  Sorte_Jeton_Non_OK_T not in Sorte_Attendue;
+         begin
+            for S in Sorte_Jeton_Non_OK_T loop
+               AUnit.Assertions.Assert
+                  (
+                     Condition => Jeton_Lu.Lire_Sorte /= S,
+                     Message   => "Jeton lu " &
+                        "[" & Jeton_Lu.Lire_Representation & "] " &
+                        "n'est pas [" & S'Image & "]"
+                  );
+            end loop;
+         end Bloc_Tests_Non_Jeton;
+      end Bloc_Tests;
+
+      pragma Unreferenced (Lexical);
+   end Test_Lire_Jeton_Inferieur_Egal;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Test_Lire_Jeton_Different
+      (T : in out Test_Fixt_T)
+   is
+      pragma Unreferenced (T);
+
+      use type Jeton_P.Sorte_T;
+
+      C : constant Faux_Fichier_P.Contenu_T := Faux_Fichier_P.Remplir
+         (Contenu => "/= test" & Fin_Ligne);
+
+      pragma Unreferenced (C);
+      --  Utile uniquement pour initialiser le contenu du fichier.
+
+      Sorte_Attendue : constant Jeton_P.Sorte_T := Jeton_P.Different_E;
+
+      Lexical : Lexical_T := Creer (Nom_Fichier => "inutile");
+   begin
+      Bloc_Tests :
+      declare
+         Jeton_Lu : constant Jeton_T := Lexical.Suivant;
+      begin
+         AUnit.Assertions.Assert
+            (
+               Condition => Jeton_Lu.Lire_Sorte = Sorte_Attendue,
+               Message   => "Jeton lu " &
+                  "[" & Jeton_Lu.Lire_Representation & "] n'est pas " &
+                  "[" & Sorte_Attendue'Image & "]"
+            );
+         AUnit.Assertions.Assert
+            (
+               Condition => Jeton_Lu.Est_Different,
+               Message   => "Jeton lu " &
+                  "[" & Jeton_Lu.Lire_Representation & "] n'est pas " &
+                  "[/=]"
+            );
+
+         Bloc_Tests_Non_Jeton :
+         declare
+            subtype Sorte_Jeton_Non_OK_T is Jeton_P.Sorte_T
+               with Static_Predicate =>
+                  Sorte_Jeton_Non_OK_T not in Sorte_Attendue;
+         begin
+            for S in Sorte_Jeton_Non_OK_T loop
+               AUnit.Assertions.Assert
+                  (
+                     Condition => Jeton_Lu.Lire_Sorte /= S,
+                     Message   => "Jeton lu " &
+                        "[" & Jeton_Lu.Lire_Representation & "] " &
+                        "n'est pas [" & S'Image & "]"
+                  );
+            end loop;
+         end Bloc_Tests_Non_Jeton;
+      end Bloc_Tests;
+
+      pragma Unreferenced (Lexical);
+   end Test_Lire_Jeton_Different;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Test_Lire_Jeton_Fait_Booleen
+      (T : in out Test_Fixt_T)
+   is
+      pragma Unreferenced (T);
+
+      use type Jeton_P.Sorte_T;
+
+      C : constant Faux_Fichier_P.Contenu_T := Faux_Fichier_P.Remplir
+         (Contenu => "faits_booleens test" & Fin_Ligne);
+
+      pragma Unreferenced (C);
+      --  Utile uniquement pour initialiser le contenu du fichier.
+
+      Sorte_Attendue : constant Jeton_P.Sorte_T := Jeton_P.Fait_Booleen_E;
+
+      Lexical : Lexical_T := Creer (Nom_Fichier => "inutile");
+   begin
+      Bloc_Tests :
+      declare
+         Jeton_Lu : constant Jeton_T := Lexical.Suivant;
+      begin
+         AUnit.Assertions.Assert
+            (
+               Condition => Jeton_Lu.Lire_Sorte = Sorte_Attendue,
+               Message   => "Jeton lu " &
+                  "[" & Jeton_Lu.Lire_Representation & "] n'est pas " &
+                  "[" & Sorte_Attendue'Image & "]"
+            );
+         AUnit.Assertions.Assert
+            (
+               Condition => Jeton_Lu.Est_Fait_Booleen,
+               Message   => "Jeton lu " &
+                  "[" & Jeton_Lu.Lire_Representation & "] n'est pas " &
+                  "[faits_booleens]"
+            );
+
+         Bloc_Tests_Non_Jeton :
+         declare
+            subtype Sorte_Jeton_Non_OK_T is Jeton_P.Sorte_T
+               with Static_Predicate =>
+                  Sorte_Jeton_Non_OK_T not in Sorte_Attendue;
+         begin
+            for S in Sorte_Jeton_Non_OK_T loop
+               AUnit.Assertions.Assert
+                  (
+                     Condition => Jeton_Lu.Lire_Sorte /= S,
+                     Message   => "Jeton lu " &
+                        "[" & Jeton_Lu.Lire_Representation & "] " &
+                        "n'est pas [" & S'Image & "]"
+                  );
+            end loop;
+         end Bloc_Tests_Non_Jeton;
+      end Bloc_Tests;
+
+      pragma Unreferenced (Lexical);
+   end Test_Lire_Jeton_Fait_Booleen;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Test_Lire_Jeton_Fait_Symbolique
+      (T : in out Test_Fixt_T)
+   is
+      pragma Unreferenced (T);
+
+      use type Jeton_P.Sorte_T;
+
+      C : constant Faux_Fichier_P.Contenu_T := Faux_Fichier_P.Remplir
+         (Contenu => "faits_symboliques test" & Fin_Ligne);
+
+      pragma Unreferenced (C);
+      --  Utile uniquement pour initialiser le contenu du fichier.
+
+      Sorte_Attendue : constant Jeton_P.Sorte_T := Jeton_P.Fait_Symbolique_E;
+
+      Lexical : Lexical_T := Creer (Nom_Fichier => "inutile");
+   begin
+      Bloc_Tests :
+      declare
+         Jeton_Lu : constant Jeton_T := Lexical.Suivant;
+      begin
+         AUnit.Assertions.Assert
+            (
+               Condition => Jeton_Lu.Lire_Sorte = Sorte_Attendue,
+               Message   => "Jeton lu " &
+                  "[" & Jeton_Lu.Lire_Representation & "] n'est pas " &
+                  "[" & Sorte_Attendue'Image & "]"
+            );
+         AUnit.Assertions.Assert
+            (
+               Condition => Jeton_Lu.Est_Fait_Symbolique,
+               Message   => "Jeton lu " &
+                  "[" & Jeton_Lu.Lire_Representation & "] n'est pas " &
+                  "[faits_symboliques]"
+            );
+
+         Bloc_Tests_Non_Jeton :
+         declare
+            subtype Sorte_Jeton_Non_OK_T is Jeton_P.Sorte_T
+               with Static_Predicate =>
+                  Sorte_Jeton_Non_OK_T not in Sorte_Attendue;
+         begin
+            for S in Sorte_Jeton_Non_OK_T loop
+               AUnit.Assertions.Assert
+                  (
+                     Condition => Jeton_Lu.Lire_Sorte /= S,
+                     Message   => "Jeton lu " &
+                        "[" & Jeton_Lu.Lire_Representation & "] " &
+                        "n'est pas [" & S'Image & "]"
+                  );
+            end loop;
+         end Bloc_Tests_Non_Jeton;
+      end Bloc_Tests;
+
+      pragma Unreferenced (Lexical);
+   end Test_Lire_Jeton_Fait_Symbolique;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Test_Lire_Jeton_Fait_Entier
+      (T : in out Test_Fixt_T)
+   is
+      pragma Unreferenced (T);
+
+      use type Jeton_P.Sorte_T;
+
+      C : constant Faux_Fichier_P.Contenu_T := Faux_Fichier_P.Remplir
+         (Contenu => "faits_entiers test" & Fin_Ligne);
+
+      pragma Unreferenced (C);
+      --  Utile uniquement pour initialiser le contenu du fichier.
+
+      Sorte_Attendue : constant Jeton_P.Sorte_T := Jeton_P.Fait_Entier_E;
+
+      Lexical : Lexical_T := Creer (Nom_Fichier => "inutile");
+   begin
+      Bloc_Tests :
+      declare
+         Jeton_Lu : constant Jeton_T := Lexical.Suivant;
+      begin
+         AUnit.Assertions.Assert
+            (
+               Condition => Jeton_Lu.Lire_Sorte = Sorte_Attendue,
+               Message   => "Jeton lu " &
+                  "[" & Jeton_Lu.Lire_Representation & "] n'est pas " &
+                  "[" & Sorte_Attendue'Image & "]"
+            );
+         AUnit.Assertions.Assert
+            (
+               Condition => Jeton_Lu.Est_Fait_Entier,
+               Message   => "Jeton lu " &
+                  "[" & Jeton_Lu.Lire_Representation & "] n'est pas " &
+                  "[faits_entiers]"
+            );
+
+         Bloc_Tests_Non_Jeton :
+         declare
+            subtype Sorte_Jeton_Non_OK_T is Jeton_P.Sorte_T
+               with Static_Predicate =>
+                  Sorte_Jeton_Non_OK_T not in Sorte_Attendue;
+         begin
+            for S in Sorte_Jeton_Non_OK_T loop
+               AUnit.Assertions.Assert
+                  (
+                     Condition => Jeton_Lu.Lire_Sorte /= S,
+                     Message   => "Jeton lu " &
+                        "[" & Jeton_Lu.Lire_Representation & "] " &
+                        "n'est pas [" & S'Image & "]"
+                  );
+            end loop;
+         end Bloc_Tests_Non_Jeton;
+      end Bloc_Tests;
+
+      pragma Unreferenced (Lexical);
+   end Test_Lire_Jeton_Fait_Entier;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Test_Lire_Jeton_Inconnu
+      (T : in out Test_Fixt_T)
+   is
+      pragma Unreferenced (T);
+
+      use type Jeton_P.Sorte_T;
+
+      Contenu : constant String := "@";
+
+      C : constant Faux_Fichier_P.Contenu_T := Faux_Fichier_P.Remplir
+         (Contenu => Contenu & " test" & Fin_Ligne);
+
+      pragma Unreferenced (C);
+      --  Utile uniquement pour initialiser le contenu du fichier.
+
+      Sorte_Attendue : constant Jeton_P.Sorte_T := Jeton_P.Inconnu_E;
+
+      Lexical : Lexical_T := Creer (Nom_Fichier => "inutile");
+   begin
+      Bloc_Tests :
+      declare
+         Jeton_Lu : constant Jeton_T := Lexical.Suivant;
+      begin
+         AUnit.Assertions.Assert
+            (
+               Condition => Jeton_Lu.Lire_Sorte = Sorte_Attendue,
+               Message   => "Jeton lu " &
+                  "[" & Jeton_Lu.Lire_Representation & "] n'est pas " &
+                  "[" & Sorte_Attendue'Image & "]"
+            );
+         AUnit.Assertions.Assert
+            (
+               Condition => Jeton_Lu.Est_Inconnu,
+               Message   => "Jeton lu " &
+                  "[" & Jeton_Lu.Lire_Representation & "] n'est pas " &
+                  "[inconnu]"
+            );
+         AUnit.Assertions.Assert
+            (
+               Condition => Jeton_Lu.Lire_Representation = Contenu,
+               Message   => "Representation du Jeton lu " &
+                  "[" & Jeton_Lu.Lire_Representation & "] n'est pas " &
+                  "[" & Contenu & "]"
+            );
+
+         Bloc_Tests_Non_Jeton :
+         declare
+            subtype Sorte_Jeton_Non_OK_T is Jeton_P.Sorte_T
+               with Static_Predicate =>
+                  Sorte_Jeton_Non_OK_T not in Sorte_Attendue;
+         begin
+            for S in Sorte_Jeton_Non_OK_T loop
+               AUnit.Assertions.Assert
+                  (
+                     Condition => Jeton_Lu.Lire_Sorte /= S,
+                     Message   => "Jeton lu " &
+                        "[" & Jeton_Lu.Lire_Representation & "] " &
+                        "n'est pas [" & S'Image & "]"
+                  );
+            end loop;
+         end Bloc_Tests_Non_Jeton;
+      end Bloc_Tests;
+
+      pragma Unreferenced (Lexical);
+   end Test_Lire_Jeton_Inconnu;
    ---------------------------------------------------------------------------
 
    type Sortes_Attendu_T is array (1 .. 232) of Jeton_P.Sorte_T;
