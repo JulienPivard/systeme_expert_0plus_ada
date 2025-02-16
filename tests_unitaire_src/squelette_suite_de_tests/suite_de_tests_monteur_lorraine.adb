@@ -1,4 +1,5 @@
 with Lexical_Lorraine_Suite_P;
+with Syntaxique_Lorraine_Suite_P;
 
 ---------------------------------------------------------------------------
 function Suite_De_Tests_Monteur_Lorraine
@@ -9,6 +10,8 @@ is
 begin
    Ptr_Test_Suite.all.Add_Test
       (T => Lexical_Lorraine_Suite_P.Fonc_Suite);
+   Ptr_Test_Suite.all.Add_Test
+      (T => Syntaxique_Lorraine_Suite_P.Fonc_Suite);
 
    return Ptr_Test_Suite;
 end Suite_De_Tests_Monteur_Lorraine;
