@@ -9,4 +9,4 @@ with Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G;
 --  syntaxique.
 --  @group Monteur Concret
 package Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_P is new Syntaxique_G
-   (Lexical_P => Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_P);
+   (Lexical_G_P => Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_P);

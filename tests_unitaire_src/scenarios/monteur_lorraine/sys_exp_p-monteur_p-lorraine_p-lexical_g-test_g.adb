@@ -7,9 +7,9 @@ with Sys_Exp_P.Monteur_P.Lorraine_P.Faux_Fichier_P;
 
 with Facilites_P.Entier_P;
 
-package body Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_G.Test_G
-   with Spark_Mode => Off
-is
+package body Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_G.Test_G is
+
+   pragma Spark_Mode (Off);
 
    function Trim
       (

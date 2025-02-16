@@ -36,7 +36,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
    begin
       return S : Syntaxique_T := Syntaxique_T'
          (
-            Parseur_Lexical => Lexical_P.Creer (Nom_Fichier => Nom_Fichier),
+            Parseur_Lexical => Lexical_G_P.Creer (Nom_Fichier => Nom_Fichier),
             Fabrique        =>
                Fabrique_Holder_P.To_Holder (New_Item => Fabrique),
             Jeton_Precharge => <>,

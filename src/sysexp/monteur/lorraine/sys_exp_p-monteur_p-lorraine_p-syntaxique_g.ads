@@ -16,7 +16,7 @@ private with Sys_Exp_P.Valeur_P;
 
 generic
 
-   with package Lexical_P is new Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_G
+   with package Lexical_G_P is new Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_G
       (others => <>);
 
 --  @summary
@@ -79,7 +79,7 @@ private
 
    type Syntaxique_T is tagged limited
       record
-         Parseur_Lexical : Lexical_P.Lexical_T;
+         Parseur_Lexical : Lexical_G_P.Lexical_T;
          --  Le parseur lexical.
          Jeton_Precharge : Jeton_P.Jeton_T :=
             Jeton_P.Fabrique_P.Faire_Inconnu (Representation => "");
