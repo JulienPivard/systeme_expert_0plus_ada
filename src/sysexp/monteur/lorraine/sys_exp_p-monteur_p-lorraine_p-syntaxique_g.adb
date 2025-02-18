@@ -22,6 +22,12 @@ with Sys_Exp_P.Comparateurs_P.Instance_P;
 
 package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
 
+   subtype Comparateur_Nom_Symbole_A is
+      Forme_P.Premisse_P.Comparateur_Nom_Symbole_A;
+
+   subtype Comparateur_Entier_A is
+      Forme_P.Premisse_P.Comparateur_Entier_A;
+
    package Operateur_R renames Sys_Exp_P.Valeur_P.Operateur_P;
    --  @private Package interne.
 
@@ -578,6 +584,16 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
          Bloc_Analyse_Identifier :
          declare
             Jeton_ID : constant Jeton_P.Jeton_T := This.Jeton_Precharge;
+
+            Comparateur : constant Comparateur_Nom_Symbole_A :=
+                        (
+                           if    Jeton_Signe.Est_Egal      then
+                              Comparateurs_P.Instance_P.Egale'Access
+                           elsif Jeton_Signe.Est_Different then
+                              Comparateurs_P.Instance_P.Different'Access
+                           else
+                              null
+                        );
          begin
             if not Jeton_ID.Est_Identificateur then
                This.Creer_Exception (Message => "attendu : identificateur");
@@ -592,15 +608,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
                      return Premisse_R.Symbole_Fait_P.Creer
                         (
                            Nom         => Jeton_Sym.Lire_Representation,
-                           Comparateur =>
-                              (
-                                 if    Jeton_Signe.Est_Egal      then
-                                    Comparateurs_P.Instance_P.Egale'Access
-                                 elsif Jeton_Signe.Est_Different then
-                                    Comparateurs_P.Instance_P.Different'Access
-                                 else
-                                    null
-                              ),
+                           Comparateur => Comparateur,
                            Nom_Fait    => Jeton_ID.Lire_Representation
                         );
 
@@ -614,15 +622,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
                return Premisse_R.Symbole_Constant_P.Creer
                   (
                      Nom         => Jeton_Sym.Lire_Representation,
-                     Comparateur =>
-                        (
-                           if    Jeton_Signe.Est_Egal           then
-                              Comparateurs_P.Instance_P.Egale'Access
-                           elsif Jeton_Signe.Est_Different      then
-                              Comparateurs_P.Instance_P.Different'Access
-                           else
-                              null
-                        ),
+                     Comparateur => Comparateur,
                      Nom_Symbole => Jeton_ID.Lire_Representation
                   );
             end if;
@@ -643,21 +643,8 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
       Bloc_Analyse_Comparateur :
       declare
          Jeton_Signe : constant Jeton_P.Jeton_T := This.Jeton_Precharge;
-      begin
-         if not Jeton_Signe.Est_Un_Signe_De_Comparaison_Entiere then
-            This.Creer_Exception
-               (
-                  Message => "attendu : " &
-                     "'=' ou '/=' ou '<' ou " &
-                     "'>' ou '<=' ou '>='"
-               );
-         end if;
-         This.Suivant;
 
-         return Premisse_R.Expression_Entiere_P.Creer
-            (
-               Nom         => Jeton_Entier.Lire_Representation,
-               Comparateur =>
+         Comparateur : constant Comparateur_Entier_A :=
                   (
                      if    Jeton_Signe.Est_Egal           then
                         Comparateurs_P.Instance_P.Egale'Access
@@ -673,7 +660,22 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
                         Comparateurs_P.Instance_P.Inferieur_Egale'Access
                      else
                         null
-                  ),
+                  );
+      begin
+         if not Jeton_Signe.Est_Un_Signe_De_Comparaison_Entiere then
+            This.Creer_Exception
+               (
+                  Message => "attendu : " &
+                     "'=' ou '/=' ou '<' ou " &
+                     "'>' ou '<=' ou '>='"
+               );
+         end if;
+         This.Suivant;
+
+         return Premisse_R.Expression_Entiere_P.Creer
+            (
+               Nom         => Jeton_Entier.Lire_Representation,
+               Comparateur => Comparateur,
                Expression  => This.Faire_Expression_Entiere
             );
       end Bloc_Analyse_Comparateur;
