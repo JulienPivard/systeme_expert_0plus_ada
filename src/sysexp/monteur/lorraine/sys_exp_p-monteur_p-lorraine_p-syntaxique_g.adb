@@ -311,14 +311,16 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
             end case;
 
          else
-            This.Creer_Exception (Message => "le fait n'a pas été déclare");
+            This.Creer_Exception
+               (Message => "le fait n'a pas été déclare");
          end if;
 
       elsif Jeton.Est_Non then
          return This.Faire_Conclusion_Booleenne;
 
       else
-         This.Creer_Exception (Message => "attendu : identificateur ou 'non'");
+         This.Creer_Exception
+            (Message => "attendu : identificateur ou 'non'");
       end if;
    end Faire_Conclusion;
    ---------------------------------------------------------------------------
@@ -341,7 +343,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
                This.Creer_Exception
                   (Message => "attendu : un fait booleen");
 
-            elsif This.Jeton_Est_Un_Nom_De_Fait then
+            elsif This.Jeton_Est_Un_Nom_De_Fait               then
                if This.Lire_Type_Jeton_Fait = Booleen_E then
                   This.Suivant;
                   return Conclusion_R.Bool_False_P.Creer

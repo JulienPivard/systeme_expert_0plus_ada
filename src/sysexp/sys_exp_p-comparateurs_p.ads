@@ -13,6 +13,7 @@ is
 
    generic
       type Valeur_G_T (<>) is limited private;
+      --  Le type de valeur à comparer.
 
       with function Comparateur_G
          (Gauche, Droite : in     Valeur_G_T)
@@ -23,6 +24,7 @@ is
       --  @param Droite
       --  Entier à droite de l'expression.
       --  @return Le résultat de la comparaison.
+
    function Tester_G
       (Gauche, Droite : in     Valeur_G_T)
       return Boolean;
