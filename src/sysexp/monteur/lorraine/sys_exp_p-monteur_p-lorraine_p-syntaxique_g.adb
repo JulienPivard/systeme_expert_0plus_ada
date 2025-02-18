@@ -586,14 +586,14 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
             Jeton_ID : constant Jeton_P.Jeton_T := This.Jeton_Precharge;
 
             Comparateur : constant Comparateur_Nom_Symbole_A :=
-                        (
-                           if    Jeton_Signe.Est_Egal      then
-                              Comparateurs_P.Instance_P.Egale'Access
-                           elsif Jeton_Signe.Est_Different then
-                              Comparateurs_P.Instance_P.Different'Access
-                           else
-                              null
-                        );
+               (
+                  if    Jeton_Signe.Est_Egal      then
+                     Comparateurs_P.Instance_P.Egale'Access
+                  elsif Jeton_Signe.Est_Different then
+                     Comparateurs_P.Instance_P.Different'Access
+                  else
+                     null
+               );
          begin
             if not Jeton_ID.Est_Identificateur then
                This.Creer_Exception (Message => "attendu : identificateur");
@@ -645,22 +645,22 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
          Jeton_Signe : constant Jeton_P.Jeton_T := This.Jeton_Precharge;
 
          Comparateur : constant Comparateur_Entier_A :=
-                  (
-                     if    Jeton_Signe.Est_Egal           then
-                        Comparateurs_P.Instance_P.Egale'Access
-                     elsif Jeton_Signe.Est_Different      then
-                        Comparateurs_P.Instance_P.Different'Access
-                     elsif Jeton_Signe.Est_Superieur      then
-                        Comparateurs_P.Instance_P.Superieur'Access
-                     elsif Jeton_Signe.Est_Inferieur      then
-                        Comparateurs_P.Instance_P.Inferieur'Access
-                     elsif Jeton_Signe.Est_Superieur_Egal then
-                        Comparateurs_P.Instance_P.Superieur_Egale'Access
-                     elsif Jeton_Signe.Est_Inferieur_Egal then
-                        Comparateurs_P.Instance_P.Inferieur_Egale'Access
-                     else
-                        null
-                  );
+            (
+               if    Jeton_Signe.Est_Egal           then
+                  Comparateurs_P.Instance_P.Egale'Access
+               elsif Jeton_Signe.Est_Different      then
+                  Comparateurs_P.Instance_P.Different'Access
+               elsif Jeton_Signe.Est_Superieur      then
+                  Comparateurs_P.Instance_P.Superieur'Access
+               elsif Jeton_Signe.Est_Inferieur      then
+                  Comparateurs_P.Instance_P.Inferieur'Access
+               elsif Jeton_Signe.Est_Superieur_Egal then
+                  Comparateurs_P.Instance_P.Superieur_Egale'Access
+               elsif Jeton_Signe.Est_Inferieur_Egal then
+                  Comparateurs_P.Instance_P.Inferieur_Egale'Access
+               else
+                  null
+            );
       begin
          if not Jeton_Signe.Est_Un_Signe_De_Comparaison_Entiere then
             This.Creer_Exception
