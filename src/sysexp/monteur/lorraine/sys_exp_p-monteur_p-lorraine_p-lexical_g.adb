@@ -30,6 +30,15 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_G is
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
+   procedure Fermer
+      (This : in out Lexical_T)
+   is
+   begin
+      Fermer_G (Contenu => This.Fichier);
+   end Fermer;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
    function Suivant
       (This : in out Lexical_T)
       return Jeton_T

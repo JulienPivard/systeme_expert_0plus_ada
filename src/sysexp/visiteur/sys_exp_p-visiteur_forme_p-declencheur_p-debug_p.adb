@@ -21,6 +21,14 @@ package body Sys_Exp_P.Visiteur_Forme_P.Declencheur_P.Debug_P
    with Spark_Mode => Off
 is
 
+   function Trim
+      (
+         Source : in     String;
+         Side   : in     Ada.Strings.Trim_End := Ada.Strings.Both
+      )
+      return String
+      renames Ada.Strings.Fixed.Trim;
+
    ---------------------------------------------------------------------------
    overriding
    function Creer
@@ -299,13 +307,7 @@ is
       Ada.Text_IO.Put_Line
          (
             Item => "Message erreur        " &
-               "[" &
-               Ada.Strings.Fixed.Trim
-                  (
-                     Source => This.Message_D_Erreur,
-                     Side   => Ada.Strings.Both
-                  ) &
-               "]"
+               "[" & Trim (Source => This.Message_D_Erreur) & "]"
          );
       Ada.Text_IO.New_Line     (Spacing => 1);
    end Afficher;

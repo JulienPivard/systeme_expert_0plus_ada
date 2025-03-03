@@ -1,3 +1,5 @@
+with Ada.Strings.Fixed;
+
 with Sys_Exp_P.Valeur_P.Constante_P;
 with Sys_Exp_P.Valeur_P.Fait_P;
 
@@ -21,6 +23,14 @@ with Sys_Exp_P.Forme_P.Premisse_P.Symbole_Fait_P;
 with Sys_Exp_P.Comparateurs_P.Instance_P;
 
 package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
+
+   function Trim
+      (
+         Source : in     String;
+         Side   : in     Ada.Strings.Trim_End := Ada.Strings.Both
+      )
+      return String
+      renames Ada.Strings.Fixed.Trim;
 
    subtype Comparateur_Nom_Symbole_A is
       Forme_P.Premisse_P.Comparateur_Nom_Symbole_A;
@@ -46,7 +56,12 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
             Fabrique        =>
                Fabrique_Holder_P.To_Holder (New_Item => Fabrique),
             Jeton_Precharge => <>,
-            Noms_Faits      => <>
+            Noms_Faits      => <>,
+            Nom_Fichier     => Nom_Fichier_Memorise_T'
+               (
+                  Taille => Nom_Fichier'Length,
+                  Nom    => Nom_Fichier
+               )
          )
       do
          S.Suivant;
@@ -76,15 +91,18 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
          Message : in     String
       )
    is
+      Num_Ligne : constant Lexical_G_P.Numero_Ligne_G_T :=
+         This.Parseur_Lexical.Lire_Numero_Ligne;
+
       Ligne    : constant String  := This.Parseur_Lexical.Lire_Ligne;
-      Position : constant Integer := This.Parseur_Lexical.Lire_Position;
       Ancienne : constant Integer :=
          This.Parseur_Lexical.Lire_Ancienne_Position;
    begin
-      raise E_Parse with "Erreur " &
-         "[" & Ligne (Ancienne .. Position) & "] ligne " &
-         This.Parseur_Lexical.Lire_Numero_Ligne'Image &
-         " [" & Message & "] position " & Ancienne'Image;
+      raise E_Parse with String (This.Nom_Fichier.Nom) & ":" &
+         Trim (Source => Num_Ligne'Image) & ":" &
+         Trim (Source => Ancienne'Image) & " " &
+         "Erreur [" & Trim (Source => Ligne) & "]" &
+         " [" & Message & "] ";
    end Creer_Exception;
    ---------------------------------------------------------------------------
 
@@ -251,6 +269,8 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
             Base_De_Regles := Base_De_Regles_P.To_Holder (New_Item => R);
          end Bloc_Faire_Base;
       end loop B_Faire_Base;
+
+      This.Parseur_Lexical.Fermer;
 
       return Base_De_Regles.Element;
    end Faire_Base_De_Regles;

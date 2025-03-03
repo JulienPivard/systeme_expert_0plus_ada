@@ -88,6 +88,8 @@ private
          --  Nom des faits associé à leur types.
          Fabrique        : Fabrique_Holder_P.Holder;
          --  La fabrique de visiteur de formes à donner aux règles.
+         Nom_Fichier     : Nom_Fichier_Memorise_T;
+         --  Le nom du fichier en cours de traitement.
       end record;
 
    package Conclusion_R    renames Sys_Exp_P.Forme_P.Conclusion_P;

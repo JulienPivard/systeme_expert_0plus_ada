@@ -21,6 +21,12 @@ generic
    --  @param Nom
    --  Le nom associé au contenu.
 
+   with procedure Fermer_G
+      (Contenu : in out Contenu_G_T);
+   --  Ferme le fichier.
+   --  @param Contenu
+   --  Le contenu à parser.
+
    with function Lire_Ligne_G
       (Contenu : in out Contenu_G_T)
       return String;
@@ -72,6 +78,12 @@ package Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_G is
    --  @param Nom_Fichier
    --  Le nom du fichier à parser.
    --  @return Le parseur lexical.
+
+   procedure Fermer
+      (This : in out Lexical_T);
+   --  Ferme le fichier.
+   --  @param This
+   --  L'analyseur lexical.
 
    function Lire_Ligne
       (This : in     Lexical_T)
