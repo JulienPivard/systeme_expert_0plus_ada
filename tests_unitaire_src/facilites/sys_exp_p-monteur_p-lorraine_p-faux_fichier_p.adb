@@ -1,5 +1,4 @@
 with Ada.Strings.Fixed;
-with Ada.Text_IO;
 
 package body Sys_Exp_P.Monteur_P.Lorraine_P.Faux_Fichier_P
    with Spark_Mode => Off
@@ -121,7 +120,6 @@ is
          exit B_Recherche when Faux_Contenu (I) = Fin_Ligne;
          I := I + 1;
       end loop B_Recherche;
-      Ada.Text_IO.Put_Line (Item => Faux_Contenu (1 .. I));
 
       return I;
    end Chercher_Prochain_Saut;
