@@ -12,6 +12,7 @@ package Sys_Exp_P.Monteur_P.Lorraine_P.Faux_Lexical_P is new Lexical_G
       Numero_Ligne_G_T    => Faux_Fichier_P.Numero_Ligne_T,
       Contenu_G_T         => Faux_Fichier_P.Contenu_T,
       Ouvrir_G            => Faux_Fichier_P.Ouvrir,
+      Fermer_G            => Faux_Fichier_P.Fermer,
       Lire_Ligne_G        => Faux_Fichier_P.Lire_Ligne,
       Lire_Numero_Ligne_G => Faux_Fichier_P.Lire_Numero_Ligne,
       Fin_Est_Atteinte_G  => Faux_Fichier_P.Fin_Est_Atteinte

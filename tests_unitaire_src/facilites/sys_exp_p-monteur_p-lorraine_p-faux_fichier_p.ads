@@ -23,6 +23,9 @@ is
          Nom     : in     Nom_Fichier_T
       );
 
+   procedure Fermer
+      (Contenu : in out Contenu_T);
+
    function Lire_Ligne
       (Contenu : in out Contenu_T)
       return String;
