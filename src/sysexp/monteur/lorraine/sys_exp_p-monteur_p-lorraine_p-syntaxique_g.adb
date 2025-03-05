@@ -797,17 +797,17 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
 
       Jeton : Jeton_P.Jeton_T;
 
-      Ni_Mult_Ni_Div : Boolean;
+      Ni_Multiplier_Ni_Diviser : Boolean;
    begin
       --  la structure d'un terme est : facteur {(x|/) facteur}
       Boucle_Ope_Mult_Div :
       loop
          Jeton := This.Jeton_Precharge;
 
-         Ni_Mult_Ni_Div :=
+         Ni_Multiplier_Ni_Diviser :=
             not Jeton.Est_Operateur_Multiplier and then
             not Jeton.Est_Operateur_Diviser;
-         exit Boucle_Ope_Mult_Div when Ni_Mult_Ni_Div;
+         exit Boucle_Ope_Mult_Div when Ni_Multiplier_Ni_Diviser;
 
          This.Suivant;
          if    Jeton.Est_Operateur_Multiplier then
