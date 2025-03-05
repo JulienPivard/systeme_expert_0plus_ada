@@ -29,4 +29,7 @@ package Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G.Test_G is
    procedure Test_Creer
       (T : in out Test_Fixt_T);
 
+   procedure Test_Lire_1_Ligne
+      (T : in out Test_Fixt_T);
+
 end Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G.Test_G;
