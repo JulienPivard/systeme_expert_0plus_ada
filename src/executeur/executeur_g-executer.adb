@@ -44,15 +44,15 @@ begin
       if Resultat.Reussie then
          Bloc_Iterer_Sur_Les_Regles :
          declare
-      R : constant Sys_Exp_P.Regles_P.Regle_Abstraite_T'Class :=
+            R : constant Sys_Exp_P.Regles_P.Regle_Abstraite_T'Class :=
                Monteur_R.Lire_Base_De_Regles (Resultat_Parseur => Resultat);
 
-      Moteur : Sys_Exp_P.Moteur_Inference_P.Moteur_Inference_T :=
-         Sys_Exp_P.Moteur_Inference_P.Creer (Base_De_Regles => R);
-   begin
-      Moteur.Analyser_Base_Regles;
+            Moteur : Sys_Exp_P.Moteur_Inference_P.Moteur_Inference_T :=
+               Sys_Exp_P.Moteur_Inference_P.Creer (Base_De_Regles => R);
+         begin
+            Moteur.Analyser_Base_Regles;
 
-      Sys_Exp_P.Moteur_Inference_P.Text_IO.Put_Line (Item => Moteur);
+            Sys_Exp_P.Moteur_Inference_P.Text_IO.Put_Line (Item => Moteur);
          end Bloc_Iterer_Sur_Les_Regles;
 
       else
