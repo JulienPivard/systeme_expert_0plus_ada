@@ -24,6 +24,9 @@ with Sys_Exp_P.Comparateurs_P.Instance_P;
 
 package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
 
+   E_Parse : exception;
+   --  Exception levé par le parseur.
+
    function Trim
       (
          Source : in     String;
