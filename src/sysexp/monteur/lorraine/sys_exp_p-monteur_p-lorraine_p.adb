@@ -24,7 +24,7 @@ is
             Nom_Fichier    => Fichier,
             Fabrique       =>
                Fabrique_Holder_P.To_Holder (New_Item => Fabrique),
-            Base_De_Regles => Base_De_Regles_P.Empty_Holder
+            Base_De_Regles => <>
          );
    end Creer;
    ---------------------------------------------------------------------------

@@ -16,11 +16,11 @@ procedure Executer
       Mode_Debug  : in     Boolean
    )
 is
-   package Monteur_R     renames Sys_Exp_P.Monteur_P.Lorraine_P;
+   package Monteur_R     renames Sys_Exp_P.Monteur_P;
    package Declencheur_R renames Sys_Exp_P.Visiteur_Forme_P.Declencheur_P;
    --  @private Package interne.
 
-   M : constant Monteur_R.Monteur_T := Monteur_R.Creer
+   M : constant Monteur_R.Lorraine_P.Monteur_T := Monteur_R.Lorraine_P.Creer
       (
          Nom_Fichier => Nom_Fichier,
          Fabrique    =>

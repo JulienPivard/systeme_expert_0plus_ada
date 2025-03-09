@@ -4,6 +4,7 @@ with Sys_Exp_P.Visiteur_Forme_P.Fabrique_Interface_P;
 private with Ada.Containers.Indefinite_Doubly_Linked_Lists;
 private with Ada.Containers.Indefinite_Hashed_Maps;
 private with Ada.Containers.Indefinite_Holders;
+private with Ada.Exceptions;
 private with Ada.Strings.Hash;
 
 private with Sys_Exp_P.Forme_P.Conclusion_P;
@@ -114,6 +115,14 @@ private
    --  @param Message
    --  Le message à remonter.
    pragma No_Return (Creer_Exception);
+
+   function Creer
+      (E : in     Ada.Exceptions.Exception_Occurrence)
+      return Rapport_D_Erreur_T;
+   --  Crée un rapport d'erreur.
+   --  @param E
+   --  L'exception relevée.
+   --  @return Le rapport d'erreur.
 
    function Jeton_Est_Un_Nom_De_Fait
       (This : in     Syntaxique_T)

@@ -107,6 +107,17 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
+   function Creer
+      (E : in     Ada.Exceptions.Exception_Occurrence)
+      return Rapport_D_Erreur_T
+   is
+      Message : constant String := Ada.Exceptions.Exception_Message (X => E);
+   begin
+      return Creer (Message => Message);
+   end Creer;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
    function Jeton_Est_Un_Nom_De_Fait
       (This : in     Syntaxique_T)
       return Boolean

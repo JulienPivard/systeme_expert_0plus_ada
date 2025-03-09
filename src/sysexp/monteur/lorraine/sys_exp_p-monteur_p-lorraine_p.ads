@@ -57,13 +57,6 @@ private
          Nom : Nom_Fichier_T (1 .. Taille);
       end record;
 
-   package Base_De_Regles_P is new Ada.Containers.Indefinite_Holders
-      (
-         Element_Type => Base_De_Regles_T,
-         "="          => Sys_Exp_P.Regles_P."="
-      );
-   --  @private Package interne.
-
    package Fabrique_Holder_P is new Ada.Containers.Indefinite_Holders
       (
          Element_Type => Fabrique_R.Fabrique_Interface_T'Class,
