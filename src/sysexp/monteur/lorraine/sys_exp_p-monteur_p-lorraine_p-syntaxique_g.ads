@@ -104,6 +104,19 @@ private
    package Sans_Premisse_R renames Sys_Exp_P.Regles_P.Sans_Premisse_P;
    --  @private Package interne.
 
+   function Faire_Message_Erreur
+      (
+         This    : in out Syntaxique_T;
+         Message : in     String
+      )
+      return String;
+   --  Construit le message d'erreur pour le rendre le plus utile possible.
+   --  @param This
+   --  Le parseur syntaxique.
+   --  @param Message
+   --  Le message à remonter.
+   --  @return Le message d'erreur.
+
    procedure Creer_Exception
       (
          This    : in out Syntaxique_T;
