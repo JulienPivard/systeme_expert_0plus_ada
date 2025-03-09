@@ -325,7 +325,9 @@ is
 
 private
 
-   type NB_T is range 0 .. 255;
+   NB_Caracteres_Max : constant := 255;
+
+   type NB_T is range 0 .. NB_Caracteres_Max;
 
    subtype ID_Str_T is NB_T range 1 .. NB_T'Last;
 

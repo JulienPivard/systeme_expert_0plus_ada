@@ -127,7 +127,9 @@ package Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_G is
 
 private
 
-   subtype NB_Char_T is Integer range 0 .. 255;
+   NB_Caracteres_Max : constant := 255;
+
+   subtype NB_Char_T is Integer range 0 .. NB_Caracteres_Max;
    --  Intervalle de nombre de caractères autorisé.
 
    type Ligne_T (Taille : NB_Char_T := 0) is

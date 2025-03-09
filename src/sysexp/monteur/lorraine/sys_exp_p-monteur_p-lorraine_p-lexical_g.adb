@@ -144,10 +144,10 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_G is
    procedure Aller_Au_Prochain_Char_Non_Blanc
       (This : in out Lexical_T)
    is
-      package ASCII_P renames Ada.Characters.Latin_1;
+      package ASCII_R renames Ada.Characters.Latin_1;
 
       subtype Espace_T is Character
-         with Static_Predicate => Espace_T in ' ' | ASCII_P.HT | ASCII_P.VT;
+         with Static_Predicate => Espace_T in ' ' | ASCII_R.HT | ASCII_R.VT;
 
       Chaine : constant String  := This.Ligne_En_Cours.Chaine;
 
