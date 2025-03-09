@@ -33,7 +33,7 @@ is
 
    function Livrer
       (This : in     Directeur_T)
-      return Base_De_Regles_T;
+      return Resultat_Parseur_T;
    --  Permet de récupérer le jeu de règle une fois la
    --  construction finie.
    --  @param This

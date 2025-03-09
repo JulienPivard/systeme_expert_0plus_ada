@@ -39,7 +39,13 @@ begin
 
    Bloc_Iterer_Moteur :
    declare
-      R : constant Sys_Exp_P.Regles_P.Regle_Abstraite_T'Class := D.Livrer;
+      Resultat : constant Monteur_R.Resultat_Parseur_T := D.Livrer;
+   begin
+      if Resultat.Reussie then
+         Bloc_Iterer_Sur_Les_Regles :
+         declare
+      R : constant Sys_Exp_P.Regles_P.Regle_Abstraite_T'Class :=
+               Monteur_R.Lire_Base_De_Regles (Resultat_Parseur => Resultat);
 
       Moteur : Sys_Exp_P.Moteur_Inference_P.Moteur_Inference_T :=
          Sys_Exp_P.Moteur_Inference_P.Creer (Base_De_Regles => R);
@@ -47,5 +53,25 @@ begin
       Moteur.Analyser_Base_Regles;
 
       Sys_Exp_P.Moteur_Inference_P.Text_IO.Put_Line (Item => Moteur);
+         end Bloc_Iterer_Sur_Les_Regles;
+
+      else
+         Bloc_Afficher_Erreur :
+         declare
+            Message_Erreur : constant String := Monteur_R.Lire_Message_Erreur
+               (Resultat_Parseur => Resultat);
+         begin
+            Ada.Text_IO.Put_Line
+               (
+                  File => Ada.Text_IO.Standard_Error,
+                  Item => "Erreur durant la lecture du fichier"
+               );
+            Ada.Text_IO.Put_Line
+               (
+                  File => Ada.Text_IO.Standard_Error,
+                  Item => Message_Erreur
+               );
+         end Bloc_Afficher_Erreur;
+      end if;
    end Bloc_Iterer_Moteur;
 end Executer;

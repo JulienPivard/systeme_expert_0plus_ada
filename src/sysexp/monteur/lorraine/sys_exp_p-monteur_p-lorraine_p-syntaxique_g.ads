@@ -52,7 +52,7 @@ package Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
 
    function Parser
       (This : in out Syntaxique_T)
-      return Base_De_Regles_T;
+      return Resultat_Parseur_T;
    --  Construit la base de règles à partir d'un parseur lexical.
    --  @param This
    --  Le parseur syntaxique.
@@ -184,7 +184,7 @@ private
 
    function Faire_Base_De_Regles
       (This : in out Syntaxique_T)
-      return Base_De_Regles_T;
+      return Resultat_Parseur_T;
    --  Construit la base de règles à partir du parseur lexical.
    --  @param This
    --  Le parseur syntaxique.

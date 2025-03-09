@@ -40,8 +40,7 @@ is
             Fabrique    => This.Fabrique.Element
          );
    begin
-      This.Base_De_Regles := Base_De_Regles_P.To_Holder
-         (New_Item => Syntaxique.Parser);
+      This.Base_De_Regles := Syntaxique.Parser;
    end Construire_Jeu_De_Regles;
    ---------------------------------------------------------------------------
 
@@ -49,10 +48,10 @@ is
    overriding
    function Lire_Resultat
       (This : in     Monteur_T)
-      return Base_De_Regles_T
+      return Resultat_Parseur_T
    is
    begin
-      return This.Base_De_Regles.Element;
+      return This.Base_De_Regles;
    end Lire_Resultat;
    ---------------------------------------------------------------------------
 

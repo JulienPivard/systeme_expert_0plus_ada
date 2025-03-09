@@ -56,15 +56,26 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G.Test_G is
             Fabrique    => F
          );
 
-      Regles : constant Base_De_Regles_T := Syntaxique.Parser;
+      Resultat : constant Resultat_Parseur_T := Syntaxique.Parser;
       pragma Unreferenced (Syntaxique);
       --  Le parseur syntaxique n'est plus utile.
    begin
       AUnit.Assertions.Assert
          (
-            Condition => Regles.Possede_Successeur,
+            Condition => Resultat.Reussie,
             Message   => "Creation du parseur lexical"
          );
+      Bloc_Tester_Regles :
+      declare
+         Regles : constant Base_De_Regles_T := Lire_Base_De_Regles
+            (Resultat_Parseur => Resultat);
+      begin
+         AUnit.Assertions.Assert
+            (
+               Condition => Regles.Possede_Successeur,
+               Message   => "Creation du parseur lexical"
+            );
+      end Bloc_Tester_Regles;
    end Test_Creer;
    ---------------------------------------------------------------------------
 
@@ -76,7 +87,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G.Test_G is
 
       F : constant Fab_R.Fabrique_T := Fab_R.Creer;
 
-      Continuer : Boolean;
+      --  Continuer : Boolean;
    begin
       Base_Faits_P.Extension_P.R_A_Z (Base => Base);
       Faux_Fichier_P.Remplir
@@ -98,42 +109,41 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G.Test_G is
                Fabrique    => F
             );
 
-         Regles : Base_De_Regles_T := Syntaxique.Parser;
+         Resultat : constant Resultat_Parseur_T := Syntaxique.Parser;
+         --  Regles : Base_De_Regles_T := Syntaxique.Parser;
          pragma Unreferenced (Syntaxique);
          --  Le parseur syntaxique n'est plus utile.
       begin
-         B_Tester :
-         loop
-            Continuer := Regles.Iterer (Base => Base'Access);
-            exit B_Tester when not Continuer;
-         end loop B_Tester;
-         pragma Unreferenced (Regles);
-         --  Une fois parcourue elles ne servent plus.
+         AUnit.Assertions.Assert
+            (
+               Condition => not Resultat.Reussie,
+               Message   => "Creation du parseur lexical"
+            );
+         --  B_Tester :
+         --  loop
+         --     Continuer := Regles.Iterer (Base => Base'Access);
+         --     exit B_Tester when not Continuer;
+         --  end loop B_Tester;
+         --  pragma Unreferenced (Regles);
+         --  --  Une fois parcourue elles ne servent plus.
 
-         AUnit.Assertions.Assert
-            (
-               Condition => not Continuer,
-               Message   => "Creation du parseur lexical"
-            );
-         Bloc_Verifier_NB :
-         declare
-            NB : constant Integer :=
-               Base_Faits_P.Extension_P.NB_Elements (B => Base);
-         begin
-            AUnit.Assertions.Assert
-               (
-                  Condition => NB = 10,
-                  Message   => "Taille de la base [" & NB'Image & "]"
-               );
-         end Bloc_Verifier_NB;
+         --  AUnit.Assertions.Assert
+         --     (
+         --        Condition => not Continuer,
+         --        Message   => "Creation du parseur lexical"
+         --     );
+         --  Bloc_Verifier_NB :
+         --  declare
+         --     NB : constant Integer :=
+         --        Base_Faits_P.Extension_P.NB_Elements (B => Base);
+         --  begin
+         --     AUnit.Assertions.Assert
+         --        (
+         --           Condition => NB = 10,
+         --           Message   => "Taille de la base [" & NB'Image & "]"
+         --        );
+         --  end Bloc_Verifier_NB;
       end Bloc_Parser;
-   exception
-      when others =>
-         AUnit.Assertions.Assert
-            (
-               Condition => True,
-               Message   => "Creation du parseur lexical"
-            );
    end Test_Lire_1_Ligne;
    ---------------------------------------------------------------------------
 

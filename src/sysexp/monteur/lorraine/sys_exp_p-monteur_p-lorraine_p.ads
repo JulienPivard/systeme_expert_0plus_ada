@@ -44,7 +44,7 @@ is
    overriding
    function Lire_Resultat
       (This : in     Monteur_T)
-      return Base_De_Regles_T;
+      return Resultat_Parseur_T;
    --  Permet de récupérer le résultat de la construction.
    --  @param This
    --  Le monteur de jeu de règles.
@@ -68,7 +68,7 @@ private
 
    type Monteur_T is new Monteur_Abstrait_T with
       record
-         Base_De_Regles : Base_De_Regles_P.Holder;
+         Base_De_Regles : Resultat_Parseur_T;
          --  La base de règles à construire.
          Fabrique       : Fabrique_Interface_T;
          --  La fabrique de visiteur de formes à utiliser dans la

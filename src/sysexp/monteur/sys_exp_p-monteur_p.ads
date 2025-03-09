@@ -52,7 +52,7 @@ is
 
    function Lire_Resultat
       (This : in     Monteur_Abstrait_T)
-      return Base_De_Regles_T
+      return Resultat_Parseur_T
    is abstract;
    --  Permet de récupérer le résultat de la construction.
    --  @param This

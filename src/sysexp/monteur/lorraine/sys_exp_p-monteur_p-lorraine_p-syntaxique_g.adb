@@ -72,11 +72,18 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
    ---------------------------------------------------------------------------
    function Parser
       (This : in out Syntaxique_T)
-      return Base_De_Regles_T
+      return Resultat_Parseur_T
    is
    begin
       This.Faire_Declaration;
       return This.Faire_Base_De_Regles;
+   exception
+      when E : E_Parse =>
+         return Resultat_Parseur_T'
+            (
+               Reussie          => False,
+               Rapport_D_Erreur => Creer (E => E)
+            );
    end Parser;
    ---------------------------------------------------------------------------
 
@@ -250,7 +257,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
    ---------------------------------------------------------------------------
    function Faire_Base_De_Regles
       (This : in out Syntaxique_T)
-      return Base_De_Regles_T
+      return Resultat_Parseur_T
    is
       use type ID_Regle_T;
 
@@ -283,7 +290,11 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
 
       This.Parseur_Lexical.Fermer;
 
-      return Base_De_Regles.Element;
+      return Resultat_Parseur_T'
+         (
+            Reussie        => True,
+            Base_De_Regles => Base_De_Regles
+         );
    end Faire_Base_De_Regles;
    ---------------------------------------------------------------------------
 
