@@ -889,7 +889,8 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
          Facteur := Valeur_Holder_P.To_Holder
             (New_Item => This.Faire_Expression_Entiere);
          if not This.Jeton_Precharge.Est_Parenthese_Fermante then
-            This.Creer_Exception (Message => "Attendu : ')'");
+            This.Creer_Exception
+               (Message => "Attendu : ')' ou '+' ou '-' ou '*' ou '/'");
          end if;
 
       elsif This.Jeton_Est_Un_Nom_De_Fait then
