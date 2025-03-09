@@ -124,18 +124,8 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
          Message : in     String
       )
    is
-      Num_Ligne : constant Lexical_G_P.Numero_Ligne_G_T :=
-         This.Parseur_Lexical.Lire_Numero_Ligne;
-
-      Ligne    : constant String  := This.Parseur_Lexical.Lire_Ligne;
-      Ancienne : constant Integer :=
-         This.Parseur_Lexical.Lire_Ancienne_Position;
    begin
-      raise E_Parse with String (This.Nom_Fichier.Nom) & ":" &
-         Trim (Source => Num_Ligne'Image) & ":" &
-         Trim (Source => Ancienne'Image) & " " &
-         "Erreur [" & Trim (Source => Ligne) & "]" &
-         " [" & Message & "] ";
+      raise E_Parse with This.Faire_Message_Erreur (Message => Message);
    end Creer_Exception;
    ---------------------------------------------------------------------------
 
