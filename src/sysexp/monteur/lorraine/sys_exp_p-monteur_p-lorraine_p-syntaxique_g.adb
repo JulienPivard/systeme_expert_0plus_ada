@@ -395,7 +395,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
                (
                   Message => "le fait " &
                      "[" & This.Lire_Representation_Jeton & "] " &
-                     "n'a pas été déclare"
+                     "n'a pas été déclaré"
                );
          end if;
 

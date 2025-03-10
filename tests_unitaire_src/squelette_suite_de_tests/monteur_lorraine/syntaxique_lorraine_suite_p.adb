@@ -36,8 +36,42 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "lire 1 ligne",
-                  Test => Scenario_R.Test_Lire_1_Ligne'Access
+                  Name => Nom_Test & "lire faits booleen",
+                  Test => Scenario_R.Test_Lire_Faits_Bool'Access
+               )
+         );
+      Ptr_Test_Suite.all.Add_Test
+         (
+            T => Caller_P.Create
+               (
+                  Name => Nom_Test & "lire faits booleen et symbolique",
+                  Test => Scenario_R.Test_Lire_Faits_Bool_Symb'Access
+               )
+         );
+      Ptr_Test_Suite.all.Add_Test
+         (
+            T => Caller_P.Create
+               (
+                  Name => Nom_Test & "lire faits " &
+                     "booleen symbolique et entier",
+                  Test => Scenario_R.Test_Lire_Faits_Bool_Symb_Entier'Access
+               )
+         );
+
+      Ptr_Test_Suite.all.Add_Test
+         (
+            T => Caller_P.Create
+               (
+                  Name => Nom_Test & "utilisation d'un fait inconnu",
+                  Test => Scenario_R.Test_Utiliser_Fait_Inconnu'Access
+               )
+         );
+      Ptr_Test_Suite.all.Add_Test
+         (
+            T => Caller_P.Create
+               (
+                  Name => Nom_Test & "appliquer 1 regle",
+                  Test => Scenario_R.Test_Appliquer_1_Regle'Access
                )
          );
 
