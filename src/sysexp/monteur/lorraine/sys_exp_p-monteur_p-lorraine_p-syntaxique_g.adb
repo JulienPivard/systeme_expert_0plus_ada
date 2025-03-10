@@ -190,7 +190,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
          This.Suivant;
          This.Faire_Liste_Faits (Race => Entier_E);
       else
-         This.Creer_Exception (Message => "attendu : 'faits_entiers'");
+         This.Creer_Exception (Message => "attendu : '" & Fait_Entier & "'");
       end if;
    end Faire_Declaration_Entier;
    ---------------------------------------------------------------------------
@@ -204,7 +204,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
          This.Suivant;
          This.Faire_Liste_Faits (Race => Symbolique_E);
       else
-         This.Creer_Exception (Message => "attendu : 'faits_symboliques'");
+         This.Creer_Exception (Message => "attendu : '" & Fait_Symbol & "'");
       end if;
    end Faire_Declaration_Symbolique;
    ---------------------------------------------------------------------------
@@ -218,7 +218,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
          This.Suivant;
          This.Faire_Liste_Faits (Race => Booleen_E);
       else
-         This.Creer_Exception (Message => "attendu : 'faits_booleens'");
+         This.Creer_Exception (Message => "attendu : '" & Fait_Bool & "'");
       end if;
    end Faire_Declaration_Booleen;
    ---------------------------------------------------------------------------
@@ -232,7 +232,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
    is
    begin
       if not This.Jeton_Precharge.Est_Egal then
-         This.Creer_Exception (Message => "attendu : '='");
+         This.Creer_Exception (Message => "attendu : '" & Test_Egal & "'");
       end if;
       This.Suivant;
 
@@ -263,7 +263,8 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
          exit B_Parcours_Faits when This.Jeton_Precharge.Est_Fin_Expression;
 
          if not This.Jeton_Precharge.Est_Separateur then
-            This.Creer_Exception (Message => "attendu : ','");
+            This.Creer_Exception
+               (Message => "attendu : '" & Separateur & "'");
          end if;
          This.Suivant;
       end loop B_Parcours_Faits;
@@ -292,7 +293,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
 
          ID := ID + 1;
          if not This.Jeton_Precharge.Est_Fin_Expression then
-            This.Creer_Exception (Message => "attendu : ';'");
+            This.Creer_Exception (Message => "attendu : '" & Fin_Expr & "'");
          end if;
          This.Suivant;
          exit B_Faire_Base when This.Jeton_Precharge.Est_Fin_Fichier;
@@ -390,7 +391,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
 
       else
          This.Creer_Exception
-            (Message => "attendu : identificateur ou 'non'");
+            (Message => "attendu : identificateur ou '" & Test_Non & "'");
       end if;
    end Faire_Conclusion;
    ---------------------------------------------------------------------------
@@ -492,7 +493,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
          end Bloc_Lire_Nom_Symb;
 
       else
-         This.Creer_Exception (Message => "attendu : '='");
+         This.Creer_Exception (Message => "attendu : '" & Test_Egal & "'");
       end if;
    end Faire_Conclusion_Symbolique;
    ---------------------------------------------------------------------------
@@ -514,7 +515,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
                Expression => This.Faire_Expression_Entiere
             );
       else
-         This.Creer_Exception (Message => "attendu : '='");
+         This.Creer_Exception (Message => "attendu : '" & Test_Egal & "'");
       end if;
    end Faire_Conclusion_Entiere;
    ---------------------------------------------------------------------------
@@ -532,7 +533,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
       Regle : Avec_Premisse_R.Regle_T;
    begin
       if not This.Jeton_Precharge.Est_Alors then
-         This.Creer_Exception (Message => "attendu : 'alors'");
+         This.Creer_Exception (Message => "attendu : '" & Consequence & "'");
       end if;
       This.Suivant;
 
@@ -606,7 +607,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
 
       else
          This.Creer_Exception
-            (Message => "attendu : identificateur ou 'non'");
+            (Message => "attendu : identificateur ou '" & Test_Non & "'");
       end if;
    end Faire_Premisse;
    ---------------------------------------------------------------------------
@@ -669,7 +670,11 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
          Jeton_Signe : constant Jeton_P.Jeton_T := This.Jeton_Precharge;
       begin
          if not Jeton_Signe.Est_Un_Signe_De_Comparaison_Symbolique then
-            This.Creer_Exception (Message => "attendu : '=' ou '/='");
+            This.Creer_Exception
+               (
+                  Message => "attendu : '" & Test_Egal &
+                     "' ou '" & Test_Different & "'"
+               );
          end if;
          This.Suivant;
 
@@ -762,8 +767,12 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
             This.Creer_Exception
                (
                   Message => "attendu : " &
-                     "'=' ou '/=' ou '<' ou " &
-                     "'>' ou '<=' ou '>='"
+                     "'" & Test_Egal      & "' ou " &
+                     "'" & Test_Different & "' ou " &
+                     "'" & Test_Inf       & "' ou " &
+                     "'" & Test_Sup       & "' ou " &
+                     "'" & Test_Inf_Egal  & "' ou " &
+                     "'" & Test_Sup_Egal  & "'"
                );
          end if;
          This.Suivant;
@@ -944,7 +953,14 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
             (New_Item => This.Faire_Expression_Entiere);
          if not This.Jeton_Precharge.Est_Parenthese_Fermante then
             This.Creer_Exception
-               (Message => "Attendu : ')' ou '+' ou '-' ou '*' ou '/'");
+               (
+                  Message => "Attendu : " &
+                     "'" & Parenthese_F & "' ou " &
+                     "'" & Signe_Plus   & "' ou " &
+                     "'" & Signe_Moins  & "' ou " &
+                     "'" & Signe_Mult   & "' ou " &
+                     "'" & Signe_Div    & "'"
+               );
          end if;
 
       elsif This.Jeton_Est_Un_Nom_De_Fait then
@@ -969,7 +985,8 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
          end Bloc_Faire_Fait_Symbolique;
 
       else
-         This.Creer_Exception (Message => "Attendu : entier ou '('");
+         This.Creer_Exception
+            (Message => "Attendu : entier ou '" & Parenthese_O & "'");
       end if;
       This.Suivant;
 

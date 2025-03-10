@@ -169,8 +169,8 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_G is
       (This : in out Lexical_T)
       return Boolean
    is
-      Fin_Fichier : Boolean := False;
-      Fin_Ligne   : Boolean := False;
+      Fin_Fichier_Atteinte : Boolean := False;
+      Fin_Ligne            : Boolean := False;
    begin
       Boucle_Lire_Ligne :
       loop
@@ -182,8 +182,8 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_G is
          exit Boucle_Lire_Ligne when Fin_Ligne;
 
          --  On quitte si on a atteint la fin du fichier.
-         Fin_Fichier := Fin_Est_Atteinte_G (Contenu => This.Fichier);
-         exit Boucle_Lire_Ligne when Fin_Fichier;
+         Fin_Fichier_Atteinte := Fin_Est_Atteinte_G (Contenu => This.Fichier);
+         exit Boucle_Lire_Ligne when Fin_Fichier_Atteinte;
 
          --  Si on est pas a la fin du fichier on prend la ligne suivante.
          This.Num_Ligne      := Lire_Numero_Ligne_G (Contenu => This.Fichier);
@@ -264,25 +264,25 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_G is
       begin
          return
             (
-               if    Chaine_Trouvee = "si" then
+               if    Chaine_Trouvee = Test_Si then
                   Jeton_P.Fabrique_P.Faire_Si
 
-               elsif Chaine_Trouvee = "et" then
+               elsif Chaine_Trouvee = Et_Logique then
                   Jeton_P.Fabrique_P.Faire_Et
 
-               elsif Chaine_Trouvee = "non" then
+               elsif Chaine_Trouvee = Test_Non then
                   Jeton_P.Fabrique_P.Faire_Non
 
-               elsif Chaine_Trouvee = "alors" then
+               elsif Chaine_Trouvee = Consequence then
                   Jeton_P.Fabrique_P.Faire_Alors
 
-               elsif Chaine_Trouvee = "faits_booleens" then
+               elsif Chaine_Trouvee = Fait_Bool then
                   Jeton_P.Fabrique_P.Faire_Fait_Booleen
 
-               elsif Chaine_Trouvee = "faits_symboliques" then
+               elsif Chaine_Trouvee = Fait_Symbol then
                   Jeton_P.Fabrique_P.Faire_Fait_Symbolique
 
-               elsif Chaine_Trouvee = "faits_entiers" then
+               elsif Chaine_Trouvee = Fait_Entier then
                   Jeton_P.Fabrique_P.Faire_Fait_Entier
 
                else

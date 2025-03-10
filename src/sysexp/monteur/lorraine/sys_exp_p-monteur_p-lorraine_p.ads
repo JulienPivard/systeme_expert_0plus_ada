@@ -77,4 +77,27 @@ private
          --  Le nom du fichier à parser.
       end record;
 
+   Parenthese_O   : constant String := "(";
+   Parenthese_F   : constant String := ")";
+   Test_Sup       : constant String := ">";
+   Test_Inf       : constant String := "<";
+   Signe_Plus     : constant String := "+";
+   Signe_Moins    : constant String := "-";
+   Signe_Mult     : constant String := "*";
+   Signe_Div      : constant String := "/";
+   Test_Egal      : constant String := "=";
+   Fin_Expr       : constant String := ";";
+   Test_Si        : constant String := "si";
+   Test_Non       : constant String := "non";
+   Et_Logique     : constant String := "et";
+   Consequence    : constant String := "alors";
+   Separateur     : constant String := ",";
+   Fin_Fichier    : constant String := "";
+   Test_Sup_Egal  : constant String := ">=";
+   Test_Inf_Egal  : constant String := "<=";
+   Test_Different : constant String := "/=";
+   Fait_Bool      : constant String := "faits_booleens";
+   Fait_Symbol    : constant String := "faits_symboliques";
+   Fait_Entier    : constant String := "faits_entiers";
+
 end Sys_Exp_P.Monteur_P.Lorraine_P;
