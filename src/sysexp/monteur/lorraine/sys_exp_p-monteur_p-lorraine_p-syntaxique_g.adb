@@ -198,7 +198,8 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
          This.Suivant;
          This.Faire_Liste_Faits (Race => Entier_E);
       else
-         This.Creer_Exception (Message => "attendu : '" & Fait_Entier & "'");
+         This.Creer_Exception
+            (Message => "attendu : '" & Fait_Entier & "'");
       end if;
    end Faire_Declaration_Entier;
    ---------------------------------------------------------------------------
@@ -212,7 +213,8 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
          This.Suivant;
          This.Faire_Liste_Faits (Race => Symbolique_E);
       else
-         This.Creer_Exception (Message => "attendu : '" & Fait_Symbol & "'");
+         This.Creer_Exception
+            (Message => "attendu : '" & Fait_Symbol & "'");
       end if;
    end Faire_Declaration_Symbolique;
    ---------------------------------------------------------------------------
@@ -226,7 +228,8 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
          This.Suivant;
          This.Faire_Liste_Faits (Race => Booleen_E);
       else
-         This.Creer_Exception (Message => "attendu : '" & Fait_Bool & "'");
+         This.Creer_Exception
+            (Message => "attendu : '" & Fait_Bool & "'");
       end if;
    end Faire_Declaration_Booleen;
    ---------------------------------------------------------------------------
@@ -240,7 +243,8 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
    is
    begin
       if not This.Jeton_Precharge.Est_Egal then
-         This.Creer_Exception (Message => "attendu : '" & Test_Egal & "'");
+         This.Creer_Exception
+            (Message => "attendu : '" & Test_Egal & "'");
       end if;
       This.Suivant;
 
@@ -301,7 +305,8 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
 
          ID := ID + 1;
          if not This.Jeton_Precharge.Est_Fin_Expression then
-            This.Creer_Exception (Message => "attendu : '" & Fin_Expr & "'");
+            This.Creer_Exception
+               (Message => "attendu : '" & Fin_Expr & "'");
          end if;
          This.Suivant;
          exit B_Faire_Base when This.Jeton_Precharge.Est_Fin_Fichier;
@@ -470,7 +475,8 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
             Jeton_ID : constant Jeton_P.Jeton_T := This.Jeton_Precharge;
          begin
             if not Jeton_ID.Est_Identificateur then
-               This.Creer_Exception (Message => "attendu : identificateur");
+               This.Creer_Exception
+                  (Message => "attendu : identificateur");
             end if;
 
             if This.Jeton_Est_Un_Nom_De_Fait then
@@ -501,7 +507,8 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
          end Bloc_Lire_Nom_Symb;
 
       else
-         This.Creer_Exception (Message => "attendu : '" & Test_Egal & "'");
+         This.Creer_Exception
+            (Message => "attendu : '" & Test_Egal & "'");
       end if;
    end Faire_Conclusion_Symbolique;
    ---------------------------------------------------------------------------
@@ -523,7 +530,8 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
                Expression => This.Faire_Expression_Entiere
             );
       else
-         This.Creer_Exception (Message => "attendu : '" & Test_Egal & "'");
+         This.Creer_Exception
+            (Message => "attendu : '" & Test_Egal & "'");
       end if;
    end Faire_Conclusion_Entiere;
    ---------------------------------------------------------------------------
@@ -541,7 +549,8 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
       Regle : Avec_Premisse_R.Regle_T;
    begin
       if not This.Jeton_Precharge.Est_Alors then
-         This.Creer_Exception (Message => "attendu : '" & Consequence & "'");
+         This.Creer_Exception
+            (Message => "attendu : '" & Consequence & "'");
       end if;
       This.Suivant;
 
@@ -631,7 +640,8 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
 
       if Jeton.Est_Non then
          if    not This.Jeton_Precharge.Est_Identificateur then
-            This.Creer_Exception (Message => "attendu : un fait booleen");
+            This.Creer_Exception
+               (Message => "attendu : un fait booleen");
 
          elsif This.Jeton_Est_Un_Nom_De_Fait then
             if This.Lire_Type_Jeton_Fait = Booleen_E then
@@ -701,7 +711,8 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
                );
          begin
             if not Jeton_ID.Est_Identificateur then
-               This.Creer_Exception (Message => "attendu : identificateur");
+               This.Creer_Exception
+                  (Message => "attendu : identificateur");
             end if;
 
             if This.Jeton_Est_Un_Nom_De_Fait then
