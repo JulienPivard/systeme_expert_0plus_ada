@@ -137,6 +137,14 @@ private
    --  L'exception relevée.
    --  @return Le rapport d'erreur.
 
+   function Lire_Representation_Jeton
+      (This : in     Syntaxique_T)
+      return String;
+   --  Lit la représentation du jeton préchargé.
+   --  @param This
+   --  Le parseur syntaxique.
+   --  @return La représentation du jeton préchargé.
+
    function Jeton_Est_Un_Nom_De_Fait
       (This : in     Syntaxique_T)
       return Boolean;
