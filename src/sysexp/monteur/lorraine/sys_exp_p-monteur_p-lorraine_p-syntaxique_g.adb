@@ -139,13 +139,22 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
+   function Lire_Representation_Jeton
+      (This : in     Syntaxique_T)
+      return String
+   is
+   begin
+      return This.Jeton_Precharge.Lire_Representation;
+   end Lire_Representation_Jeton;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
    function Jeton_Est_Un_Nom_De_Fait
       (This : in     Syntaxique_T)
       return Boolean
    is
    begin
-      return This.Noms_Faits.Contains
-         (Key => This.Jeton_Precharge.Lire_Representation);
+      return This.Noms_Faits.Contains (Key => This.Lire_Representation_Jeton);
    end Jeton_Est_Un_Nom_De_Fait;
    ---------------------------------------------------------------------------
 
@@ -155,8 +164,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
       return Type_De_Fait_T
    is
    begin
-      return This.Noms_Faits.Element
-         (Key => This.Jeton_Precharge.Lire_Representation);
+      return This.Noms_Faits.Element (Key => This.Lire_Representation_Jeton);
    end Lire_Type_Jeton_Fait;
    ---------------------------------------------------------------------------
 
@@ -248,14 +256,14 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
             This.Creer_Exception
                (
                   Message => "Le fait " &
-                     "[" & This.Jeton_Precharge.Lire_Representation & "] " &
+                     "[" & This.Lire_Representation_Jeton & "] " &
                      "doit être déclaré une seule fois"
                );
          end if;
 
          This.Noms_Faits.Insert
             (
-               Key      => This.Jeton_Precharge.Lire_Representation,
+               Key      => This.Lire_Representation_Jeton,
                New_Item => Race
             );
          This.Suivant;
@@ -381,7 +389,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
             This.Creer_Exception
                (
                   Message => "le fait " &
-                     "[" & This.Jeton_Precharge.Lire_Representation & "] " &
+                     "[" & This.Lire_Representation_Jeton & "] " &
                      "n'a pas été déclare"
                );
          end if;
@@ -422,9 +430,9 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
                else
                   This.Creer_Exception
                      (
-                        Message => "le fait [" &
-                           This.Jeton_Precharge.Lire_Representation &
-                           "] n'est pas booleen"
+                        Message => "le fait " &
+                           "[" & This.Lire_Representation_Jeton & "] " &
+                           "n'est pas booleen"
                      );
                end if;
 
@@ -432,7 +440,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
                This.Creer_Exception
                   (
                      Message => "le fait " &
-                        "[" & This.Jeton_Precharge.Lire_Representation & "] " &
+                        "[" & This.Lire_Representation_Jeton & "] " &
                         "n'a pas été déclaré"
                   );
             end if;
@@ -476,9 +484,9 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
                else
                   This.Creer_Exception
                      (
-                        Message => "le fait [" &
-                           This.Jeton_Precharge.Lire_Representation &
-                           "] n'est pas symbolique"
+                        Message => "le fait " &
+                           "[" & This.Lire_Representation_Jeton & "] " &
+                           "n'est pas symbolique"
                      );
                end if;
 
@@ -597,7 +605,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
             This.Creer_Exception
                (
                   Message => "le fait " &
-                     "[" & This.Jeton_Precharge.Lire_Representation & "] " &
+                     "[" & This.Lire_Representation_Jeton & "] " &
                      "n'a pas été déclaré"
                );
          end if;
@@ -632,9 +640,9 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
             else
                This.Creer_Exception
                   (
-                     Message => "le fait [" &
-                        This.Jeton_Precharge.Lire_Representation &
-                        "] n'est pas booleen"
+                     Message => "le fait " &
+                        "[" & This.Lire_Representation_Jeton & "] " &
+                        "n'est pas booleen"
                   );
             end if;
 
@@ -642,7 +650,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
             This.Creer_Exception
                (
                   Message => "le fait " &
-                     "[" & This.Jeton_Precharge.Lire_Representation & "] " &
+                     "[" & This.Lire_Representation_Jeton & "] " &
                      "n'a pas été déclaré"
                );
          end if;
@@ -712,9 +720,9 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
                   else
                      This.Creer_Exception
                         (
-                           Message => "le fait [" &
-                              This.Jeton_Precharge.Lire_Representation &
-                              "] n'est pas symbolique"
+                           Message => "le fait " &
+                              "[" & This.Lire_Representation_Jeton & "] " &
+                              "n'est pas symbolique"
                         );
                   end if;
                end Bloc_Faire_Fait_Symbolique;
@@ -977,9 +985,9 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
             else
                This.Creer_Exception
                   (
-                     Message => "le fait [" &
-                        This.Jeton_Precharge.Lire_Representation &
-                        "] n'est pas entier"
+                     Message => "le fait " &
+                        "[" & This.Lire_Representation_Jeton & "] " &
+                        "n'est pas entier"
                   );
             end if;
          end Bloc_Faire_Fait_Symbolique;
