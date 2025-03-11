@@ -1,5 +1,6 @@
 with AUnit.Assertions;
 
+with Encode;
 with Facilites_P;
 with Facilites_P.Entier_P;
 with Facilites_P.Valeur_P;
@@ -177,15 +178,23 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition =>
-               T.Premisse.Comparer (Gauche => Val_1, Droite => Val_1),
-            Message   => "Le tests d'egalite devrait etre vrais"
+            Condition => T.Premisse.Comparer
+               (
+                  Gauche => Val_1,
+                  Droite => Val_1
+               ),
+            Message   => Encode
+               (Item => "Le tests d'égalité devrait être vrais")
          );
       AUnit.Assertions.Assert
          (
-            Condition =>
-               not T.Premisse.Comparer (Gauche => Val_1, Droite => Val_2),
-            Message   => "Le tests d'egalite devrait etre vrais"
+            Condition => not T.Premisse.Comparer
+               (
+                  Gauche => Val_1,
+                  Droite => Val_2
+               ),
+            Message   => Encode
+               (Item => "Le tests d'égalité devrait être faux")
          );
    end Test_Comparaison_Egale;
    ---------------------------------------------------------------------------
@@ -216,15 +225,23 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition =>
-               T.Premisse.Comparer (Gauche => Val_1, Droite => Val_2),
-            Message   => "Le tests d'inegalite devrait etre vrais"
+            Condition => T.Premisse.Comparer
+               (
+                  Gauche => Val_1,
+                  Droite => Val_2
+               ),
+            Message   => Encode
+               (Item => "Le tests d'inégalité devrait être vrais")
          );
       AUnit.Assertions.Assert
          (
-            Condition =>
-               not T.Premisse.Comparer (Gauche => Val_1, Droite => Val_1),
-            Message   => "Le tests d'inegalite devrait etre faux"
+            Condition => not T.Premisse.Comparer
+               (
+                  Gauche => Val_1,
+                  Droite => Val_1
+               ),
+            Message   => Encode
+               (Item => "Le tests d'inégalité devrait être faux")
          );
    end Test_Comparaison_Different;
    ---------------------------------------------------------------------------
@@ -253,21 +270,33 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition =>
-               T.Premisse.Comparer (Gauche => Val_1, Droite => Val_2),
-            Message   => "Le test inferieur devrait etre vrais"
+            Condition => T.Premisse.Comparer
+               (
+                  Gauche => Val_1,
+                  Droite => Val_2
+               ),
+            Message   => Encode
+               (Item => "Le test inférieur devrait être vrais")
          );
       AUnit.Assertions.Assert
          (
-            Condition =>
-               not T.Premisse.Comparer (Gauche => Val_1, Droite => Val_1),
-            Message   => "Le test inferieur devrait etre faux"
+            Condition => not T.Premisse.Comparer
+               (
+                  Gauche => Val_1,
+                  Droite => Val_1
+               ),
+            Message   => Encode
+               (Item => "Le test inférieur devrait être faux")
          );
       AUnit.Assertions.Assert
          (
-            Condition =>
-               not T.Premisse.Comparer (Gauche => Val_2, Droite => Val_1),
-            Message   => "Le test inferieur devrait etre faux"
+            Condition => not T.Premisse.Comparer
+               (
+                  Gauche => Val_2,
+                  Droite => Val_1
+               ),
+            Message   => Encode
+               (Item => "Le test inférieur devrait être faux")
          );
    end Test_Comparaison_Inf;
    ---------------------------------------------------------------------------
@@ -296,21 +325,33 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition =>
-               T.Premisse.Comparer (Gauche => Val_1, Droite => Val_2),
-            Message   => "Le test inferieur devrait etre vrais"
+            Condition => T.Premisse.Comparer
+               (
+                  Gauche => Val_1,
+                  Droite => Val_2
+               ),
+            Message   => Encode
+               (Item => "Le test inférieur égale devrait être vrais")
          );
       AUnit.Assertions.Assert
          (
-            Condition =>
-               T.Premisse.Comparer (Gauche => Val_1, Droite => Val_1),
-            Message   => "Le test inferieur devrait etre vrais"
+            Condition => T.Premisse.Comparer
+               (
+                  Gauche => Val_1,
+                  Droite => Val_1
+               ),
+            Message   => Encode
+               (Item => "Le test inférieur égale devrait être vrais")
          );
       AUnit.Assertions.Assert
          (
-            Condition =>
-               not T.Premisse.Comparer (Gauche => Val_2, Droite => Val_1),
-            Message   => "Le test inferieur devrait etre faux"
+            Condition => not T.Premisse.Comparer
+               (
+                  Gauche => Val_2,
+                  Droite => Val_1
+               ),
+            Message   => Encode
+               (Item => "Le test inférieur égale devrait être faux")
          );
    end Test_Comparaison_Inf_Egale;
    ---------------------------------------------------------------------------
@@ -339,21 +380,33 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition =>
-               not T.Premisse.Comparer (Gauche => Val_1, Droite => Val_2),
-            Message   => "Le test superieur devrait etre faux"
+            Condition => not T.Premisse.Comparer
+               (
+                  Gauche => Val_1,
+                  Droite => Val_2
+               ),
+            Message   => Encode
+               (Item => "Le test supérieur devrait être faux")
          );
       AUnit.Assertions.Assert
          (
-            Condition =>
-               not T.Premisse.Comparer (Gauche => Val_1, Droite => Val_1),
-            Message   => "Le test superieur devrait etre faux"
+            Condition => not T.Premisse.Comparer
+               (
+                  Gauche => Val_1,
+                  Droite => Val_1
+               ),
+            Message   => Encode
+               (Item => "Le test supérieur devrait être faux")
          );
       AUnit.Assertions.Assert
          (
-            Condition =>
-               T.Premisse.Comparer (Gauche => Val_2, Droite => Val_1),
-            Message   => "Le test superieur devrait etre vrais"
+            Condition => T.Premisse.Comparer
+               (
+                  Gauche => Val_2,
+                  Droite => Val_1
+               ),
+            Message   => Encode
+               (Item => "Le test supérieur devrait être vrais")
          );
    end Test_Comparaison_Sup;
    ---------------------------------------------------------------------------
@@ -382,21 +435,33 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition =>
-               not T.Premisse.Comparer (Gauche => Val_1, Droite => Val_2),
-            Message   => "Le test superieur devrait etre faux"
+            Condition => not T.Premisse.Comparer
+               (
+                  Gauche => Val_1,
+                  Droite => Val_2
+               ),
+            Message   => Encode
+               (Item => "Le test supérieur égale devrait être faux")
          );
       AUnit.Assertions.Assert
          (
-            Condition =>
-               T.Premisse.Comparer (Gauche => Val_1, Droite => Val_1),
-            Message   => "Le test superieur devrait etre vrais"
+            Condition => T.Premisse.Comparer
+               (
+                  Gauche => Val_1,
+                  Droite => Val_1
+               ),
+            Message   => Encode
+               (Item => "Le test supérieur égale devrait être vrais")
          );
       AUnit.Assertions.Assert
          (
-            Condition =>
-               T.Premisse.Comparer (Gauche => Val_2, Droite => Val_1),
-            Message   => "Le test superieur devrait etre vrais"
+            Condition => T.Premisse.Comparer
+               (
+                  Gauche => Val_2,
+                  Droite => Val_1
+               ),
+            Message   => Encode
+               (Item => "Le test supérieur égale devrait être vrais")
          );
    end Test_Comparaison_Sup_Egale;
    ---------------------------------------------------------------------------

@@ -6,6 +6,7 @@ with Sys_Exp_P.Forme_P.Conclusion_P.Bool_False_P;
 with Sys_Exp_P.Regles_P.Sans_Premisse_P;
 with Sys_Exp_P.Visiteur_Forme_P.Declencheur_P.Fabrique_P;
 
+with Encode;
 with Facilites_P;
 
 package body Sys_Exp_P.Moteur_Inference_P.Test_P
@@ -73,7 +74,8 @@ is
       AUnit.Assertions.Assert
          (
             Condition => not M.Regles.Element.Est_Declenchee,
-            Message   => "La regle ne doit pas avoir ete declenchee"
+            Message   => Encode
+               (Item => "La règle ne doit pas avoir été déclenchée")
          );
       AUnit.Assertions.Assert
          (
@@ -114,7 +116,7 @@ is
       AUnit.Assertions.Assert
          (
             Condition => M.Regles.Element.Est_Declenchee,
-            Message   => "La regle doit avoir ete declenchee"
+            Message   => Encode (Item => "La règle doit avoir été déclenchée")
          );
       AUnit.Assertions.Assert
          (

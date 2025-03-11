@@ -2,6 +2,7 @@ with AUnit.Assertions;
 
 with Sys_Exp_P.Base_Faits_P;
 
+with Encode;
 with Facilites_P;
 with Facilites_P.Fait_P;
 with Facilites_P.Valeur_P;
@@ -93,24 +94,29 @@ is
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Premisse_A_Ete_Verifiee,
-            Message   => "Aucune premisse ne doit etre verifiee"
+            Message   => Encode
+               (Item => "Aucune prémisse ne doit être vérifiée")
          );
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Conclusion_A_Ete_Declenchee,
-            Message   => "Aucune conclusion ne doit etre declenchee"
+            Message   => Encode
+               (Item => "Aucune conclusion ne doit être déclenchée")
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Code_Erreur = Tout_Va_Bien_E,
-            Message   => "Le code d'erreur doit indiquer que tout va bien " &
-               "et pas [" & Visiteur.Code_Erreur'Image & "]"
+            Message   => "Le code d'erreur doit indiquer que tout " &
+               "va bien et pas [" & Visiteur.Code_Erreur'Image & "]"
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Message_D_Erreur = Message_Vide,
-            Message   => "le message d'erreur doit etre vide et pas " &
-               "[" & Visiteur.Message_D_Erreur & "]"
+            Message   => Encode
+               (
+                  Item => "le message d'erreur doit être vide et pas " &
+                     "[" & Visiteur.Message_D_Erreur & "]"
+               )
          );
    end Test_Creer;
    ---------------------------------------------------------------------------
@@ -132,30 +138,38 @@ is
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Premisse_A_Ete_Verifiee,
-            Message   => "Aucune premisse ne doit etre verifiee"
+            Message   => Encode
+               (Item => "Aucune prémisse ne doit être vérifiée")
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Conclusion_A_Ete_Declenchee,
-            Message   => "Une conclusion doit etre declenchee"
+            Message   => Encode
+               (Item => "Une conclusion doit être déclenchée")
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Code_Erreur = Tout_Va_Bien_E,
-            Message   => "Le code d'erreur doit indiquer que tout va bien " &
-               "et pas [" & Visiteur.Code_Erreur'Image & "]"
+            Message   => "Le code d'erreur doit indiquer que tout va " &
+               "bien et pas [" & Visiteur.Code_Erreur'Image & "]"
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Message_D_Erreur = Message_Vide,
-            Message   => "le message d'erreur doit etre vide et pas " &
-               "[" & Visiteur.Message_D_Erreur & "]"
+            Message   => Encode
+               (
+                  Item => "le message d'erreur doit être vide et " &
+                     "pas [" & Visiteur.Message_D_Erreur & "]"
+               )
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Base.all.Contient (Nom_Fait => C.Lire_Nom),
-            Message   => "Le fait booleen [" & String (C.Lire_Nom) & "] " &
-               "devrait etre dans la base"
+            Message   => Encode
+               (
+                  Item => "Le fait booleen [" & String (C.Lire_Nom) & "] " &
+                     "devrait être dans la base"
+               )
          );
 
       Bloc_Lire_Fait :
@@ -166,9 +180,12 @@ is
          AUnit.Assertions.Assert
             (
                Condition => Fait.Lire_Type = Sys_Exp_P.Booleen_E,
-               Message   => "Le fait [" & String (C.Lire_Nom) & "] " &
-                  "devrait etre de type BOOLEEN mais est " &
-                  "[" & Fait.Lire_Type'Image & "]"
+               Message   => Encode
+                  (
+                     Item => "Le fait [" & String (C.Lire_Nom) & "] " &
+                        "devrait être de type BOOLEEN mais est " &
+                        "[" & Fait.Lire_Type'Image & "]"
+                  )
             );
          Bloc_Convertir :
          declare
@@ -178,9 +195,12 @@ is
             AUnit.Assertions.Assert
                (
                   Condition => not Fait_Bool.Lire_Valeur,
-                  Message   => "Le fait [" & String (C.Lire_Nom) & "] " &
-                     "devrait etre FALSE mais est " &
-                     "[" & Fait_Bool.Lire_Valeur'Image & "]"
+                  Message   => Encode
+                     (
+                        Item => "Le fait [" & String (C.Lire_Nom) & "] " &
+                           "devrait être FALSE mais est " &
+                           "[" & Fait_Bool.Lire_Valeur'Image & "]"
+                     )
                );
          end Bloc_Convertir;
       end Bloc_Lire_Fait;
@@ -204,30 +224,38 @@ is
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Premisse_A_Ete_Verifiee,
-            Message   => "Aucune premisse ne doit etre verifiee"
+            Message   => Encode
+               (Item => "Aucune prémisse ne doit être vérifiée")
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Conclusion_A_Ete_Declenchee,
-            Message   => "Une conclusion doit etre declenchee"
+            Message   => Encode
+               (Item => "Une conclusion doit être déclenchée")
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Code_Erreur = Tout_Va_Bien_E,
-            Message   => "Le code d'erreur doit indiquer que tout va bien " &
-               "et pas [" & Visiteur.Code_Erreur'Image & "]"
+            Message   => "Le code d'erreur doit indiquer que tout va " &
+               "bien et pas [" & Visiteur.Code_Erreur'Image & "]"
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Message_D_Erreur = Message_Vide,
-            Message   => "le message d'erreur doit etre vide et pas " &
-               "[" & Visiteur.Message_D_Erreur & "]"
+            Message   => Encode
+               (
+                  Item => "le message d'erreur doit être vide et " &
+                     "pas [" & Visiteur.Message_D_Erreur & "]"
+               )
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Base.all.Contient (Nom_Fait => C.Lire_Nom),
-            Message   => "Le fait booleen [" & String (C.Lire_Nom) & "] " &
-               "devrait etre dans la base"
+            Message   => Encode
+               (
+                  Item => "Le fait booleen [" & String (C.Lire_Nom) & "] " &
+                     "devrait être dans la base"
+               )
          );
 
       Bloc_Lire_Fait :
@@ -238,9 +266,12 @@ is
          AUnit.Assertions.Assert
             (
                Condition => Fait.Lire_Type = Sys_Exp_P.Booleen_E,
-               Message   => "Le fait [" & String (C.Lire_Nom) & "] " &
-                  "devrait etre de type BOOLEEN mais est " &
-                  "[" & Fait.Lire_Type'Image & "]"
+               Message   => Encode
+                  (
+                     Item => "Le fait [" & String (C.Lire_Nom) & "] " &
+                        "devrait être de type BOOLEEN mais est " &
+                        "[" & Fait.Lire_Type'Image & "]"
+                  )
             );
          Bloc_Convertir :
          declare
@@ -250,9 +281,12 @@ is
             AUnit.Assertions.Assert
                (
                   Condition => Fait_Bool.Lire_Valeur,
-                  Message   => "Le fait [" & String (C.Lire_Nom) & "] " &
-                     "devrait etre TRUE mais est " &
-                     "[" & Fait_Bool.Lire_Valeur'Image & "]"
+                  Message   => Encode
+                     (
+                        Item => "Le fait [" & String (C.Lire_Nom) & "] " &
+                           "devrait être TRUE mais est " &
+                           "[" & Fait_Bool.Lire_Valeur'Image & "]"
+                     )
                );
          end Bloc_Convertir;
       end Bloc_Lire_Fait;
@@ -288,30 +322,38 @@ is
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Premisse_A_Ete_Verifiee,
-            Message   => "Aucune premisse ne doit etre verifiee"
+            Message   => Encode
+               (Item => "Aucune prémisse ne doit être vérifiée")
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Conclusion_A_Ete_Declenchee,
-            Message   => "Une conclusion doit etre declenchee"
+            Message   => Encode
+               (Item => "Une conclusion doit être déclenchée")
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Code_Erreur = Tout_Va_Bien_E,
-            Message   => "Le code d'erreur doit indiquer que tout va bien " &
-               "et pas [" & Visiteur.Code_Erreur'Image & "]"
+            Message   => "Le code d'erreur doit indiquer que tout va " &
+               "bien et pas [" & Visiteur.Code_Erreur'Image & "]"
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Message_D_Erreur = Message_Vide,
-            Message   => "le message d'erreur doit etre vide et pas " &
-               "[" & Visiteur.Message_D_Erreur & "]"
+            Message   => Encode
+               (
+                  Item => "le message d'erreur doit être vide et " &
+                     "pas [" & Visiteur.Message_D_Erreur & "]"
+               )
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Base.all.Contient (Nom_Fait => E.Lire_Nom),
-            Message   => "Le fait entier [" & String (E.Lire_Nom) & "] " &
-               "devrait etre dans la base"
+            Message   => Encode
+               (
+                  Item => "Le fait entier [" & String (E.Lire_Nom) & "] " &
+                     "devrait être dans la base"
+               )
          );
 
       Bloc_Lire_Fait :
@@ -322,9 +364,12 @@ is
          AUnit.Assertions.Assert
             (
                Condition => Fait.Lire_Type = Sys_Exp_P.Entier_E,
-               Message   => "Le fait [" & String (E.Lire_Nom) & "] " &
-                  "devrait etre de type ENTIER mais est " &
-                  "[" & Fait.Lire_Type'Image & "]"
+               Message   => Encode
+                  (
+                     Item => "Le fait [" & String (E.Lire_Nom) & "] " &
+                        "devrait être de type ENTIER mais est " &
+                        "[" & Fait.Lire_Type'Image & "]"
+                  )
             );
          Bloc_Convertir :
          declare
@@ -334,9 +379,12 @@ is
             AUnit.Assertions.Assert
                (
                   Condition => Fait_Entier.Lire_Valeur = Valeur,
-                  Message   => "Le fait [" & String (E.Lire_Nom) & "] " &
-                     "devrait etre [" & Valeur'Image & "] mais est " &
-                     "[" & Fait_Entier.Lire_Valeur'Image & "]"
+                  Message   => Encode
+                     (
+                        Item => "Le fait [" & String (E.Lire_Nom) & "] " &
+                           "devrait être [" & Valeur'Image & "] mais est " &
+                           "[" & Fait_Entier.Lire_Valeur'Image & "]"
+                     )
                );
          end Bloc_Convertir;
       end Bloc_Lire_Fait;
@@ -369,38 +417,49 @@ is
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Premisse_A_Ete_Verifiee,
-            Message   => "Aucune premisse ne doit etre verifiee"
+            Message   => Encode
+               (Item => "Aucune prémisse ne doit être vérifiée")
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Conclusion_A_Ete_Declenchee,
-            Message   => "Une conclusion doit etre declenchee"
+            Message   => Encode
+               (Item => "Une conclusion doit être déclenchée")
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Code_Erreur = Tout_Va_Bien_E,
-            Message   => "Le code d'erreur doit indiquer que tout va bien " &
-               "et pas [" & Visiteur.Code_Erreur'Image & "]"
+            Message   => "Le code d'erreur doit indiquer que tout va " &
+               "bien et pas [" & Visiteur.Code_Erreur'Image & "]"
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Message_D_Erreur = Message_Vide,
-            Message   => "le message d'erreur doit etre vide et pas " &
-               "[" & Visiteur.Message_D_Erreur & "]"
+            Message   => Encode
+               (
+                  Item => "le message d'erreur doit être vide et " &
+                     "pas [" & Visiteur.Message_D_Erreur & "]"
+               )
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Base.all.Contient (Nom_Fait => E.Lire_Nom),
-            Message   => "Le fait entier [" & String (E.Lire_Nom) & "] " &
-               "devrait etre dans la base"
+            Message   => Encode
+               (
+                  Item => "Le fait entier [" & String (E.Lire_Nom) & "] " &
+                     "devrait être dans la base"
+               )
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Base.all.Contient
                (Nom_Fait => E.Lire_Nom_Fait),
-            Message   => "L'autre fait entier " &
-               "[" & String (E.Lire_Nom_Fait) & "] " &
-               "devrait etre dans la base"
+            Message   => Encode
+               (
+                  Item => "L'autre fait entier " &
+                     "[" & String (E.Lire_Nom_Fait) & "] " &
+                     "devrait être dans la base"
+               )
          );
 
       Bloc_Lire_Fait :
@@ -411,9 +470,12 @@ is
          AUnit.Assertions.Assert
             (
                Condition => Fait.Lire_Type = Sys_Exp_P.Entier_E,
-               Message   => "Le fait [" & String (E.Lire_Nom) & "] " &
-                  "devrait etre de type ENTIER mais est " &
-                  "[" & Fait.Lire_Type'Image & "]"
+               Message   => Encode
+                  (
+                     Item => "Le fait [" & String (E.Lire_Nom) & "] " &
+                        "devrait être de type ENTIER mais est " &
+                        "[" & Fait.Lire_Type'Image & "]"
+                  )
             );
          Bloc_Convertir :
          declare
@@ -423,9 +485,13 @@ is
             AUnit.Assertions.Assert
                (
                   Condition => Fait_Entier.Lire_Valeur = V.Lire_Valeur,
-                  Message   => "Le fait [" & String (E.Lire_Nom) & "] " &
-                     "devrait etre [" & V.Lire_Valeur'Image & "] mais est " &
-                     "[" & Fait_Entier.Lire_Valeur'Image & "]"
+                  Message   => Encode
+                     (
+                        Item => "Le fait [" & String (E.Lire_Nom) & "] " &
+                           "devrait être [" & V.Lire_Valeur'Image & "] " &
+                           "mais est " &
+                           "[" & Fait_Entier.Lire_Valeur'Image & "]"
+                     )
                );
          end Bloc_Convertir;
       end Bloc_Lire_Fait;
@@ -454,30 +520,39 @@ is
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Premisse_A_Ete_Verifiee,
-            Message   => "Aucune premisse ne doit etre verifiee"
+            Message   => Encode
+               (Item => "Aucune prémisse ne doit être vérifiée")
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Conclusion_A_Ete_Declenchee,
-            Message   => "Une conclusion doit etre declenchee"
+            Message   => Encode
+               (Item => "Une conclusion doit être déclenchée")
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Code_Erreur = Tout_Va_Bien_E,
-            Message   => "Le code d'erreur doit indiquer que tout va bien " &
-               "et pas [" & Visiteur.Code_Erreur'Image & "]"
+            Message   => "Le code d'erreur doit indiquer que tout va " &
+               "bien et pas [" & Visiteur.Code_Erreur'Image & "]"
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Message_D_Erreur = Message_Vide,
-            Message   => "le message d'erreur doit etre vide et pas " &
-               "[" & Visiteur.Message_D_Erreur & "]"
+            Message   => Encode
+               (
+                  Item => "le message d'erreur doit être vide et " &
+                     "pas [" & Visiteur.Message_D_Erreur & "]"
+               )
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Base.all.Contient (Nom_Fait => S.Lire_Nom),
-            Message   => "Le fait symbolique [" & String (S.Lire_Nom) & "] " &
-               "devrait etre dans la base"
+            Message   => Encode
+               (
+                  Item => "Le fait symbolique " &
+                     "[" & String (S.Lire_Nom) & "] " &
+                     "devrait être dans la base"
+               )
          );
 
       Bloc_Lire_Fait :
@@ -488,9 +563,12 @@ is
          AUnit.Assertions.Assert
             (
                Condition => Fait.Lire_Type = Sys_Exp_P.Symbolique_E,
-               Message   => "Le fait [" & String (S.Lire_Nom) & "] " &
-                  "devrait etre de type SYMBOLIQUE mais est " &
-                  "[" & Fait.Lire_Type'Image & "]"
+               Message   => Encode
+                  (
+                     Item => "Le fait [" & String (S.Lire_Nom) & "] " &
+                        "devrait être de type SYMBOLIQUE mais est " &
+                        "[" & Fait.Lire_Type'Image & "]"
+                  )
             );
          Bloc_Convertir :
          declare
@@ -500,9 +578,14 @@ is
             AUnit.Assertions.Assert
                (
                   Condition => Fait_Symbole.Lire_Valeur = S.Lire_Nom_Symbole,
-                  Message   => "Le fait [" & String (S.Lire_Nom) & "] " &
-                        "devrait etre [" & String (S.Lire_Nom_Symbole) & "] " &
-                        "mais est [" & String (Fait_Symbole.Lire_Valeur) & "]"
+                  Message   => Encode
+                     (
+                        Item => "Le fait [" & String (S.Lire_Nom) & "] " &
+                           "devrait être " &
+                           "[" & String (S.Lire_Nom_Symbole) & "] " &
+                           "mais est " &
+                           "[" & String (Fait_Symbole.Lire_Valeur) & "]"
+                     )
                   );
          end Bloc_Convertir;
       end Bloc_Lire_Fait;
@@ -535,30 +618,39 @@ is
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Premisse_A_Ete_Verifiee,
-            Message   => "Aucune premisse ne doit etre verifiee"
+            Message   => Encode
+               (Item => "Aucune prémisse ne doit être vérifiée")
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Conclusion_A_Ete_Declenchee,
-            Message   => "Une conclusion doit etre declenchee"
+            Message   => Encode
+               (Item => "Une conclusion doit être déclenchée")
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Code_Erreur = Tout_Va_Bien_E,
-            Message   => "Le code d'erreur doit indiquer que tout va bien " &
-               "et pas [" & Visiteur.Code_Erreur'Image & "]"
+            Message   => "Le code d'erreur doit indiquer que tout va " &
+               "bien et pas [" & Visiteur.Code_Erreur'Image & "]"
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Message_D_Erreur = Message_Vide,
-            Message   => "le message d'erreur doit etre vide et pas " &
-               "[" & Visiteur.Message_D_Erreur & "]"
+            Message   => Encode
+               (
+                  Item => "le message d'erreur doit être vide et " &
+                     "pas [" & Visiteur.Message_D_Erreur & "]"
+               )
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Base.all.Contient (Nom_Fait => S.Lire_Nom),
-            Message   => "Le fait symbolique [" & String (S.Lire_Nom) & "] " &
-               "devrait etre dans la base"
+            Message   => Encode
+               (
+                  Item => "Le fait symbolique " &
+                     "[" & String (S.Lire_Nom) & "] " &
+                     "devrait être dans la base"
+               )
          );
 
       Bloc_Lire_Fait :
@@ -569,9 +661,12 @@ is
          AUnit.Assertions.Assert
             (
                Condition => Fait.Lire_Type = Sys_Exp_P.Symbolique_E,
-               Message   => "Le fait [" & String (S.Lire_Nom) & "] " &
-                  "devrait etre de type SYMBOLIQUE mais est " &
-                  "[" & Fait.Lire_Type'Image & "]"
+               Message   => Encode
+                  (
+                     Item => "Le fait [" & String (S.Lire_Nom) & "] " &
+                        "devrait être de type SYMBOLIQUE mais est " &
+                        "[" & Fait.Lire_Type'Image & "]"
+                  )
             );
          Bloc_Convertir :
          declare
@@ -581,9 +676,13 @@ is
             AUnit.Assertions.Assert
                (
                   Condition => Fait_Symbole.Lire_Valeur = F.Lire_Valeur,
-                  Message   => "Le fait [" & String (S.Lire_Nom) & "] " &
-                        "devrait etre [" & String (F.Lire_Valeur) & "] " &
-                        "mais est [" & String (Fait_Symbole.Lire_Valeur) & "]"
+                  Message   => Encode
+                     (
+                        Item => "Le fait [" & String (S.Lire_Nom) & "] " &
+                           "devrait être [" & String (F.Lire_Valeur) & "] " &
+                           "mais est " &
+                           "[" & String (Fait_Symbole.Lire_Valeur) & "]"
+                     )
                   );
          end Bloc_Convertir;
       end Bloc_Lire_Fait;
@@ -613,31 +712,39 @@ is
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Premisse_A_Ete_Verifiee,
-            Message   => "Aucune premisse ne doit etre verifiee"
+            Message   => Encode
+               (Item => "Aucune prémisse ne doit être vérifiée")
          );
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Conclusion_A_Ete_Declenchee,
-            Message   => "Aucune conclusion ne doit etre declenchee"
+            Message   => Encode
+               (Item => "Aucune conclusion ne doit être déclenchée")
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Code_Erreur = Tout_Va_Bien_E,
-            Message   => "Le code d'erreur doit indiquer que tout va bien " &
-               "et pas [" & Visiteur.Code_Erreur'Image & "]"
+            Message   => "Le code d'erreur doit indiquer que tout va " &
+               "bien et pas [" & Visiteur.Code_Erreur'Image & "]"
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Message_D_Erreur = Message_Vide,
-            Message   => "le message d'erreur doit etre vide et pas " &
-               "[" & Visiteur.Message_D_Erreur & "]"
+            Message   => Encode
+               (
+                  Item => "le message d'erreur doit être vide et " &
+                     "pas [" & Visiteur.Message_D_Erreur & "]"
+               )
          );
       AUnit.Assertions.Assert
          (
-            Condition =>
-               not Visiteur.Base.all.Contient (Nom_Fait => P.Lire_Nom),
-            Message   => "Le fait booleen [" & String (P.Lire_Nom) & "] " &
-               "ne devrait pas etre dans la base"
+            Condition => not Visiteur.Base.all.Contient
+               (Nom_Fait => P.Lire_Nom),
+            Message   => Encode
+               (
+                  Item => "Le fait booleen [" & String (P.Lire_Nom) & "] " &
+                     "ne devrait pas être dans la base"
+               )
          );
 
       Visiteur.Base.all.Ajouter (Nouvel_Item => Fait);
@@ -645,30 +752,38 @@ is
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Premisse_A_Ete_Verifiee,
-            Message   => "Aucune premisse ne doit etre verifiee"
+            Message   => Encode
+               (Item => "Aucune prémisse ne doit être vérifiée")
          );
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Conclusion_A_Ete_Declenchee,
-            Message   => "Aucune conclusion ne doit etre declenchee"
+            Message   => Encode
+               (Item => "Aucune conclusion ne doit être déclenchée")
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Code_Erreur = Tout_Va_Bien_E,
-            Message   => "Le code d'erreur doit indiquer que tout va bien " &
-               "et pas [" & Visiteur.Code_Erreur'Image & "]"
+            Message   => "Le code d'erreur doit indiquer que tout va " &
+               "bien et pas [" & Visiteur.Code_Erreur'Image & "]"
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Message_D_Erreur = Message_Vide,
-            Message   => "le message d'erreur doit etre vide et pas " &
-               "[" & Visiteur.Message_D_Erreur & "]"
+            Message   => Encode
+               (
+                  Item => "le message d'erreur doit être vide et " &
+                     "pas [" & Visiteur.Message_D_Erreur & "]"
+               )
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Base.all.Contient (Nom_Fait => P.Lire_Nom),
-            Message   => "Le fait booleen [" & String (P.Lire_Nom) & "] " &
-               "devrait etre dans la base"
+            Message   => Encode
+               (
+                  Item => "Le fait booleen [" & String (P.Lire_Nom) & "] " &
+                     "devrait être dans la base"
+               )
          );
    end Test_Premisse_Bool_False_Rate;
    ---------------------------------------------------------------------------
@@ -696,31 +811,39 @@ is
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Premisse_A_Ete_Verifiee,
-            Message   => "Aucune premisse ne doit etre verifiee"
+            Message   => Encode
+               (Item => "Aucune prémisse ne doit être vérifiée")
          );
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Conclusion_A_Ete_Declenchee,
-            Message   => "Aucune conclusion ne doit etre declenchee"
+            Message   => Encode
+               (Item => "Aucune conclusion ne doit être déclenchée")
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Code_Erreur = Tout_Va_Bien_E,
-            Message   => "Le code d'erreur doit indiquer que tout va bien " &
-               "et pas [" & Visiteur.Code_Erreur'Image & "]"
+            Message   => "Le code d'erreur doit indiquer que tout va " &
+               "bien et pas [" & Visiteur.Code_Erreur'Image & "]"
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Message_D_Erreur = Message_Vide,
-            Message   => "le message d'erreur doit etre vide et pas " &
-               "[" & Visiteur.Message_D_Erreur & "]"
+            Message   => Encode
+               (
+                  Item => "le message d'erreur doit être vide et " &
+                     "pas [" & Visiteur.Message_D_Erreur & "]"
+               )
          );
       AUnit.Assertions.Assert
          (
-            Condition =>
-               not Visiteur.Base.all.Contient (Nom_Fait => P.Lire_Nom),
-            Message   => "Le fait booleen [" & String (P.Lire_Nom) & "] " &
-               "ne devrait pas etre dans la base"
+            Condition => not Visiteur.Base.all.Contient
+               (Nom_Fait => P.Lire_Nom),
+            Message   => Encode
+               (
+                  Item => "Le fait booleen [" & String (P.Lire_Nom) & "] " &
+                     "ne devrait pas être dans la base"
+               )
          );
 
       Visiteur.Base.all.Ajouter (Nouvel_Item => Fait);
@@ -728,30 +851,38 @@ is
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Premisse_A_Ete_Verifiee,
-            Message   => "Aucune premisse ne doit etre verifiee"
+            Message   => Encode
+               (Item => "Aucune prémisse ne doit être vérifiée")
          );
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Conclusion_A_Ete_Declenchee,
-            Message   => "Aucune conclusion ne doit etre declenchee"
+            Message   => Encode
+               (Item => "Aucune conclusion ne doit être déclenchée")
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Code_Erreur = Tout_Va_Bien_E,
-            Message   => "Le code d'erreur doit indiquer que tout va bien " &
-               "et pas [" & Visiteur.Code_Erreur'Image & "]"
+            Message   => "Le code d'erreur doit indiquer que tout va " &
+               "bien et pas [" & Visiteur.Code_Erreur'Image & "]"
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Message_D_Erreur = Message_Vide,
-            Message   => "le message d'erreur doit etre vide et pas " &
-               "[" & Visiteur.Message_D_Erreur & "]"
+            Message   => Encode
+               (
+                  Item => "le message d'erreur doit être vide et " &
+                     "pas [" & Visiteur.Message_D_Erreur & "]"
+               )
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Base.all.Contient (Nom_Fait => P.Lire_Nom),
-            Message   => "Le fait booleen [" & String (P.Lire_Nom) & "] " &
-               "devrait etre dans la base"
+            Message   => Encode
+               (
+                  Item => "Le fait booleen [" & String (P.Lire_Nom) & "] " &
+                     "devrait être dans la base"
+               )
          );
    end Test_Premisse_Bool_True_Rate;
    ---------------------------------------------------------------------------
@@ -792,31 +923,39 @@ is
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Premisse_A_Ete_Verifiee,
-            Message   => "Aucune premisse ne doit etre verifiee"
+            Message   => Encode
+               (Item => "Aucune prémisse ne doit être vérifiée")
          );
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Conclusion_A_Ete_Declenchee,
-            Message   => "Aucune conclusion ne doit etre declenchee"
+            Message   => Encode
+               (Item => "Aucune conclusion ne doit être déclenchée")
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Code_Erreur = Tout_Va_Bien_E,
-            Message   => "Le code d'erreur doit indiquer que tout va bien " &
-               "et pas [" & Visiteur.Code_Erreur'Image & "]"
+            Message   => "Le code d'erreur doit indiquer que tout va " &
+               "bien et pas [" & Visiteur.Code_Erreur'Image & "]"
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Message_D_Erreur = Message_Vide,
-            Message   => "le message d'erreur doit etre vide et pas " &
-               "[" & Visiteur.Message_D_Erreur & "]"
+            Message   => Encode
+               (
+                  Item => "le message d'erreur doit être vide et " &
+                     "pas [" & Visiteur.Message_D_Erreur & "]"
+               )
          );
       AUnit.Assertions.Assert
          (
-            Condition =>
-               not Visiteur.Base.all.Contient (Nom_Fait => E.Lire_Nom),
-            Message   => "Le fait entier [" & String (E.Lire_Nom) & "] " &
-               "ne devrait pas etre dans la base"
+            Condition => not Visiteur.Base.all.Contient
+               (Nom_Fait => E.Lire_Nom),
+            Message   => Encode
+               (
+                  Item => "Le fait entier [" & String (E.Lire_Nom) & "] " &
+                     "ne devrait pas être dans la base"
+               )
          );
 
       Visiteur.Base.all.Ajouter (Nouvel_Item => F);
@@ -824,30 +963,38 @@ is
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Premisse_A_Ete_Verifiee,
-            Message   => "Aucune premisse ne doit etre verifiee"
+            Message   => Encode
+               (Item => "Aucune prémisse ne doit être vérifiée")
          );
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Conclusion_A_Ete_Declenchee,
-            Message   => "Aucune conclusion ne doit etre declenchee"
+            Message   => Encode
+               (Item => "Aucune conclusion ne doit être déclenchée")
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Code_Erreur = Tout_Va_Bien_E,
-            Message   => "Le code d'erreur doit indiquer que tout va bien " &
-               "et pas [" & Visiteur.Code_Erreur'Image & "]"
+            Message   => "Le code d'erreur doit indiquer que tout va " &
+               "bien et pas [" & Visiteur.Code_Erreur'Image & "]"
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Message_D_Erreur = Message_Vide,
-            Message   => "le message d'erreur doit etre vide et pas " &
-               "[" & Visiteur.Message_D_Erreur & "]"
+            Message   => Encode
+               (
+                  Item => "le message d'erreur doit être vide et " &
+                     "pas [" & Visiteur.Message_D_Erreur & "]"
+               )
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Base.all.Contient (Nom_Fait => E.Lire_Nom),
-            Message   => "Le fait entier [" & String (E.Lire_Nom) & "] " &
-               "devrait etre dans la base"
+            Message   => Encode
+               (
+                  Item => "Le fait entier [" & String (E.Lire_Nom) & "] " &
+                     "devrait être dans la base"
+               )
          );
    end Test_Premisse_Expression_Rate;
    ---------------------------------------------------------------------------
@@ -884,38 +1031,49 @@ is
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Premisse_A_Ete_Verifiee,
-            Message   => "Aucune premisse ne doit etre verifiee"
+            Message   => Encode
+               (Item => "Aucune prémisse ne doit être vérifiée")
          );
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Conclusion_A_Ete_Declenchee,
-            Message   => "Aucune conclusion ne doit etre declenchee"
+            Message   => Encode
+               (Item => "Aucune conclusion ne doit être déclenchée")
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Code_Erreur = Tout_Va_Bien_E,
-            Message   => "Le code d'erreur doit indiquer que tout va bien " &
-               "et pas [" & Visiteur.Code_Erreur'Image & "]"
+            Message   => "Le code d'erreur doit indiquer que tout va " &
+               "bien et pas [" & Visiteur.Code_Erreur'Image & "]"
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Message_D_Erreur = Message_Vide,
-            Message   => "le message d'erreur doit etre vide et pas " &
-               "[" & Visiteur.Message_D_Erreur & "]"
+            Message   => Encode
+               (
+                  Item => "le message d'erreur doit être vide et pas " &
+                     "[" & Visiteur.Message_D_Erreur & "]"
+               )
          );
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Base.all.Contient
                (Nom_Fait => E.Lire_Nom),
-            Message   => "Le fait entier [" & String (E.Lire_Nom) & "] " &
-               "ne devrait pas etre dans la base"
+            Message   => Encode
+               (
+                  Item => "Le fait entier [" & String (E.Lire_Nom) & "] " &
+                     "ne devrait pas être dans la base"
+               )
          );
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Base.all.Contient
                (Nom_Fait => E.Lire_Nom_Fait),
-            Message   => "Le fait entier [" & String (E.Lire_Nom) & "] " &
-               "ne devrait pas etre dans la base"
+            Message   => Encode
+               (
+                  Item => "Le fait entier [" & String (E.Lire_Nom) & "] " &
+                     "ne devrait pas être dans la base"
+               )
          );
 
       Visiteur.Base.all.Ajouter (Nouvel_Item => F_1);
@@ -924,26 +1082,33 @@ is
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Premisse_A_Ete_Verifiee,
-            Message   => "Aucune premisse ne doit etre verifiee " &
-               "[" & F_1.Lire_Valeur'Image & "] = " &
-               "[" & F_2.Lire_Valeur'Image & "]"
+            Message   => Encode
+               (
+                  Item => "Aucune prémisse ne doit être vérifiée " &
+                     "[" & F_1.Lire_Valeur'Image & "] = " &
+                     "[" & F_2.Lire_Valeur'Image & "]"
+               )
          );
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Conclusion_A_Ete_Declenchee,
-            Message   => "Aucune conclusion ne doit etre declenchee"
+            Message   => Encode
+               (Item => "Aucune conclusion ne doit être déclenchée")
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Code_Erreur = Tout_Va_Bien_E,
-            Message   => "Le code d'erreur doit indiquer que tout va bien " &
-               "et pas [" & Visiteur.Code_Erreur'Image & "]"
+            Message   => "Le code d'erreur doit indiquer que tout va " &
+               "bien et pas [" & Visiteur.Code_Erreur'Image & "]"
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Message_D_Erreur = Message_Vide,
-            Message   => "le message d'erreur doit etre vide et pas " &
-               "[" & Visiteur.Message_D_Erreur & "]"
+            Message   => Encode
+               (
+                  Item => "le message d'erreur doit être vide et " &
+                     "pas [" & Visiteur.Message_D_Erreur & "]"
+               )
          );
       AUnit.Assertions.Assert
          (
@@ -990,31 +1155,39 @@ is
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Premisse_A_Ete_Verifiee,
-            Message   => "Aucune premisse ne doit etre verifiee"
+            Message   => Encode
+               (Item => "Aucune prémisse ne doit être vérifiée")
          );
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Conclusion_A_Ete_Declenchee,
-            Message   => "Aucune conclusion ne doit etre declenchee"
+            Message   => Encode
+               (Item => "Aucune conclusion ne doit être déclenchée")
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Code_Erreur = Tout_Va_Bien_E,
-            Message   => "Le code d'erreur doit indiquer que tout va bien " &
-               "et pas [" & Visiteur.Code_Erreur'Image & "]"
+            Message   => "Le code d'erreur doit indiquer que tout va " &
+               "bien et pas [" & Visiteur.Code_Erreur'Image & "]"
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Message_D_Erreur = Message_Vide,
-            Message   => "le message d'erreur doit etre vide et pas " &
-               "[" & Visiteur.Message_D_Erreur & "]"
+            Message   => Encode
+               (
+                  Item => "le message d'erreur doit être vide et " &
+                     "pas [" & Visiteur.Message_D_Erreur & "]"
+               )
          );
       AUnit.Assertions.Assert
          (
-            Condition =>
-               not Visiteur.Base.all.Contient (Nom_Fait => E.Lire_Nom),
-            Message   => "Le fait entier [" & String (E.Lire_Nom) & "] " &
-               "ne devrait pas etre dans la base"
+            Condition => not Visiteur.Base.all.Contient
+               (Nom_Fait => E.Lire_Nom),
+            Message   => Encode
+               (
+                  Item => "Le fait entier [" & String (E.Lire_Nom) & "] " &
+                     "ne devrait pas être dans la base"
+               )
          );
 
       Visiteur.Base.all.Ajouter (Nouvel_Item => F);
@@ -1022,30 +1195,39 @@ is
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Premisse_A_Ete_Verifiee,
-            Message   => "Aucune premisse ne doit etre verifiee"
+            Message   => Encode
+               (Item => "Aucune prémisse ne doit être vérifiée")
          );
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Conclusion_A_Ete_Declenchee,
-            Message   => "Aucune conclusion ne doit etre declenchee"
+            Message   => Encode
+               (Item => "Aucune conclusion ne doit être déclenchée")
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Code_Erreur = Tout_Va_Bien_E,
-            Message   => "Le code d'erreur doit indiquer que tout va bien " &
-               "et pas [" & Visiteur.Code_Erreur'Image & "]"
+            Message   => "Le code d'erreur doit indiquer que tout va " &
+               "bien et pas [" & Visiteur.Code_Erreur'Image & "]"
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Message_D_Erreur = Message_Vide,
-            Message   => "le message d'erreur doit etre vide et pas " &
-               "[" & Visiteur.Message_D_Erreur & "]"
+            Message   => Encode
+               (
+                  Item => "le message d'erreur doit être vide et " &
+                     "pas [" & Visiteur.Message_D_Erreur & "]"
+               )
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Base.all.Contient (Nom_Fait => E.Lire_Nom),
-            Message   => "Le fait symbolique [" & String (E.Lire_Nom) & "] " &
-               "devrait etre dans la base"
+            Message   => Encode
+               (
+                  Item => "Le fait symbolique " &
+                     "[" & String (E.Lire_Nom) & "] " &
+                     "devrait être dans la base"
+               )
          );
    end Test_Premisse_Symbolique_Const_Rate;
    ---------------------------------------------------------------------------
@@ -1082,38 +1264,51 @@ is
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Premisse_A_Ete_Verifiee,
-            Message   => "Aucune premisse ne doit etre verifiee"
+            Message   => Encode
+               (Item => "Aucune prémisse ne doit être vérifiée")
          );
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Conclusion_A_Ete_Declenchee,
-            Message   => "Aucune conclusion ne doit etre declenchee"
+            Message   => Encode
+               (Item => "Aucune conclusion ne doit être déclenchée")
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Code_Erreur = Tout_Va_Bien_E,
-            Message   => "Le code d'erreur doit indiquer que tout va bien " &
-               "et pas [" & Visiteur.Code_Erreur'Image & "]"
+            Message   => "Le code d'erreur doit indiquer que tout va " &
+               "bien et pas [" & Visiteur.Code_Erreur'Image & "]"
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Message_D_Erreur = Message_Vide,
-            Message   => "le message d'erreur doit etre vide et pas " &
-               "[" & Visiteur.Message_D_Erreur & "]"
+            Message   => Encode
+               (
+                  Item => "le message d'erreur doit être vide et " &
+                     "pas [" & Visiteur.Message_D_Erreur & "]"
+               )
          );
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Base.all.Contient
                (Nom_Fait => E.Lire_Nom),
-            Message   => "Le fait symbolique [" & String (E.Lire_Nom) & "] " &
-               "ne devrait pas etre dans la base"
+            Message   => Encode
+               (
+                  Item => "Le fait symbolique " &
+                     "[" & String (E.Lire_Nom) & "] " &
+                     "ne devrait pas être dans la base"
+               )
          );
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Base.all.Contient
                (Nom_Fait => E.Lire_Nom_Fait),
-            Message   => "Le fait symbolique [" & String (E.Lire_Nom) & "] " &
-               "ne devrait pas etre dans la base"
+            Message   => Encode
+               (
+                  Item => "Le fait symbolique " &
+                     "[" & String (E.Lire_Nom) & "] " &
+                     "ne devrait pas être dans la base"
+               )
          );
 
       Visiteur.Base.all.Ajouter (Nouvel_Item => F_1);
@@ -1122,26 +1317,33 @@ is
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Premisse_A_Ete_Verifiee,
-            Message   => "Aucune premisse ne doit etre verifiee " &
-               "[" & String (F_1.Lire_Valeur) & "] = " &
-               "[" & String (F_2.Lire_Valeur) & "]"
+            Message   => Encode
+               (
+                  Item => "Aucune prémisse ne doit être vérifiée " &
+                     "[" & String (F_1.Lire_Valeur) & "] = " &
+                     "[" & String (F_2.Lire_Valeur) & "]"
+               )
          );
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Conclusion_A_Ete_Declenchee,
-            Message   => "Aucune conclusion ne doit etre declenchee"
+            Message   => Encode
+               (Item => "Aucune conclusion ne doit être déclenchée")
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Code_Erreur = Tout_Va_Bien_E,
-            Message   => "Le code d'erreur doit indiquer que tout va bien " &
-               "et pas [" & Visiteur.Code_Erreur'Image & "]"
+            Message   => "Le code d'erreur doit indiquer que tout va " &
+               "bien et pas [" & Visiteur.Code_Erreur'Image & "]"
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Message_D_Erreur = Message_Vide,
-            Message   => "le message d'erreur doit etre vide et pas " &
-               "[" & Visiteur.Message_D_Erreur & "]"
+            Message   => Encode
+               (
+                  Item => "le message d'erreur doit être vide et " &
+                     "pas [" & Visiteur.Message_D_Erreur & "]"
+               )
          );
       AUnit.Assertions.Assert
          (
@@ -1184,30 +1386,39 @@ is
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Premisse_A_Ete_Verifiee,
-            Message   => "Une premisse doit etre verifiee"
+            Message   => Encode
+               (Item => "Une prémisse doit être vérifiée")
          );
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Conclusion_A_Ete_Declenchee,
-            Message   => "Aucune conclusion ne doit etre declenchee"
+            Message   => Encode
+               (Item => "Aucune conclusion ne doit être déclenchée")
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Code_Erreur = Tout_Va_Bien_E,
-            Message   => "Le code d'erreur doit indiquer que tout va bien " &
-               "et pas [" & Visiteur.Code_Erreur'Image & "]"
+            Message   => "Le code d'erreur doit indiquer que tout va " &
+               "bien et pas [" & Visiteur.Code_Erreur'Image & "]"
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Message_D_Erreur = Message_Vide,
-            Message   => "le message d'erreur doit etre vide et pas " &
-               "[" & Visiteur.Message_D_Erreur & "]"
+            Message   => Encode
+               (
+                  Item => "le message d'erreur doit être vide et " &
+                     "pas [" & Visiteur.Message_D_Erreur & "]"
+               )
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Base.all.Contient (Nom_Fait => P.Lire_Nom),
-            Message   => "Le fait booleen [" & String (P.Lire_Nom) & "] " &
-               "devrait etre dans la base"
+            Message   => Encode
+               (
+                  Item => "Le fait booleen " &
+                     "[" & String (P.Lire_Nom) & "] " &
+                     "devrait être dans la base"
+               )
          );
    end Test_Premisse_Bool_False;
    ---------------------------------------------------------------------------
@@ -1234,30 +1445,38 @@ is
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Premisse_A_Ete_Verifiee,
-            Message   => "Une premisse doit etre verifiee"
+            Message   => Encode
+               (Item => "Une prémisse doit être vérifiée")
          );
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Conclusion_A_Ete_Declenchee,
-            Message   => "Aucune conclusion ne doit etre declenchee"
+            Message   => Encode
+               (Item => "Aucune conclusion ne doit être déclenchée")
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Code_Erreur = Tout_Va_Bien_E,
-            Message   => "Le code d'erreur doit indiquer que tout va bien " &
-               "et pas [" & Visiteur.Code_Erreur'Image & "]"
+            Message   => "Le code d'erreur doit indiquer que tout va " &
+               "bien et pas [" & Visiteur.Code_Erreur'Image & "]"
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Message_D_Erreur = Message_Vide,
-            Message   => "le message d'erreur doit etre vide et pas " &
-               "[" & Visiteur.Message_D_Erreur & "]"
+            Message   => Encode
+               (
+                  Item => "le message d'erreur doit être vide et " &
+                     "pas [" & Visiteur.Message_D_Erreur & "]"
+               )
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Base.all.Contient (Nom_Fait => P.Lire_Nom),
-            Message   => "Le fait booleen [" & String (P.Lire_Nom) & "] " &
-               "devrait etre dans la base"
+            Message   => Encode
+               (
+                  Item => "Le fait booleen [" & String (P.Lire_Nom) & "] " &
+                     "devrait être dans la base"
+               )
          );
    end Test_Premisse_Bool_True;
    ---------------------------------------------------------------------------
@@ -1297,30 +1516,38 @@ is
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Premisse_A_Ete_Verifiee,
-            Message   => "Une premisse doit etre verifiee"
+            Message   => Encode
+               (Item => "Une prémisse doit être vérifiée")
          );
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Conclusion_A_Ete_Declenchee,
-            Message   => "Aucune conclusion ne doit etre declenchee"
+            Message   => Encode
+               (Item => "Aucune conclusion ne doit être déclenchée")
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Code_Erreur = Tout_Va_Bien_E,
-            Message   => "Le code d'erreur doit indiquer que tout va bien " &
-               "et pas [" & Visiteur.Code_Erreur'Image & "]"
+            Message   => "Le code d'erreur doit indiquer que tout va " &
+               "bien et pas [" & Visiteur.Code_Erreur'Image & "]"
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Message_D_Erreur = Message_Vide,
-            Message   => "le message d'erreur doit etre vide et pas " &
-               "[" & Visiteur.Message_D_Erreur & "]"
+            Message   => Encode
+               (
+                  Item => "le message d'erreur doit être vide et " &
+                     "pas [" & Visiteur.Message_D_Erreur & "]"
+               )
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Base.all.Contient (Nom_Fait => E.Lire_Nom),
-            Message   => "Le fait entier [" & String (E.Lire_Nom) & "] " &
-               "devrait etre dans la base"
+            Message   => Encode
+               (
+                  Item => "Le fait entier [" & String (E.Lire_Nom) & "] " &
+                     "devrait être dans la base"
+               )
          );
    end Test_Premisse_Expression;
    ---------------------------------------------------------------------------
@@ -1357,26 +1584,33 @@ is
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Premisse_A_Ete_Verifiee,
-            Message   => "Une premisse doit etre verifiee " &
-               "[" & F_1.Lire_Valeur'Image & "] = " &
-               "[" & F_2.Lire_Valeur'Image & "]"
+            Message   => Encode
+               (
+                  Item => "Une prémisse doit être vérifiée " &
+                     "[" & F_1.Lire_Valeur'Image & "] = " &
+                     "[" & F_2.Lire_Valeur'Image & "]"
+               )
          );
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Conclusion_A_Ete_Declenchee,
-            Message   => "Aucune conclusion ne doit etre declenchee"
+            Message   => Encode
+               (Item => "Aucune conclusion ne doit être déclenchée")
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Code_Erreur = Tout_Va_Bien_E,
-            Message   => "Le code d'erreur doit indiquer que tout va bien " &
-               "et pas [" & Visiteur.Code_Erreur'Image & "]"
+            Message   => "Le code d'erreur doit indiquer que tout va " &
+               "bien et pas [" & Visiteur.Code_Erreur'Image & "]"
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Message_D_Erreur = Message_Vide,
-            Message   => "le message d'erreur doit etre vide et pas " &
-               "[" & Visiteur.Message_D_Erreur & "]"
+            Message   => Encode
+               (
+                  Item => "le message d'erreur doit être vide et " &
+                     "pas [" & Visiteur.Message_D_Erreur & "]"
+               )
          );
       AUnit.Assertions.Assert
          (
@@ -1421,30 +1655,39 @@ is
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Premisse_A_Ete_Verifiee,
-            Message   => "une premisse doit etre verifiee"
+            Message   => Encode
+               (Item => "une prémisse doit être vérifiée")
          );
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Conclusion_A_Ete_Declenchee,
-            Message   => "Aucune conclusion ne doit etre declenchee"
+            Message   => Encode
+               (Item => "Aucune conclusion ne doit être déclenchée")
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Code_Erreur = Tout_Va_Bien_E,
-            Message   => "Le code d'erreur doit indiquer que tout va bien " &
-               "et pas [" & Visiteur.Code_Erreur'Image & "]"
+            Message   => "Le code d'erreur doit indiquer que tout va " &
+               "bien et pas [" & Visiteur.Code_Erreur'Image & "]"
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Message_D_Erreur = Message_Vide,
-            Message   => "le message d'erreur doit etre vide et pas " &
-               "[" & Visiteur.Message_D_Erreur & "]"
+            Message   => Encode
+               (
+                  Item => "le message d'erreur doit être vide et " &
+                     "pas [" & Visiteur.Message_D_Erreur & "]"
+               )
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Base.all.Contient (Nom_Fait => E.Lire_Nom),
-            Message   => "Le fait symbolique [" & String (E.Lire_Nom) & "] " &
-               "devrait etre dans la base"
+            Message   => Encode
+               (
+                  Item => "Le fait symbolique " &
+                     "[" & String (E.Lire_Nom) & "] " &
+                     "devrait être dans la base"
+               )
          );
    end Test_Premisse_Symbolique_Const;
    ---------------------------------------------------------------------------
@@ -1481,26 +1724,33 @@ is
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Premisse_A_Ete_Verifiee,
-            Message   => "une premisse doit etre verifiee " &
-               "[" & String (F_1.Lire_Valeur) & "] = " &
-               "[" & String (F_2.Lire_Valeur) & "]"
+            Message   => Encode
+               (
+                  Item => "une prémisse doit être vérifiée " &
+                     "[" & String (F_1.Lire_Valeur) & "] = " &
+                     "[" & String (F_2.Lire_Valeur) & "]"
+               )
          );
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Conclusion_A_Ete_Declenchee,
-            Message   => "Aucune conclusion ne doit etre declenchee"
+            Message   => Encode
+               (Item => "Aucune conclusion ne doit être déclenchée")
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Code_Erreur = Tout_Va_Bien_E,
-            Message   => "Le code d'erreur doit indiquer que tout va bien " &
-               "et pas [" & Visiteur.Code_Erreur'Image & "]"
+            Message   => "Le code d'erreur doit indiquer que tout va " &
+               "bien et pas [" & Visiteur.Code_Erreur'Image & "]"
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Message_D_Erreur = Message_Vide,
-            Message   => "le message d'erreur doit etre vide et pas " &
-               "[" & Visiteur.Message_D_Erreur & "]"
+            Message   => Encode
+               (
+                  Item => "le message d'erreur doit être vide et " &
+                     "pas [" & Visiteur.Message_D_Erreur & "]"
+               )
          );
       AUnit.Assertions.Assert
          (
@@ -1539,30 +1789,39 @@ is
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Premisse_A_Ete_Verifiee,
-            Message   => "Aucune premisse ne doit etre verifiee "
+            Message   => Encode
+               (Item => "Aucune prémisse ne doit être vérifiée")
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Conclusion_A_Ete_Declenchee,
-            Message   => "Une conclusion doit etre declenchee"
+            Message   => Encode
+               (Item => "Une conclusion doit être déclenchée")
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Code_Erreur = Tout_Va_Bien_E,
-            Message   => "Le code d'erreur doit indiquer que tout va bien " &
-               "et pas [" & Visiteur.Code_Erreur'Image & "]"
+            Message   => "Le code d'erreur doit indiquer que tout va " &
+               "bien et pas [" & Visiteur.Code_Erreur'Image & "]"
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Message_D_Erreur = Message_Vide,
-            Message   => "le message d'erreur doit etre vide et pas " &
-               "[" & Visiteur.Message_D_Erreur & "]"
+            Message   => Encode
+               (
+                  Item => "le message d'erreur doit être vide et " &
+                     "pas [" & Visiteur.Message_D_Erreur & "]"
+               )
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Base.all.Contient (Nom_Fait => Nom),
-            Message   => "Le fait booleen " &
-               "[" & String (Nom) & "] " & "devrait etre dans la base"
+            Message   => Encode
+               (
+                  Item => "Le fait booleen " &
+                     "[" & String (Nom) & "] " &
+                     "devrait être dans la base"
+               )
          );
    end Test_Rate_Ajouter_Un_Fait_Booleen;
    ---------------------------------------------------------------------------
@@ -1585,30 +1844,39 @@ is
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Premisse_A_Ete_Verifiee,
-            Message   => "Aucune premisse ne doit etre verifiee "
+            Message   => Encode
+               (Item => "Aucune prémisse ne doit être vérifiée")
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Conclusion_A_Ete_Declenchee,
-            Message   => "Une conclusion doit etre declenchee"
+            Message   => Encode
+               (Item => "Une conclusion doit être déclenchée")
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Code_Erreur = Tout_Va_Bien_E,
-            Message   => "Le code d'erreur doit indiquer que tout va bien " &
-               "et pas [" & Visiteur.Code_Erreur'Image & "]"
+            Message   => "Le code d'erreur doit indiquer que tout va " &
+               "bien et pas [" & Visiteur.Code_Erreur'Image & "]"
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Message_D_Erreur = Message_Vide,
-            Message   => "le message d'erreur doit etre vide et pas " &
-               "[" & Visiteur.Message_D_Erreur & "]"
+            Message   => Encode
+               (
+                  Item => "le message d'erreur doit être vide et " &
+                     "pas [" & Visiteur.Message_D_Erreur & "]"
+               )
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Base.all.Contient (Nom_Fait => Nom),
-            Message   => "Le fait entier " &
-               "[" & String (Nom) & "] " & "devrait etre dans la base"
+            Message   => Encode
+               (
+                  Item => "Le fait entier " &
+                     "[" & String (Nom) & "] " &
+                     "devrait être dans la base"
+               )
          );
    end Test_Rate_Ajouter_Un_Fait_Entier;
    ---------------------------------------------------------------------------
@@ -1631,30 +1899,39 @@ is
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Premisse_A_Ete_Verifiee,
-            Message   => "Aucune premisse ne doit etre verifiee "
+            Message   => Encode
+               (Item => "Aucune prémisse ne doit être vérifiée")
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Conclusion_A_Ete_Declenchee,
-            Message   => "Une conclusion doit etre declenchee"
+            Message   => Encode
+               (Item => "Une conclusion doit être déclenchée")
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Code_Erreur = Tout_Va_Bien_E,
-            Message   => "Le code d'erreur doit indiquer que tout va bien " &
-               "et pas [" & Visiteur.Code_Erreur'Image & "]"
+            Message   => "Le code d'erreur doit indiquer que tout va " &
+               "bien et pas [" & Visiteur.Code_Erreur'Image & "]"
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Message_D_Erreur = Message_Vide,
-            Message   => "le message d'erreur doit etre vide et pas " &
-               "[" & Visiteur.Message_D_Erreur & "]"
+            Message   => Encode
+               (
+                  Item => "le message d'erreur doit être vide et " &
+                     "pas [" & Visiteur.Message_D_Erreur & "]"
+               )
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Base.all.Contient (Nom_Fait => Nom),
-            Message   => "Le fait symbolique " &
-               "[" & String (Nom) & "] " & "devrait etre dans la base"
+            Message   => Encode
+               (
+                  Item => "Le fait symbolique " &
+                     "[" & String (Nom) & "] " &
+                     "devrait être dans la base"
+               )
          );
    end Test_Rate_Ajouter_Fait_Symbolique;
    ---------------------------------------------------------------------------
@@ -1687,12 +1964,14 @@ is
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Premisse_A_Ete_Verifiee,
-            Message   => "Aucune premisse ne doit etre verifiee"
+            Message   => Encode
+               (Item => "Aucune prémisse ne doit être vérifiée")
          );
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Conclusion_A_Ete_Declenchee,
-            Message   => "Aucune conclusion ne doit etre declenchee"
+            Message   => Encode
+               (Item => "Aucune conclusion ne doit être déclenchée")
          );
       AUnit.Assertions.Assert
          (
@@ -1703,15 +1982,21 @@ is
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Message_D_Erreur /= Message_Vide,
-            Message   => "le message d'erreur doit etre vide et pas " &
-               "[" & Visiteur.Message_D_Erreur & "]"
+            Message   => Encode
+               (
+                  Item => "le message d'erreur doit être vide et " &
+                     "pas [" & Visiteur.Message_D_Erreur & "]"
+               )
          );
       AUnit.Assertions.Assert
          (
-            Condition =>
-               not Visiteur.Base.all.Contient (Nom_Fait => E.Lire_Nom),
-            Message   => "Le fait entier [" & String (E.Lire_Nom) & "] " &
-               "ne devrait pas etre dans la base"
+            Condition => not Visiteur.Base.all.Contient
+               (Nom_Fait => E.Lire_Nom),
+            Message   => Encode
+               (
+                  Item => "Le fait entier [" & String (E.Lire_Nom) & "] " &
+                     "ne devrait pas être dans la base"
+               )
          );
    end Test_Rate_Concl_Expr_Entier_Inconnu;
    ---------------------------------------------------------------------------
@@ -1744,31 +2029,43 @@ is
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Premisse_A_Ete_Verifiee,
-            Message   => "Aucune premisse ne doit etre verifiee"
+            Message   => Encode
+               (Item => "Aucune prémisse ne doit être vérifiée")
          );
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Conclusion_A_Ete_Declenchee,
-            Message   => "Aucune conclusion ne doit etre declenchee"
+            Message   => Encode
+               (Item => "Aucune conclusion ne doit être déclenchée")
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Code_Erreur = Incoherence_Fait_E,
-            Message   => "Le code d'erreur doit indiquer une incoherence " &
-               "et pas [" & Visiteur.Code_Erreur'Image & "]"
+            Message   => Encode
+               (
+                  Item => "Le code d'erreur doit " &
+                     "indiquer une incohérence " &
+                     "et pas [" & Visiteur.Code_Erreur'Image & "]"
+               )
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Message_D_Erreur /= Message_Vide,
-            Message   => "le message d'erreur doit etre vide et pas " &
-               "[" & Visiteur.Message_D_Erreur & "]"
+            Message   => Encode
+               (
+                  Item => "le message d'erreur doit être vide et " &
+                     "pas [" & Visiteur.Message_D_Erreur & "]"
+               )
          );
       AUnit.Assertions.Assert
          (
-            Condition =>
-               not Visiteur.Base.all.Contient (Nom_Fait => E.Lire_Nom),
-            Message   => "Le fait entier [" & String (E.Lire_Nom) & "] " &
-               "ne devrait pas etre dans la base"
+            Condition => not Visiteur.Base.all.Contient
+               (Nom_Fait => E.Lire_Nom),
+            Message   => Encode
+               (
+                  Item => "Le fait entier [" & String (E.Lire_Nom) & "] " &
+                     "ne devrait pas être dans la base"
+               )
          );
    end Test_Rate_Concl_Expr_Non_Entier;
    ---------------------------------------------------------------------------
@@ -1806,31 +2103,43 @@ is
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Premisse_A_Ete_Verifiee,
-            Message   => "Aucune premisse ne doit etre verifiee"
+            Message   => Encode
+               (Item => "Aucune prémisse ne doit être vérifiée")
          );
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Conclusion_A_Ete_Declenchee,
-            Message   => "Aucune conclusion ne doit etre declenchee"
+            Message   => Encode
+               (Item => "Aucune conclusion ne doit être déclenchée")
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Code_Erreur = Div_Par_Zero_E,
-            Message   => "Le code d'erreur doit indiquer div par zero " &
-               "et pas [" & Visiteur.Code_Erreur'Image & "]"
+            Message   => Encode
+               (
+                  Item => "Le code d'erreur doit indiquer div par zéro " &
+                     "et pas [" & Visiteur.Code_Erreur'Image & "]"
+               )
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Message_D_Erreur /= Message_Vide,
-            Message   => "le message d'erreur doit etre vide et pas " &
-               "[" & Visiteur.Message_D_Erreur & "]"
+            Message   => Encode
+               (
+                  Item => "le message d'erreur doit être vide et " &
+                     "pas [" & Visiteur.Message_D_Erreur & "]"
+               )
          );
       AUnit.Assertions.Assert
          (
-            Condition =>
-               not Visiteur.Base.all.Contient (Nom_Fait => E.Lire_Nom),
-            Message   => "Le fait entier [" & String (E.Lire_Nom) & "] " &
-               "ne devrait pas etre dans la base"
+            Condition => not Visiteur.Base.all.Contient
+               (Nom_Fait => E.Lire_Nom),
+            Message   => Encode
+               (
+                  Item => "Le fait entier " &
+                     "[" & String (E.Lire_Nom) & "] " &
+                     "ne devrait pas être dans la base"
+               )
          );
    end Test_Rate_Concl_Expr_Div_Zero;
    ---------------------------------------------------------------------------
@@ -1855,38 +2164,48 @@ is
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Premisse_A_Ete_Verifiee,
-            Message   => "Aucune premisse ne doit etre verifiee"
+            Message   => Encode
+               (Item => "Aucune prémisse ne doit être vérifiée")
          );
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Conclusion_A_Ete_Declenchee,
-            Message   => "Aucune conclusion ne doit etre declenchee"
+            Message   => Encode
+               (Item => "Aucune conclusion ne doit être déclenchée")
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Code_Erreur = Fait_Entier_Inconnu_E,
-            Message   => "Le code d'erreur doit indiquer un fait inconnu " &
-               "et pas [" & Visiteur.Code_Erreur'Image & "]"
+            Message   => "Le code d'erreur doit indiquer un fait " &
+               "inconnu et pas [" & Visiteur.Code_Erreur'Image & "]"
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Message_D_Erreur /= Message_Vide,
-            Message   => "le message d'erreur ne doit pas etre vide"
+            Message   => Encode
+               (Item => "le message d'erreur ne doit pas être vide")
          );
       AUnit.Assertions.Assert
          (
-            Condition =>
-               not Visiteur.Base.all.Contient (Nom_Fait => E.Lire_Nom),
-            Message   => "Le fait entier [" & String (E.Lire_Nom) & "] " &
-               "ne devrait pas etre dans la base"
+            Condition => not Visiteur.Base.all.Contient
+               (Nom_Fait => E.Lire_Nom),
+            Message   => Encode
+               (
+                  Item => "Le fait entier " &
+                     "[" & String (E.Lire_Nom) & "] " &
+                     "ne devrait pas être dans la base"
+               )
          );
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Base.all.Contient
                (Nom_Fait => E.Lire_Nom_Fait),
-            Message   => "L'autre fait entier " &
-               "[" & String (E.Lire_Nom_Fait) & "] " &
-               "ne devrait pas etre dans la base"
+            Message   => Encode
+               (
+                  Item => "L'autre fait entier " &
+                     "[" & String (E.Lire_Nom_Fait) & "] " &
+                     "ne devrait pas être dans la base"
+               )
          );
    end Test_Rate_Concl_Fait_Entier_Inconnu;
    ---------------------------------------------------------------------------
@@ -1916,30 +2235,43 @@ is
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Premisse_A_Ete_Verifiee,
-            Message   => "Aucune premisse ne doit etre verifiee"
+            Message   => Encode
+               (Item => "Aucune prémisse ne doit être vérifiée")
          );
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Conclusion_A_Ete_Declenchee,
-            Message   => "Aucune conclusion ne doit etre declenchee"
+            Message   => Encode
+               (Item => "Aucune conclusion ne doit être déclenchée")
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Code_Erreur = Incoherence_Fait_E,
-            Message   => "Le code d'erreur doit indiquer une incoherence " &
-               "et pas [" & Visiteur.Code_Erreur'Image & "]"
+            Message   => Encode
+               (
+                  Item => "Le code d'erreur doit " &
+                     "indiquer une incohérence " &
+                     "et pas [" & Visiteur.Code_Erreur'Image & "]"
+               )
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Message_D_Erreur /= Message_Vide,
-            Message   => "le message d'erreur doit etre vide et pas " &
-               "[" & Visiteur.Message_D_Erreur & "]"
+            Message   => Encode
+               (
+                  Item => "le message d'erreur doit être vide et pas " &
+                     "[" & Visiteur.Message_D_Erreur & "]"
+               )
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Base.all.Contient (Nom_Fait => E.Lire_Nom),
-            Message   => "Le fait entier [" & String (E.Lire_Nom) & "] " &
-               "devrait etre dans la base"
+            Message   => Encode
+               (
+                  Item => "Le fait entier " &
+                     "[" & String (E.Lire_Nom) & "] " &
+                     "devrait être dans la base"
+               )
          );
    end Test_Rate_Concl_Fait_Non_Entier;
    ---------------------------------------------------------------------------
@@ -1964,12 +2296,14 @@ is
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Premisse_A_Ete_Verifiee,
-            Message   => "Aucune premisse ne doit etre verifiee"
+            Message   => Encode
+               (Item => "Aucune prémisse ne doit être vérifiée")
          );
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Conclusion_A_Ete_Declenchee,
-            Message   => "Aucune conclusion ne doit etre declenchee"
+            Message   => Encode
+               (Item => "Aucune conclusion ne doit être déclenchée")
          );
       AUnit.Assertions.Assert
          (
@@ -1980,22 +2314,30 @@ is
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Message_D_Erreur /= Message_Vide,
-            Message   => "le message d'erreur ne doit pas etre vide"
+            Message   => Encode
+               (Item => "le message d'erreur ne doit pas être vide")
          );
       AUnit.Assertions.Assert
          (
             Condition =>
                not Visiteur.Base.all.Contient (Nom_Fait => E.Lire_Nom),
-            Message   => "Le fait symbolique [" & String (E.Lire_Nom) & "] " &
-               "ne devrait pas etre dans la base"
+            Message   => Encode
+               (
+                  Item => "Le fait symbolique " &
+                     "[" & String (E.Lire_Nom) & "] " &
+                     "ne devrait pas être dans la base"
+               )
          );
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Base.all.Contient
                (Nom_Fait => E.Lire_Nom_Fait),
-            Message   => "L'autre fait symbolique " &
-               "[" & String (E.Lire_Nom_Fait) & "] " &
-               "ne devrait pas etre dans la base"
+            Message   => Encode
+               (
+                  Item => "L'autre fait symbolique " &
+                     "[" & String (E.Lire_Nom_Fait) & "] " &
+                     "ne devrait pas être dans la base"
+               )
          );
    end Test_Rate_Concl_Fait_Sym_Inconnu;
    ---------------------------------------------------------------------------
@@ -2025,30 +2367,43 @@ is
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Premisse_A_Ete_Verifiee,
-            Message   => "Aucune premisse ne doit etre verifiee"
+            Message   => Encode
+               (Item => "Aucune prémisse ne doit être vérifiée")
          );
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Conclusion_A_Ete_Declenchee,
-            Message   => "Aucune conclusion ne doit etre declenchee"
+            Message   => Encode
+               (Item => "Aucune conclusion ne doit être déclenchée")
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Code_Erreur = Incoherence_Fait_E,
-            Message   => "Le code d'erreur doit indiquer une incoherence " &
-               "et pas [" & Visiteur.Code_Erreur'Image & "]"
+            Message   => Encode
+               (
+                  Item => "Le code d'erreur doit " &
+                     "indiquer une incohérence " &
+                     "et pas [" & Visiteur.Code_Erreur'Image & "]"
+               )
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Message_D_Erreur /= Message_Vide,
-            Message   => "le message d'erreur doit etre vide et pas " &
-               "[" & Visiteur.Message_D_Erreur & "]"
+            Message   => Encode
+               (
+                  Item => "le message d'erreur doit être vide et " &
+                     "pas [" & Visiteur.Message_D_Erreur & "]"
+               )
          );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Base.all.Contient (Nom_Fait => E.Lire_Nom),
-            Message   => "Le fait symbolique [" & String (E.Lire_Nom) & "] " &
-               "devrait etre dans la base"
+            Message   => Encode
+               (
+                  Item => "Le fait symbolique " &
+                     "[" & String (E.Lire_Nom) & "] " &
+                     "devrait être dans la base"
+               )
          );
    end Test_Rate_Concl_Fait_Non_Symbolique;
    ---------------------------------------------------------------------------

@@ -1,5 +1,6 @@
 with AUnit.Assertions;
 
+with Encode;
 with Facilites_P;
 with Facilites_P.Fait_P;
 
@@ -173,7 +174,8 @@ is
       AUnit.Assertions.Assert
          (
             Condition => T.Base.Map_Faits.Is_Empty,
-            Message   => "La base de faits doit etre vide a la creation"
+            Message   => Encode
+               (Item => "La base de faits doit être vide à la création")
          );
    end Test_Creer;
    ---------------------------------------------------------------------------
@@ -187,12 +189,13 @@ is
       AUnit.Assertions.Assert
          (
             Condition => T.Base.Map_Faits.Is_Empty,
-            Message   => "La base de faits doit etre vide a la creation"
+            Message   => Encode
+               (Item => "La base de faits doit être vide à la création")
          );
       AUnit.Assertions.Assert
          (
             Condition => not T.Base.Contient (Nom_Fait => Nom),
-            Message   => "La base de faits doit etre vide"
+            Message   => Encode (Item => "La base de faits doit être vide")
          );
    end Test_Contient_Base_Vide;
    ---------------------------------------------------------------------------
@@ -206,17 +209,18 @@ is
       AUnit.Assertions.Assert
          (
             Condition => T.Base.Map_Faits.Is_Empty,
-            Message   => "La base de faits doit etre vide a la creation"
+            Message   => Encode
+               (Item => "La base de faits doit être vide à la création")
          );
       AUnit.Assertions.Assert
          (
             Condition => not T.Base.Contient (Nom_Fait => Nom),
-            Message   => "La base de faits doit etre vide"
+            Message   => Encode (Item => "La base de faits doit être vide")
          );
       AUnit.Assertions.Assert_Exception
          (
             Proc    => Trouver_Dans_Base_Vide'Access,
-            Message => "La base de faits doit etre vide"
+            Message => Encode (Item => "La base de faits doit être vide")
          );
    end Test_Trouver_Base_Vide;
    ---------------------------------------------------------------------------
@@ -248,8 +252,11 @@ is
       AUnit.Assertions.Assert_Exception
          (
             Proc    => Trouver_Fait_Inconnu'Access,
-            Message => "La base de faits doit générer une erreur " &
-               "sur un fait inconnu"
+            Message => Encode
+               (
+                  Item => "La base de faits doit générer une erreur " &
+                     "sur un fait inconnu"
+               )
          );
    end Test_Trouver_Inconnu;
    ---------------------------------------------------------------------------
@@ -291,7 +298,8 @@ is
       AUnit.Assertions.Assert_Exception
          (
             Proc    => Ajouter_Deux_Fois'Access,
-            Message => "La base de faits doit deja contenir le fait"
+            Message => Encode
+               (Item => "La base de faits doit déjà contenir le fait")
          );
    end Test_Ajouter_Deux_Fois;
    ---------------------------------------------------------------------------
@@ -305,7 +313,8 @@ is
       AUnit.Assertions.Assert_Exception
          (
             Proc    => Ajouter_Deux_Fois_Type_Differents'Access,
-            Message => "La base de faits doit deja contenir le fait"
+            Message => Encode
+               (Item => "La base de faits doit déjà contenir le fait")
          );
    end Test_Ajouter_2_F_Type_Differents;
    ---------------------------------------------------------------------------
@@ -482,14 +491,6 @@ is
          record
             Sorte : Type_De_Fait_T;
             Nom   : Nom_T (Taille_Nom_T);
-            --  case Sorte is
-            --     when Fait_P.Booleen_E =>
-            --        Bool : Boolean;
-            --     when Fait_P.Entier_E =>
-            --        Entier : Fait_P.Entier_P.Entier_T;
-            --     when Fait_P.Symbolique_P =>
-            --        Symbol : Fait_P.Symbolique_P.Nom_Symbole_T;
-            --  end case;
          end record;
 
       type ID_Fait_T is range 1 .. 10;

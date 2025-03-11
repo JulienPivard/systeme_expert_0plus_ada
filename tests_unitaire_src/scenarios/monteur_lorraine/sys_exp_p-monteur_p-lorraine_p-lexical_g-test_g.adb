@@ -5,6 +5,7 @@ with AUnit.Assertions;
 
 with Sys_Exp_P.Monteur_P.Lorraine_P.Faux_Fichier_P;
 
+with Encode;
 with Facilites_P.Entier_P;
 
 package body Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_G.Test_G is
@@ -58,7 +59,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_G.Test_G is
       AUnit.Assertions.Assert
          (
             Condition => Lexical.Lire_Ligne = "",
-            Message   => "Creation du parseur lexical"
+            Message   => Encode (Item => "Création du parseur lexical")
          );
    end Test_Creer;
    ---------------------------------------------------------------------------
@@ -126,8 +127,12 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_G.Test_G is
          AUnit.Assertions.Assert
             (
                Condition => Lexical.Lire_Numero_Ligne = Numero_Ligne_G_T'First,
-               Message   => "Numero ligne lue " &
-                  "[" & Lexical.Lire_Numero_Ligne'Image & "] /= [1] attendu"
+               Message   => Encode
+                  (
+                     Item => "Numéro ligne lue " &
+                        "[" & Lexical.Lire_Numero_Ligne'Image & "] " &
+                        "/= [1] attendu"
+                  )
             );
          AUnit.Assertions.Assert
             (
@@ -741,9 +746,12 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_G.Test_G is
          AUnit.Assertions.Assert
             (
                Condition => Jeton_Lu.Lire_Representation = Contenu_Attendu,
-               Message   => "Representation du Jeton lu " &
-                  "[" & Jeton_Lu.Lire_Representation & "] n'est pas " &
-                  "[" & Contenu & "]"
+               Message   => Encode
+                  (
+                     Item => "Représentation du Jeton lu " &
+                        "[" & Jeton_Lu.Lire_Representation & "] n'est pas " &
+                        "[" & Contenu & "]"
+                  )
             );
 
          Bloc_Tests_Non_Jeton :
@@ -1521,9 +1529,12 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Lexical_G.Test_G is
          AUnit.Assertions.Assert
             (
                Condition => Jeton_Lu.Lire_Representation = Contenu,
-               Message   => "Representation du Jeton lu " &
-                  "[" & Jeton_Lu.Lire_Representation & "] n'est pas " &
-                  "[" & Contenu & "]"
+               Message   => Encode
+                  (
+                     Item => "Représentation du Jeton lu " &
+                        "[" & Jeton_Lu.Lire_Representation & "] n'est pas " &
+                        "[" & Contenu & "]"
+                  )
             );
 
          Bloc_Tests_Non_Jeton :

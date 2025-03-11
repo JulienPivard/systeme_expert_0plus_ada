@@ -12,6 +12,7 @@ with Sys_Exp_P.Visiteur_Forme_P.Declencheur_P.Fabrique_P;
 
 with Sys_Exp_P.Base_Faits_P;
 
+with Encode;
 with Facilites_P;
 
 package body Sys_Exp_P.Regles_P.Avec_Premisse_P.Test_P
@@ -77,17 +78,19 @@ is
       AUnit.Assertions.Assert
          (
             Condition => not T.Regle.Regle_Declenchee,
-            Message   => "Aucune regle ne doit avoir été déclenchée"
+            Message   => Encode
+               (Item => "Aucune règle ne doit avoir été déclenchée")
          );
       AUnit.Assertions.Assert
          (
             Condition => T.Regle.Successeur.Is_Empty,
-            Message   => "La regle ne doit avoir aucun successeur"
+            Message   => Encode
+               (Item => "La règle ne doit avoir aucun successeur")
          );
       AUnit.Assertions.Assert
          (
             Condition => T.Regle.Premisses.Is_Empty,
-            Message   => "Les premisses doivent être vide"
+            Message   => Encode (Item => "Les prémisses doivent être vide")
          );
       T.Regle := Creer
          (
@@ -99,8 +102,11 @@ is
       AUnit.Assertions.Assert
          (
             Condition => T.Regle.ID_Regle = ID,
-            Message   => "L'ID doit etre [" & ID'Image & "] et pas " &
-               "[" & T.Regle.ID_Regle'Image & "]"
+            Message   => Encode
+               (
+                  Item => "L'ID doit être [" & ID'Image & "] et pas " &
+                     "[" & T.Regle.ID_Regle'Image & "]"
+               )
          );
       AUnit.Assertions.Assert
          (
@@ -110,26 +116,34 @@ is
       AUnit.Assertions.Assert
          (
             Condition => not T.Regle.Regle_Declenchee,
-            Message   => "Aucune regle ne doit avoir été déclenchée"
+            Message   => Encode
+               (Item => "Aucune règle ne doit avoir été déclenchée")
          );
       AUnit.Assertions.Assert
          (
             Condition => T.Regle.Successeur.Is_Empty,
-            Message   => "La regle ne doit avoir aucun successeur"
+            Message   => Encode
+               (Item => "La règle ne doit avoir aucun successeur")
          );
       AUnit.Assertions.Assert
          (
             Condition => T.Regle.Premisses.Length = 1,
-            Message   => "Les premisses doivent en contenir au " &
-               "moins une et pas " &
-               "[" & T.Regle.Premisses.Length'Image & "] "
+            Message   => Encode
+               (
+                  Item => "Les prémisses doivent en contenir au " &
+                     "moins une et pas " &
+                     "[" & T.Regle.Premisses.Length'Image & "] "
+               )
          );
       AUnit.Assertions.Assert
          (
             Condition => T.Regle.Conclusion.Element.Lire_Nom = Nom,
-            Message   => "Le nom de la conclusion doit etre " &
-               "[" & String (Nom) & "] et pas " &
-               "[" & String (T.Regle.Conclusion.Element.Lire_Nom) & "]"
+            Message   => Encode
+               (
+                  Item => "Le nom de la conclusion doit être " &
+                     "[" & String (Nom) & "] et pas " &
+                     "[" & String (T.Regle.Conclusion.Element.Lire_Nom) & "]"
+               )
          );
    end Test_Creer;
    ---------------------------------------------------------------------------
@@ -161,7 +175,8 @@ is
       AUnit.Assertions.Assert
          (
             Condition => T.Regle.Successeur.Is_Empty,
-            Message   => "La regle ne doit avoir aucun successeur"
+            Message   => Encode
+               (Item => "La règle ne doit avoir aucun successeur")
          );
 
       Bloc_Autre_Regle :
@@ -183,7 +198,8 @@ is
       AUnit.Assertions.Assert
          (
             Condition => not T.Regle.Successeur.Is_Empty,
-            Message   => "La regle doit avoir un successeur"
+            Message   => Encode
+               (Item => "La règle doit avoir un successeur")
          );
    end Test_Ajouter_Successeur;
    ---------------------------------------------------------------------------
@@ -215,7 +231,8 @@ is
       AUnit.Assertions.Assert
          (
             Condition => not T.Regle.Possede_Successeur,
-            Message   => "La regle ne doit avoir aucun successeur"
+            Message   => Encode
+               (Item => "La règle ne doit avoir aucun successeur")
          );
 
       Bloc_Autre_Regle :
@@ -237,7 +254,8 @@ is
       AUnit.Assertions.Assert
          (
             Condition => T.Regle.Possede_Successeur,
-            Message   => "La regle doit avoir un successeur"
+            Message   => Encode
+               (Item => "La règle doit avoir un successeur")
          );
    end Test_Possede_Successeur;
    ---------------------------------------------------------------------------
@@ -301,31 +319,36 @@ is
       AUnit.Assertions.Assert
          (
             Condition => T.Regle.Possede_Successeur,
-            Message   => "La regle doit avoir un successeur"
+            Message   => Encode
+               (Item => "La règle doit avoir un successeur")
          );
 
       Reussi := T.Regle.Iterer (Base => Base'Access);
       AUnit.Assertions.Assert
          (
             Condition => not Reussi,
-            Message   => "Aucune regle ne doit avoir ete declenchee"
+            Message   => Encode
+               (Item => "Aucune règle ne doit avoir été déclenchée")
          );
       AUnit.Assertions.Assert
          (
             Condition => not T.Regle.Est_Declenchee,
-            Message   => "La regle ne doit pas avoir ete declenchee"
+            Message   => Encode
+               (Item => "La règle ne doit pas avoir été déclenchée")
          );
       Base.Ajouter (Nouvel_Item => F_V);
       Reussi := T.Regle.Iterer (Base => Base'Access);
       AUnit.Assertions.Assert
          (
             Condition => Reussi,
-            Message   => "Au moins une regle doit avoir ete declenchee"
+            Message   => Encode
+               (Item => "Au moins une règle doit avoir été déclenchée")
          );
       AUnit.Assertions.Assert
          (
             Condition => not T.Regle.Est_Declenchee,
-            Message   => "La regle ne doit pas avoir ete declenchee"
+            Message   => Encode
+               (Item => "La règle ne doit pas avoir été déclenchée")
          );
    end Test_Iterer;
    ---------------------------------------------------------------------------
@@ -389,31 +412,36 @@ is
       AUnit.Assertions.Assert
          (
             Condition => T.Regle.Possede_Successeur,
-            Message   => "La regle doit avoir un successeur"
+            Message   => Encode
+               (Item => "La règle doit avoir un successeur")
          );
 
       Reussi := T.Regle.Iterer (Base => Base'Access);
       AUnit.Assertions.Assert
          (
             Condition => not Reussi,
-            Message   => "Aucune regle ne doit avoir ete declenchee"
+            Message   => Encode
+               (Item => "Aucune règle ne doit avoir été déclenchée")
          );
       AUnit.Assertions.Assert
          (
             Condition => not T.Regle.Est_Declenchee,
-            Message   => "La regle ne doit pas avoir ete declenchee"
+            Message   => Encode
+               (Item => "La règle ne doit pas avoir été déclenchée")
          );
       Base.Ajouter (Nouvel_Item => F_V);
       Reussi := T.Regle.Iterer (Base => Base'Access);
       AUnit.Assertions.Assert
          (
             Condition => Reussi,
-            Message   => "Au moins une regle doit avoir ete declenchee"
+            Message   => Encode
+               (Item => "Au moins une règle doit avoir été déclenchée")
          );
       AUnit.Assertions.Assert
          (
             Condition => T.Regle.Est_Declenchee,
-            Message   => "La regle doit avoir ete declenchee"
+            Message   => Encode
+               (Item => "La règle doit avoir été déclenchée")
          );
    end Test_Est_Declenchee;
    ---------------------------------------------------------------------------
@@ -449,9 +477,12 @@ is
       AUnit.Assertions.Assert
          (
             Condition => T.Regle.Premisses.Length = 1,
-            Message   => "Les premisses doivent en contenir au " &
-               "moins une et pas " &
-               "[" & T.Regle.Premisses.Length'Image & "] "
+            Message   => Encode
+               (
+                  Item => "Les prémisses doivent en contenir au " &
+                     "moins une et pas " &
+                     "[" & T.Regle.Premisses.Length'Image & "]"
+               )
          );
       Boucle_Verifier_Ajout :
       for I in 2 .. 11 loop
@@ -468,9 +499,12 @@ is
          AUnit.Assertions.Assert
             (
                Condition => T.Regle.Premisses.Length = NB_Item_T (I),
-               Message   => "Les premisses doivent en contenir au " &
-                  "moins [" & I'Image & "] et pas " &
-                  "[" & T.Regle.Premisses.Length'Image & "] "
+               Message   => Encode
+                  (
+                     Item => "Les prémisses doivent en contenir au " &
+                        "moins [" & I'Image & "] et pas " &
+                        "[" & T.Regle.Premisses.Length'Image & "]"
+                  )
             );
       end loop Boucle_Verifier_Ajout;
    end Test_Ajouter_Premisse;
@@ -525,8 +559,11 @@ is
       AUnit.Assertions.Assert
          (
             Condition => Premisse_Verifiee,
-            Message   => "La premisse [" & String (Nom_2) & "] " &
-               "doit etre verifiee"
+            Message   => Encode
+               (
+                  Item => "La prémisse [" & String (Nom_2) & "] " &
+                     "doit être vérifiée"
+               )
          );
 
       T.Regle.Ajouter (Premisse => Q);
@@ -536,15 +573,21 @@ is
       AUnit.Assertions.Assert
          (
             Condition => T.Regle.Premisses.Length = 2,
-            Message   => "Les premisses doivent en contenir au " &
-               "moins deux et pas " &
-               "[" & T.Regle.Premisses.Length'Image & "] "
+            Message   => Encode
+               (
+                  Item => "Les prémisses doivent en contenir au " &
+                     "moins deux et pas " &
+                     "[" & T.Regle.Premisses.Length'Image & "]"
+               )
          );
       AUnit.Assertions.Assert
          (
             Condition => Premisse_Verifiee,
-            Message   => "La premisse [" & String (Nom_3) & "] " &
-               "doit etre verifiee"
+            Message   => Encode
+               (
+                  Item => "La prémisse [" & String (Nom_3) & "] " &
+                     "doit être vérifiée"
+               )
          );
    end Test_Verifier_Premisse;
    ---------------------------------------------------------------------------

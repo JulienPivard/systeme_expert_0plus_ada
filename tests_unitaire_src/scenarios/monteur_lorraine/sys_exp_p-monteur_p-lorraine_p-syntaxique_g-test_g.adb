@@ -2,6 +2,8 @@ with Ada.Characters.Latin_1;
 
 with AUnit.Assertions;
 
+with Encode;
+
 with Sys_Exp_P.Base_Faits_P.Extension_P;
 with Sys_Exp_P.Monteur_P.Lorraine_P.Faux_Fichier_P;
 with Sys_Exp_P.Visiteur_Forme_P.Declencheur_P.Fabrique_P;
@@ -63,7 +65,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G.Test_G is
       AUnit.Assertions.Assert
          (
             Condition => Resultat.Reussie,
-            Message   => "Creation du parseur lexical"
+            Message   => Encode (Item => "Création du parseur lexical")
          );
       Bloc_Tester_Regles :
       declare
@@ -73,7 +75,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G.Test_G is
          AUnit.Assertions.Assert
             (
                Condition => Regles.Possede_Successeur,
-               Message   => "Creation base de regles"
+               Message   => Encode (Item => "Création base de règles")
             );
       end Bloc_Tester_Regles;
    end Test_Creer;
@@ -114,7 +116,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G.Test_G is
          AUnit.Assertions.Assert
             (
                Condition => not Resultat.Reussie,
-               Message   => "Creation du parseur lexical"
+               Message   => Encode (Item => "Création du parseur lexical")
             );
       end Bloc_Parser;
    end Test_Lire_Faits_Bool;
@@ -158,7 +160,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G.Test_G is
          AUnit.Assertions.Assert
             (
                Condition => not Resultat.Reussie,
-               Message   => "Creation du parseur lexical"
+               Message   => Encode (Item => "Création du parseur lexical")
             );
       end Bloc_Parser;
    end Test_Lire_Faits_Bool_Symb;
@@ -207,7 +209,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G.Test_G is
          AUnit.Assertions.Assert
             (
                Condition => not Resultat.Reussie,
-               Message   => "Creation du parseur lexical"
+               Message   => Encode (Item => "Création du parseur lexical")
             );
       end Bloc_Parser;
    end Test_Lire_Faits_Bool_Symb_Entier;
@@ -262,7 +264,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G.Test_G is
          AUnit.Assertions.Assert
             (
                Condition => not Resultat.Reussie,
-               Message   => "Creation du parseur lexical"
+               Message   => Encode (Item => "Création du parseur lexical")
             );
          Bloc_Tests_Msg_Erreur :
          declare
@@ -272,8 +274,11 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G.Test_G is
             AUnit.Assertions.Assert
                (
                   Condition => Msg_Lu = Attendu,
-                  Message   => "Le message de retour " &
-                     "[" & Msg_Lu & "] attendu [" & Attendu & "]"
+                  Message   => Encode
+                     (
+                        Item => "Le message de retour " &
+                           "[" & Msg_Lu & "] attendu [" & Attendu & "]"
+                     )
                );
          end Bloc_Tests_Msg_Erreur;
       end Bloc_Parser;
@@ -326,7 +331,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G.Test_G is
          AUnit.Assertions.Assert
             (
                Condition => Resultat.Reussie,
-               Message   => "Creation du parseur lexical"
+               Message   => Encode (Item => "Création du parseur lexical")
             );
 
          Bloc_Extraire_Regles :
@@ -347,7 +352,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G.Test_G is
             AUnit.Assertions.Assert
                (
                   Condition => not Continuer,
-                  Message   => "Parcours des regles generee"
+                  Message   => Encode (Item => "Parcours des règles générée")
                );
             Bloc_Verifier_NB :
             declare

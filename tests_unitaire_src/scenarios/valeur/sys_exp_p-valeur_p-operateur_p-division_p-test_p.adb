@@ -2,6 +2,7 @@ with Ada.Numerics.Discrete_Random;
 
 with AUnit.Assertions;
 
+with Encode;
 with Facilites_P.Valeur_P;
 
 with Sys_Exp_P.Base_Faits_P;
@@ -395,12 +396,14 @@ is
       AUnit.Assertions.Assert_Exception
          (
             Proc    => Diviser_Par_Const_Zero'Access,
-            Message => "La division par zero doit creer une exception"
+            Message => Encode
+               (Item => "La division par zéro doit créer une exception")
          );
       AUnit.Assertions.Assert_Exception
          (
             Proc    => Diviser_Par_Fait_Zero'Access,
-            Message => "La division par zero doit creer une exception"
+            Message => Encode
+               (Item => "La division par zéro doit créer une exception")
          );
    end Test_Diviser_Par_Zero;
    ---------------------------------------------------------------------------

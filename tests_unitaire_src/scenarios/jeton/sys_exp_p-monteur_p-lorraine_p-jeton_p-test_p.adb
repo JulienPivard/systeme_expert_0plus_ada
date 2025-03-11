@@ -2,6 +2,7 @@ with Ada.Numerics.Discrete_Random;
 
 with AUnit.Assertions;
 
+with Encode;
 with Facilites_P;
 
 package body Sys_Exp_P.Monteur_P.Lorraine_P.Jeton_P.Test_P
@@ -79,23 +80,32 @@ is
       AUnit.Assertions.Assert
          (
             Condition => T.Jeton.Lire_Representation = Repr_S,
-            Message   => "La reprsentation vaut " &
-               "[" & T.Jeton.Lire_Representation & "] " &
-               "mais devrais valoir [" & Repr_S & "]"
+            Message   => Encode
+               (
+                  Item => "La représentation vaut " &
+                     "[" & T.Jeton.Lire_Representation & "] " &
+                     "mais devrais valoir [" & Repr_S & "]"
+               )
          );
       AUnit.Assertions.Assert
          (
             Condition => T.Jeton.Lire_Representation = Repr_N,
-            Message   => "La reprsentation vaut " &
-               "[" & T.Jeton.Lire_Representation & "] " &
-               "mais devrais valoir [" & String (Repr_N) & "]"
+            Message   => Encode
+               (
+                  Item => "La représentation vaut " &
+                     "[" & T.Jeton.Lire_Representation & "] " &
+                     "mais devrais valoir [" & String (Repr_N) & "]"
+               )
          );
       AUnit.Assertions.Assert
          (
             Condition => T.Jeton.Lire_Representation = Repr_L,
-            Message   => "La reprsentation vaut " &
-               "[" & T.Jeton.Lire_Representation & "] " &
-               "mais devrais valoir [" & String (Repr_L) & "]"
+            Message   => Encode
+               (
+                  Item => "La représentation vaut " &
+                     "[" & T.Jeton.Lire_Representation & "] " &
+                     "mais devrais valoir [" & String (Repr_L) & "]"
+               )
          );
    end Test_Lire_Representation;
    ---------------------------------------------------------------------------

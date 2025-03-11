@@ -1,5 +1,6 @@
 with AUnit.Assertions;
 
+with Encode;
 with Facilites_P;
 
 package body Sys_Exp_P.Forme_P.Premisse_P.Symbole_Fait_P.Test_P
@@ -118,15 +119,23 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition =>
-               T.Premisse.Comparer (Gauche => Nom_1, Droite => Nom_1),
-            Message   => "Le tests d'egalite devrait etre vrais"
+            Condition => T.Premisse.Comparer
+               (
+                  Gauche => Nom_1,
+                  Droite => Nom_1
+               ),
+            Message   => Encode
+               (Item => "Le tests d'égalité devrait être vrais")
          );
       AUnit.Assertions.Assert
          (
-            Condition =>
-               not T.Premisse.Comparer (Gauche => Nom_1, Droite => Nom_2),
-            Message   => "Le tests d'egalite devrait etre vrais"
+            Condition => not T.Premisse.Comparer
+               (
+                  Gauche => Nom_1,
+                  Droite => Nom_2
+               ),
+            Message   => Encode
+               (Item => "Le tests d'égalité devrait être faux")
          );
    end Test_Comparaison_Egale;
    ---------------------------------------------------------------------------
@@ -148,15 +157,23 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition =>
-               T.Premisse.Comparer (Gauche => Nom_1, Droite => Nom_2),
-            Message   => "Le tests d'inegalite devrait etre vrais"
+            Condition => T.Premisse.Comparer
+               (
+                  Gauche => Nom_1,
+                  Droite => Nom_2
+               ),
+            Message   => Encode
+               (Item => "Le tests d'inégalité devrait être vrais")
          );
       AUnit.Assertions.Assert
          (
-            Condition =>
-               not T.Premisse.Comparer (Gauche => Nom_1, Droite => Nom_1),
-            Message   => "Le tests d'inegalite devrait etre faux"
+            Condition => not T.Premisse.Comparer
+               (
+                  Gauche => Nom_1,
+                  Droite => Nom_1
+               ),
+            Message   => Encode
+               (Item => "Le tests d'inégalité devrait être faux")
          );
    end Test_Comparaison_Different;
    ---------------------------------------------------------------------------
