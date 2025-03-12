@@ -1,5 +1,7 @@
 with AUnit.Test_Caller;
 
+with Encode;
+
 with Sys_Exp_P.Forme_P.Premisse_P.Fait_Entier_P.Test_P;
 
 package body Forme_Premisse_Fait_Entier_Suite_P
@@ -19,13 +21,13 @@ is
       Ptr_Test_Suite : constant AUnit.Test_Suites.Access_Test_Suite :=
          AUnit.Test_Suites.New_Suite;
 
-      Nom_Test : constant String := "(Test premisse entier fait) ";
+      Nom_Test : constant String := "(Test prémisse entier fait) ";
    begin
       Ptr_Test_Suite.all.Add_Test
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "creation",
+                  Name => Encode (Item => Nom_Test & "création"),
                   Test => Scenario_R.Test_Creer'Access
                )
          );
@@ -33,7 +35,7 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "lire valeur",
+                  Name => Encode (Item => Nom_Test & "lire valeur"),
                   Test => Scenario_R.Test_Lire_Valeur'Access
                )
          );
@@ -41,7 +43,7 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "egalite",
+                  Name => Encode (Item => Nom_Test & "égalité"),
                   Test => Scenario_R.Test_Comparaison_Egale'Access
                )
          );
@@ -49,7 +51,7 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "different",
+                  Name => Encode (Item => Nom_Test & "diffèrent"),
                   Test => Scenario_R.Test_Comparaison_Different'Access
                )
          );
@@ -57,7 +59,7 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "inferieur",
+                  Name => Encode (Item => Nom_Test & "inférieur"),
                   Test => Scenario_R.Test_Comparaison_Inf'Access
                )
          );
@@ -65,7 +67,7 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "inferieur egale",
+                  Name => Encode (Item => Nom_Test & "inférieur égale"),
                   Test => Scenario_R.Test_Comparaison_Inf_Egale'Access
                )
          );
@@ -73,7 +75,7 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "superieur",
+                  Name => Encode (Item => Nom_Test & "supérieur"),
                   Test => Scenario_R.Test_Comparaison_Sup'Access
                )
          );
@@ -81,7 +83,7 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "superieur egale",
+                  Name => Encode (Item => Nom_Test & "supérieur égale"),
                   Test => Scenario_R.Test_Comparaison_Sup_Egale'Access
                )
          );

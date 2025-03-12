@@ -1,5 +1,7 @@
 with AUnit.Test_Caller;
 
+with Encode;
+
 with Sys_Exp_P.Fait_P.Entier_P.Test_P;
 
 package body Fait_Entier_Suite_P
@@ -25,7 +27,8 @@ is
             (
                T => Caller_P.Create
                   (
-                     Name => Nom_Test & "creation [" & I'Image & "]",
+                     Name => Nom_Test & Encode
+                        (Item => "création [" & I'Image & "]"),
                      Test => Scenario_R.Test_Creer'Access
                   )
             );

@@ -1,5 +1,7 @@
 with AUnit.Test_Caller;
 
+with Encode;
+
 with Sys_Exp_P.Forme_P.Premisse_P.Symbole_Fait_P.Test_P;
 
 package body Forme_Premisse_Symbole_Fait_Suite_P
@@ -19,13 +21,13 @@ is
       Ptr_Test_Suite : constant AUnit.Test_Suites.Access_Test_Suite :=
          AUnit.Test_Suites.New_Suite;
 
-      Nom_Test : constant String := "(Test premisse fait symbole) ";
+      Nom_Test : constant String := "(Test prémisse fait symbole) ";
    begin
       Ptr_Test_Suite.all.Add_Test
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "creation",
+                  Name => Encode (Item => Nom_Test & "création"),
                   Test => Scenario_R.Test_Creer'Access
                )
          );
@@ -33,7 +35,7 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "lire nom symbole",
+                  Name => Encode (Item => Nom_Test & "lire nom symbole"),
                   Test => Scenario_R.Test_Lire_Nom_Fait'Access
                )
          );
@@ -41,7 +43,7 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "egalite",
+                  Name => Encode (Item => Nom_Test & "égalité"),
                   Test => Scenario_R.Test_Comparaison_Egale'Access
                )
          );
@@ -49,7 +51,7 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "different",
+                  Name => Encode (Item => Nom_Test & "diffèrent"),
                   Test => Scenario_R.Test_Comparaison_Different'Access
                )
          );

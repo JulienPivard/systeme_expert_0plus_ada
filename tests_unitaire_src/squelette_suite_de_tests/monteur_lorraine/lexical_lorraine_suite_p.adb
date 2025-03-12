@@ -1,5 +1,7 @@
 with AUnit.Test_Caller;
 
+with Encode;
+
 with Sys_Exp_P.Monteur_P.Lorraine_P.Faux_Lexical_P.Test_P;
 
 package body Lexical_Lorraine_Suite_P
@@ -25,7 +27,7 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "creation",
+                  Name => Nom_Test & Encode (Item => "création"),
                   Test => Scenario_R.Test_Creer'Access
                )
          );
@@ -42,7 +44,8 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "lecture jeton parenthese ouvrante",
+                  Name => Nom_Test & Encode
+                     (Item => "lecture jeton parenthèse ouvrante"),
                   Test => Scenario_R.Test_Lire_Jeton_Parenthese_Ouvrante'Access
                )
          );
@@ -50,7 +53,8 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "lecture jeton parenthese fermante",
+                  Name => Nom_Test & Encode
+                     (Item => "lecture jeton parenthèse fermante"),
                   Test => Scenario_R.Test_Lire_Jeton_Parenthese_Fermante'Access
                )
          );
@@ -58,7 +62,8 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "lecture jeton operateur plus",
+                  Name => Nom_Test & Encode
+                     (Item => "lecture jeton opérateur plus"),
                   Test => Scenario_R.Test_Lire_Jeton_Operateur_Plus'Access
                )
          );
@@ -66,7 +71,8 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "lecture jeton operateur moins",
+                  Name => Nom_Test & Encode
+                     (Item => "lecture jeton opérateur moins"),
                   Test => Scenario_R.Test_Lire_Jeton_Operateur_Moins'Access
                )
          );
@@ -74,7 +80,8 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "lecture jeton operateur multiplier",
+                  Name => Nom_Test & Encode
+                     (Item => "lecture jeton opérateur multiplier"),
                   Test => Scenario_R.Test_Lire_Jeton_Operateur_Mul'Access
                )
          );
@@ -82,7 +89,8 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "lecture jeton operateur diviser",
+                  Name => Nom_Test & Encode
+                     (Item => "lecture jeton opérateur diviser"),
                   Test => Scenario_R.Test_Lire_Jeton_Operateur_Div'Access
                )
          );
@@ -91,7 +99,8 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "lecture jeton separateur",
+                  Name => Nom_Test & Encode
+                     (Item => "lecture jeton séparateur"),
                   Test => Scenario_R.Test_Lire_Jeton_Separateur'Access
                )
          );
@@ -172,7 +181,7 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "lecture jeton egal",
+                  Name => Nom_Test & Encode (Item => "lecture jeton égal"),
                   Test => Scenario_R.Test_Lire_Jeton_Egal'Access
                )
          );
@@ -180,7 +189,8 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "lecture jeton superieur",
+                  Name => Nom_Test & Encode
+                     (Item => "lecture jeton supérieur"),
                   Test => Scenario_R.Test_Lire_Jeton_Superieur'Access
                )
          );
@@ -188,7 +198,8 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "lecture jeton inferieur",
+                  Name => Nom_Test & Encode
+                     (Item => "lecture jeton inférieur"),
                   Test => Scenario_R.Test_Lire_Jeton_Inferieur'Access
                )
          );
@@ -196,7 +207,8 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "lecture jeton superieur egal",
+                  Name => Nom_Test & Encode
+                     (Item => "lecture jeton supérieur égal"),
                   Test => Scenario_R.Test_Lire_Jeton_Superieur_Egal'Access
                )
          );
@@ -204,7 +216,8 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "lecture jeton inferieur egal",
+                  Name => Nom_Test & Encode
+                     (Item => "lecture jeton inférieur égal"),
                   Test => Scenario_R.Test_Lire_Jeton_Inferieur_Egal'Access
                )
          );
@@ -212,7 +225,8 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "lecture jeton different",
+                  Name => Nom_Test & Encode
+                     (Item => "lecture jeton diffèrent"),
                   Test => Scenario_R.Test_Lire_Jeton_Different'Access
                )
          );

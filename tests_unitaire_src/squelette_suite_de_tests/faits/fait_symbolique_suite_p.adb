@@ -1,5 +1,7 @@
 with AUnit.Test_Caller;
 
+with Encode;
+
 with Sys_Exp_P.Fait_P.Symbolique_P.Test_P;
 
 package body Fait_Symbolique_Suite_P
@@ -24,7 +26,7 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "creation",
+                  Name => Nom_Test & Encode (Item => "création"),
                   Test => Scenario_R.Test_Creer'Access
                )
          );

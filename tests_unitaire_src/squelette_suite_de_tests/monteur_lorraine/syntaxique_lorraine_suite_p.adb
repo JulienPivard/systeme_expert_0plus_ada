@@ -1,5 +1,7 @@
 with AUnit.Test_Caller;
 
+with Encode;
+
 with Sys_Exp_P.Monteur_P.Lorraine_P.Faux_Fichier_P;
 with Sys_Exp_P.Monteur_P.Lorraine_P.Faux_Syntaxique_P.Test_P;
 
@@ -28,7 +30,7 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "creation",
+                  Name => Nom_Test & Encode (Item => "création"),
                   Test => Scenario_R.Test_Creer'Access
                )
          );
@@ -36,7 +38,7 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "lire faits booleen",
+                  Name => Nom_Test & Encode (Item => "lire faits booléen"),
                   Test => Scenario_R.Test_Lire_Faits_Bool'Access
                )
          );
@@ -44,7 +46,8 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "lire faits booleen et symbolique",
+                  Name => Nom_Test & Encode
+                     (Item => "lire faits booléen et symbolique"),
                   Test => Scenario_R.Test_Lire_Faits_Bool_Symb'Access
                )
          );
@@ -52,8 +55,8 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "lire faits " &
-                     "booleen symbolique et entier",
+                  Name => Nom_Test & "lire faits " & Encode
+                     (Item => "booléen symbolique et entier"),
                   Test => Scenario_R.Test_Lire_Faits_Bool_Symb_Entier'Access
                )
          );
@@ -70,7 +73,7 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "appliquer 1 regle",
+                  Name => Nom_Test & Encode (Item => "appliquer 1 règle"),
                   Test => Scenario_R.Test_Appliquer_1_Regle'Access
                )
          );

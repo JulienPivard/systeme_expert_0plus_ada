@@ -1,5 +1,7 @@
 with AUnit.Test_Caller;
 
+with Encode;
+
 with Sys_Exp_P.Forme_P.Premisse_P.Bool_False_P.Test_P;
 
 package body Forme_Premisse_Bool_False_Suite_P
@@ -19,13 +21,13 @@ is
       Ptr_Test_Suite : constant AUnit.Test_Suites.Access_Test_Suite :=
          AUnit.Test_Suites.New_Suite;
 
-      Nom_Test : constant String := "(Test premisse fausse) ";
+      Nom_Test : constant String := "(Test prémisse fausse) ";
    begin
       Ptr_Test_Suite.all.Add_Test
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "creation",
+                  Name => Encode (Item => Nom_Test & "création"),
                   Test => Scenario_R.Test_Creer'Access
                )
          );

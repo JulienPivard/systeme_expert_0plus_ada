@@ -1,5 +1,7 @@
 with AUnit.Test_Caller;
 
+with Encode;
+
 with Sys_Exp_P.Monteur_P.Lorraine_P.Jeton_P.Test_P;
 
 package body Jeton_Suite_P
@@ -35,7 +37,8 @@ is
             (
                T => Caller_P.Create
                   (
-                     Name => Nom_Test & "lire representation " &
+                     Name => Nom_Test & Encode
+                        (Item => "lire représentation ") &
                         "[" & I'Image & "]",
                      Test => Scenario_R.Test_Lire_Representation'Access
                   )
@@ -45,7 +48,8 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "est parenthese ouvrante",
+                  Name => Nom_Test & Encode
+                     (Item => "est parenthèse ouvrante"),
                   Test => Scenario_R.Test_Est_Parenthese_Ouvrante'Access
                )
          );
@@ -53,7 +57,8 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "est parenthese fermante",
+                  Name => Nom_Test & Encode
+                     (Item => "est parenthèse fermante"),
                   Test => Scenario_R.Test_Est_Parenthese_Fermante'Access
                )
          );
@@ -61,7 +66,7 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "est operateur plus",
+                  Name => Nom_Test & Encode (Item => "est opérateur plus"),
                   Test => Scenario_R.Test_Est_Operateur_Plus'Access
                )
          );
@@ -69,7 +74,7 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "est operateur moins",
+                  Name => Nom_Test & Encode (Item => "est opérateur moins"),
                   Test => Scenario_R.Test_Est_Operateur_Moins'Access
                )
          );
@@ -77,7 +82,8 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "est operateur multiplier",
+                  Name => Nom_Test & Encode
+                     (Item => "est opérateur multiplier"),
                   Test => Scenario_R.Test_Est_Operateur_Mul'Access
                )
          );
@@ -85,7 +91,8 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "est operateur diviser",
+                  Name => Nom_Test & Encode
+                     (Item => "est opérateur diviser"),
                   Test => Scenario_R.Test_Est_Operateur_Div'Access
                )
          );
@@ -94,7 +101,7 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "est separateur",
+                  Name => Nom_Test & Encode (Item => "est séparateur"),
                   Test => Scenario_R.Test_Est_Separateur'Access
                )
          );
@@ -169,7 +176,7 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "est egale",
+                  Name => Nom_Test & Encode (Item => "est égale"),
                   Test => Scenario_R.Test_Est_Egal'Access
                )
          );
@@ -177,7 +184,7 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "est superieur",
+                  Name => Nom_Test & Encode (Item => "est supérieur"),
                   Test => Scenario_R.Test_Est_Superieur'Access
                )
          );
@@ -185,7 +192,7 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "est inferieur",
+                  Name => Nom_Test & Encode (Item => "est inférieur"),
                   Test => Scenario_R.Test_Est_Inferieur'Access
                )
          );
@@ -193,7 +200,7 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "est superieur egale",
+                  Name => Nom_Test & Encode (Item => "est supérieur égale"),
                   Test => Scenario_R.Test_Est_Superieur_Egal'Access
                )
          );
@@ -201,7 +208,7 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "est inferieur egale",
+                  Name => Nom_Test & Encode (Item => "est inférieur égale"),
                   Test => Scenario_R.Test_Est_Inferieur_Egal'Access
                )
          );
@@ -209,7 +216,7 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "est different",
+                  Name => Nom_Test & Encode (Item => "est diffèrent"),
                   Test => Scenario_R.Test_Est_Different'Access
                )
          );

@@ -1,5 +1,7 @@
 with AUnit.Test_Caller;
 
+with Encode;
+
 with Sys_Exp_P.Fait_P.Booleen_P.Test_P;
 
 package body Fait_Booleen_Suite_P
@@ -24,7 +26,7 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "creation Vrais",
+                  Name => Nom_Test & Encode (Item => "création Vrais"),
                   Test => Scenario_R.Test_Creer_Vrais'Access
                )
          );
@@ -32,7 +34,7 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "creation Faux",
+                  Name => Nom_Test & Encode (Item => "création Faux"),
                   Test => Scenario_R.Test_Creer_Faux'Access
                )
          );

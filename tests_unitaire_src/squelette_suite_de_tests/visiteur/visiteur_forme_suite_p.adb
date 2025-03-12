@@ -1,5 +1,7 @@
 with AUnit.Test_Caller;
 
+with Encode;
+
 with Sys_Exp_P.Visiteur_Forme_P.Declencheur_P.Test_P;
 
 package body Visiteur_Forme_Suite_P
@@ -24,7 +26,7 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "creation",
+                  Name => Nom_Test & Encode (Item => "création"),
                   Test => Scenario_R.Test_Creer'Access
                )
          );
@@ -32,7 +34,8 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "conclusion booleene fausse",
+                  Name => Nom_Test & Encode
+                     (Item => "conclusion booléenne fausse"),
                   Test => Scenario_R.Test_Conclusion_Bool_False'Access
                )
          );
@@ -40,7 +43,8 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "conclusion booleene vrais",
+                  Name => Nom_Test & Encode
+                     (Item => "conclusion booléenne vrais"),
                   Test => Scenario_R.Test_Conclusion_Bool_True'Access
                )
          );
@@ -48,7 +52,8 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "conclusion expression entiere",
+                  Name => Nom_Test & Encode
+                     (Item => "conclusion expression entière"),
                   Test => Scenario_R.Test_Conclusion_Expression'Access
                )
          );
@@ -81,7 +86,8 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "premisse booleene fausse rate",
+                  Name => Nom_Test & Encode
+                     (Item => "prémisse booléenne fausse rate"),
                   Test => Scenario_R.Test_Premisse_Bool_False_Rate'Access
                )
          );
@@ -89,7 +95,8 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "premisse booleene vrais rate",
+                  Name => Nom_Test & Encode
+                     (Item => "prémisse booléenne vrais rate"),
                   Test => Scenario_R.Test_Premisse_Bool_True_Rate'Access
                )
          );
@@ -97,7 +104,8 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "premisse expression entiere rate",
+                  Name => Nom_Test & Encode
+                     (Item => "prémisse expression entière rate"),
                   Test => Scenario_R.Test_Premisse_Expression_Rate'Access
                )
          );
@@ -105,7 +113,8 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "premisse fait entier rate",
+                  Name => Nom_Test & Encode
+                     (Item => "prémisse fait entier rate"),
                   Test => Scenario_R.Test_Premisse_Fait_Entier_Rate'Access
                )
          );
@@ -113,7 +122,8 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "premisse symbolique constant rate",
+                  Name => Nom_Test & Encode
+                     (Item => "prémisse symbolique constant rate"),
                   Test => Scenario_R.Test_Premisse_Symbolique_Const_Rate'Access
                )
          );
@@ -121,7 +131,8 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "premisse symbolique fait rate",
+                  Name => Nom_Test & Encode
+                     (Item => "prémisse symbolique fait rate"),
                   Test => Scenario_R.Test_Premisse_Symbolique_Fait_Rate'Access
                )
          );
@@ -130,7 +141,8 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "premisse booleene fausse",
+                  Name => Nom_Test & Encode
+                     (Item => "prémisse booléenne fausse"),
                   Test => Scenario_R.Test_Premisse_Bool_False'Access
                )
          );
@@ -138,7 +150,8 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "premisse booleene vrais",
+                  Name => Nom_Test & Encode
+                     (Item => "prémisse booléenne vrais"),
                   Test => Scenario_R.Test_Premisse_Bool_True'Access
                )
          );
@@ -146,7 +159,8 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "premisse expression entiere",
+                  Name => Nom_Test & Encode
+                     (Item => "prémisse expression entière"),
                   Test => Scenario_R.Test_Premisse_Expression'Access
                )
          );
@@ -154,7 +168,8 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "premisse fait entier",
+                  Name => Nom_Test & Encode
+                     (Item => "prémisse fait entier"),
                   Test => Scenario_R.Test_Premisse_Fait_Entier'Access
                )
          );
@@ -162,7 +177,8 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "premisse symbolique constant",
+                  Name => Nom_Test & Encode
+                     (Item => "prémisse symbolique constant"),
                   Test => Scenario_R.Test_Premisse_Symbolique_Const'Access
                )
          );
@@ -170,7 +186,8 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "premisse symbolique fait",
+                  Name => Nom_Test & Encode
+                     (Item => "prémisse symbolique fait"),
                   Test => Scenario_R.Test_Premisse_Symbolique_Fait'Access
                )
          );
@@ -179,7 +196,8 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "Ajoute deux fois fait booleen",
+                  Name => Nom_Test & Encode
+                     (Item => "Ajoute deux fois fait booléen"),
                   Test => Scenario_R.Test_Rate_Ajouter_Un_Fait_Booleen'Access
                )
          );
@@ -204,8 +222,11 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "Evalue une conclusion expression " &
-                     "entiere absente de la base",
+                  Name => Nom_Test & Encode
+                     (
+                        Item => "Évalue une conclusion expression " &
+                           "entière absente de la base"
+                     ),
                   Test => Scenario_R.Test_Rate_Concl_Expr_Entier_Inconnu'Access
                )
          );
@@ -213,8 +234,11 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "Evalue une conclusion expression " &
-                     "entiere qui n'est pas un fait entier",
+                  Name => Nom_Test & Encode
+                     (
+                        Item => "Évalue une conclusion expression " &
+                           "entière qui n'est pas un fait entier"
+                     ),
                   Test => Scenario_R.Test_Rate_Concl_Expr_Non_Entier'Access
                )
          );
@@ -222,8 +246,11 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "Evalue une conclusion expression " &
-                     "entiere avec une division par zero",
+                  Name => Nom_Test & Encode
+                     (
+                        Item => "Évalue une conclusion expression " &
+                           "entière avec une division par zéro"
+                     ),
                   Test => Scenario_R.Test_Rate_Concl_Expr_Div_Zero'Access
                )
          );
@@ -231,8 +258,11 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "Evalue une conclusion fait entier " &
-                     "absente de la base",
+                  Name => Nom_Test & Encode
+                     (
+                        Item => "Évalue une conclusion fait entier " &
+                           "absente de la base"
+                     ),
                   Test => Scenario_R.Test_Rate_Concl_Fait_Entier_Inconnu'Access
                )
          );
@@ -240,8 +270,11 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "Evalue une conclusion fait entier " &
-                     "qui n'est pas un fait entier",
+                  Name => Nom_Test & Encode
+                     (
+                        Item => "Évalue une conclusion fait entier " &
+                           "qui n'est pas un fait entier"
+                     ),
                   Test => Scenario_R.Test_Rate_Concl_Fait_Non_Entier'Access
                )
          );
@@ -250,8 +283,11 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "Evalue une conclusion fait " &
-                     "symbolique absente de la base",
+                  Name => Nom_Test & Encode
+                     (
+                        Item => "Évalue une conclusion fait " &
+                           "symbolique absente de la base"
+                     ),
                   Test => Scenario_R.Test_Rate_Concl_Fait_Sym_Inconnu'Access
                )
          );
@@ -259,8 +295,11 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "Evalue une conclusion fait " &
-                     "symbolique qui n'est pas un fait symbolique",
+                  Name => Nom_Test & Encode
+                     (
+                        Item => "Évalue une conclusion fait " &
+                           "symbolique qui n'est pas un fait symbolique"
+                     ),
                   Test => Scenario_R.Test_Rate_Concl_Fait_Non_Symbolique'Access
                )
          );

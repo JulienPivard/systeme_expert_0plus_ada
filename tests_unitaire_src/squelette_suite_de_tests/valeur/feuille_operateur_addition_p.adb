@@ -1,5 +1,7 @@
 with AUnit.Test_Caller;
 
+with Encode;
+
 with Sys_Exp_P.Valeur_P.Operateur_P.Addition_P.Test_P;
 
 package body Feuille_Operateur_Addition_P
@@ -19,13 +21,13 @@ is
       Ptr_Test_Suite : constant AUnit.Test_Suites.Access_Test_Suite :=
          AUnit.Test_Suites.New_Suite;
 
-      Nom_Test : constant String := "(Test operateur plus) ";
+      Nom_Test : constant String := "(Test opérateur plus) ";
    begin
       Ptr_Test_Suite.all.Add_Test
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "creation",
+                  Name => Encode (Item => Nom_Test & "création"),
                   Test => Scenario_R.Test_Creer'Access
                )
          );
@@ -34,7 +36,11 @@ is
             (
                T => Caller_P.Create
                   (
-                     Name => Nom_Test & "interpreter fait [" & I'Image & "]",
+                     Name => Encode
+                        (
+                           Item => Nom_Test &
+                              "interpréter fait [" & I'Image & "]"
+                        ),
                      Test => Scenario_R.Test_Interpreter_Fait'Access
                   )
             );
@@ -44,8 +50,11 @@ is
             (
                T => Caller_P.Create
                   (
-                     Name => Nom_Test & "interpreter constante " &
-                        "[" & I'Image & "]",
+                     Name => Encode
+                        (
+                           Item => Nom_Test & "interpréter constante " &
+                              "[" & I'Image & "]"
+                        ),
                      Test => Scenario_R.Test_Interpreter_Constante'Access
                   )
             );
@@ -55,8 +64,11 @@ is
             (
                T => Caller_P.Create
                   (
-                     Name => Nom_Test & "interpreter mixte " &
-                        "[" & I'Image & "]",
+                     Name => Encode
+                        (
+                           Item => Nom_Test & "interpréter mixte " &
+                              "[" & I'Image & "]"
+                        ),
                      Test => Scenario_R.Test_Interpreter_Mix'Access
                   )
             );
@@ -66,8 +78,11 @@ is
             (
                T => Caller_P.Create
                   (
-                     Name => Nom_Test & "interpreter mixte etendu " &
-                        "[" & I'Image & "]",
+                     Name => Encode
+                        (
+                           Item => Nom_Test & "interpréter mixte étendu " &
+                              "[" & I'Image & "]"
+                        ),
                      Test => Scenario_R.Test_Interpreter_Mix_Etendu'Access
                   )
             );

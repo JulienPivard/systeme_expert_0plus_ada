@@ -1,5 +1,7 @@
 with AUnit.Test_Caller;
 
+with Encode;
+
 with Sys_Exp_P.Moteur_Inference_P.Test_P;
 
 package body Moteur_Inference_Suite_P
@@ -18,13 +20,13 @@ is
       Ptr_Test_Suite : constant AUnit.Test_Suites.Access_Test_Suite :=
          AUnit.Test_Suites.New_Suite;
 
-      Nom_Test : constant String := "(Test moteur d'inference) ";
+      Nom_Test : constant String := "(Test moteur d'inférence) ";
    begin
       Ptr_Test_Suite.all.Add_Test
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "creation",
+                  Name => Encode (Item => Nom_Test & "création"),
                   Test => Scenario_R.Test_Creer'Access
                )
          );
@@ -32,7 +34,8 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "analyse de la base de regles",
+                  Name => Encode (Item => Nom_Test &
+                     "analyse de la base de règles"),
                   Test => Scenario_R.Test_Analyser_Base_Regles'Access
                )
          );

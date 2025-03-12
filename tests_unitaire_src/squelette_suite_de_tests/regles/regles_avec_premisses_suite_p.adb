@@ -1,5 +1,7 @@
 with AUnit.Test_Caller;
 
+with Encode;
+
 with Sys_Exp_P.Regles_P.Avec_Premisse_P.Test_P;
 
 package body Regles_Avec_Premisses_Suite_P
@@ -18,13 +20,13 @@ is
       Ptr_Test_Suite : constant AUnit.Test_Suites.Access_Test_Suite :=
          AUnit.Test_Suites.New_Suite;
 
-      Nom_Test : constant String := "(Test regles avec premisses) ";
+      Nom_Test : constant String := "(Test règles avec prémisses) ";
    begin
       Ptr_Test_Suite.all.Add_Test
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "creation",
+                  Name => Encode (Item => Nom_Test & "création"),
                   Test => Scenario_R.Test_Creer'Access
                )
          );
@@ -32,7 +34,7 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "ajouter successeur",
+                  Name => Encode (Item => Nom_Test & "ajouter successeur"),
                   Test => Scenario_R.Test_Ajouter_Successeur'Access
                )
          );
@@ -40,7 +42,7 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "possede succeseur",
+                  Name => Encode (Item => Nom_Test & "possède successeur"),
                   Test => Scenario_R.Test_Possede_Successeur'Access
                )
          );
@@ -48,7 +50,7 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "iterer",
+                  Name => Encode (Item => Nom_Test & "itérer"),
                   Test => Scenario_R.Test_Iterer'Access
                )
          );
@@ -56,7 +58,7 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "est declenche",
+                  Name => Encode (Item => Nom_Test & "est déclenche"),
                   Test => Scenario_R.Test_Est_Declenchee'Access
                )
          );
@@ -64,7 +66,7 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "ajouter premisse",
+                  Name => Encode (Item => Nom_Test & "ajouter prémisse"),
                   Test => Scenario_R.Test_Ajouter_Premisse'Access
                )
          );
@@ -72,7 +74,7 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "verifier premisse",
+                  Name => Encode (Item => Nom_Test & "vérifier prémisse"),
                   Test => Scenario_R.Test_Verifier_Premisse'Access
                )
          );

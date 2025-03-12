@@ -1,5 +1,7 @@
 with AUnit.Test_Caller;
 
+with Encode;
+
 with Sys_Exp_P.Base_Faits_P.Test_P;
 
 package body Base_Faits_Suite_P
@@ -24,7 +26,7 @@ is
          (
             T => Caller_P.Create
                (
-                  Name => Nom_Test & "creation",
+                  Name => Nom_Test & Encode (Item => "création"),
                   Test => Scenario_R.Test_Creer'Access
                )
          );
@@ -52,7 +54,8 @@ is
             (
                T => Caller_P.Create
                   (
-                     Name => Nom_Test & "ajouter deux fois le meme fait " &
+                     Name => Nom_Test & Encode
+                        (Item => "ajouter deux fois le même fait ") &
                         "[" & I'Image & "]",
                      Test => Scenario_R.Test_Ajouter_Deux_Fois_Le_Meme'Access
                   )
@@ -63,8 +66,11 @@ is
             (
                T => Caller_P.Create
                   (
-                     Name => Nom_Test & "ajouter deux fois le meme fait " &
-                        "avec une valeur differente " &
+                     Name => Nom_Test & Encode
+                        (
+                           Item => "ajouter deux fois le même fait " &
+                              "avec une valeur différente "
+                        ) &
                         "[" & I'Image & "]",
                      Test => Scenario_R.Test_Ajouter_Deux_Fois'Access
                   )
@@ -75,8 +81,11 @@ is
             (
                T => Caller_P.Create
                   (
-                     Name => Nom_Test & "ajouter deux fois le meme fait " &
-                        "avec un type different " &
+                     Name => Nom_Test & Encode
+                        (
+                           Item => "ajouter deux fois le même fait " &
+                              "avec un type diffèrent "
+                        ) &
                         "[" & I'Image & "]",
                      Test => Scenario_R.Test_Ajouter_2_F_Type_Differents'Access
                   )

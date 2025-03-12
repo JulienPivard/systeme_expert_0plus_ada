@@ -1,5 +1,7 @@
 with AUnit.Test_Caller;
 
+with Encode;
+
 with Sys_Exp_P.Valeur_P.Fait_P.Test_P;
 
 package body Feuille_Fait_Suite_P
@@ -25,7 +27,8 @@ is
             (
                T => Caller_P.Create
                   (
-                     Name => Nom_Test & "creation [" & I'Image & "]",
+                     Name => Nom_Test & Encode
+                        (Item => "création [" & I'Image & "]"),
                      Test => Scenario_R.Test_Creer'Access
                   )
             );
@@ -35,7 +38,8 @@ is
             (
                T => Caller_P.Create
                   (
-                     Name => Nom_Test & "interpreter [" & I'Image & "]",
+                     Name => Nom_Test & Encode
+                        (Item => "interpréter [" & I'Image & "]"),
                      Test => Scenario_R.Test_Interpreter'Access
                   )
             );
@@ -53,8 +57,11 @@ is
             (
                T => Caller_P.Create
                   (
-                     Name => Nom_Test & "interpreter en fait non entier " &
-                        " [" & I'Image & "]",
+                     Name => Nom_Test & Encode
+                        (
+                           Item => "interpréter en fait non entier " &
+                              "[" & I'Image & "]"
+                        ),
                      Test => Scenario_R.Test_Interpreter_Fait_Non_Entier'Access
                   )
             );
