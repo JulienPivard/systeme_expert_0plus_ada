@@ -110,8 +110,8 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
    begin
       return String (This.Nom_Fichier.Nom) & ":" &
          Trim (Source => Num_Ligne'Image)  & ":" &
-         Trim (Source => Ancienne'Image)   & " " &
-         "Erreur [" & Message & "]";
+         Trim (Source => Ancienne'Image)   & ":" &
+         " Erreur [" & Message & "]";
    end Faire_Message_Erreur;
    ---------------------------------------------------------------------------
 
@@ -132,7 +132,8 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
       (E : in     Ada.Exceptions.Exception_Occurrence)
       return Rapport_D_Erreur_T
    is
-      Message : constant String := Ada.Exceptions.Exception_Message (X => E);
+      Message : constant String :=
+         Ada.Exceptions.Exception_Message (X => E);
    begin
       return Creer (Message => Message);
    end Creer;
@@ -154,7 +155,8 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
       return Boolean
    is
    begin
-      return This.Noms_Faits.Contains (Key => This.Lire_Representation_Jeton);
+      return This.Noms_Faits.Contains
+         (Key => This.Lire_Representation_Jeton);
    end Jeton_Est_Un_Nom_De_Fait;
    ---------------------------------------------------------------------------
 
@@ -164,7 +166,8 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
       return Type_De_Fait_T
    is
    begin
-      return This.Noms_Faits.Element (Key => This.Lire_Representation_Jeton);
+      return This.Noms_Faits.Element
+         (Key => This.Lire_Representation_Jeton);
    end Lire_Type_Jeton_Fait;
    ---------------------------------------------------------------------------
 
@@ -304,10 +307,12 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
          exit B_Faire_Base when This.Jeton_Precharge.Est_Fin_Fichier;
 
          ID := ID + 1;
+
          if not This.Jeton_Precharge.Est_Fin_Expression then
             This.Creer_Exception
                (Message => "attendu : '" & Fin_Expr & "'");
          end if;
+
          This.Suivant;
          exit B_Faire_Base when This.Jeton_Precharge.Est_Fin_Fichier;
 
