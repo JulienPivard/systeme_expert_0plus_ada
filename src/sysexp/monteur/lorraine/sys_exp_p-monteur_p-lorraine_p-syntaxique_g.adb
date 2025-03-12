@@ -308,12 +308,13 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
 
          ID := ID + 1;
 
-         if not This.Jeton_Precharge.Est_Fin_Expression then
+         if This.Jeton_Precharge.Est_Fin_Expression then
+            This.Suivant;
+         else
             This.Creer_Exception
                (Message => "attendu : '" & Fin_Expr & "'");
          end if;
 
-         This.Suivant;
          exit B_Faire_Base when This.Jeton_Precharge.Est_Fin_Fichier;
 
          Bloc_Faire_Base :
