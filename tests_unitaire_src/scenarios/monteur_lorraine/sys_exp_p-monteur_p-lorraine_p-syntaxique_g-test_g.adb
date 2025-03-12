@@ -259,7 +259,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G.Test_G is
          --  Le parseur syntaxique n'est plus utile.
 
          Attendu : constant String :=
-            "inutile:8:1 Erreur [le fait [chercheur] n'a pas été déclaré]";
+            "inutile:8:1: Erreur [le fait [chercheur] n'a pas été déclaré]";
       begin
          AUnit.Assertions.Assert
             (
