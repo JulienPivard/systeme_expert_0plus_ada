@@ -298,6 +298,10 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
       Base_De_Regles : Base_De_Regles_P.Holder;
 
       ID : ID_Regle_T := ID_Regle_T'First;
+
+      Resultat : Resultat_Parseur_T;
+
+      Erreur_Parseur : Boolean := False;
    begin
       Base_De_Regles := Base_De_Regles_P.To_Holder
          (New_Item => This.Faire_Regle (ID => ID));
@@ -311,10 +315,19 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
          if This.Jeton_Precharge.Est_Fin_Expression then
             This.Suivant;
          else
-            This.Creer_Exception
-               (Message => "attendu : '" & Fin_Expr & "'");
+            Erreur_Parseur := True;
+            Resultat       := Resultat_Parseur_T'
+               (
+                  Reussie          => False,
+                  Rapport_D_Erreur => Creer
+                     (
+                        Message => This.Faire_Message_Erreur
+                           (Message => "attendu : '" & Fin_Expr & "'")
+                     )
+               );
          end if;
 
+         exit B_Faire_Base when Erreur_Parseur;
          exit B_Faire_Base when This.Jeton_Precharge.Est_Fin_Fichier;
 
          Bloc_Faire_Base :
@@ -328,11 +341,15 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
 
       This.Parseur_Lexical.Fermer;
 
-      return Resultat_Parseur_T'
-         (
-            Reussie        => True,
-            Base_De_Regles => Base_De_Regles
-         );
+      if not Erreur_Parseur then
+         Resultat := Resultat_Parseur_T'
+            (
+               Reussie        => True,
+               Base_De_Regles => Base_De_Regles
+            );
+      end if;
+
+      return Resultat;
    end Faire_Base_De_Regles;
    ---------------------------------------------------------------------------
 
