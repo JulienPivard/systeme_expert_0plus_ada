@@ -37,7 +37,7 @@ jobs:
         sudo add-apt-repository -y ppa:deadsnakes/ppa &&
         sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test &&
         sudo apt-get update &&
-        sudo apt-get install gnat gprbuild libaunit
+        sudo apt-get install gnat gprbuild libaunit1-dev
       
     - name: Build_Tests_Unitaire
       run: make tests_unitaire
