@@ -32,4 +32,10 @@ jobs:
     - name: Set up GNAT toolchain
       run: >
         sudo apt-get update &&
-        sudo apt-cache search libaunit
+        sudo apt-get install gnat gprbuild libaunit-dev
+
+    - name: Build_Tests_Unitaire
+      run: make tests_unitaire
+
+    - name: Run_Tests_Unitaires
+      run: make run_tests_unitaire
