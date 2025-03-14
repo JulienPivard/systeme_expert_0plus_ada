@@ -1,4 +1,4 @@
-[![Build binaries](https://github.com/JulienPivard/systeme_expert_0plus_ada/workflows/Build%20build/badge.svg)](https://github.com/JulienPivard/systeme_expert_0plus_ada/actions)
+[![Build executable](https://github.com/JulienPivard/systeme_expert_0plus_ada/workflows/ada/badge.svg)](https://github.com/JulienPivard/systeme_expert_0plus_ada/actions)
 
 # Systeme Expert 0+
 
