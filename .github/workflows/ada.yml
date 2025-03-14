@@ -18,11 +18,18 @@ jobs:
     - name: Set up GNAT toolchain
       run: >
         sudo apt-get update &&
-        sudo apt-get install gnat gprbuild
+        sudo apt-get install gnat gprbuild libaunit
 
     - name: Build
       run: make
+      
+  tests:
+    runs-on: ubuntu-latest
 
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+      
     - name: Build_Tests_Unitaire
       run: make tests_unitaire
 
