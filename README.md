@@ -1,4 +1,4 @@
-[![Build executable](https://github.com/JulienPivard/systeme_expert_0plus_ada/workflows/Ada%20(GNAT)/badge.svg)](https://github.com/JulienPivard/systeme_expert_0plus_ada/actions)
+[![Build executable](https://github.com/JulienPivard/systeme_expert_0plus_ada/workflows/Compilation%20(GNAT)/badge.svg)](https://github.com/JulienPivard/systeme_expert_0plus_ada/actions)
 
 # Systeme Expert 0+
 
