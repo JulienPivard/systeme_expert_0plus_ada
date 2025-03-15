@@ -1,4 +1,4 @@
-name: Ada (GNAT)
+name: Compilation (GNAT)
 
 on:
   push:
