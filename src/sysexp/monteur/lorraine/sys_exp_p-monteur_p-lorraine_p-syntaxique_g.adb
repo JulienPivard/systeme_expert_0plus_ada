@@ -77,11 +77,16 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
       (This : in out Syntaxique_T)
       return Resultat_Parseur_T
    is
+      Resultat : Resultat_Parseur_T;
    begin
       This.Faire_Declaration;
-      return This.Faire_Base_De_Regles;
+      Resultat := This.Faire_Base_De_Regles;
+      This.Parseur_Lexical.Fermer;
+
+      return Resultat;
    exception
       when E : E_Parse =>
+         This.Parseur_Lexical.Fermer;
          return Resultat_Parseur_T'
             (
                Reussie          => False,
@@ -338,8 +343,6 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
             Base_De_Regles := Base_De_Regles_P.To_Holder (New_Item => R);
          end Bloc_Faire_Base;
       end loop B_Faire_Base;
-
-      This.Parseur_Lexical.Fermer;
 
       if not Erreur_Parseur then
          Resultat := Resultat_Parseur_T'
