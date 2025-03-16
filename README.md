@@ -15,7 +15,7 @@ conception. Parmi les consignes qui nous avaient été données :
   masse déjà conséquente de travail.
 * La grammaire à implémenter est la grammaire _lorraine_.
 
-## Configurer et compiler avec Cmake
+## Configurer et compiler avec make
 ### Méthode automatique.
 
 Tapez simplement `make` pour lancer la compilation.
