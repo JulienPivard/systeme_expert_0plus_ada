@@ -333,6 +333,9 @@ is
          V := Div.Interpreter (Base => Base);
       end Bloc_Lever_Exception;
       pragma Unreferenced (V);
+      pragma Unreferenced (Valeur_1);
+      --  On divise par 0 inutile de connaitre la valeur
+      --  qu'on vas diviser.
    exception
       when E_Division_Par_Zero =>
          raise;
@@ -379,6 +382,9 @@ is
          V := Div.Interpreter (Base => Base);
       end Bloc_Lever_Exception;
       pragma Unreferenced (V);
+      pragma Unreferenced (Valeur_1);
+      --  On divise par 0 inutile de connaitre la valeur
+      --  qu'on vas diviser.
    exception
       when E_Division_Par_Zero =>
          raise;

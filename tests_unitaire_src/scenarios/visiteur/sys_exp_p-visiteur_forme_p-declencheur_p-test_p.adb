@@ -1951,6 +1951,8 @@ is
                Base   => Base_Tmp,
                Valeur => Valeur
             );
+      pragma Unreferenced (Valeur);
+      --  Le contenu du fait créé ne nous intéresse pas pour les tests.
 
       E : constant C_Expr_R.Conclusion_T := C_Expr_R.Creer
          (
@@ -2092,6 +2094,8 @@ is
             Valeur_Droite =>
                Sys_Exp_P.Valeur_P.Constante_P.Creer (Valeur => 0)
          );
+      pragma Unreferenced (Valeur);
+      --  Le contenu du fait créé ne nous intéresse pas pour les tests.
 
       E : constant C_Expr_R.Conclusion_T := C_Expr_R.Creer
          (
