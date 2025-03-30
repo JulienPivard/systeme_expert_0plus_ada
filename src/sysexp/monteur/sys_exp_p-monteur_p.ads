@@ -19,6 +19,9 @@ is
    subtype Base_De_Regles_T is Sys_Exp_P.Regles_P.Regle_Abstraite_T'Class;
 
    type Resultat_Parseur_T (Reussie : Boolean := False) is private;
+   --  Le résultat du parseur du fichier lorraine.
+   --  @value Reussie
+   --  La réussite du parseur.
 
    function Lire_Base_De_Regles
       (Resultat_Parseur : in     Resultat_Parseur_T)
@@ -98,9 +101,6 @@ private
                --  Le rapport d'erreur de construction de la base de règles.
          end case;
       end record;
-   --  Le résultat du parseur du fichier lorraine.
-   --  @value Reussie
-   --  La réussite du parseur.
 
    pragma Unreferenced (Message_Il_Faut_Parser);
    --  Utilisé uniquement pour initialiser le message par défaut.

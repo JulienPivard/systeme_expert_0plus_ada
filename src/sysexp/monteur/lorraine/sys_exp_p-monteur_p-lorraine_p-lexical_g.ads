@@ -138,6 +138,8 @@ private
          --  Les caractères de la ligne.
       end record;
    --  La ligne.
+   --  @value Taille
+   --  La taille de la chaine stockée.
 
    Ligne_Vide : constant Ligne_T := Ligne_T'
       (
@@ -148,6 +150,11 @@ private
    function Creer
       (Contenu : in     String)
       return Ligne_T;
+   --  Enregistre le contenu de la ligne de taille variable,
+   --  dans un contenant de taille fixe.
+   --  @param Contenu
+   --  La ligne à stocker
+   --  @return Un contenant rempli avec la ligne.
 
    type Lexical_T is tagged limited
       record
