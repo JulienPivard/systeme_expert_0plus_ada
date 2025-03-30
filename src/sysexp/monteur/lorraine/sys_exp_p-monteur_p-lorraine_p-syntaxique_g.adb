@@ -321,15 +321,20 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G is
             This.Suivant;
          else
             Erreur_Parseur := True;
-            Resultat       := Resultat_Parseur_T'
-               (
-                  Reussie          => False,
-                  Rapport_D_Erreur => Creer
+            Bloc_Faire_Message_Erreur :
+            declare
+               Message : constant Rapport_D_Erreur_T := Creer
                      (
                         Message => This.Faire_Message_Erreur
                            (Message => "attendu : '" & Fin_Expr & "'")
-                     )
+                     );
+            begin
+            Resultat       := Resultat_Parseur_T'
+               (
+                  Reussie          => False,
+                  Rapport_D_Erreur => Message
                );
+            end Bloc_Faire_Message_Erreur;
          end if;
 
          exit B_Faire_Base when Erreur_Parseur;
