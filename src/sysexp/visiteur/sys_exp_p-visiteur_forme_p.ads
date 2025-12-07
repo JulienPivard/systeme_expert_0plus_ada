@@ -201,7 +201,7 @@ is
    procedure Visiter
       (
          This  : in out Visiteur_Forme_Abstrait_T;
-         Base  : in out Base_Faits_P.Base_De_Faits_T;
+         Base  : in     Base_Faits_P.Base_De_Faits_T;
          Forme : in     Forme_P.Premisse_P.Bool_False_P.Premisse_T
       )
    is abstract;
@@ -218,7 +218,7 @@ is
    procedure Visiter
       (
          This  : in out Visiteur_Forme_Abstrait_T;
-         Base  : in out Base_Faits_P.Base_De_Faits_T;
+         Base  : in     Base_Faits_P.Base_De_Faits_T;
          Forme : in     Forme_P.Premisse_P.Bool_True_P.Premisse_T
       )
    is abstract;
@@ -235,7 +235,7 @@ is
    procedure Visiter
       (
          This  : in out Visiteur_Forme_Abstrait_T;
-         Base  : in out Base_Faits_P.Base_De_Faits_T;
+         Base  : in     Base_Faits_P.Base_De_Faits_T;
          Forme : in     Forme_P.Premisse_P.Expression_Entiere_P.Premisse_T
       )
    is abstract;
@@ -252,7 +252,7 @@ is
    procedure Visiter
       (
          This  : in out Visiteur_Forme_Abstrait_T;
-         Base  : in out Base_Faits_P.Base_De_Faits_T;
+         Base  : in     Base_Faits_P.Base_De_Faits_T;
          Forme : in     Forme_P.Premisse_P.Fait_Entier_P.Premisse_T
       )
    is abstract;
@@ -269,7 +269,7 @@ is
    procedure Visiter
       (
          This  : in out Visiteur_Forme_Abstrait_T;
-         Base  : in out Base_Faits_P.Base_De_Faits_T;
+         Base  : in     Base_Faits_P.Base_De_Faits_T;
          Forme : in     Forme_P.Premisse_P.Symbole_Constant_P.Premisse_T
       )
    is abstract;
@@ -286,7 +286,7 @@ is
    procedure Visiter
       (
          This  : in out Visiteur_Forme_Abstrait_T;
-         Base  : in out Base_Faits_P.Base_De_Faits_T;
+         Base  : in     Base_Faits_P.Base_De_Faits_T;
          Forme : in     Forme_P.Premisse_P.Symbole_Fait_P.Premisse_T
       )
    is abstract;
