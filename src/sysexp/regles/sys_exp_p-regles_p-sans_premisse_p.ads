@@ -41,7 +41,7 @@ is
    function Verifier_Premisse
       (
          This : in     Regle_T;
-         Base : in     Base_Faits_P.Base_De_Faits_A
+         Base : in out Base_Faits_P.Base_De_Faits_T
       )
       return Boolean;
    --  La prémisse a été vérifiée.
@@ -53,16 +53,11 @@ is
 
    overriding
    function Creer_Visiteur
-      (
-         This : in     Regle_T;
-         Base : in     Base_Faits_P.Base_De_Faits_A
-      )
+      (This : in     Regle_T)
       return Visiteur_Forme_P.Visiteur_Forme_Abstrait_T'Class;
    --  Crée un nouveau visiteur de forme.
    --  @param This
    --  La règle actuelle.
-   --  @param Base
-   --  Le base de faits.
    --  @return Un visiteur de forme.
 
 private

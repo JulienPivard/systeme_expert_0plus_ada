@@ -30,7 +30,7 @@ is
    function Iterer
       (
          This : in out Regle_Interface_T;
-         Base : in     Base_Faits_P.Base_De_Faits_A
+         Base : in out Base_Faits_P.Base_De_Faits_T
       )
       return Boolean
    is abstract;
@@ -61,23 +61,18 @@ is
    --  @return La règle a déjà été déclenchée.
 
    function Creer_Visiteur
-      (
-         This : in     Regle_Interface_T;
-         Base : in     Base_Faits_P.Base_De_Faits_A
-      )
+      (This : in     Regle_Interface_T)
       return Visiteur_R.Visiteur_Forme_Abstrait_T'Class
    is abstract;
    --  Crée un nouveau visiteur de forme.
    --  @param This
    --  La règle actuelle.
-   --  @param Base
-   --  Le base de faits.
    --  @return Un visiteur de forme.
 
    function Verifier_Premisse
       (
          This : in     Regle_Interface_T;
-         Base : in     Base_Faits_P.Base_De_Faits_A
+         Base : in out Base_Faits_P.Base_De_Faits_T
       )
       return Boolean
    is abstract;
@@ -111,7 +106,7 @@ is
    function Iterer
       (
          This : in out Regle_Abstraite_T;
-         Base : in     Base_Faits_P.Base_De_Faits_A
+         Base : in out Base_Faits_P.Base_De_Faits_T
       )
       return Boolean;
    --  Lance une visite des toutes les règles avec la
@@ -171,7 +166,7 @@ private
    function Declencher
       (
          This : in out Regle_Abstraite_T'Class;
-         Base : in     Base_Faits_P.Base_De_Faits_A
+         Base : in out Base_Faits_P.Base_De_Faits_T
       )
       return Boolean;
    --  Essaye de déclencher une conclusion.

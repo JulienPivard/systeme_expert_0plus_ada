@@ -9,11 +9,12 @@ is
    procedure Ajouter_Un_Fait
       (
          This : in out Visiteur_Forme_Abstrait_T'Class;
+         Base : in out Base_Faits_P.Base_De_Faits_T;
          Fait : in     Sys_Exp_P.Fait_P.Fait_Abstrait_T'Class
       )
    is
    begin
-      This.Base.all.Ajouter (Nouvel_Item => Fait);
+      Base.Ajouter (Nouvel_Item => Fait);
       This.Conclusion_A_Ete_Declenchee := True;
    exception
       when E : E_Fait_Deja_Present =>

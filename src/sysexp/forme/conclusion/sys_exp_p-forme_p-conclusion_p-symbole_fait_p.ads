@@ -33,11 +33,14 @@ is
    procedure Accepte
       (
          This     : in     Conclusion_T;
+         Base     : in out Base_Faits_P.Base_De_Faits_T;
          Visiteur : in out Classe_Visiteur_Forme_T
       );
    --  Accepte un visiteur pour étendre les fonctions.
    --  @param This
    --  La conclusion.
+   --  @param Base
+   --  La base de faits où on va ajouter les conclusions déclenchées.
    --  @param Visiteur
    --  Le visiteur de forme.
 

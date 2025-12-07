@@ -15,17 +15,12 @@ is
    --  Un fabrique de visiteur.
 
    function Fabriquer_Visiteur
-      (
-         This : in     Fabrique_Interface_T;
-         Base : in     Base_Faits_P.Base_De_Faits_A
-      )
+      (This : in     Fabrique_Interface_T)
       return Visiteur_Forme_Abstrait_T'Class
    is abstract;
    --  Fabrique un visiteur.
    --  @param This
    --  La fabrique de visiteur de formes.
-   --  @param Base
-   --  La base de faits que le visiteur utilisera.
    --  @return Le visiteur construit.
 
 private

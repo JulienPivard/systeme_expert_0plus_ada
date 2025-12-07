@@ -11,10 +11,10 @@ is
       return Moteur : Moteur_Inference_T := Moteur_Inference_T'
          (
             Regles => Regle_Holder_P.To_Holder (New_Item => Base_De_Regles),
-            Base   => Base'Access
+            Base   => <>
          )
       do
-         Base.Vider;
+         Moteur.Base.Vider;
       end return;
    end Creer;
    ---------------------------------------------------------------------------

@@ -35,11 +35,14 @@ is
    procedure Accepte
       (
          This     : in     Premisse_T;
+         Base     : in out Base_Faits_P.Base_De_Faits_T;
          Visiteur : in out Classe_Visiteur_Forme_T
       );
    --  Accepte un visiteur pour étendre les fonctions.
    --  @param This
    --  La prémisse.
+   --  @param Base
+   --  La base de fait à utiliser.
    --  @param Visiteur
    --  Le visiteur de forme.
 

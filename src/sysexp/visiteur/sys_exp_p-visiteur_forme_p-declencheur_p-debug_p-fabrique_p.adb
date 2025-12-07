@@ -14,15 +14,12 @@ is
    ---------------------------------------------------------------------------
    overriding
    function Fabriquer_Visiteur
-      (
-         This : in     Fabrique_T;
-         Base : in     Base_Faits_P.Base_De_Faits_A
-      )
+      (This : in     Fabrique_T)
       return Visiteur_Forme_Abstrait_T'Class
    is
       pragma Unreferenced (This);
    begin
-      return Visiteur_Debug_T'(Creer (Base => Base));
+      return Visiteur_Debug_T'(Creer);
    end Fabriquer_Visiteur;
    ---------------------------------------------------------------------------
 

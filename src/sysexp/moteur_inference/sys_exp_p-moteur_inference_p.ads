@@ -51,7 +51,7 @@ private
    type Moteur_Inference_T is tagged limited
       record
          Regles : Base_De_Regles_T;
-         Base   : Base_Faits_P.Base_De_Faits_A;
+         Base   : Base_Faits_P.Base_De_Faits_T;
       end record;
 
 end Sys_Exp_P.Moteur_Inference_P;

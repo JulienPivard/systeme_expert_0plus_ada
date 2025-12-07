@@ -36,7 +36,7 @@ is
    function Verifier_Premisse
       (
          This : in     Regle_T;
-         Base : in     Base_Faits_P.Base_De_Faits_A
+         Base : in out Base_Faits_P.Base_De_Faits_T
       )
       return Boolean
    is
@@ -47,9 +47,13 @@ is
          Bloc_Visiter :
          declare
             Visiteur : Visiteur_Forme_P.Visiteur_Forme_Abstrait_T'Class :=
-               This.Creer_Visiteur (Base => Base);
+               This.Creer_Visiteur;
          begin
-            E.Accepte (Visiteur => Visiteur);
+            E.Accepte
+               (
+                  Visiteur => Visiteur,
+                  Base     => Base
+               );
             Verifier_Flag_Erreur_Visiteur
                (
                   Regle    => This,
@@ -69,14 +73,11 @@ is
    ---------------------------------------------------------------------------
    overriding
    function Creer_Visiteur
-      (
-         This : in     Regle_T;
-         Base : in     Base_Faits_P.Base_De_Faits_A
-      )
+      (This : in     Regle_T)
       return Visiteur_Forme_P.Visiteur_Forme_Abstrait_T'Class
    is
    begin
-      return This.Fabrique.Element.Fabriquer_Visiteur (Base => Base);
+      return This.Fabrique.Element.Fabriquer_Visiteur;
    end Creer_Visiteur;
    ---------------------------------------------------------------------------
 

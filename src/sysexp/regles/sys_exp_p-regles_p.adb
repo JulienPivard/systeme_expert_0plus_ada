@@ -22,7 +22,7 @@ is
    function Iterer
       (
          This : in out Regle_Abstraite_T;
-         Base : in     Base_Faits_P.Base_De_Faits_A
+         Base : in out Base_Faits_P.Base_De_Faits_T
       )
       return Boolean
    is
@@ -53,7 +53,7 @@ is
    function Declencher
       (
          This : in out Regle_Abstraite_T'Class;
-         Base : in     Base_Faits_P.Base_De_Faits_A
+         Base : in out Base_Faits_P.Base_De_Faits_T
       )
       return Boolean
    is
@@ -62,9 +62,13 @@ is
          Bloc_Visiter :
          declare
             Visiteur : Visiteur_R.Visiteur_Forme_Abstrait_T'Class :=
-               This.Creer_Visiteur (Base => Base);
+               This.Creer_Visiteur;
          begin
-            This.Conclusion.Element.Accepte (Visiteur => Visiteur);
+            This.Conclusion.Element.Accepte
+               (
+                  Base     => Base,
+                  Visiteur => Visiteur
+               );
             This.Regle_Declenchee :=
                Visiteur.Au_Moins_Une_Conclusion_Declenchee;
             Verifier_Flag_Erreur_Visiteur

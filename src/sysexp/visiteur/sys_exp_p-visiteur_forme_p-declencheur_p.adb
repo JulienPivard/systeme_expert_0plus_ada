@@ -34,13 +34,11 @@ is
    ---------------------------------------------------------------------------
    not overriding
    function Creer
-      (Base : in     Base_Faits_P.Base_De_Faits_A)
       return Visiteur_T
    is
    begin
       return Visiteur_T'
          (
-            Base                        => Base,
             Premisse_A_Ete_Verifiee     => False,
             Conclusion_A_Ete_Declenchee => False,
             Code_Erreur                 => Tout_Va_Bien_E,
@@ -58,6 +56,7 @@ is
    procedure Visiter
       (
          This  : in out Visiteur_T;
+         Base  : in out Base_Faits_P.Base_De_Faits_T;
          Forme : in     Forme_P.Conclusion_P.Bool_False_P.Conclusion_T
       )
    is
@@ -67,7 +66,11 @@ is
             Valeur => False
          );
    begin
-      This.Ajouter_Un_Fait (Fait => Fait);
+      This.Ajouter_Un_Fait
+         (
+            Fait => Fait,
+            Base => Base
+         );
    end Visiter;
    ---------------------------------------------------------------------------
 
@@ -76,6 +79,7 @@ is
    procedure Visiter
       (
          This  : in out Visiteur_T;
+         Base  : in out Base_Faits_P.Base_De_Faits_T;
          Forme : in     Forme_P.Conclusion_P.Bool_True_P.Conclusion_T
       )
    is
@@ -85,7 +89,11 @@ is
             Valeur => True
          );
    begin
-      This.Ajouter_Un_Fait (Fait => Fait);
+      This.Ajouter_Un_Fait
+         (
+            Fait => Fait,
+            Base => Base
+         );
    end Visiter;
    ---------------------------------------------------------------------------
 
@@ -94,6 +102,7 @@ is
    procedure Visiter
       (
          This  : in out Visiteur_T;
+         Base  : in out Base_Faits_P.Base_De_Faits_T;
          Forme : in     Forme_P.Conclusion_P.Expression_Entiere_P.Conclusion_T
       )
    is
@@ -101,14 +110,18 @@ is
       Bloc_Lire_Valeur :
       declare
          Valeur : constant Sys_Exp_P.Entier_T     :=
-            Forme.Lire_Valeur (Base => This.Base.all);
+            Forme.Lire_Valeur (Base => Base);
          Fait   : constant Entier_R.Fait_Entier_T := Entier_R.Creer
             (
                Nom    => Forme.Lire_Nom,
                Valeur => Valeur
             );
       begin
-         This.Ajouter_Un_Fait (Fait => Fait);
+         This.Ajouter_Un_Fait
+            (
+               Fait => Fait,
+               Base => Base
+            );
       end Bloc_Lire_Valeur;
    exception
       when E : E_Fait_Inconnu =>
@@ -143,17 +156,18 @@ is
    procedure Visiter
       (
          This  : in out Visiteur_T;
+         Base  : in out Base_Faits_P.Base_De_Faits_T;
          Forme : in     Forme_P.Conclusion_P.Fait_Entier_P.Conclusion_T
       )
    is
    begin
       --  Le fait appartient à la base.
-      if This.Base.all.Contient (Nom_Fait => Forme.Lire_Nom_Fait) then
+      if Base.Contient (Nom_Fait => Forme.Lire_Nom_Fait) then
          Bloc_Construire_Conclusion :
          declare
             --  Le fait trouvé dans la base.
             Fait : constant Sys_Exp_P.Fait_P.Fait_Abstrait_T'Class :=
-               This.Base.all.Trouver (Nom_Fait => Forme.Lire_Nom_Fait);
+               Base.Trouver (Nom_Fait => Forme.Lire_Nom_Fait);
             --  On le convertit en fait entier.
             Fait_Entier : Entier_R.Fait_Entier_T renames
                Entier_R.Fait_Entier_T (Fait);
@@ -166,7 +180,11 @@ is
                );
          begin
             --  La conclusion est déclenchée, on l'ajoute.
-            This.Ajouter_Un_Fait (Fait => Nouveau_Fait);
+            This.Ajouter_Un_Fait
+               (
+                  Fait => Nouveau_Fait,
+                  Base => Base
+               );
          end Bloc_Construire_Conclusion;
       else
          This.Code_Erreur := Fait_Entier_Inconnu_E;
@@ -197,6 +215,7 @@ is
    procedure Visiter
       (
          This  : in out Visiteur_T;
+         Base  : in out Base_Faits_P.Base_De_Faits_T;
          Forme : in     Forme_P.Conclusion_P.Symbole_Constant_P.Conclusion_T
       )
    is
@@ -206,7 +225,11 @@ is
             Valeur => Forme.Lire_Nom_Symbole
          );
    begin
-      This.Ajouter_Un_Fait (Fait => Fait);
+      This.Ajouter_Un_Fait
+         (
+            Fait => Fait,
+            Base => Base
+         );
    end Visiter;
    ---------------------------------------------------------------------------
 
@@ -215,17 +238,18 @@ is
    procedure Visiter
       (
          This  : in out Visiteur_T;
+         Base  : in out Base_Faits_P.Base_De_Faits_T;
          Forme : in     Forme_P.Conclusion_P.Symbole_Fait_P.Conclusion_T
       )
    is
    begin
       --  Le fait appartient à la base.
-      if This.Base.all.Contient (Nom_Fait => Forme.Lire_Nom_Fait) then
+      if Base.Contient (Nom_Fait => Forme.Lire_Nom_Fait) then
          Bloc_Construire_Conclusion :
          declare
             --  Le fait trouvé dans la base.
             Fait_Trouve : constant Sys_Exp_P.Fait_P.Fait_Abstrait_T'Class :=
-               This.Base.all.Trouver (Nom_Fait => Forme.Lire_Nom_Fait);
+               Base.Trouver (Nom_Fait => Forme.Lire_Nom_Fait);
             --  On le convertit en fait symbolique.
             Fait_Symbole : Symbolique_R.Fait_Symbolique_T renames
                Symbolique_R.Fait_Symbolique_T (Fait_Trouve);
@@ -239,7 +263,11 @@ is
                   );
          begin
             --  La conclusion est déclenchée, on l'ajoute.
-            This.Ajouter_Un_Fait (Fait => Nouveau_Fait);
+            This.Ajouter_Un_Fait
+               (
+                  Fait => Nouveau_Fait,
+                  Base => Base
+               );
          end Bloc_Construire_Conclusion;
       else
          This.Code_Erreur := Fait_Symbolique_Inconnu_E;
@@ -274,17 +302,18 @@ is
    procedure Visiter
       (
          This  : in out Visiteur_T;
+         Base  : in out Base_Faits_P.Base_De_Faits_T;
          Forme : in     Forme_P.Premisse_P.Bool_False_P.Premisse_T
       )
    is
    begin
       --  Le fait appartient à la base.
-      if This.Base.all.Contient (Nom_Fait => Forme.Lire_Nom) then
+      if Base.Contient (Nom_Fait => Forme.Lire_Nom) then
          Bloc_Construire_Premisse :
          declare
             --  Le fait trouvé dans la base.
             Fait_Trouve : constant Sys_Exp_P.Fait_P.Fait_Abstrait_T'Class :=
-               This.Base.all.Trouver (Nom_Fait => Forme.Lire_Nom);
+               Base.Trouver (Nom_Fait => Forme.Lire_Nom);
             --  On le convertit en fait booléen.
             Fait_Bool   : Booleen_R.Fait_Booleen_T renames
                Booleen_R.Fait_Booleen_T (Fait_Trouve);
@@ -311,17 +340,18 @@ is
    procedure Visiter
       (
          This  : in out Visiteur_T;
+         Base  : in out Base_Faits_P.Base_De_Faits_T;
          Forme : in     Forme_P.Premisse_P.Bool_True_P.Premisse_T
       )
    is
    begin
       --  Le fait appartient à la base.
-      if This.Base.all.Contient (Nom_Fait => Forme.Lire_Nom) then
+      if Base.Contient (Nom_Fait => Forme.Lire_Nom) then
          Bloc_Construire_Premisse :
          declare
             --  Le fait trouvé dans la base.
             Fait_Trouve : constant Sys_Exp_P.Fait_P.Fait_Abstrait_T'Class :=
-               This.Base.all.Trouver (Nom_Fait => Forme.Lire_Nom);
+               Base.Trouver (Nom_Fait => Forme.Lire_Nom);
             --  On le convertit en fait booléen.
             Fait_Bool   : Booleen_R.Fait_Booleen_T renames
                Booleen_R.Fait_Booleen_T (Fait_Trouve);
@@ -348,17 +378,18 @@ is
    procedure Visiter
       (
          This  : in out Visiteur_T;
+         Base  : in out Base_Faits_P.Base_De_Faits_T;
          Forme : in     Forme_P.Premisse_P.Expression_Entiere_P.Premisse_T
       )
    is
    begin
       --  Le fait appartient à la base.
-      if This.Base.all.Contient (Nom_Fait => Forme.Lire_Nom) then
+      if Base.Contient (Nom_Fait => Forme.Lire_Nom) then
          Bloc_Construire_Premisse :
          declare
             --  Le fait trouvé dans la base.
             Fait_Trouve : constant Sys_Exp_P.Fait_P.Fait_Abstrait_T'Class :=
-               This.Base.all.Trouver (Nom_Fait => Forme.Lire_Nom);
+               Base.Trouver (Nom_Fait => Forme.Lire_Nom);
             --  On le convertit en fait entier.
             Fait_Entier : Entier_R.Fait_Entier_T renames
                Entier_R.Fait_Entier_T (Fait_Trouve);
@@ -366,7 +397,7 @@ is
             This.Premisse_A_Ete_Verifiee := Forme.Comparer
                (
                   Gauche => Fait_Entier.Lire_Valeur,
-                  Droite => Forme.Lire_Valeur (Base => This.Base.all)
+                  Droite => Forme.Lire_Valeur (Base => Base)
                );
          end Bloc_Construire_Premisse;
       end if;
@@ -389,23 +420,24 @@ is
    procedure Visiter
       (
          This  : in out Visiteur_T;
+         Base  : in out Base_Faits_P.Base_De_Faits_T;
          Forme : in     Forme_P.Premisse_P.Fait_Entier_P.Premisse_T
       )
    is
    begin
       --  Le fait appartient à la base.
-      if This.Base.all.Contient (Nom_Fait => Forme.Lire_Nom)
+      if Base.Contient (Nom_Fait => Forme.Lire_Nom)
          and then
-         This.Base.all.Contient (Nom_Fait => Forme.Lire_Nom_Fait)
+         Base.Contient (Nom_Fait => Forme.Lire_Nom_Fait)
       then
          Bloc_Construire_Premisse :
          declare
             --  Le fait trouvé dans la base.
             Fait_Trouve : constant Sys_Exp_P.Fait_P.Fait_Abstrait_T'Class :=
-               This.Base.all.Trouver (Nom_Fait => Forme.Lire_Nom);
+               Base.Trouver (Nom_Fait => Forme.Lire_Nom);
             --  Le fait trouvé dans la base.
             Autre_Fait  : constant Sys_Exp_P.Fait_P.Fait_Abstrait_T'Class :=
-               This.Base.all.Trouver (Nom_Fait => Forme.Lire_Nom_Fait);
+               Base.Trouver (Nom_Fait => Forme.Lire_Nom_Fait);
 
             --  On le convertit en fait entier.
             Fait_Entier       : Entier_R.Fait_Entier_T renames
@@ -439,17 +471,18 @@ is
    procedure Visiter
       (
          This  : in out Visiteur_T;
+         Base  : in out Base_Faits_P.Base_De_Faits_T;
          Forme : in     Forme_P.Premisse_P.Symbole_Constant_P.Premisse_T
       )
    is
    begin
       --  Le fait appartient à la base.
-      if This.Base.all.Contient (Nom_Fait => Forme.Lire_Nom) then
+      if Base.Contient (Nom_Fait => Forme.Lire_Nom) then
          Bloc_Construire_Premisse :
          declare
             --  Le fait trouvé dans la base.
             Fait_Trouve  : constant Sys_Exp_P.Fait_P.Fait_Abstrait_T'Class :=
-               This.Base.all.Trouver (Nom_Fait => Forme.Lire_Nom);
+               Base.Trouver (Nom_Fait => Forme.Lire_Nom);
             --  On le convertit en fait entier.
             Fait_Symbole : Symbolique_R.Fait_Symbolique_T renames
                Symbolique_R.Fait_Symbolique_T (Fait_Trouve);
@@ -480,23 +513,24 @@ is
    procedure Visiter
       (
          This  : in out Visiteur_T;
+         Base  : in out Base_Faits_P.Base_De_Faits_T;
          Forme : in     Forme_P.Premisse_P.Symbole_Fait_P.Premisse_T
       )
    is
    begin
       --  Le fait appartient à la base.
-      if This.Base.all.Contient (Nom_Fait => Forme.Lire_Nom)
+      if Base.Contient (Nom_Fait => Forme.Lire_Nom)
          and then
-         This.Base.all.Contient (Nom_Fait => Forme.Lire_Nom_Fait)
+         Base.Contient (Nom_Fait => Forme.Lire_Nom_Fait)
       then
          Bloc_Construire_Premisse :
          declare
             --  Le fait trouvé dans la base.
             Fait_Trouve  : constant Sys_Exp_P.Fait_P.Fait_Abstrait_T'Class :=
-               This.Base.all.Trouver (Nom_Fait => Forme.Lire_Nom);
+               Base.Trouver (Nom_Fait => Forme.Lire_Nom);
             --  Le fait trouvé dans la base.
             Autre_Fait   : constant Sys_Exp_P.Fait_P.Fait_Abstrait_T'Class :=
-               This.Base.all.Trouver (Nom_Fait => Forme.Lire_Nom_Fait);
+               Base.Trouver (Nom_Fait => Forme.Lire_Nom_Fait);
 
             --  On le convertit en fait entier.
             Fait_Symbole       : Symbolique_R.Fait_Symbolique_T renames

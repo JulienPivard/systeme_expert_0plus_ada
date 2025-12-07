@@ -19,17 +19,15 @@ is
 
    not overriding
    function Creer
-      (Base : in     Base_Faits_P.Base_De_Faits_A)
       return Visiteur_T;
    --  Crée un visiteur de Formes.
-   --  @param Base
-   --  La base de faits.
    --  @return Le visiteur de formes.
 
    overriding
    procedure Visiter
       (
          This  : in out Visiteur_T;
+         Base  : in out Base_Faits_P.Base_De_Faits_T;
          Forme : in     Forme_P.Conclusion_P.Bool_False_P.Conclusion_T
       );
    --  Porte d'entrée pour visiter une conclusion booléenne fausse.
@@ -37,6 +35,8 @@ is
    --  si celle ci est déclenchée.
    --  @param This
    --  Le visiteur
+   --  @param Base
+   --  Le base de faits.
    --  @param Forme
    --  La conclusion à visiter.
 
@@ -44,6 +44,7 @@ is
    procedure Visiter
       (
          This  : in out Visiteur_T;
+         Base  : in out Base_Faits_P.Base_De_Faits_T;
          Forme : in     Forme_P.Conclusion_P.Bool_True_P.Conclusion_T
       );
    --  Porte d'entrée pour visiter une conclusion booléenne vraie.
@@ -51,6 +52,8 @@ is
    --  si celle ci est déclenchée.
    --  @param This
    --  Le visiteur
+   --  @param Base
+   --  Le base de faits.
    --  @param Forme
    --  La conclusion à visiter.
 
@@ -58,6 +61,7 @@ is
    procedure Visiter
       (
          This  : in out Visiteur_T;
+         Base  : in out Base_Faits_P.Base_De_Faits_T;
          Forme : in     Forme_P.Conclusion_P.Expression_Entiere_P.Conclusion_T
       );
    --  Porte d'entrée pour visiter une conclusion d'expression entière.
@@ -65,6 +69,8 @@ is
    --  si celle ci est déclenchée.
    --  @param This
    --  Le visiteur
+   --  @param Base
+   --  Le base de faits.
    --  @param Forme
    --  La conclusion à visiter.
 
@@ -72,6 +78,7 @@ is
    procedure Visiter
       (
          This  : in out Visiteur_T;
+         Base  : in out Base_Faits_P.Base_De_Faits_T;
          Forme : in     Forme_P.Conclusion_P.Fait_Entier_P.Conclusion_T
       );
    --  Porte d'entrée pour visiter une conclusion de fait entier.
@@ -79,6 +86,8 @@ is
    --  si celle ci est déclenchée.
    --  @param This
    --  Le visiteur
+   --  @param Base
+   --  Le base de faits.
    --  @param Forme
    --  La conclusion à visiter.
 
@@ -86,6 +95,7 @@ is
    procedure Visiter
       (
          This  : in out Visiteur_T;
+         Base  : in out Base_Faits_P.Base_De_Faits_T;
          Forme : in     Forme_P.Conclusion_P.Symbole_Constant_P.Conclusion_T
       );
    --  Porte d'entrée pour visiter une conclusion symbolique.
@@ -93,6 +103,8 @@ is
    --  si celle ci est déclenchée.
    --  @param This
    --  Le visiteur
+   --  @param Base
+   --  Le base de faits.
    --  @param Forme
    --  La conclusion à visiter.
 
@@ -100,6 +112,7 @@ is
    procedure Visiter
       (
          This  : in out Visiteur_T;
+         Base  : in out Base_Faits_P.Base_De_Faits_T;
          Forme : in     Forme_P.Conclusion_P.Symbole_Fait_P.Conclusion_T
       );
    --  Porte d'entrée pour visiter une conclusion de fait symbolique.
@@ -107,6 +120,8 @@ is
    --  si celle ci est déclenchée.
    --  @param This
    --  Le visiteur
+   --  @param Base
+   --  Le base de faits.
    --  @param Forme
    --  La conclusion à visiter.
 
@@ -114,6 +129,7 @@ is
    procedure Visiter
       (
          This  : in out Visiteur_T;
+         Base  : in out Base_Faits_P.Base_De_Faits_T;
          Forme : in     Forme_P.Premisse_P.Bool_False_P.Premisse_T
       );
    --  Porte d'entrée pour visiter une prémisse booléenne fausse.
@@ -121,6 +137,8 @@ is
    --  si celle ci est déclenchée.
    --  @param This
    --  Le visiteur
+   --  @param Base
+   --  Le base de faits.
    --  @param Forme
    --  La prémisse à visiter.
 
@@ -128,6 +146,7 @@ is
    procedure Visiter
       (
          This  : in out Visiteur_T;
+         Base  : in out Base_Faits_P.Base_De_Faits_T;
          Forme : in     Forme_P.Premisse_P.Bool_True_P.Premisse_T
       );
    --  Porte d'entrée pour visiter une prémisse booléenne vraie.
@@ -135,6 +154,8 @@ is
    --  si celle ci est déclenchée.
    --  @param This
    --  Le visiteur
+   --  @param Base
+   --  Le base de faits.
    --  @param Forme
    --  La prémisse à visiter.
 
@@ -142,6 +163,7 @@ is
    procedure Visiter
       (
          This  : in out Visiteur_T;
+         Base  : in out Base_Faits_P.Base_De_Faits_T;
          Forme : in     Forme_P.Premisse_P.Expression_Entiere_P.Premisse_T
       );
    --  Porte d'entrée pour visiter une prémisse d'expression entière.
@@ -149,6 +171,8 @@ is
    --  si celle ci est déclenchée.
    --  @param This
    --  Le visiteur
+   --  @param Base
+   --  Le base de faits.
    --  @param Forme
    --  La prémisse à visiter.
 
@@ -156,6 +180,7 @@ is
    procedure Visiter
       (
          This  : in out Visiteur_T;
+         Base  : in out Base_Faits_P.Base_De_Faits_T;
          Forme : in     Forme_P.Premisse_P.Fait_Entier_P.Premisse_T
       );
    --  Porte d'entrée pour visiter une prémisse de fait entier.
@@ -163,6 +188,8 @@ is
    --  si celle ci est déclenchée.
    --  @param This
    --  Le visiteur
+   --  @param Base
+   --  Le base de faits.
    --  @param Forme
    --  La prémisse à visiter.
 
@@ -170,6 +197,7 @@ is
    procedure Visiter
       (
          This  : in out Visiteur_T;
+         Base  : in out Base_Faits_P.Base_De_Faits_T;
          Forme : in     Forme_P.Premisse_P.Symbole_Constant_P.Premisse_T
       );
    --  Porte d'entrée pour visiter une prémisse symbolique.
@@ -177,6 +205,8 @@ is
    --  si celle ci est déclenchée.
    --  @param This
    --  Le visiteur
+   --  @param Base
+   --  Le base de faits.
    --  @param Forme
    --  La prémisse à visiter.
 
@@ -184,6 +214,7 @@ is
    procedure Visiter
       (
          This  : in out Visiteur_T;
+         Base  : in out Base_Faits_P.Base_De_Faits_T;
          Forme : in     Forme_P.Premisse_P.Symbole_Fait_P.Premisse_T
       );
    --  Porte d'entrée pour visiter une prémisse de fait symbolique.
@@ -191,6 +222,8 @@ is
    --  si celle ci est déclenchée.
    --  @param This
    --  Le visiteur
+   --  @param Base
+   --  Le base de faits.
    --  @param Forme
    --  La prémisse à visiter.
 

@@ -60,9 +60,6 @@ is
    Message_Vide : constant Message_Erreur_T;
    --  Un message d'erreur vide.
 
-   subtype Accesseur_Base_A is Sys_Exp_P.Base_Faits_P.Accesseur_Base_A;
-   --  Accesseur sur la base de faits.
-
    type Visiteur_Forme_Abstrait_T (<>) is abstract tagged limited private;
    --  Un visiteur de Formes abstrait. Le squelette de base de tout
    --  les visiteur de prémisses ou de conclusions.
@@ -102,6 +99,7 @@ is
    procedure Visiter
       (
          This  : in out Visiteur_Forme_Abstrait_T;
+         Base  : in out Base_Faits_P.Base_De_Faits_T;
          Forme : in     Forme_P.Conclusion_P.Bool_False_P.Conclusion_T
       )
    is abstract;
@@ -110,12 +108,15 @@ is
    --  si celle ci est déclenchée.
    --  @param This
    --  Le visiteur
+   --  @param Base
+   --  La base de faits où on va ajouter les conclusions déclenchées.
    --  @param Forme
    --  La conclusion à visiter.
 
    procedure Visiter
       (
          This  : in out Visiteur_Forme_Abstrait_T;
+         Base  : in out Base_Faits_P.Base_De_Faits_T;
          Forme : in     Forme_P.Conclusion_P.Bool_True_P.Conclusion_T
       )
    is abstract;
@@ -124,12 +125,15 @@ is
    --  si celle ci est déclenchée.
    --  @param This
    --  Le visiteur
+   --  @param Base
+   --  La base de faits où on va ajouter les conclusions déclenchées.
    --  @param Forme
    --  La conclusion à visiter.
 
    procedure Visiter
       (
          This  : in out Visiteur_Forme_Abstrait_T;
+         Base  : in out Base_Faits_P.Base_De_Faits_T;
          Forme : in     Forme_P.Conclusion_P.Expression_Entiere_P.Conclusion_T
       )
    is abstract;
@@ -138,12 +142,15 @@ is
    --  si celle ci est déclenchée.
    --  @param This
    --  Le visiteur
+   --  @param Base
+   --  La base de faits où on va ajouter les conclusions déclenchées.
    --  @param Forme
    --  La conclusion à visiter.
 
    procedure Visiter
       (
          This  : in out Visiteur_Forme_Abstrait_T;
+         Base  : in out Base_Faits_P.Base_De_Faits_T;
          Forme : in     Forme_P.Conclusion_P.Fait_Entier_P.Conclusion_T
       )
    is abstract;
@@ -152,12 +159,15 @@ is
    --  si celle ci est déclenchée.
    --  @param This
    --  Le visiteur
+   --  @param Base
+   --  La base de faits où on va ajouter les conclusions déclenchées.
    --  @param Forme
    --  La conclusion à visiter.
 
    procedure Visiter
       (
          This  : in out Visiteur_Forme_Abstrait_T;
+         Base  : in out Base_Faits_P.Base_De_Faits_T;
          Forme : in     Forme_P.Conclusion_P.Symbole_Constant_P.Conclusion_T
       )
    is abstract;
@@ -166,12 +176,15 @@ is
    --  si celle ci est déclenchée.
    --  @param This
    --  Le visiteur
+   --  @param Base
+   --  La base de faits où on va ajouter les conclusions déclenchées.
    --  @param Forme
    --  La conclusion à visiter.
 
    procedure Visiter
       (
          This  : in out Visiteur_Forme_Abstrait_T;
+         Base  : in out Base_Faits_P.Base_De_Faits_T;
          Forme : in     Forme_P.Conclusion_P.Symbole_Fait_P.Conclusion_T
       )
    is abstract;
@@ -180,12 +193,15 @@ is
    --  si celle ci est déclenchée.
    --  @param This
    --  Le visiteur
+   --  @param Base
+   --  La base de faits où on va ajouter les conclusions déclenchées.
    --  @param Forme
    --  La conclusion à visiter.
 
    procedure Visiter
       (
          This  : in out Visiteur_Forme_Abstrait_T;
+         Base  : in out Base_Faits_P.Base_De_Faits_T;
          Forme : in     Forme_P.Premisse_P.Bool_False_P.Premisse_T
       )
    is abstract;
@@ -194,12 +210,15 @@ is
    --  si celle ci est déclenchée.
    --  @param This
    --  Le visiteur
+   --  @param Base
+   --  La base de faits où on va ajouter les conclusions déclenchées.
    --  @param Forme
    --  La prémisse à visiter.
 
    procedure Visiter
       (
          This  : in out Visiteur_Forme_Abstrait_T;
+         Base  : in out Base_Faits_P.Base_De_Faits_T;
          Forme : in     Forme_P.Premisse_P.Bool_True_P.Premisse_T
       )
    is abstract;
@@ -208,12 +227,15 @@ is
    --  si celle ci est déclenchée.
    --  @param This
    --  Le visiteur
+   --  @param Base
+   --  La base de faits où on va ajouter les conclusions déclenchées.
    --  @param Forme
    --  La prémisse à visiter.
 
    procedure Visiter
       (
          This  : in out Visiteur_Forme_Abstrait_T;
+         Base  : in out Base_Faits_P.Base_De_Faits_T;
          Forme : in     Forme_P.Premisse_P.Expression_Entiere_P.Premisse_T
       )
    is abstract;
@@ -222,12 +244,15 @@ is
    --  si celle ci est déclenchée.
    --  @param This
    --  Le visiteur
+   --  @param Base
+   --  La base de faits où on va ajouter les conclusions déclenchées.
    --  @param Forme
    --  La prémisse à visiter.
 
    procedure Visiter
       (
          This  : in out Visiteur_Forme_Abstrait_T;
+         Base  : in out Base_Faits_P.Base_De_Faits_T;
          Forme : in     Forme_P.Premisse_P.Fait_Entier_P.Premisse_T
       )
    is abstract;
@@ -236,12 +261,15 @@ is
    --  si celle ci est déclenchée.
    --  @param This
    --  Le visiteur
+   --  @param Base
+   --  La base de faits où on va ajouter les conclusions déclenchées.
    --  @param Forme
    --  La prémisse à visiter.
 
    procedure Visiter
       (
          This  : in out Visiteur_Forme_Abstrait_T;
+         Base  : in out Base_Faits_P.Base_De_Faits_T;
          Forme : in     Forme_P.Premisse_P.Symbole_Constant_P.Premisse_T
       )
    is abstract;
@@ -250,12 +278,15 @@ is
    --  si celle ci est déclenchée.
    --  @param This
    --  Le visiteur
+   --  @param Base
+   --  La base de faits où on va ajouter les conclusions déclenchées.
    --  @param Forme
    --  La prémisse à visiter.
 
    procedure Visiter
       (
          This  : in out Visiteur_Forme_Abstrait_T;
+         Base  : in out Base_Faits_P.Base_De_Faits_T;
          Forme : in     Forme_P.Premisse_P.Symbole_Fait_P.Premisse_T
       )
    is abstract;
@@ -264,6 +295,8 @@ is
    --  si celle ci est déclenchée.
    --  @param This
    --  Le visiteur
+   --  @param Base
+   --  La base de faits où on va ajouter les conclusions déclenchées.
    --  @param Forme
    --  La prémisse à visiter.
 
@@ -274,8 +307,6 @@ private
 
    type Visiteur_Forme_Abstrait_T is abstract tagged limited
       record
-         Base                        : Accesseur_Base_A := null;
-         --  La base de faits où on va ajouter les conclusions déclenchées.
          Premisse_A_Ete_Verifiee     : Boolean          := False;
          --  Permet de savoir si la prémisse est vérifiée.
          Conclusion_A_Ete_Declenchee : Boolean          := False;
@@ -289,11 +320,14 @@ private
    procedure Ajouter_Un_Fait
       (
          This : in out Visiteur_Forme_Abstrait_T'Class;
+         Base : in out Base_Faits_P.Base_De_Faits_T;
          Fait : in     Sys_Exp_P.Fait_P.Fait_Abstrait_T'Class
       );
    --  Ajoute un fait à la base de faits.
    --  @param This
    --  Le visiteur.
+   --  @param Base
+   --  La base de faits où on va ajouter les conclusions déclenchées.
    --  @param Fait
    --  Le fait à ajouter.
 
@@ -309,6 +343,7 @@ private
       (This : in     Visiteur_Forme_Abstrait_T)
       return Boolean
    is (This.Conclusion_A_Ete_Declenchee);
+   --------------------------------------
 
    --------------------------------------
    function Lire_Code_Erreur

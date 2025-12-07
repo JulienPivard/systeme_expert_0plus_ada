@@ -32,13 +32,12 @@ is
    ---------------------------------------------------------------------------
    overriding
    function Creer
-      (Base : in     Base_Faits_P.Base_De_Faits_A)
       return Visiteur_Debug_T
    is
    begin
       return Visiteur_Debug_T'
          (
-            Creer_Parent (Base => Base)
+            Creer_Parent
             with null record
          );
    end Creer;
@@ -53,6 +52,7 @@ is
    procedure Visiter
       (
          This  : in out Visiteur_Debug_T;
+         Base  : in out Base_Faits_P.Base_De_Faits_T;
          Forme : in     Forme_P.Conclusion_P.Bool_False_P.Conclusion_T
       )
    is
@@ -61,7 +61,11 @@ is
       Ada.Text_IO.Put          (Item => "Ajout de ");
       Forme_P.Text_IO.Put_Line (Item => Forme);
 
-      Parent.Visiter (Forme => Forme);
+      Parent.Visiter
+         (
+            Forme => Forme,
+            Base  => Base
+         );
 
       This.Afficher;
    end Visiter;
@@ -72,6 +76,7 @@ is
    procedure Visiter
       (
          This  : in out Visiteur_Debug_T;
+         Base  : in out Base_Faits_P.Base_De_Faits_T;
          Forme : in     Forme_P.Conclusion_P.Bool_True_P.Conclusion_T
       )
    is
@@ -80,7 +85,11 @@ is
       Ada.Text_IO.Put          (Item => "Ajout de ");
       Forme_P.Text_IO.Put_Line (Item => Forme);
 
-      Parent.Visiter (Forme => Forme);
+      Parent.Visiter
+         (
+            Forme => Forme,
+            Base  => Base
+         );
 
       This.Afficher;
    end Visiter;
@@ -91,6 +100,7 @@ is
    procedure Visiter
       (
          This  : in out Visiteur_Debug_T;
+         Base  : in out Base_Faits_P.Base_De_Faits_T;
          Forme : in     Forme_P.Conclusion_P.Expression_Entiere_P.Conclusion_T
       )
    is
@@ -99,7 +109,11 @@ is
       Ada.Text_IO.Put          (Item => "Ajout de ");
       Forme_P.Text_IO.Put_Line (Item => Forme);
 
-      Parent.Visiter (Forme => Forme);
+      Parent.Visiter
+         (
+            Forme => Forme,
+            Base  => Base
+         );
 
       This.Afficher;
    end Visiter;
@@ -110,6 +124,7 @@ is
    procedure Visiter
       (
          This  : in out Visiteur_Debug_T;
+         Base  : in out Base_Faits_P.Base_De_Faits_T;
          Forme : in     Forme_P.Conclusion_P.Fait_Entier_P.Conclusion_T
       )
    is
@@ -118,7 +133,11 @@ is
       Ada.Text_IO.Put          (Item => "Ajout de ");
       Forme_P.Text_IO.Put_Line (Item => Forme);
 
-      Parent.Visiter (Forme => Forme);
+      Parent.Visiter
+         (
+            Forme => Forme,
+            Base  => Base
+         );
 
       This.Afficher;
    end Visiter;
@@ -129,6 +148,7 @@ is
    procedure Visiter
       (
          This  : in out Visiteur_Debug_T;
+         Base  : in out Base_Faits_P.Base_De_Faits_T;
          Forme : in     Forme_P.Conclusion_P.Symbole_Constant_P.Conclusion_T
       )
    is
@@ -137,7 +157,11 @@ is
       Ada.Text_IO.Put          (Item => "Ajout de ");
       Forme_P.Text_IO.Put_Line (Item => Forme);
 
-      Parent.Visiter (Forme => Forme);
+      Parent.Visiter
+         (
+            Forme => Forme,
+            Base  => Base
+         );
 
       This.Afficher;
    end Visiter;
@@ -148,6 +172,7 @@ is
    procedure Visiter
       (
          This  : in out Visiteur_Debug_T;
+         Base  : in out Base_Faits_P.Base_De_Faits_T;
          Forme : in     Forme_P.Conclusion_P.Symbole_Fait_P.Conclusion_T
       )
    is
@@ -156,7 +181,11 @@ is
       Ada.Text_IO.Put          (Item => "Ajout de ");
       Forme_P.Text_IO.Put_Line (Item => Forme);
 
-      Parent.Visiter (Forme => Forme);
+      Parent.Visiter
+         (
+            Forme => Forme,
+            Base  => Base
+         );
 
       This.Afficher;
    end Visiter;
@@ -171,6 +200,7 @@ is
    procedure Visiter
       (
          This  : in out Visiteur_Debug_T;
+         Base  : in out Base_Faits_P.Base_De_Faits_T;
          Forme : in     Forme_P.Premisse_P.Bool_False_P.Premisse_T
       )
    is
@@ -179,7 +209,11 @@ is
       Ada.Text_IO.Put          (Item => "Test de ");
       Forme_P.Text_IO.Put_Line (Item => Forme);
 
-      Parent.Visiter (Forme => Forme);
+      Parent.Visiter
+         (
+            Forme => Forme,
+            Base  => Base
+         );
 
       This.Afficher;
    end Visiter;
@@ -190,6 +224,7 @@ is
    procedure Visiter
       (
          This  : in out Visiteur_Debug_T;
+         Base  : in out Base_Faits_P.Base_De_Faits_T;
          Forme : in     Forme_P.Premisse_P.Bool_True_P.Premisse_T
       )
    is
@@ -198,7 +233,11 @@ is
       Ada.Text_IO.Put          (Item => "Test de ");
       Forme_P.Text_IO.Put_Line (Item => Forme);
 
-      Parent.Visiter (Forme => Forme);
+      Parent.Visiter
+         (
+            Forme => Forme,
+            Base  => Base
+         );
 
       This.Afficher;
    end Visiter;
@@ -209,6 +248,7 @@ is
    procedure Visiter
       (
          This  : in out Visiteur_Debug_T;
+         Base  : in out Base_Faits_P.Base_De_Faits_T;
          Forme : in     Forme_P.Premisse_P.Expression_Entiere_P.Premisse_T
       )
    is
@@ -217,7 +257,11 @@ is
       Ada.Text_IO.Put          (Item => "Test de ");
       Forme_P.Text_IO.Put_Line (Item => Forme);
 
-      Parent.Visiter (Forme => Forme);
+      Parent.Visiter
+         (
+            Forme => Forme,
+            Base  => Base
+         );
 
       This.Afficher;
    end Visiter;
@@ -228,6 +272,7 @@ is
    procedure Visiter
       (
          This  : in out Visiteur_Debug_T;
+         Base  : in out Base_Faits_P.Base_De_Faits_T;
          Forme : in     Forme_P.Premisse_P.Fait_Entier_P.Premisse_T
       )
    is
@@ -236,7 +281,11 @@ is
       Ada.Text_IO.Put          (Item => "Test de ");
       Forme_P.Text_IO.Put_Line (Item => Forme);
 
-      Parent.Visiter (Forme => Forme);
+      Parent.Visiter
+         (
+            Forme => Forme,
+            Base  => Base
+         );
 
       This.Afficher;
    end Visiter;
@@ -247,6 +296,7 @@ is
    procedure Visiter
       (
          This  : in out Visiteur_Debug_T;
+         Base  : in out Base_Faits_P.Base_De_Faits_T;
          Forme : in     Forme_P.Premisse_P.Symbole_Constant_P.Premisse_T
       )
    is
@@ -255,7 +305,11 @@ is
       Ada.Text_IO.Put          (Item => "Test de ");
       Forme_P.Text_IO.Put_Line (Item => Forme);
 
-      Parent.Visiter (Forme => Forme);
+      Parent.Visiter
+         (
+            Forme => Forme,
+            Base  => Base
+         );
 
       This.Afficher;
    end Visiter;
@@ -266,6 +320,7 @@ is
    procedure Visiter
       (
          This  : in out Visiteur_Debug_T;
+         Base  : in out Base_Faits_P.Base_De_Faits_T;
          Forme : in     Forme_P.Premisse_P.Symbole_Fait_P.Premisse_T
       )
    is
@@ -274,7 +329,11 @@ is
       Ada.Text_IO.Put          (Item => "Test de ");
       Forme_P.Text_IO.Put_Line (Item => Forme);
 
-      Parent.Visiter (Forme => Forme);
+      Parent.Visiter
+         (
+            Forme => Forme,
+            Base  => Base
+         );
 
       This.Afficher;
    end Visiter;

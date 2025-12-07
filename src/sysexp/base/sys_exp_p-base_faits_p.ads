@@ -20,11 +20,6 @@ is
    type Base_De_Faits_T is tagged limited private;
    --  La base de faits.
 
-   type Accesseur_Base_A is access all Base_De_Faits_T
-      with Storage_Size => 0;
-
-   subtype Base_De_Faits_A is not null Accesseur_Base_A;
-
    function Contient
       (
          This     : in     Base_De_Faits_T;

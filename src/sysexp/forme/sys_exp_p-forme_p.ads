@@ -1,4 +1,5 @@
 with Nom_Holder_P;
+with Sys_Exp_P.Base_Faits_P;
 with Sys_Exp_P.Visiteur_Forme_P;
 
 --  @summary
@@ -34,12 +35,15 @@ is
    procedure Accepte
       (
          This     : in     Forme_Abstraite_T;
+         Base     : in out Base_Faits_P.Base_De_Faits_T;
          Visiteur : in out Classe_Visiteur_Forme_T
       )
    is abstract;
    --  Accepte un visiteur pour étendre les fonctions.
    --  @param This
    --  La prémisse ou la conclusion.
+   --  @param Base
+   --  La base de faits où on va ajouter les conclusions déclenchées.
    --  @param Visiteur
    --  Le visiteur de forme.
 

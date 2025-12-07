@@ -1,8 +1,6 @@
 with Ada.Tags;
 with Ada.Text_IO;
 
-with Sys_Exp_P.Base_Faits_P.Text_IO;
-
 package body Sys_Exp_P.Visiteur_Forme_P.Text_IO
    with Spark_Mode => Off
 is
@@ -43,9 +41,6 @@ is
             Ada.Text_IO.Put_Line (Item => "Le fait symbolique est inconnu.");
             Ada.Text_IO.Put_Line (Item => "[" & Item.Message_D_Erreur & "]");
       end case;
-
-      Ada.Text_IO.Put_Line (Item => "Contenu de la base");
-      Sys_Exp_P.Base_Faits_P.Text_IO.Put_Line (Item => Item.Base.all);
 
       Ada.Text_IO.Put_Line
          (Item => "[" & Ada.Tags.Expanded_Name (T => Item'Tag) & "]");
