@@ -1,5 +1,6 @@
-with Map_Fait_P;
 with Sys_Exp_P.Fait_P;
+
+private with Map_Fait_P;
 
 --  @summary
 --  La base contenant tous les faits.
@@ -14,7 +15,7 @@ package Sys_Exp_P.Base_Faits_P
       Spark_Mode     => Off
 is
 
-   subtype Fait_Abstrait_T is Sys_Exp_P.Fait_P.Fait_Abstrait_T;
+   subtype Fait_Abstrait_T is Fait_P.Fait_Abstrait_T;
 
    type Base_De_Faits_T is tagged limited private;
    --  La base de faits.
