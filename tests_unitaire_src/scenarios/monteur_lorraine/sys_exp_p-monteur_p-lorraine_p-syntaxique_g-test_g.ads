@@ -1,6 +1,8 @@
 with AUnit;
 with AUnit.Test_Fixtures;
 
+with Sys_Exp_P.Base_Faits_P;
+
 generic
 
 --  @summary
@@ -15,7 +17,7 @@ package Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G.Test_G is
 
    type Test_Fixt_T is new AUnit.Test_Fixtures.Test_Fixture with
       record
-         null;
+         Base : Base_Faits_P.Base_De_Faits_T;
       end record;
 
    overriding

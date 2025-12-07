@@ -10,8 +10,6 @@ with Sys_Exp_P.Forme_P.Premisse_P.Bool_True_P;
 
 with Sys_Exp_P.Visiteur_Forme_P.Declencheur_P.Fabrique_P;
 
-with Sys_Exp_P.Base_Faits_P;
-
 with Encode;
 with Facilites_P;
 
@@ -26,16 +24,13 @@ is
 
    Generateur_ID : ID_Alea_P.Generator;
 
-   Base : aliased Sys_Exp_P.Base_Faits_P.Base_De_Faits_T;
-
    ---------------------------------------------------------------------------
    overriding
    procedure Set_Up
       (T : in out Test_Fixt_T)
    is
-      pragma Unreferenced (T);
    begin
-      Base.Vider;
+      T.Base.Vider;
    end Set_Up;
    ---------------------------------------------------------------------------
 
@@ -323,7 +318,7 @@ is
                (Item => "La règle doit avoir un successeur")
          );
 
-      Reussi := T.Regle.Iterer (Base => Base'Access);
+      Reussi := T.Regle.Iterer (Base => T.Base);
       AUnit.Assertions.Assert
          (
             Condition => not Reussi,
@@ -336,8 +331,8 @@ is
             Message   => Encode
                (Item => "La règle ne doit pas avoir été déclenchée")
          );
-      Base.Ajouter (Nouvel_Item => F_V);
-      Reussi := T.Regle.Iterer (Base => Base'Access);
+      T.Base.Ajouter (Nouvel_Item => F_V);
+      Reussi := T.Regle.Iterer (Base => T.Base);
       AUnit.Assertions.Assert
          (
             Condition => Reussi,
@@ -416,7 +411,7 @@ is
                (Item => "La règle doit avoir un successeur")
          );
 
-      Reussi := T.Regle.Iterer (Base => Base'Access);
+      Reussi := T.Regle.Iterer (Base => T.Base);
       AUnit.Assertions.Assert
          (
             Condition => not Reussi,
@@ -429,8 +424,8 @@ is
             Message   => Encode
                (Item => "La règle ne doit pas avoir été déclenchée")
          );
-      Base.Ajouter (Nouvel_Item => F_V);
-      Reussi := T.Regle.Iterer (Base => Base'Access);
+      T.Base.Ajouter (Nouvel_Item => F_V);
+      Reussi := T.Regle.Iterer (Base => T.Base);
       AUnit.Assertions.Assert
          (
             Condition => Reussi,
@@ -547,7 +542,7 @@ is
 
       Premisse_Verifiee : Boolean;
    begin
-      Base.Ajouter (Nouvel_Item => F_V);
+      T.Base.Ajouter (Nouvel_Item => F_V);
       T.Regle := Creer
          (
             ID_Regle   => ID,
@@ -555,7 +550,7 @@ is
             Premisse   => P,
             Fabrique   => Fabrique
          );
-      Premisse_Verifiee := T.Regle.Verifier_Premisse (Base => Base'Access);
+      Premisse_Verifiee := T.Regle.Verifier_Premisse (Base => T.Base);
       AUnit.Assertions.Assert
          (
             Condition => Premisse_Verifiee,
@@ -568,8 +563,8 @@ is
 
       T.Regle.Ajouter (Premisse => Q);
 
-      Base.Ajouter (Nouvel_Item => F_F);
-      Premisse_Verifiee := T.Regle.Verifier_Premisse (Base => Base'Access);
+      T.Base.Ajouter (Nouvel_Item => F_F);
+      Premisse_Verifiee := T.Regle.Verifier_Premisse (Base => T.Base);
       AUnit.Assertions.Assert
          (
             Condition => T.Regle.Premisses.Length = 2,

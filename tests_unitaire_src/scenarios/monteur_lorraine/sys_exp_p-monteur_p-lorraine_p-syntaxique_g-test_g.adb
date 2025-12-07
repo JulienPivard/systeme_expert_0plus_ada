@@ -16,16 +16,13 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G.Test_G is
 
    package Fab_R renames Visiteur_Forme_P.Declencheur_P.Fabrique_P;
 
-   Base : aliased Base_Faits_P.Base_De_Faits_T;
-
    ---------------------------------------------------------------------------
    overriding
    procedure Set_Up
       (T : in out Test_Fixt_T)
    is
-      pragma Unreferenced (T);
    begin
-      null;
+      T.Base.Vider;
    end Set_Up;
    ---------------------------------------------------------------------------
 
@@ -89,7 +86,6 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G.Test_G is
 
       F : constant Fab_R.Fabrique_T := Fab_R.Creer;
    begin
-      Base_Faits_P.Extension_P.R_A_Z (Base => Base);
       Faux_Fichier_P.Remplir
          (
             Contenu =>
@@ -130,7 +126,6 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G.Test_G is
 
       F : constant Fab_R.Fabrique_T := Fab_R.Creer;
    begin
-      Base_Faits_P.Extension_P.R_A_Z (Base => Base);
       Faux_Fichier_P.Remplir
          (
             Contenu =>
@@ -174,7 +169,6 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G.Test_G is
 
       F : constant Fab_R.Fabrique_T := Fab_R.Creer;
    begin
-      Base_Faits_P.Extension_P.R_A_Z (Base => Base);
       Faux_Fichier_P.Remplir
          (
             Contenu =>
@@ -223,7 +217,6 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G.Test_G is
 
       F : constant Fab_R.Fabrique_T := Fab_R.Creer;
    begin
-      Base_Faits_P.Extension_P.R_A_Z (Base => Base);
       Faux_Fichier_P.Remplir
          (
             Contenu =>
@@ -289,11 +282,8 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G.Test_G is
    procedure Test_Appliquer_1_Regle
       (T : in out Test_Fixt_T)
    is
-      pragma Unreferenced (T);
-
       F : constant Fab_R.Fabrique_T := Fab_R.Creer;
    begin
-      Base_Faits_P.Extension_P.R_A_Z (Base => Base);
       Faux_Fichier_P.Remplir
          (
             Contenu =>
@@ -343,7 +333,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G.Test_G is
          begin
             B_Tester :
             loop
-               Continuer := Regles.Iterer (Base => Base'Access);
+               Continuer := Regles.Iterer (Base => T.Base);
                exit B_Tester when not Continuer;
             end loop B_Tester;
             pragma Unreferenced (Regles);
@@ -357,7 +347,7 @@ package body Sys_Exp_P.Monteur_P.Lorraine_P.Syntaxique_G.Test_G is
             Bloc_Verifier_NB :
             declare
                NB : constant Integer :=
-                  Base_Faits_P.Extension_P.NB_Elements (B => Base);
+                  Base_Faits_P.Extension_P.NB_Elements (B => T.Base);
             begin
                AUnit.Assertions.Assert
                   (

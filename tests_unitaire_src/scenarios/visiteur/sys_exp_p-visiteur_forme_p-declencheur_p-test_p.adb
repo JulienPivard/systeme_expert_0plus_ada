@@ -1,13 +1,9 @@
 with AUnit.Assertions;
 
-with Sys_Exp_P.Base_Faits_P;
-
 with Encode;
 with Facilites_P;
 with Facilites_P.Fait_P;
 with Facilites_P.Valeur_P;
-
-with Sys_Exp_P.Base_Faits_P.Extension_P;
 
 with Sys_Exp_P.Fait_P.Booleen_P;
 with Sys_Exp_P.Fait_P.Entier_P;
@@ -36,8 +32,6 @@ package body Sys_Exp_P.Visiteur_Forme_P.Declencheur_P.Test_P
    with Spark_Mode => Off
 is
 
-   Base : aliased Sys_Exp_P.Base_Faits_P.Base_De_Faits_T;
-
    --------------------------------------
    function Test_Egale
       (
@@ -63,9 +57,8 @@ is
    procedure Set_Up
       (T : in out Test_Fixt_T)
    is
-      pragma Unreferenced (T);
    begin
-      Sys_Exp_P.Base_Faits_P.Extension_P.R_A_Z (Base => Base);
+      T.Base.Vider;
    end Set_Up;
    ---------------------------------------------------------------------------
 
@@ -89,7 +82,7 @@ is
    is
       pragma Unreferenced (T);
 
-      Visiteur : constant Visiteur_T := Creer (Base => Base'Access);
+      Visiteur : constant Visiteur_T := Creer;
    begin
       AUnit.Assertions.Assert
          (
@@ -127,14 +120,16 @@ is
    procedure Test_Conclusion_Bool_False
       (T : in out Test_Fixt_T)
    is
-      pragma Unreferenced (T);
-
       C : constant C_Bool_False_R.Conclusion_T :=
          C_Bool_False_R.Creer (Nom => Facilites_P.Creer_Nom);
 
-      Visiteur : Visiteur_T := Creer (Base => Base'Access);
+      Visiteur : Visiteur_T := Creer;
    begin
-      C.Accepte (Visiteur => Visiteur);
+      C.Accepte
+         (
+            Visiteur => Visiteur,
+            Base     => T.Base
+         );
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Premisse_A_Ete_Verifiee,
@@ -164,7 +159,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => Visiteur.Base.all.Contient (Nom_Fait => C.Lire_Nom),
+            Condition => T.Base.Contient (Nom_Fait => C.Lire_Nom),
             Message   => Encode
                (
                   Item => "Le fait booleen [" & String (C.Lire_Nom) & "] " &
@@ -175,7 +170,7 @@ is
       Bloc_Lire_Fait :
       declare
          Fait : constant Sys_Exp_P.Fait_P.Fait_Abstrait_T'Class :=
-            Visiteur.Base.all.Trouver (Nom_Fait => C.Lire_Nom);
+            T.Base.Trouver (Nom_Fait => C.Lire_Nom);
       begin
          AUnit.Assertions.Assert
             (
@@ -213,14 +208,16 @@ is
    procedure Test_Conclusion_Bool_True
       (T : in out Test_Fixt_T)
    is
-      pragma Unreferenced (T);
-
       C : constant C_Bool_True_R.Conclusion_T :=
          C_Bool_True_R.Creer (Nom => Facilites_P.Creer_Nom);
 
-      Visiteur : Visiteur_T := Creer (Base => Base'Access);
+      Visiteur : Visiteur_T := Creer;
    begin
-      C.Accepte (Visiteur => Visiteur);
+      C.Accepte
+         (
+            Visiteur => Visiteur,
+            Base     => T.Base
+         );
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Premisse_A_Ete_Verifiee,
@@ -250,7 +247,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => Visiteur.Base.all.Contient (Nom_Fait => C.Lire_Nom),
+            Condition => T.Base.Contient (Nom_Fait => C.Lire_Nom),
             Message   => Encode
                (
                   Item => "Le fait booleen [" & String (C.Lire_Nom) & "] " &
@@ -261,7 +258,7 @@ is
       Bloc_Lire_Fait :
       declare
          Fait : constant Sys_Exp_P.Fait_P.Fait_Abstrait_T'Class :=
-            Visiteur.Base.all.Trouver (Nom_Fait => C.Lire_Nom);
+            T.Base.Trouver (Nom_Fait => C.Lire_Nom);
       begin
          AUnit.Assertions.Assert
             (
@@ -299,16 +296,14 @@ is
    procedure Test_Conclusion_Expression
       (T : in out Test_Fixt_T)
    is
-      pragma Unreferenced (T);
-
       Valeur : Sys_Exp_P.Entier_T;
 
-      Visiteur : Visiteur_T := Creer (Base => Base'Access);
+      Visiteur : Visiteur_T := Creer;
 
       V : constant Sys_Exp_P.Valeur_P.Valeur_Abstraite_T'Class :=
          Facilites_P.Valeur_P.Creer_Valeur
             (
-               Base   => Visiteur.Base.all,
+               Base   => T.Base,
                Valeur => Valeur
             );
 
@@ -318,7 +313,11 @@ is
             Expression => V
          );
    begin
-      E.Accepte (Visiteur => Visiteur);
+      E.Accepte
+         (
+            Visiteur => Visiteur,
+            Base     => T.Base
+         );
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Premisse_A_Ete_Verifiee,
@@ -348,7 +347,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => Visiteur.Base.all.Contient (Nom_Fait => E.Lire_Nom),
+            Condition => T.Base.Contient (Nom_Fait => E.Lire_Nom),
             Message   => Encode
                (
                   Item => "Le fait entier [" & String (E.Lire_Nom) & "] " &
@@ -359,7 +358,7 @@ is
       Bloc_Lire_Fait :
       declare
          Fait : constant Sys_Exp_P.Fait_P.Fait_Abstrait_T'Class :=
-            Visiteur.Base.all.Trouver (Nom_Fait => E.Lire_Nom);
+            T.Base.Trouver (Nom_Fait => E.Lire_Nom);
       begin
          AUnit.Assertions.Assert
             (
@@ -397,8 +396,6 @@ is
    procedure Test_Conclusion_Fait_Entier
       (T : in out Test_Fixt_T)
    is
-      pragma Unreferenced (T);
-
       Nom : constant Sys_Exp_P.Nom_T := Facilites_P.Creer_Nom;
 
       E : constant C_Fait_Entier_R.Conclusion_T := C_Fait_Entier_R.Creer
@@ -410,10 +407,14 @@ is
       V : constant Sys_Exp_P.Fait_P.Entier_P.Fait_Entier_T :=
          Facilites_P.Fait_P.Creer_Fait_Entier (Nom => E.Lire_Nom_Fait);
 
-      Visiteur : Visiteur_T := Creer (Base => Base'Access);
+      Visiteur : Visiteur_T := Creer;
    begin
-      Visiteur.Base.all.Ajouter (Nouvel_Item => V);
-      E.Accepte (Visiteur => Visiteur);
+      T.Base.Ajouter (Nouvel_Item => V);
+      E.Accepte
+         (
+            Visiteur => Visiteur,
+            Base     => T.Base
+         );
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Premisse_A_Ete_Verifiee,
@@ -443,7 +444,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => Visiteur.Base.all.Contient (Nom_Fait => E.Lire_Nom),
+            Condition => T.Base.Contient (Nom_Fait => E.Lire_Nom),
             Message   => Encode
                (
                   Item => "Le fait entier [" & String (E.Lire_Nom) & "] " &
@@ -452,8 +453,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => Visiteur.Base.all.Contient
-               (Nom_Fait => E.Lire_Nom_Fait),
+            Condition => T.Base.Contient (Nom_Fait => E.Lire_Nom_Fait),
             Message   => Encode
                (
                   Item => "L'autre fait entier " &
@@ -465,7 +465,7 @@ is
       Bloc_Lire_Fait :
       declare
          Fait : constant Sys_Exp_P.Fait_P.Fait_Abstrait_T'Class :=
-            Visiteur.Base.all.Trouver (Nom_Fait => E.Lire_Nom);
+            T.Base.Trouver (Nom_Fait => E.Lire_Nom);
       begin
          AUnit.Assertions.Assert
             (
@@ -504,8 +504,6 @@ is
    procedure Test_Conclusion_Symbolique_Const
       (T : in out Test_Fixt_T)
    is
-      pragma Unreferenced (T);
-
       Nom : constant Sys_Exp_P.Nom_T := Facilites_P.Creer_Nom;
 
       S : constant C_Sym_Constant_R.Conclusion_T := C_Sym_Constant_R.Creer
@@ -514,9 +512,13 @@ is
             Nom_Symbole => Facilites_P.Creer_Symbole
          );
 
-      Visiteur : Visiteur_T := Creer (Base => Base'Access);
+      Visiteur : Visiteur_T := Creer;
    begin
-      S.Accepte (Visiteur => Visiteur);
+      S.Accepte
+         (
+            Visiteur => Visiteur,
+            Base     => T.Base
+         );
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Premisse_A_Ete_Verifiee,
@@ -546,7 +548,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => Visiteur.Base.all.Contient (Nom_Fait => S.Lire_Nom),
+            Condition => T.Base.Contient (Nom_Fait => S.Lire_Nom),
             Message   => Encode
                (
                   Item => "Le fait symbolique " &
@@ -558,7 +560,7 @@ is
       Bloc_Lire_Fait :
       declare
          Fait : constant Sys_Exp_P.Fait_P.Fait_Abstrait_T'Class :=
-            Visiteur.Base.all.Trouver (Nom_Fait => S.Lire_Nom);
+            T.Base.Trouver (Nom_Fait => S.Lire_Nom);
       begin
          AUnit.Assertions.Assert
             (
@@ -598,8 +600,6 @@ is
    procedure Test_Conclusion_Symbolique_Fait
       (T : in out Test_Fixt_T)
    is
-      pragma Unreferenced (T);
-
       Nom : constant Sys_Exp_P.Nom_T := Facilites_P.Creer_Nom;
 
       S : constant C_Sym_Fait_R.Conclusion_T := C_Sym_Fait_R.Creer
@@ -611,10 +611,14 @@ is
       F : constant Sys_Exp_P.Fait_P.Symbolique_P.Fait_Symbolique_T :=
          Facilites_P.Fait_P.Creer_Fait_Symbolique (Nom => S.Lire_Nom_Fait);
 
-      Visiteur : Visiteur_T := Creer (Base => Base'Access);
+      Visiteur : Visiteur_T := Creer;
    begin
-      Visiteur.Base.all.Ajouter (Nouvel_Item => F);
-      S.Accepte (Visiteur => Visiteur);
+      T.Base.Ajouter (Nouvel_Item => F);
+      S.Accepte
+         (
+            Visiteur => Visiteur,
+            Base     => T.Base
+         );
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Premisse_A_Ete_Verifiee,
@@ -644,7 +648,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => Visiteur.Base.all.Contient (Nom_Fait => S.Lire_Nom),
+            Condition => T.Base.Contient (Nom_Fait => S.Lire_Nom),
             Message   => Encode
                (
                   Item => "Le fait symbolique " &
@@ -656,7 +660,7 @@ is
       Bloc_Lire_Fait :
       declare
          Fait : constant Sys_Exp_P.Fait_P.Fait_Abstrait_T'Class :=
-            Visiteur.Base.all.Trouver (Nom_Fait => S.Lire_Nom);
+            T.Base.Trouver (Nom_Fait => S.Lire_Nom);
       begin
          AUnit.Assertions.Assert
             (
@@ -695,8 +699,6 @@ is
    procedure Test_Premisse_Bool_False_Rate
       (T : in out Test_Fixt_T)
    is
-      pragma Unreferenced (T);
-
       P    : constant P_Bool_False_R.Premisse_T                 :=
          P_Bool_False_R.Creer (Nom => Facilites_P.Creer_Nom);
       Fait : constant Sys_Exp_P.Fait_P.Booleen_P.Fait_Booleen_T :=
@@ -706,9 +708,13 @@ is
                Valeur => True
             );
 
-      Visiteur : Visiteur_T := Creer (Base => Base'Access);
+      Visiteur : Visiteur_T := Creer;
    begin
-      P.Accepte (Visiteur => Visiteur);
+      P.Accepte
+         (
+            Visiteur => Visiteur,
+            Base     => T.Base
+         );
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Premisse_A_Ete_Verifiee,
@@ -738,8 +744,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => not Visiteur.Base.all.Contient
-               (Nom_Fait => P.Lire_Nom),
+            Condition => not T.Base.Contient (Nom_Fait => P.Lire_Nom),
             Message   => Encode
                (
                   Item => "Le fait booleen [" & String (P.Lire_Nom) & "] " &
@@ -747,8 +752,12 @@ is
                )
          );
 
-      Visiteur.Base.all.Ajouter (Nouvel_Item => Fait);
-      P.Accepte (Visiteur => Visiteur);
+      T.Base.Ajouter (Nouvel_Item => Fait);
+      P.Accepte
+         (
+            Visiteur => Visiteur,
+            Base     => T.Base
+         );
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Premisse_A_Ete_Verifiee,
@@ -778,7 +787,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => Visiteur.Base.all.Contient (Nom_Fait => P.Lire_Nom),
+            Condition => T.Base.Contient (Nom_Fait => P.Lire_Nom),
             Message   => Encode
                (
                   Item => "Le fait booleen [" & String (P.Lire_Nom) & "] " &
@@ -794,8 +803,6 @@ is
    procedure Test_Premisse_Bool_True_Rate
       (T : in out Test_Fixt_T)
    is
-      pragma Unreferenced (T);
-
       P    : constant P_Bool_True_R.Premisse_T                  :=
          P_Bool_True_R.Creer (Nom => Facilites_P.Creer_Nom);
       Fait : constant Sys_Exp_P.Fait_P.Booleen_P.Fait_Booleen_T :=
@@ -805,9 +812,13 @@ is
                Valeur => False
             );
 
-      Visiteur : Visiteur_T := Creer (Base => Base'Access);
+      Visiteur : Visiteur_T := Creer;
    begin
-      P.Accepte (Visiteur => Visiteur);
+      P.Accepte
+         (
+            Visiteur => Visiteur,
+            Base     => T.Base
+         );
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Premisse_A_Ete_Verifiee,
@@ -837,8 +848,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => not Visiteur.Base.all.Contient
-               (Nom_Fait => P.Lire_Nom),
+            Condition => not T.Base.Contient (Nom_Fait => P.Lire_Nom),
             Message   => Encode
                (
                   Item => "Le fait booleen [" & String (P.Lire_Nom) & "] " &
@@ -846,8 +856,12 @@ is
                )
          );
 
-      Visiteur.Base.all.Ajouter (Nouvel_Item => Fait);
-      P.Accepte (Visiteur => Visiteur);
+      T.Base.Ajouter (Nouvel_Item => Fait);
+      P.Accepte
+         (
+            Visiteur => Visiteur,
+            Base     => T.Base
+         );
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Premisse_A_Ete_Verifiee,
@@ -877,7 +891,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => Visiteur.Base.all.Contient (Nom_Fait => P.Lire_Nom),
+            Condition => T.Base.Contient (Nom_Fait => P.Lire_Nom),
             Message   => Encode
                (
                   Item => "Le fait booleen [" & String (P.Lire_Nom) & "] " &
@@ -893,16 +907,14 @@ is
    procedure Test_Premisse_Expression_Rate
       (T : in out Test_Fixt_T)
    is
-      pragma Unreferenced (T);
-
       Valeur : Sys_Exp_P.Entier_T;
 
-      Visiteur : Visiteur_T := Creer (Base => Base'Access);
+      Visiteur : Visiteur_T := Creer;
 
       V : constant Sys_Exp_P.Valeur_P.Valeur_Abstraite_T'Class :=
          Facilites_P.Valeur_P.Creer_Valeur
             (
-               Base   => Visiteur.Base.all,
+               Base   => T.Base,
                Valeur => Valeur
             );
 
@@ -919,7 +931,11 @@ is
                Valeur => Valeur + 1
             );
    begin
-      E.Accepte (Visiteur => Visiteur);
+      E.Accepte
+         (
+            Visiteur => Visiteur,
+            Base     => T.Base
+         );
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Premisse_A_Ete_Verifiee,
@@ -949,8 +965,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => not Visiteur.Base.all.Contient
-               (Nom_Fait => E.Lire_Nom),
+            Condition => not T.Base.Contient (Nom_Fait => E.Lire_Nom),
             Message   => Encode
                (
                   Item => "Le fait entier [" & String (E.Lire_Nom) & "] " &
@@ -958,8 +973,12 @@ is
                )
          );
 
-      Visiteur.Base.all.Ajouter (Nouvel_Item => F);
-      E.Accepte (Visiteur => Visiteur);
+      T.Base.Ajouter (Nouvel_Item => F);
+      E.Accepte
+         (
+            Visiteur => Visiteur,
+            Base     => T.Base
+         );
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Premisse_A_Ete_Verifiee,
@@ -989,7 +1008,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => Visiteur.Base.all.Contient (Nom_Fait => E.Lire_Nom),
+            Condition => T.Base.Contient (Nom_Fait => E.Lire_Nom),
             Message   => Encode
                (
                   Item => "Le fait entier [" & String (E.Lire_Nom) & "] " &
@@ -1005,8 +1024,6 @@ is
    procedure Test_Premisse_Fait_Entier_Rate
       (T : in out Test_Fixt_T)
    is
-      pragma Unreferenced (T);
-
       Nom : constant Sys_Exp_P.Nom_T := Facilites_P.Creer_Nom;
 
       E : constant P_Fait_Entier_R.Premisse_T := P_Fait_Entier_R.Creer
@@ -1025,9 +1042,13 @@ is
                Fait => F_1
             );
 
-      Visiteur : Visiteur_T := Creer (Base => Base'Access);
+      Visiteur : Visiteur_T := Creer;
    begin
-      E.Accepte (Visiteur => Visiteur);
+      E.Accepte
+         (
+            Visiteur => Visiteur,
+            Base     => T.Base
+         );
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Premisse_A_Ete_Verifiee,
@@ -1057,8 +1078,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => not Visiteur.Base.all.Contient
-               (Nom_Fait => E.Lire_Nom),
+            Condition => not T.Base.Contient (Nom_Fait => E.Lire_Nom),
             Message   => Encode
                (
                   Item => "Le fait entier [" & String (E.Lire_Nom) & "] " &
@@ -1067,8 +1087,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => not Visiteur.Base.all.Contient
-               (Nom_Fait => E.Lire_Nom_Fait),
+            Condition => not T.Base.Contient (Nom_Fait => E.Lire_Nom_Fait),
             Message   => Encode
                (
                   Item => "Le fait entier [" & String (E.Lire_Nom) & "] " &
@@ -1076,9 +1095,13 @@ is
                )
          );
 
-      Visiteur.Base.all.Ajouter (Nouvel_Item => F_1);
-      Visiteur.Base.all.Ajouter (Nouvel_Item => F_2);
-      E.Accepte (Visiteur => Visiteur);
+      T.Base.Ajouter (Nouvel_Item => F_1);
+      T.Base.Ajouter (Nouvel_Item => F_2);
+      E.Accepte
+         (
+            Visiteur => Visiteur,
+            Base     => T.Base
+         );
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Premisse_A_Ete_Verifiee,
@@ -1112,15 +1135,13 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => Visiteur.Base.all.Contient
-               (Nom_Fait => E.Lire_Nom),
+            Condition => T.Base.Contient (Nom_Fait => E.Lire_Nom),
             Message   => "Le fait entier [" & String (E.Lire_Nom) & "] " &
                "devrait pas dans la base"
          );
       AUnit.Assertions.Assert
          (
-            Condition => Visiteur.Base.all.Contient
-               (Nom_Fait => E.Lire_Nom_Fait),
+            Condition => T.Base.Contient (Nom_Fait => E.Lire_Nom_Fait),
             Message   => "Le fait entier [" & String (E.Lire_Nom_Fait) & "] " &
                "devrait pas dans la base"
          );
@@ -1133,8 +1154,6 @@ is
    procedure Test_Premisse_Symbolique_Const_Rate
       (T : in out Test_Fixt_T)
    is
-      pragma Unreferenced (T);
-
       E : constant P_Sym_Constant_R.Premisse_T := P_Sym_Constant_R.Creer
          (
             Nom         => Facilites_P.Creer_Nom,
@@ -1149,9 +1168,13 @@ is
                   (Nom => E.Lire_Nom_Symbole)
             );
 
-      Visiteur : Visiteur_T := Creer (Base => Base'Access);
+      Visiteur : Visiteur_T := Creer;
    begin
-      E.Accepte (Visiteur => Visiteur);
+      E.Accepte
+         (
+            Visiteur => Visiteur,
+            Base     => T.Base
+         );
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Premisse_A_Ete_Verifiee,
@@ -1181,8 +1204,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => not Visiteur.Base.all.Contient
-               (Nom_Fait => E.Lire_Nom),
+            Condition => not T.Base.Contient (Nom_Fait => E.Lire_Nom),
             Message   => Encode
                (
                   Item => "Le fait entier [" & String (E.Lire_Nom) & "] " &
@@ -1190,8 +1212,12 @@ is
                )
          );
 
-      Visiteur.Base.all.Ajouter (Nouvel_Item => F);
-      E.Accepte (Visiteur => Visiteur);
+      T.Base.Ajouter (Nouvel_Item => F);
+      E.Accepte
+         (
+            Visiteur => Visiteur,
+            Base     => T.Base
+         );
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Premisse_A_Ete_Verifiee,
@@ -1221,7 +1247,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => Visiteur.Base.all.Contient (Nom_Fait => E.Lire_Nom),
+            Condition => T.Base.Contient (Nom_Fait => E.Lire_Nom),
             Message   => Encode
                (
                   Item => "Le fait symbolique " &
@@ -1238,8 +1264,6 @@ is
    procedure Test_Premisse_Symbolique_Fait_Rate
       (T : in out Test_Fixt_T)
    is
-      pragma Unreferenced (T);
-
       Nom : constant Sys_Exp_P.Nom_T := Facilites_P.Creer_Nom;
 
       E : constant P_Sym_Fait_R.Premisse_T := P_Sym_Fait_R.Creer
@@ -1258,9 +1282,13 @@ is
                Fait => F_1
             );
 
-      Visiteur : Visiteur_T := Creer (Base => Base'Access);
+      Visiteur : Visiteur_T := Creer;
    begin
-      E.Accepte (Visiteur => Visiteur);
+      E.Accepte
+         (
+            Visiteur => Visiteur,
+            Base     => T.Base
+         );
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Premisse_A_Ete_Verifiee,
@@ -1290,8 +1318,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => not Visiteur.Base.all.Contient
-               (Nom_Fait => E.Lire_Nom),
+            Condition => not T.Base.Contient (Nom_Fait => E.Lire_Nom),
             Message   => Encode
                (
                   Item => "Le fait symbolique " &
@@ -1301,8 +1328,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => not Visiteur.Base.all.Contient
-               (Nom_Fait => E.Lire_Nom_Fait),
+            Condition => not T.Base.Contient (Nom_Fait => E.Lire_Nom_Fait),
             Message   => Encode
                (
                   Item => "Le fait symbolique " &
@@ -1311,9 +1337,13 @@ is
                )
          );
 
-      Visiteur.Base.all.Ajouter (Nouvel_Item => F_1);
-      Visiteur.Base.all.Ajouter (Nouvel_Item => F_2);
-      E.Accepte (Visiteur => Visiteur);
+      T.Base.Ajouter (Nouvel_Item => F_1);
+      T.Base.Ajouter (Nouvel_Item => F_2);
+      E.Accepte
+         (
+            Visiteur => Visiteur,
+            Base     => T.Base
+         );
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Premisse_A_Ete_Verifiee,
@@ -1347,16 +1377,14 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => Visiteur.Base.all.Contient
-               (Nom_Fait => E.Lire_Nom),
+            Condition => T.Base.Contient (Nom_Fait => E.Lire_Nom),
             Message   => "Le fait symbolique " &
                "[" & String (E.Lire_Nom) & "] " &
                "devrait pas dans la base"
          );
       AUnit.Assertions.Assert
          (
-            Condition => Visiteur.Base.all.Contient
-               (Nom_Fait => E.Lire_Nom_Fait),
+            Condition => T.Base.Contient (Nom_Fait => E.Lire_Nom_Fait),
             Message   => "Le fait symbolique " &
                "[" & String (E.Lire_Nom_Fait) & "] " &
                "devrait pas dans la base"
@@ -1368,8 +1396,6 @@ is
    procedure Test_Premisse_Bool_False
       (T : in out Test_Fixt_T)
    is
-      pragma Unreferenced (T);
-
       P    : constant P_Bool_False_R.Premisse_T                 :=
          P_Bool_False_R.Creer (Nom => Facilites_P.Creer_Nom);
       Fait : constant Sys_Exp_P.Fait_P.Booleen_P.Fait_Booleen_T :=
@@ -1379,10 +1405,14 @@ is
                Valeur => False
             );
 
-      Visiteur : Visiteur_T := Creer (Base => Base'Access);
+      Visiteur : Visiteur_T := Creer;
    begin
-      Visiteur.Base.all.Ajouter (Nouvel_Item => Fait);
-      P.Accepte (Visiteur => Visiteur);
+      T.Base.Ajouter (Nouvel_Item => Fait);
+      P.Accepte
+         (
+            Visiteur => Visiteur,
+            Base     => T.Base
+         );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Premisse_A_Ete_Verifiee,
@@ -1412,7 +1442,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => Visiteur.Base.all.Contient (Nom_Fait => P.Lire_Nom),
+            Condition => T.Base.Contient (Nom_Fait => P.Lire_Nom),
             Message   => Encode
                (
                   Item => "Le fait booleen " &
@@ -1427,9 +1457,7 @@ is
    procedure Test_Premisse_Bool_True
       (T : in out Test_Fixt_T)
    is
-      pragma Unreferenced (T);
-
-      P : constant P_Bool_True_R.Premisse_T                     :=
+      P    : constant P_Bool_True_R.Premisse_T                  :=
          P_Bool_True_R.Creer (Nom => Facilites_P.Creer_Nom);
       Fait : constant Sys_Exp_P.Fait_P.Booleen_P.Fait_Booleen_T :=
          Sys_Exp_P.Fait_P.Booleen_P.Creer
@@ -1438,10 +1466,14 @@ is
                Valeur => True
             );
 
-      Visiteur : Visiteur_T := Creer (Base => Base'Access);
+      Visiteur : Visiteur_T := Creer;
    begin
-      Visiteur.Base.all.Ajouter (Nouvel_Item => Fait);
-      P.Accepte (Visiteur => Visiteur);
+      T.Base.Ajouter (Nouvel_Item => Fait);
+      P.Accepte
+         (
+            Visiteur => Visiteur,
+            Base     => T.Base
+         );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Premisse_A_Ete_Verifiee,
@@ -1471,7 +1503,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => Visiteur.Base.all.Contient (Nom_Fait => P.Lire_Nom),
+            Condition => T.Base.Contient (Nom_Fait => P.Lire_Nom),
             Message   => Encode
                (
                   Item => "Le fait booleen [" & String (P.Lire_Nom) & "] " &
@@ -1485,16 +1517,14 @@ is
    procedure Test_Premisse_Expression
       (T : in out Test_Fixt_T)
    is
-      pragma Unreferenced (T);
-
       Valeur : Sys_Exp_P.Entier_T;
 
-      Visiteur : Visiteur_T := Creer (Base => Base'Access);
+      Visiteur : Visiteur_T := Creer;
 
       V : constant Sys_Exp_P.Valeur_P.Valeur_Abstraite_T'Class :=
          Facilites_P.Valeur_P.Creer_Valeur
             (
-               Base   => Visiteur.Base.all,
+               Base   => T.Base,
                Valeur => Valeur
             );
 
@@ -1511,8 +1541,12 @@ is
                Valeur => Valeur
             );
    begin
-      Visiteur.Base.all.Ajouter (Nouvel_Item => F);
-      E.Accepte (Visiteur => Visiteur);
+      T.Base.Ajouter (Nouvel_Item => F);
+      E.Accepte
+         (
+            Visiteur => Visiteur,
+            Base     => T.Base
+         );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Premisse_A_Ete_Verifiee,
@@ -1542,7 +1576,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => Visiteur.Base.all.Contient (Nom_Fait => E.Lire_Nom),
+            Condition => T.Base.Contient (Nom_Fait => E.Lire_Nom),
             Message   => Encode
                (
                   Item => "Le fait entier [" & String (E.Lire_Nom) & "] " &
@@ -1556,8 +1590,6 @@ is
    procedure Test_Premisse_Fait_Entier
       (T : in out Test_Fixt_T)
    is
-      pragma Unreferenced (T);
-
       Nom : constant Sys_Exp_P.Nom_T := Facilites_P.Creer_Nom;
 
       E : constant P_Fait_Entier_R.Premisse_T := P_Fait_Entier_R.Creer
@@ -1576,11 +1608,15 @@ is
                Valeur => F_1.Lire_Valeur
             );
 
-      Visiteur : Visiteur_T := Creer (Base => Base'Access);
+      Visiteur : Visiteur_T := Creer;
    begin
-      Visiteur.Base.all.Ajouter (Nouvel_Item => F_1);
-      Visiteur.Base.all.Ajouter (Nouvel_Item => F_2);
-      E.Accepte (Visiteur => Visiteur);
+      T.Base.Ajouter (Nouvel_Item => F_1);
+      T.Base.Ajouter (Nouvel_Item => F_2);
+      E.Accepte
+         (
+            Visiteur => Visiteur,
+            Base     => T.Base
+         );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Premisse_A_Ete_Verifiee,
@@ -1614,15 +1650,13 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => Visiteur.Base.all.Contient
-               (Nom_Fait => E.Lire_Nom),
+            Condition => T.Base.Contient (Nom_Fait => E.Lire_Nom),
             Message   => "Le fait entier [" & String (E.Lire_Nom) & "] " &
                "devrait pas dans la base"
          );
       AUnit.Assertions.Assert
          (
-            Condition => Visiteur.Base.all.Contient
-               (Nom_Fait => E.Lire_Nom_Fait),
+            Condition => T.Base.Contient (Nom_Fait => E.Lire_Nom_Fait),
             Message   => "Le fait entier [" & String (E.Lire_Nom_Fait) & "] " &
                "devrait pas dans la base"
          );
@@ -1633,8 +1667,6 @@ is
    procedure Test_Premisse_Symbolique_Const
       (T : in out Test_Fixt_T)
    is
-      pragma Unreferenced (T);
-
       E : constant P_Sym_Constant_R.Premisse_T := P_Sym_Constant_R.Creer
          (
             Nom         => Facilites_P.Creer_Nom,
@@ -1648,10 +1680,14 @@ is
                Valeur => E.Lire_Nom_Symbole
             );
 
-      Visiteur : Visiteur_T := Creer (Base => Base'Access);
+      Visiteur : Visiteur_T := Creer;
    begin
-      Visiteur.Base.all.Ajouter (Nouvel_Item => F);
-      E.Accepte (Visiteur => Visiteur);
+      T.Base.Ajouter (Nouvel_Item => F);
+      E.Accepte
+         (
+            Visiteur => Visiteur,
+            Base     => T.Base
+         );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Premisse_A_Ete_Verifiee,
@@ -1681,7 +1717,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => Visiteur.Base.all.Contient (Nom_Fait => E.Lire_Nom),
+            Condition => T.Base.Contient (Nom_Fait => E.Lire_Nom),
             Message   => Encode
                (
                   Item => "Le fait symbolique " &
@@ -1696,8 +1732,6 @@ is
    procedure Test_Premisse_Symbolique_Fait
       (T : in out Test_Fixt_T)
    is
-      pragma Unreferenced (T);
-
       Nom : constant Sys_Exp_P.Nom_T := Facilites_P.Creer_Nom;
 
       E : constant P_Sym_Fait_R.Premisse_T := P_Sym_Fait_R.Creer
@@ -1716,11 +1750,15 @@ is
                Valeur => F_1.Lire_Valeur
             );
 
-      Visiteur : Visiteur_T := Creer (Base => Base'Access);
+      Visiteur : Visiteur_T := Creer;
    begin
-      Visiteur.Base.all.Ajouter (Nouvel_Item => F_1);
-      Visiteur.Base.all.Ajouter (Nouvel_Item => F_2);
-      E.Accepte (Visiteur => Visiteur);
+      T.Base.Ajouter (Nouvel_Item => F_1);
+      T.Base.Ajouter (Nouvel_Item => F_2);
+      E.Accepte
+         (
+            Visiteur => Visiteur,
+            Base     => T.Base
+         );
       AUnit.Assertions.Assert
          (
             Condition => Visiteur.Premisse_A_Ete_Verifiee,
@@ -1754,16 +1792,14 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => Visiteur.Base.all.Contient
-               (Nom_Fait => E.Lire_Nom),
+            Condition => T.Base.Contient (Nom_Fait => E.Lire_Nom),
             Message   => "Le fait symbolique " &
                "[" & String (E.Lire_Nom) & "] " &
                "devrait pas dans la base"
          );
       AUnit.Assertions.Assert
          (
-            Condition => Visiteur.Base.all.Contient
-               (Nom_Fait => E.Lire_Nom_Fait),
+            Condition => T.Base.Contient (Nom_Fait => E.Lire_Nom_Fait),
             Message   => "Le fait symbolique " &
                "[" & String (E.Lire_Nom_Fait) & "] " &
                "devrait pas dans la base"
@@ -1775,17 +1811,23 @@ is
    procedure Test_Rate_Ajouter_Un_Fait_Booleen
       (T : in out Test_Fixt_T)
    is
-      pragma Unreferenced (T);
-
       Nom : constant Sys_Exp_P.Nom_T := Facilites_P.Creer_Nom;
 
       F : constant Sys_Exp_P.Fait_P.Booleen_P.Fait_Booleen_T :=
          Facilites_P.Fait_P.Creer_Fait_Booleen (Nom => Nom);
 
-      Visiteur : Visiteur_T := Creer (Base => Base'Access);
+      Visiteur : Visiteur_T := Creer;
    begin
-      Visiteur.Ajouter_Un_Fait (Fait => F);
-      Visiteur.Ajouter_Un_Fait (Fait => F);
+      Visiteur.Ajouter_Un_Fait
+         (
+            Base => T.Base,
+            Fait => F
+         );
+      Visiteur.Ajouter_Un_Fait
+         (
+            Base => T.Base,
+            Fait => F
+         );
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Premisse_A_Ete_Verifiee,
@@ -1815,7 +1857,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => Visiteur.Base.all.Contient (Nom_Fait => Nom),
+            Condition => T.Base.Contient (Nom_Fait => Nom),
             Message   => Encode
                (
                   Item => "Le fait booleen " &
@@ -1830,17 +1872,23 @@ is
    procedure Test_Rate_Ajouter_Un_Fait_Entier
       (T : in out Test_Fixt_T)
    is
-      pragma Unreferenced (T);
-
       Nom : constant Sys_Exp_P.Nom_T := Facilites_P.Creer_Nom;
 
       F : constant Sys_Exp_P.Fait_P.Entier_P.Fait_Entier_T :=
          Facilites_P.Fait_P.Creer_Fait_Entier (Nom => Nom);
 
-      Visiteur : Visiteur_T := Creer (Base => Base'Access);
+      Visiteur : Visiteur_T := Creer;
    begin
-      Visiteur.Ajouter_Un_Fait (Fait => F);
-      Visiteur.Ajouter_Un_Fait (Fait => F);
+      Visiteur.Ajouter_Un_Fait
+         (
+            Base => T.Base,
+            Fait => F
+         );
+      Visiteur.Ajouter_Un_Fait
+         (
+            Base => T.Base,
+            Fait => F
+         );
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Premisse_A_Ete_Verifiee,
@@ -1870,7 +1918,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => Visiteur.Base.all.Contient (Nom_Fait => Nom),
+            Condition => T.Base.Contient (Nom_Fait => Nom),
             Message   => Encode
                (
                   Item => "Le fait entier " &
@@ -1885,17 +1933,23 @@ is
    procedure Test_Rate_Ajouter_Fait_Symbolique
       (T : in out Test_Fixt_T)
    is
-      pragma Unreferenced (T);
-
       Nom : constant Sys_Exp_P.Nom_T := Facilites_P.Creer_Nom;
 
       F : constant Sys_Exp_P.Fait_P.Symbolique_P.Fait_Symbolique_T :=
          Facilites_P.Fait_P.Creer_Fait_Symbolique (Nom => Nom);
 
-      Visiteur : Visiteur_T := Creer (Base => Base'Access);
+      Visiteur : Visiteur_T := Creer;
    begin
-      Visiteur.Ajouter_Un_Fait (Fait => F);
-      Visiteur.Ajouter_Un_Fait (Fait => F);
+      Visiteur.Ajouter_Un_Fait
+         (
+            Base => T.Base,
+            Fait => F
+         );
+      Visiteur.Ajouter_Un_Fait
+         (
+            Base => T.Base,
+            Fait => F
+         );
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Premisse_A_Ete_Verifiee,
@@ -1925,7 +1979,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => Visiteur.Base.all.Contient (Nom_Fait => Nom),
+            Condition => T.Base.Contient (Nom_Fait => Nom),
             Message   => Encode
                (
                   Item => "Le fait symbolique " &
@@ -1940,8 +1994,6 @@ is
    procedure Test_Rate_Concl_Expr_Entier_Inconnu
       (T : in out Test_Fixt_T)
    is
-      pragma Unreferenced (T);
-
       Valeur   : Sys_Exp_P.Entier_T;
       Base_Tmp : Sys_Exp_P.Base_Faits_P.Base_De_Faits_T;
 
@@ -1951,6 +2003,7 @@ is
                Base   => Base_Tmp,
                Valeur => Valeur
             );
+      pragma Unreferenced (Base_Tmp);
       pragma Unreferenced (Valeur);
       --  Le contenu du fait créé ne nous intéresse pas pour les tests.
 
@@ -1960,9 +2013,13 @@ is
             Expression => V
          );
 
-      Visiteur : Visiteur_T := Creer (Base => Base'Access);
+      Visiteur : Visiteur_T := Creer;
    begin
-      E.Accepte (Visiteur => Visiteur);
+      E.Accepte
+         (
+            Visiteur => Visiteur,
+            Base     => T.Base
+         );
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Premisse_A_Ete_Verifiee,
@@ -1992,8 +2049,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => not Visiteur.Base.all.Contient
-               (Nom_Fait => E.Lire_Nom),
+            Condition => not T.Base.Contient (Nom_Fait => E.Lire_Nom),
             Message   => Encode
                (
                   Item => "Le fait entier [" & String (E.Lire_Nom) & "] " &
@@ -2007,8 +2063,6 @@ is
    procedure Test_Rate_Concl_Expr_Non_Entier
       (T : in out Test_Fixt_T)
    is
-      pragma Unreferenced (T);
-
       Nom : constant Sys_Exp_P.Nom_T := Facilites_P.Creer_Nom;
 
       V : constant Sys_Exp_P.Valeur_P.Fait_P.Valeur_Fait_T :=
@@ -2023,11 +2077,19 @@ is
       F : constant Sys_Exp_P.Fait_P.Symbolique_P.Fait_Symbolique_T :=
          Facilites_P.Fait_P.Creer_Fait_Symbolique (Nom => Nom);
 
-      Visiteur : Visiteur_T := Creer (Base => Base'Access);
+      Visiteur : Visiteur_T := Creer;
    begin
-      Visiteur.Ajouter_Un_Fait (Fait => F);
+      Visiteur.Ajouter_Un_Fait
+         (
+            Base => T.Base,
+            Fait => F
+         );
       Visiteur.Conclusion_A_Ete_Declenchee := False;
-      E.Accepte (Visiteur => Visiteur);
+      E.Accepte
+         (
+            Visiteur => Visiteur,
+            Base     => T.Base
+         );
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Premisse_A_Ete_Verifiee,
@@ -2061,8 +2123,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => not Visiteur.Base.all.Contient
-               (Nom_Fait => E.Lire_Nom),
+            Condition => not T.Base.Contient (Nom_Fait => E.Lire_Nom),
             Message   => Encode
                (
                   Item => "Le fait entier [" & String (E.Lire_Nom) & "] " &
@@ -2078,17 +2139,15 @@ is
    procedure Test_Rate_Concl_Expr_Div_Zero
       (T : in out Test_Fixt_T)
    is
-      pragma Unreferenced (T);
-
       Valeur : Sys_Exp_P.Entier_T;
 
-      Visiteur : Visiteur_T := Creer (Base => Base'Access);
+      Visiteur : Visiteur_T := Creer;
 
       V : constant Division_P.Operateur_Div_T := Division_P.Creer
          (
             Valeur_Gauche => Facilites_P.Valeur_P.Creer_Fait_Ou_Constante
                   (
-                     Base   => Visiteur.Base.all,
+                     Base   => T.Base,
                      Valeur => Valeur
                   ),
             Valeur_Droite =>
@@ -2103,7 +2162,11 @@ is
             Expression => V
          );
    begin
-      E.Accepte (Visiteur => Visiteur);
+      E.Accepte
+         (
+            Visiteur => Visiteur,
+            Base     => T.Base
+         );
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Premisse_A_Ete_Verifiee,
@@ -2136,8 +2199,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => not Visiteur.Base.all.Contient
-               (Nom_Fait => E.Lire_Nom),
+            Condition => not T.Base.Contient (Nom_Fait => E.Lire_Nom),
             Message   => Encode
                (
                   Item => "Le fait entier " &
@@ -2152,8 +2214,6 @@ is
    procedure Test_Rate_Concl_Fait_Entier_Inconnu
       (T : in out Test_Fixt_T)
    is
-      pragma Unreferenced (T);
-
       Nom : constant Sys_Exp_P.Nom_T := Facilites_P.Creer_Nom;
 
       E : constant C_Fait_Entier_R.Conclusion_T := C_Fait_Entier_R.Creer
@@ -2162,9 +2222,13 @@ is
             Nom_Fait => Facilites_P.Creer_Nom_Different (Nom => Nom)
          );
 
-      Visiteur : Visiteur_T := Creer (Base => Base'Access);
+      Visiteur : Visiteur_T := Creer;
    begin
-      E.Accepte (Visiteur => Visiteur);
+      E.Accepte
+         (
+            Visiteur => Visiteur,
+            Base     => T.Base
+         );
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Premisse_A_Ete_Verifiee,
@@ -2191,8 +2255,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => not Visiteur.Base.all.Contient
-               (Nom_Fait => E.Lire_Nom),
+            Condition => not T.Base.Contient (Nom_Fait => E.Lire_Nom),
             Message   => Encode
                (
                   Item => "Le fait entier " &
@@ -2202,8 +2265,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => not Visiteur.Base.all.Contient
-               (Nom_Fait => E.Lire_Nom_Fait),
+            Condition => not T.Base.Contient (Nom_Fait => E.Lire_Nom_Fait),
             Message   => Encode
                (
                   Item => "L'autre fait entier " &
@@ -2218,8 +2280,6 @@ is
    procedure Test_Rate_Concl_Fait_Non_Entier
       (T : in out Test_Fixt_T)
    is
-      pragma Unreferenced (T);
-
       Nom : constant Sys_Exp_P.Nom_T := Facilites_P.Creer_Nom;
 
       E : constant C_Fait_Entier_R.Conclusion_T := C_Fait_Entier_R.Creer
@@ -2231,11 +2291,19 @@ is
       F : constant Sys_Exp_P.Fait_P.Symbolique_P.Fait_Symbolique_T :=
          Facilites_P.Fait_P.Creer_Fait_Symbolique (Nom => E.Lire_Nom);
 
-      Visiteur : Visiteur_T := Creer (Base => Base'Access);
+      Visiteur : Visiteur_T := Creer;
    begin
-      Visiteur.Ajouter_Un_Fait (Fait => F);
+      Visiteur.Ajouter_Un_Fait
+         (
+            Base => T.Base,
+            Fait => F
+         );
       Visiteur.Conclusion_A_Ete_Declenchee := False;
-      E.Accepte (Visiteur => Visiteur);
+      E.Accepte
+         (
+            Visiteur => Visiteur,
+            Base     => T.Base
+         );
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Premisse_A_Ete_Verifiee,
@@ -2269,7 +2337,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => Visiteur.Base.all.Contient (Nom_Fait => E.Lire_Nom),
+            Condition => T.Base.Contient (Nom_Fait => E.Lire_Nom),
             Message   => Encode
                (
                   Item => "Le fait entier " &
@@ -2284,8 +2352,6 @@ is
    procedure Test_Rate_Concl_Fait_Sym_Inconnu
       (T : in out Test_Fixt_T)
    is
-      pragma Unreferenced (T);
-
       Nom : constant Sys_Exp_P.Nom_T := Facilites_P.Creer_Nom;
 
       E : constant C_Sym_Fait_R.Conclusion_T := C_Sym_Fait_R.Creer
@@ -2294,9 +2360,13 @@ is
             Nom_Fait => Facilites_P.Creer_Nom_Different (Nom => Nom)
          );
 
-      Visiteur : Visiteur_T := Creer (Base => Base'Access);
+      Visiteur : Visiteur_T := Creer;
    begin
-      E.Accepte (Visiteur => Visiteur);
+      E.Accepte
+         (
+            Visiteur => Visiteur,
+            Base     => T.Base
+         );
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Premisse_A_Ete_Verifiee,
@@ -2323,8 +2393,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition =>
-               not Visiteur.Base.all.Contient (Nom_Fait => E.Lire_Nom),
+            Condition => not T.Base.Contient (Nom_Fait => E.Lire_Nom),
             Message   => Encode
                (
                   Item => "Le fait symbolique " &
@@ -2334,8 +2403,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => not Visiteur.Base.all.Contient
-               (Nom_Fait => E.Lire_Nom_Fait),
+            Condition => not T.Base.Contient (Nom_Fait => E.Lire_Nom_Fait),
             Message   => Encode
                (
                   Item => "L'autre fait symbolique " &
@@ -2350,8 +2418,6 @@ is
    procedure Test_Rate_Concl_Fait_Non_Symbolique
       (T : in out Test_Fixt_T)
    is
-      pragma Unreferenced (T);
-
       Nom : constant Sys_Exp_P.Nom_T := Facilites_P.Creer_Nom;
 
       E : constant C_Sym_Fait_R.Conclusion_T := C_Sym_Fait_R.Creer
@@ -2363,11 +2429,19 @@ is
       F : constant Sys_Exp_P.Fait_P.Entier_P.Fait_Entier_T :=
          Facilites_P.Fait_P.Creer_Fait_Entier (Nom => E.Lire_Nom);
 
-      Visiteur : Visiteur_T := Creer (Base => Base'Access);
+      Visiteur : Visiteur_T := Creer;
    begin
-      Visiteur.Ajouter_Un_Fait (Fait => F);
+      Visiteur.Ajouter_Un_Fait
+         (
+            Base => T.Base,
+            Fait => F
+         );
       Visiteur.Conclusion_A_Ete_Declenchee := False;
-      E.Accepte (Visiteur => Visiteur);
+      E.Accepte
+         (
+            Visiteur => Visiteur,
+            Base     => T.Base
+         );
       AUnit.Assertions.Assert
          (
             Condition => not Visiteur.Premisse_A_Ete_Verifiee,
@@ -2401,7 +2475,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => Visiteur.Base.all.Contient (Nom_Fait => E.Lire_Nom),
+            Condition => T.Base.Contient (Nom_Fait => E.Lire_Nom),
             Message   => Encode
                (
                   Item => "Le fait symbolique " &

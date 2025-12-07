@@ -1,6 +1,8 @@
 with AUnit;
 with AUnit.Test_Fixtures;
 
+with Sys_Exp_P.Base_Faits_P;
+
 --  @summary
 --  Les scénarios de tests des règles sans prémisses.
 --  @description
@@ -16,6 +18,7 @@ is
 
    type Test_Fixt_T is new AUnit.Test_Fixtures.Test_Fixture with
       record
+         Base  : Base_Faits_P.Base_De_Faits_T;
          Regle : Regle_T;
       end record;
 

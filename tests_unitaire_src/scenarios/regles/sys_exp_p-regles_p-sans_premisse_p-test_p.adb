@@ -2,7 +2,6 @@ with Ada.Numerics.Discrete_Random;
 
 with AUnit.Assertions;
 
-with Sys_Exp_P.Base_Faits_P;
 with Sys_Exp_P.Forme_P.Conclusion_P.Bool_False_P;
 with Sys_Exp_P.Visiteur_Forme_P.Declencheur_P.Fabrique_P;
 
@@ -20,15 +19,13 @@ is
 
    Generateur_ID : ID_Alea_P.Generator;
 
-   Base : aliased Sys_Exp_P.Base_Faits_P.Base_De_Faits_T;
-
    ---------------------------------------------------------------------------
    overriding
    procedure Set_Up
       (T : in out Test_Fixt_T)
    is
    begin
-      null;
+      T.Base.Vider;
    end Set_Up;
    ---------------------------------------------------------------------------
 
@@ -37,6 +34,7 @@ is
    procedure Tear_Down
       (T : in out Test_Fixt_T)
    is
+      pragma Unreferenced (T);
    begin
       null;
    end Tear_Down;
@@ -272,7 +270,7 @@ is
                (Item => "La règle doit avoir un successeur")
          );
 
-      Reussi := T.Regle.Iterer (Base => Base'Access);
+      Reussi := T.Regle.Iterer (Base => T.Base);
       AUnit.Assertions.Assert
          (
             Condition => Reussi,
@@ -337,7 +335,7 @@ is
                (Item => "La règle doit avoir un successeur")
          );
 
-      Reussi := T.Regle.Iterer (Base => Base'Access);
+      Reussi := T.Regle.Iterer (Base => T.Base);
       AUnit.Assertions.Assert
          (
             Condition => Reussi,

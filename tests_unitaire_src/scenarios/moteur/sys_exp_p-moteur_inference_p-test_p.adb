@@ -79,7 +79,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => not M.Base.all.Contient (Nom_Fait => Nom),
+            Condition => not M.Base.Contient (Nom_Fait => Nom),
             Message   => "La base ne doit pas contenir le nom " &
                "[" & String (Nom)  & "]"
          );
@@ -120,7 +120,7 @@ is
          );
       AUnit.Assertions.Assert
          (
-            Condition => M.Base.all.Contient (Nom_Fait => Nom),
+            Condition => M.Base.Contient (Nom_Fait => Nom),
             Message   => "La base doit contenir le nom " &
                "[" & String (Nom)  & "]"
          );
