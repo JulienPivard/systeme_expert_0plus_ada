@@ -1,9 +1,7 @@
 with Ada.Text_IO;
 with Ada.Wide_Wide_Text_IO;
 
-with Sys_Exp_P.Fait_P.Booleen_P.Text_IO;
-with Sys_Exp_P.Fait_P.Entier_P.Text_IO;
-with Sys_Exp_P.Fait_P.Symbolique_P.Text_IO;
+with Sys_Exp_P.Fait_P.Text_IO;
 
 package body Sys_Exp_P.Base_Faits_P.Text_IO
    with Spark_Mode => Off
@@ -17,36 +15,9 @@ is
       for E : Fait_P.Fait_Abstrait_T'Class of Item.Map_Faits loop
          Ada.Text_IO.Put
             (Item => "Type de fait [" & E.Lire_Type'Image & "] ");
-
-         case E.Lire_Type is
-            when Booleen_E =>
-               Bloc_Afficher_Booleen :
-               declare
-                  F : constant Fait_P.Booleen_P.Fait_Booleen_T :=
-                     Fait_P.Booleen_P.Fait_Booleen_T (E);
-               begin
-                  Fait_P.Booleen_P.Text_IO.Put_Line (Item => F);
-               end Bloc_Afficher_Booleen;
-
-            when Entier_E =>
-               Bloc_Afficher_Entier :
-               declare
-                  F : constant Fait_P.Entier_P.Fait_Entier_T :=
-                     Fait_P.Entier_P.Fait_Entier_T (E);
-               begin
-                  Fait_P.Entier_P.Text_IO.Put_Line (Item => F);
-               end Bloc_Afficher_Entier;
-
-            when Symbolique_E =>
-               Bloc_Afficher_Symbole :
-               declare
-                  F : constant Fait_P.Symbolique_P.Fait_Symbolique_T :=
-                     Fait_P.Symbolique_P.Fait_Symbolique_T (E);
-               begin
-                  Fait_P.Symbolique_P.Text_IO.Put_Line (Item => F);
-               end Bloc_Afficher_Symbole;
-         end case;
+         Sys_Exp_P.Fait_P.Text_IO.Put_Line (Item => E);
       end loop;
+
       Ada.Text_IO.New_Line (Spacing => 1);
    end Put_Line;
    ---------------------------------------------------------------------------
@@ -58,6 +29,10 @@ is
    procedure Afficher
       (Item : in     Base_De_Faits_T)
    is
+      type Sorte_De_Valeur_T is (Vrais_E, Faux_E, Autre_E);
+
+      Vrais_Str : constant String := True'Image;
+      Faux_Str  : constant String := False'Image;
    begin
       for E : Fait_P.Fait_Abstrait_T'Class of Item.Map_Faits loop
          Bloc_Afficher_Type :
@@ -68,50 +43,39 @@ is
             --  On retire le _E à la fin des noms des types
             --  de variables.
          begin
-            Ada.Text_IO.Put_Line
-               (Item => "[" & Nom (IT_Nom_Sans_E_T) & "]");
+            Ada.Text_IO.Put_Line (Item => "[" & Nom (IT_Nom_Sans_E_T) & "]");
          end Bloc_Afficher_Type;
          W_W_IO_R.Put (Item => "└────────────  ");
 
-         case E.Lire_Type is
-            when Booleen_E =>
-               Bloc_Afficher_Booleen :
-               declare
-                  F : constant Fait_P.Booleen_P.Fait_Booleen_T :=
-                     Fait_P.Booleen_P.Fait_Booleen_T (E);
-               begin
-                  if not F.Lire_Valeur then
-                     Ada.Text_IO.Put (Item => "Non ");
-                  end if;
-                  Ada.Text_IO.Put_Line
-                     (Item => "[" & String (F.Lire_Nom) & "]");
-               end Bloc_Afficher_Booleen;
+         Bloc_Afficher_Valeur :
+         declare
+            Valeur_Str : constant String := E.Image;
 
-            when Entier_E =>
-               Bloc_Afficher_Entier :
-               declare
-                  F : constant Fait_P.Entier_P.Fait_Entier_T :=
-                     Fait_P.Entier_P.Fait_Entier_T (E);
-               begin
-                  Ada.Text_IO.Put
-                     (Item => "[" & String (F.Lire_Nom) & "] = ");
-                  Ada.Text_IO.Put_Line
-                     (Item => "[" & F.Lire_Valeur'Image & "]");
-               end Bloc_Afficher_Entier;
+            Sorte_De_Valeur : constant Sorte_De_Valeur_T :=
+               (
+                  if    Valeur_Str = Vrais_Str then
+                     Vrais_E
+                  elsif Valeur_Str = Faux_Str  then
+                     Faux_E
+                  else
+                     Autre_E
+               );
+         begin
+            case Sorte_De_Valeur is
+               when Vrais_E =>
+                  Ada.Text_IO.Put (Item => "[" & String (E.Lire_Nom) & "]");
+               when Faux_E =>
+                  Ada.Text_IO.Put (Item => "non ");
+                  Ada.Text_IO.Put (Item => "[" & String (E.Lire_Nom) & "]");
+               when Autre_E =>
+                  Ada.Text_IO.Put (Item => "[" & String (E.Lire_Nom) & "]");
+                  Ada.Text_IO.Put (Item => " = [" & Valeur_Str & "]");
+            end case;
 
-            when Symbolique_E =>
-               Bloc_Afficher_Symbole :
-               declare
-                  F : constant Fait_P.Symbolique_P.Fait_Symbolique_T :=
-                     Fait_P.Symbolique_P.Fait_Symbolique_T (E);
-               begin
-                  Ada.Text_IO.Put
-                     (Item => "[" & String (F.Lire_Nom) & "] = ");
-                  Ada.Text_IO.Put_Line
-                     (Item => "[" & String (F.Lire_Valeur) & "]");
-               end Bloc_Afficher_Symbole;
-         end case;
+            Ada.Text_IO.New_Line (Spacing => 1);
+         end Bloc_Afficher_Valeur;
       end loop;
+
       Ada.Text_IO.New_Line (Spacing => 1);
    end Afficher;
    ---------------------------------------------------------------------------

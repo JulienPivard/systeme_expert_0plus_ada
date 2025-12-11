@@ -1,9 +1,5 @@
 with Ada.Text_IO;
 
-with Sys_Exp_P.Valeur_P.Fait_P.Text_IO;
-with Sys_Exp_P.Valeur_P.Constante_P.Text_IO;
-with Sys_Exp_P.Valeur_P.Operateur_P.Text_IO;
-
 package body Sys_Exp_P.Valeur_P.Text_IO
    with Spark_Mode => Off
 is
@@ -13,13 +9,7 @@ is
       (Item : in     Valeur_Abstraite_T'Class)
    is
    begin
-      if    Item in Fait_P.Valeur_Fait_T                   then
-         Afficher (Fait      => Fait_P.Valeur_Fait_T (Item));
-      elsif Item in Constante_P.Valeur_Constante_T         then
-         Afficher (Constante => Constante_P.Valeur_Constante_T (Item));
-      elsif Item in Operateur_P.Operateur_Abstrait_T'Class then
-         Afficher (Operateur => Operateur_P.Operateur_Abstrait_T'Class (Item));
-      end if;
+      Ada.Text_IO.Put (Item => Item.Image);
    end Put;
    ---------------------------------------------------------------------------
 
@@ -35,33 +25,6 @@ is
 
    ---------------------------------------------------------------------------
    --                             Partie privée                             --
-   ---------------------------------------------------------------------------
-
-   ---------------------------------------------------------------------------
-   procedure Afficher
-      (Fait : in     Fait_P.Valeur_Fait_T)
-   is
-   begin
-      Fait_P.Text_IO.Put (Item => Fait);
-   end Afficher;
-   ---------------------------------------------------------------------------
-
-   ---------------------------------------------------------------------------
-   procedure Afficher
-      (Constante : in     Constante_P.Valeur_Constante_T)
-   is
-   begin
-      Constante_P.Text_IO.Put (Item => Constante);
-   end Afficher;
-   ---------------------------------------------------------------------------
-
-   ---------------------------------------------------------------------------
-   procedure Afficher
-      (Operateur : in     Operateur_P.Operateur_Abstrait_T'Class)
-   is
-   begin
-      Operateur_P.Text_IO.Put (Item => Operateur);
-   end Afficher;
    ---------------------------------------------------------------------------
 
 end Sys_Exp_P.Valeur_P.Text_IO;

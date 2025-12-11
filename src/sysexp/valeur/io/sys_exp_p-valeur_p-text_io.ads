@@ -1,7 +1,3 @@
-with Sys_Exp_P.Valeur_P.Fait_P;
-with Sys_Exp_P.Valeur_P.Constante_P;
-with Sys_Exp_P.Valeur_P.Operateur_P;
-
 --  @summary
 --  Affiche une valeur.
 --  @description
@@ -33,23 +29,5 @@ is
    --  La valeur abstraite.
 
 private
-
-   procedure Afficher
-      (Fait : in     Fait_P.Valeur_Fait_T);
-   --  Affiche la valeur sur une ligne.
-   --  @param Fait
-   --  Le fait à afficher.
-
-   procedure Afficher
-      (Constante : in     Constante_P.Valeur_Constante_T);
-   --  Affiche la valeur sur une ligne.
-   --  @param Constante
-   --  La constante à afficher.
-
-   procedure Afficher
-      (Operateur : in     Operateur_P.Operateur_Abstrait_T'Class);
-   --  Affiche la l'opération sur une ligne.
-   --  @param Operateur
-   --  L'opération à afficher.
 
 end Sys_Exp_P.Valeur_P.Text_IO;
