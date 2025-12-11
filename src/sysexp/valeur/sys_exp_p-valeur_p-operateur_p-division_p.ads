@@ -51,6 +51,15 @@ is
    --  L'opérateur.
    --  @return Le symbole de la division.
 
+   overriding
+   function Image
+      (This : in     Operateur_Div_T)
+      return String;
+   --  Image d'un opérateur diviser.
+   --  @param This
+   --  La valeur d'un opérateur.
+   --  @return L'image d'un opérateur diviser.
+
 private
 
    type Operateur_Div_T is new Operateur_Abstrait_T with

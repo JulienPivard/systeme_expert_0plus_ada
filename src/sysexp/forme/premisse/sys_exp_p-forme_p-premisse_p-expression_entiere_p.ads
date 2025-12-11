@@ -85,6 +85,15 @@ is
    --  La base de faits.
    --  @return La valeur entière.
 
+   overriding
+   function Image
+      (This : in     Premisse_T)
+      return String;
+   --  La prémisse convertie en chaine de caractères.
+   --  @param This
+   --  La prémisse.
+   --  @return L'image de la prémisse.
+
 private
 
    package Valeur_R renames Valeur_Abstraite_Holder_P;

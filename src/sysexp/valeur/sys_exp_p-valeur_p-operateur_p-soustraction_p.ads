@@ -51,6 +51,15 @@ is
    --  L'opérateur.
    --  @return Le symbole de la soustraction.
 
+   overriding
+   function Image
+      (This : in     Operateur_Moins_T)
+      return String;
+   --  Image d'un opérateur soustraction.
+   --  @param This
+   --  La valeur d'un opérateur.
+   --  @return L'image d'un opérateur soustraction.
+
 private
 
    type Operateur_Moins_T is new Operateur_Abstrait_T with

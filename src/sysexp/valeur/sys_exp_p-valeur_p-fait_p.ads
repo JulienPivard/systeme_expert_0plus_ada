@@ -45,6 +45,15 @@ is
    --  La base de faits à utiliser pour évaluer les expressions.
    --  @return La valeur de l'opération ou de la feuille.
 
+   overriding
+   function Image
+      (This : in     Valeur_Fait_T)
+      return String;
+   --  Image d'un fait.
+   --  @param This
+   --  La valeur d'un fait.
+   --  @return L'image d'un fait.
+
 private
 
    type Valeur_Fait_T is new Valeur_Abstraite_T with

@@ -64,6 +64,15 @@ is
    --  La base de faits.
    --  @return La valeur entière.
 
+   overriding
+   function Image
+      (This : in     Conclusion_T)
+      return String;
+   --  La conclusion convertie en chaine de caractères.
+   --  @param This
+   --  La conclusion.
+   --  @return L'image de la conclusion.
+
 private
 
    package Valeur_Abstraite_R renames Valeur_Abstraite_Holder_P;

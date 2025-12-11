@@ -46,6 +46,16 @@ is
    --  @param Visiteur
    --  Le visiteur de forme.
 
+   overriding
+   function Image
+      (This : in     Premisse_Abstraite_T)
+      return String
+   is abstract;
+   --  La prémisse convertie en chaine de caractères.
+   --  @param This
+   --  La prémisse.
+   --  @return L'image de la prémisse.
+
    type Comparateur_Entier_A is access
       function
          (

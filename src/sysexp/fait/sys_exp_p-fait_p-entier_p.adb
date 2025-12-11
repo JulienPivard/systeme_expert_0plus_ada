@@ -33,6 +33,23 @@ is
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
+   overriding
+   function Image
+      (This : in     Fait_Entier_T)
+      return String
+   is
+      V : constant Entier_T := This.Valeur;
+
+      V_Str : constant String := V'Image;
+
+      Debut : constant Integer := V_Str'First + (if V < 0 then 0 else 1);
+      Fin   : constant Integer := V_Str'Last;
+   begin
+      return V_Str (Debut .. Fin);
+   end Image;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
    not overriding
    function Lire_Valeur
       (This : in     Fait_Entier_T)

@@ -33,6 +33,17 @@ is
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
+   overriding
+   function Image
+      (This : in     Fait_Symbolique_T)
+      return String
+   is
+   begin
+      return String (This.Lire_Valeur);
+   end Image;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
    not overriding
    function Lire_Valeur
       (This : in     Fait_Symbolique_T)

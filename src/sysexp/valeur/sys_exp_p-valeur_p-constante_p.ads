@@ -40,6 +40,15 @@ is
    --  La base de faits à utiliser pour évaluer les expressions.
    --  @return La valeur de l'opération ou de la feuille.
 
+   overriding
+   function Image
+      (This : in     Valeur_Constante_T)
+      return String;
+   --  Image d'une valeur constante.
+   --  @param This
+   --  La valeur constante.
+   --  @return L'image de la valeur constante.
+
 private
 
    type Valeur_Constante_T is new Valeur_Abstraite_T with

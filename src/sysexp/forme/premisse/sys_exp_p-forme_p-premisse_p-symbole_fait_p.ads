@@ -73,6 +73,15 @@ is
    --  La prémisse.
    --  @return Le nom du fait symbolique.
 
+   overriding
+   function Image
+      (This : in     Premisse_T)
+      return String;
+   --  La prémisse convertie en chaine de caractères.
+   --  @param This
+   --  La prémisse.
+   --  @return L'image de la prémisse.
+
 private
 
    type Premisse_T is new Premisse_Abstraite_T with

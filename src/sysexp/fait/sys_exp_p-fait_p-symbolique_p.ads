@@ -41,6 +41,15 @@ is
    --  Le fait,
    --  @return Le type du fait.
 
+   overriding
+   function Image
+      (This : in     Fait_Symbolique_T)
+      return String;
+   --  Construit l'image du fait.
+   --  @param This
+   --  Le fait,
+   --  @return L'image du fait.
+
    not overriding
    function Lire_Valeur
       (This : in     Fait_Symbolique_T)

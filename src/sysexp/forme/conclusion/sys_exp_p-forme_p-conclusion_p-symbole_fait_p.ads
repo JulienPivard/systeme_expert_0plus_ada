@@ -53,6 +53,15 @@ is
    --  La conclusion.
    --  @return Le nom du fait symbolique.
 
+   overriding
+   function Image
+      (This : in     Conclusion_T)
+      return String;
+   --  La conclusion convertie en chaine de caractères.
+   --  @param This
+   --  La conclusion.
+   --  @return L'image de la conclusion.
+
 private
 
    type Conclusion_T is new Conclusion_Abstraite_T with

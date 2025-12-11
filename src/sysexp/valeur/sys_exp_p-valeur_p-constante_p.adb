@@ -31,6 +31,23 @@ is
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
+   overriding
+   function Image
+      (This : in     Valeur_Constante_T)
+      return String
+   is
+      V : constant Entier_T := This.Valeur;
+
+      V_Str : constant String := V'Image;
+
+      Debut : constant Integer := V_Str'First + (if V < 0 then 0 else 1);
+      Fin   : constant Integer := V_Str'Last;
+   begin
+      return "Constante [" & V_Str (Debut .. Fin) & "]";
+   end Image;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
    --                             Partie privée                             --
    ---------------------------------------------------------------------------
 

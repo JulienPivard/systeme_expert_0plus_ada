@@ -29,6 +29,15 @@ is
    --  @return Le fait construit.
 
    overriding
+   function Image
+      (This : in     Fait_Entier_T)
+      return String;
+   --  Construit l'image du fait.
+   --  @param This
+   --  Le fait,
+   --  @return L'image du fait.
+
+   overriding
    function Lire_Type
       (This : in     Fait_Entier_T)
       return Type_De_Fait_T;

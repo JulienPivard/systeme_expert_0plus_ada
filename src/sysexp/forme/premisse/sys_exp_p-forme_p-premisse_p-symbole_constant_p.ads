@@ -74,6 +74,15 @@ is
    --  La prémisse.
    --  @return Le nom du symbole.
 
+   overriding
+   function Image
+      (This : in     Premisse_T)
+      return String;
+   --  La prémisse convertie en chaine de caractères.
+   --  @param This
+   --  La prémisse.
+   --  @return L'image de la prémisse.
+
 private
 
    package Nom_Symbole_R renames Nom_Symbole_Holder_P;

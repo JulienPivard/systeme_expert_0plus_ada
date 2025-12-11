@@ -54,6 +54,15 @@ is
    --  La conclusion.
    --  @return Le nom du symbole.
 
+   overriding
+   function Image
+      (This : in     Conclusion_T)
+      return String;
+   --  La conclusion convertie en chaine de caractères.
+   --  @param This
+   --  La conclusion.
+   --  @return L'image de la conclusion.
+
 private
 
    package Nom_Symbole_R renames Nom_Symbole_Holder_P;

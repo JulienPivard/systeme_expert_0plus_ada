@@ -51,6 +51,15 @@ is
    --  L'opérateur.
    --  @return Le symbole de l'addition.
 
+   overriding
+   function Image
+      (This : in     Operateur_Plus_T)
+      return String;
+   --  Image d'un opérateur addition.
+   --  @param This
+   --  La valeur d'un opérateur.
+   --  @return L'image d'un opérateur addition.
+
 private
 
    type Operateur_Plus_T is new Operateur_Abstrait_T with

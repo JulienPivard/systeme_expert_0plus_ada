@@ -50,6 +50,16 @@ is
    --  @param Visiteur
    --  Le visiteur de forme.
 
+   overriding
+   function Image
+      (This : in     Conclusion_Abstraite_T)
+      return String
+   is abstract;
+   --  La conclusion convertie en chaine de caractères.
+   --  @param This
+   --  La conclusion.
+   --  @return L'image de la conclusion.
+
 private
 
    type Conclusion_Abstraite_T is abstract new Forme_Abstraite_T with

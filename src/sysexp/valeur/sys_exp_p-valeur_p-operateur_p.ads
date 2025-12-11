@@ -46,6 +46,16 @@ is
    --  L'opérateur.
    --  @return Le symbole de l'opération.
 
+   overriding
+   function Image
+      (This : in     Operateur_Abstrait_T)
+      return String
+   is abstract;
+   --  Image d'un opérateur.
+   --  @param This
+   --  La valeur d'un opérateur.
+   --  @return L'image d'un opérateur.
+
 private
 
    type Operateur_Abstrait_T is abstract new Valeur_Abstraite_T with

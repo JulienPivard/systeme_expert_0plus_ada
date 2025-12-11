@@ -26,6 +26,15 @@ is
    --  La forme.
    --  @return Son nom.
 
+   function Image
+      (This : in     Forme_Abstraite_T)
+      return String
+   is abstract;
+   --  La forme convertie en chaine de caractères.
+   --  @param This
+   --  La forme.
+   --  @return L'image de la forme.
+
 private
 
    type Forme_Abstraite_T is abstract tagged

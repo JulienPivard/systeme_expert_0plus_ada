@@ -34,6 +34,15 @@ is
    --  Le fait,
    --  @return Le type du fait.
 
+   function Image
+      (This : in     Fait_Abstrait_T)
+      return String
+   is abstract;
+   --  Transforme un fait en une chaine de caractères.
+   --  @param This
+   --  Le fait.
+   --  @return Le fait en chaine de caractères.
+
    function "="
       (
          Gauche : in     Fait_Abstrait_T'Class;

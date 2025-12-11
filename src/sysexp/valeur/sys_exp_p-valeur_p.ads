@@ -32,4 +32,13 @@ is
    --  La base de faits à utiliser pour évaluer les expressions.
    --  @return La valeur de l'opération ou de la feuille.
 
+   function Image
+      (This : in     Valeur_Abstraite_T)
+      return String
+   is abstract;
+   --  Image d'une valeur.
+   --  @param This
+   --  La valeur.
+   --  @return L'image d'une valeur.
+
 end Sys_Exp_P.Valeur_P;

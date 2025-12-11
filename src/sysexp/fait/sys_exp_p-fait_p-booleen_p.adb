@@ -33,6 +33,20 @@ is
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
+   overriding
+   function Image
+      (This : in     Fait_Booleen_T)
+      return String
+   is
+      V : constant Boolean := This.Valeur;
+
+      V_Str : constant String := V'Image;
+   begin
+      return V_Str;
+   end Image;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
    not overriding
    function Lire_Valeur
       (This : in     Fait_Booleen_T)

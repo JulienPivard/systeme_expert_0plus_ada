@@ -51,6 +51,15 @@ is
    --  L'opérateur.
    --  @return Le symbole de la multiplication.
 
+   overriding
+   function Image
+      (This : in     Operateur_Mult_T)
+      return String;
+   --  Image d'un opérateur multiplication.
+   --  @param This
+   --  La valeur d'un opérateur.
+   --  @return L'image d'un opérateur multiplication.
+
 private
 
    type Operateur_Mult_T is new Operateur_Abstrait_T with
